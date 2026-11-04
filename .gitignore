@@ -1,0 +1,25 @@
+venv/
+*env
+hosts.py
+ip_keys.py
+asgi.py
+logs/
+__pycache__/
+migrations/
+scripts/
+node_modules/
+staticfiles/
+backend/
+smst/
+dist/min/
+static/
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+/graphify-out
+/.agents
+/.claude
