@@ -1,0 +1,38 @@
+{
+  "name": "smst",
+  "version": "1.0.0",
+  "description": "This is the upgraded version of Smartstock Africa",
+  "keywords": [
+    "smst"
+  ],
+  "license": "ISC",
+  "author": "smst_dev",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write dist",
+    "format-check": "prettier --check dist",
+    "lint": "eslint --fix dist/js",
+    "minify_css": "node scripts/js/css_minify.js",
+    "minify": "node scripts/js/minify.js",
+    "obfuscate": "node scripts/js/obfuscator.js",
+    "test": "vitest run",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "eslint": "^10.11.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.9.8",
+    "vitest": "^5.0.1"
+  },
+  "dependencies": {
+    "clean-css-cli": "^5.6.3",
+    "javascript-obfuscator": "^5.8.0",
+    "playwright": "^1.64.1",
+    "terser": "^5.51.2"
+  }
+}
