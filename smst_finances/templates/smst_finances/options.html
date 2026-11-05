@@ -1,0 +1,134 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Finance options' %}{% endblock %}
+{% block finances_crumb %}{% translate 'Finance options' %}{% endblock %}
+
+{% block finances_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'The rules' %}</p>
+    <h1 class="page-head__title">{% translate 'Taxes, discounts and the cost of doing business' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'A finance option is a rule the shop applies again and again: VAT at a percentage, a delivery fee at a fixed amount, a loyalty discount. Each one points at the account it should post to.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_manage %}
+    <button class="btn btn--primary" type="button" data-open-option>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Add an option' %}
+    </button>
+    {% endif %}
+    {% if can_manage %}
+    <button class="btn btn--ghost" type="button" data-open-entry>
+      <svg aria-hidden="true"><use href="#i-journal"></use></svg>
+      {% translate 'Record an entry' %}
+    </button>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__search">
+    <div class="toolbar__search__input">
+      <svg aria-hidden="true"><use href="#i-search"></use></svg>
+      <label class="sr-only" for="option-search">{% translate 'Search options' %}</label>
+      <input id="option-search" type="search" name="search" value="{{ search }}" placeholder="{% translate 'Search by name' %}" />
+    </div>
+    <button class="btn btn--ghost btn--small" type="submit">{% translate 'Search' %}</button>
+  </div>
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Filter options' %}">
+    <a class="chip {% if not kind %}is-active{% endif %}" href="?search={{ search }}">{% translate 'Everything' %}</a>
+    {% for value, label in option_kinds %}
+    <a class="chip {% if kind == value %}is-active{% endif %}" href="?kind={{ value }}&amp;search={{ search }}">{{ label }}</a>
+    {% endfor %}
+  </div>
+  {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+</form>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% if kind or search %}{% translate 'Filtered' %}{% else %}{% translate 'All options' %}{% endif %}</p>
+      <h2 class="card__title">{% translate 'The rules the shop uses' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate with count=items|length %}{{ count }} shown{% endblocktranslate %}</p>
+  </header>
+
+  {% if items %}
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'Option' %}</th>
+          <th scope="col">{% translate 'Kind' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Rate' %}</th>
+          <th scope="col">{% translate 'Applies to' %}</th>
+          <th scope="col">{% translate 'Account' %}</th>
+          <th scope="col">{% translate 'State' %}</th>
+          <th scope="col"><span class="sr-only">{% translate 'Actions' %}</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for option in items %}
+        <tr
+          data-option-row="{{ option.id }}"
+          data-option-id="{{ option.id }}"
+          data-name="{{ option.name }}"
+          data-kind="{{ option.kind }}"
+          data-rate-type="{{ option.rate_type }}"
+          data-rate="{{ option.rate }}"
+          data-applies-to="{{ option.applies_to }}"
+          data-account="{{ option.account_id|default:'' }}"
+          data-description="{{ option.description }}"
+          data-active="{{ option.is_active|yesno:'1,0' }}"
+          data-default="{{ option.is_default|yesno:'1,0' }}"
+        >
+          <th scope="row">
+            <span class="table__name">{{ option.name }}</span>
+            {% if option.is_default %}<span class="table__meta">{% translate 'Used by default' %}</span>{% elif option.description %}<span class="table__meta">{{ option.description }}</span>{% endif %}
+          </th>
+          <td><span class="tag tag--{{ option.kind }}">{{ option.get_kind_display }}</span></td>
+          <td class="is-numeric">
+            {% if option.rate_type == 'percentage' %}{{ option.rate }}%{% else %}{{ shop.currency }} {{ option.rate|floatformat:2 }}{% endif %}
+            <span class="table__meta">{{ option.get_rate_type_display }}</span>
+          </td>
+          <td>{{ option.get_applies_to_display }}</td>
+          <td>{% if option.account %}{{ option.account.name }}{% else %}<span class="table__meta">{% translate 'Chosen by kind' %}</span>{% endif %}</td>
+          <td>
+            {% if option.is_active %}
+            <span class="tag tag--ok">{% translate 'Active' %}</span>
+            {% else %}
+            <span class="tag tag--muted">{% translate 'Paused' %}</span>
+            {% endif %}
+          </td>
+          <td class="is-actions">
+            {% if can_manage %}
+            <div class="row-actions">
+              <button class="link-button" type="button" data-edit-option="{{ option.id }}">{% translate 'Edit' %}</button>
+              <button class="link-button" type="button" data-delete-option="{{ option.id }}">{% translate 'Delete' %}</button>
+            </div>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-sliders"></use></svg>
+      <p class="empty__title">{% translate 'No finance options yet' %}</p>
+      <p class="empty__text">
+        {% translate 'Add the taxes and discounts the shop uses. An entry can then carry the rule, the rate and the amount it worked out.' %}
+      </p>
+      {% if can_manage %}<button class="btn btn--primary" type="button" data-open-option>{% translate 'Add the first option' %}</button>{% endif %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{% include 'smst_finances/partials/option_form.html' %}
+{% endblock %}

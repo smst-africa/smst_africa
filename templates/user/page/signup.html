@@ -1,0 +1,15 @@
+{% extends 'user/format/main.html' %}
+{% load socialaccount %}
+{% block innerContent %}
+  {% include 'snippets/extendors/email_input.html' %}
+  {% include 'snippets/extendors/signup_button.html' %}
+  {% include 'snippets/notifications/formOutput.html' %}
+  <div class="social-login-button">
+  <div class="social-login-button-holder">
+    <a href="{% provider_login_url 'google' process='login' %}">
+      Continue with Google
+    </a>
+  </div>
+</div>
+{% include 'snippets/extendors/signUp_footer.html' %}
+{% endblock %}

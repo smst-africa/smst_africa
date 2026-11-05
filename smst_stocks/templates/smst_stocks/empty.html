@@ -1,0 +1,52 @@
+{% extends 'smst_stocks/base.html' %}
+{% load i18n %}
+
+{% block stocks_title %}{% translate 'Start a shop' %}{% endblock %}
+{% block stocks_crumb %}{% translate 'Start a shop' %}{% endblock %}
+
+{% block stocks_content %}
+<div class="split split--even">
+  <div class="empty-page" data-reveal>
+    <p class="empty-page__eyebrow">{% translate 'SmSt Stocks' %}</p>
+    <h1 class="empty-page__title">{% translate "Start with the shop" %}</h1>
+    <p class="empty-page__lede">
+      {% translate 'A shop holds your items. Once it exists you can add what you sell, record the stock and share it with customers.' %}
+    </p>
+    <dl class="fact-list">
+      <div class="fact">
+        <dt>{% translate '1. Name the shop' %}</dt>
+        <dd>{% translate 'One minute' %}</dd>
+      </div>
+      <div class="fact">
+        <dt>{% translate '2. Add what you sell' %}</dt>
+        <dd>{% translate 'Price and count' %}</dd>
+      </div>
+      <div class="fact">
+        <dt>{% translate '3. Share a link' %}</dt>
+        <dd>{% translate 'Customers ask, you confirm' %}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <form class="sheet-form" data-shop-create data-reveal>
+    <h2 class="sheet-form__title">{% translate 'The new shop' %}</h2>
+
+    <div class="field">
+      <label class="field__label" for="new-shop-name">{% translate 'Shop name' %}</label>
+      <input class="field__control" id="new-shop-name" name="name" type="text" required maxlength="120" placeholder="{% translate 'Sokoni Traders' %}" />
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="new-shop-currency">{% translate 'Currency' %}</label>
+      <input class="field__control" id="new-shop-currency" name="currency" type="text" maxlength="8" value="Ksh" />
+      <p class="field__hint">{% translate 'The letters that go before every price, such as Ksh.' %}</p>
+    </div>
+
+    <p class="form-error" data-shop-create-error role="alert" hidden></p>
+
+    <button class="btn btn--primary btn--block" type="submit" data-shop-create-submit>
+      <span data-shop-create-label>{% translate 'Create the shop' %}</span>
+    </button>
+  </form>
+</div>
+{% endblock %}

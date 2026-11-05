@@ -1,0 +1,142 @@
+{% extends 'smst_works/base.html' %}
+{% load works_tags i18n %}
+
+{% block works_title %}{% translate 'Jobs' %}{% endblock %}
+{% block works_crumb %}{% translate 'Jobs' %}{% endblock %}
+
+{% block works_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'The work' %}</p>
+    <h1 class="page-head__title">{% translate 'Every job on the floor' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'A job waits, starts, then succeeds or fails. A success takes its inputs from stock and puts its outputs on the shelf. A failure leaves stock where it is.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_jobs_create %}
+    <button class="btn btn--primary" type="button" data-open-job>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'New job' %}
+    </button>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Job state' %}">
+    <a class="chip {% if not status_filter %}is-active{% endif %}" href="{% url 'smst_works:jobs' %}{% if shop %}?shop={{ shop.id }}{% endif %}">{% translate 'All' %}</a>
+    {% for key, label in job_statuses %}
+    <a class="chip {% if status_filter == key %}is-active{% endif %}" href="{% url 'smst_works:jobs' %}?status={{ key }}{% if shop %}&shop={{ shop.id }}{% endif %}">{{ label }}</a>
+    {% endfor %}
+  </div>
+  <div class="toolbar__search">
+    <div class="toolbar__search__holder">
+      <svg aria-hidden="true"><use href="#i-search"></use></svg>
+      <label class="sr-only" for="job-search">{% translate 'Search jobs' %}</label>
+      <input id="job-search" type="search" name="search" value="{{ search }}" placeholder="{% translate 'Search a job' %}" />
+    </div>
+    {% if status_filter %}<input type="hidden" name="status" value="{{ status_filter }}" />{% endif %}
+    {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+    <button class="btn btn--ghost btn--small" type="submit">{% translate 'Search' %}</button>
+  </div>
+</form>
+
+{% if job_list %}
+<section class="card" data-reveal>
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'Job' %}</th>
+          <th scope="col">{% translate 'State' %}</th>
+          <th scope="col">{% translate 'Takes in' %}</th>
+          <th scope="col">{% translate 'Makes' %}</th>
+          <th scope="col">{% translate 'Time' %}</th>
+          <th scope="col">{% translate 'Actions' %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for job in job_list %}
+        <tr data-job-row="{{ job.id }}">
+          <th scope="row">
+            <span class="table__name">{{ job.title }}</span>
+            <span class="table__meta">{{ job.created_by.username|default:"—" }}</span>
+            {% if job.note %}<span class="table__meta">{{ job.note }}</span>{% endif %}
+          </th>
+          <td><span class="tag tag--{{ job.status }}">{{ job.get_status_display }}</span></td>
+          <td>
+            <div class="works-lines">
+              {% for line in job.inputs.all %}
+              <span class="works-line works-line--in"><b>{{ line.quantity|floatformat:"2g" }}</b> {{ line.unit }} · {{ line.product.name }}</span>
+              {% empty %}
+              <span class="table__meta">{% translate 'Nothing' %}</span>
+              {% endfor %}
+            </div>
+          </td>
+          <td>
+            <div class="works-lines">
+              {% for line in job.outputs.all %}
+              <span class="works-line works-line--out"><b>{{ line.quantity|floatformat:"2g" }}</b> {{ line.unit }} · {{ line.product.name }}</span>
+              {% empty %}
+              <span class="table__meta">{% translate 'Nothing' %}</span>
+              {% endfor %}
+            </div>
+          </td>
+          <td>
+            <span class="table__name">
+              {% if job.duration_seconds is not None %}{{ job.duration_seconds|duration }}{% elif job.status == 'running' %}{{ job.elapsed_seconds|duration }} {% translate 'and counting' %}{% else %}{% blocktranslate with waiting=job.waiting_seconds|duration %}waiting {{ waiting }}{% endblocktranslate %}{% endif %}
+            </span>
+            <span class="table__meta">
+              {% if job.started_at %}{% blocktranslate with date=job.started_at|date:"d M H:i" %}started {{ date }}{% endblocktranslate %}{% else %}{% translate 'not started' %}{% endif %}
+            </span>
+          </td>
+          <td>
+            <div class="works-lines">
+              {% if can_jobs_run %}
+                {% if job.status == 'pending' %}
+                <button class="btn btn--ghost btn--small" type="button" data-job-start="{{ job.id }}">
+                  <svg aria-hidden="true"><use href="#i-play"></use></svg>
+                  {% translate 'Start' %}
+                </button>
+                {% elif job.status == 'running' %}
+                <button class="btn btn--primary btn--small" type="button" data-job-finish="{{ job.id }}" data-success="true">
+                  <svg aria-hidden="true"><use href="#i-check"></use></svg>
+                  {% translate 'Succeed' %}
+                </button>
+                <button class="btn btn--ghost btn--small" type="button" data-job-finish="{{ job.id }}" data-success="false">
+                  <svg aria-hidden="true"><use href="#i-close"></use></svg>
+                  {% translate 'Fail' %}
+                </button>
+                {% endif %}
+              {% endif %}
+              {% if job.status == 'succeeded' %}
+              <span class="tag tag--ok">{% translate 'Stock moved' %}</span>
+              {% elif job.status == 'failed' %}
+              <span class="tag tag--out">{% translate 'Left alone' %}</span>
+              {% endif %}
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% else %}
+<section class="card" data-reveal>
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-jobs"></use></svg>
+      <p class="empty__title">{% translate 'No jobs here yet' %}</p>
+      <p class="empty__text">
+        {% if search or status_filter %}{% translate 'Try another search or state.' %}{% else %}{% translate 'Create the first job and give the timeline something to draw.' %}{% endif %}
+      </p>
+      {% if can_jobs_create %}
+      <button class="btn btn--primary" type="button" data-open-job>{% translate 'Create a job' %}</button>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

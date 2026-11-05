@@ -1,0 +1,140 @@
+{% extends 'smst_stocks/public_base.html' %}
+{% load i18n %}
+{% block productName %}{% blocktranslate with product=product.name shop=shop.name %}{{ product }} by {{ shop }} at Smst{% endblocktranslate %}{% endblock %}
+{% block title %}{{ product.name }} — {{ shop.name }}{% endblock %}
+{% block description %}{% blocktranslate with name=product.name shop=shop.name currency=shop.currency price=product.selling_price|floatformat:0 %}{{ name }} from {{ shop }}, {{ currency }} {{ price }}.{% endblocktranslate %}{% endblock %}
+
+{% block headerMetas %}
+<meta property="og:title" content="{% blocktranslate with name=product.name shop=shop.name %}Buy {{ name }} from {{ shop }}{% endblocktranslate %}">
+  <meta property="og:description" content="{% blocktranslate with name=product.name shop=shop.name currency=shop.currency price=product.selling_price|floatformat:0 %}{{ name }} from {{ shop }}, {{ currency }} {{ price }}{% endblocktranslate %}">
+  <meta property="og:url" content="https://app.smst.africa{{ request.path }}">
+  <meta property="og:image" content="{{product.image.url}}">
+  <meta property="og:site_name" content="SMST Stocks">
+  <meta property="og:locale" content="en_KE">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+{% endblock %}
+
+
+{% block content %}
+<article class="product-sheet" data-public-product="{{ product.id }}">
+  <div class="product-sheet__media">
+    {% if product.image %}
+    <img class="product-sheet__image" src="{{ product.image.url }}" alt="{{ product.name }}" width="640" height="640" />
+    {% else %}
+    <div class="product-sheet__image product-sheet__image--empty" aria-hidden="true">
+      <svg viewBox="0 0 32 32">
+        <path d="M4 11.5 16 5l12 6.5v9L16 27 4 20.5z" />
+        <path d="M4 11.5 16 18l12-6.5" />
+        <path d="M16 18v9" />
+      </svg>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="product-sheet__body">
+    <p class="product-sheet__shop">{{ shop.name }}</p>
+    <h1 class="product-sheet__title">{{ product.name }}</h1>
+
+    {% if product.description %}
+    <p class="product-sheet__text">{{ product.description }}</p>
+    {% endif %}
+
+    {% if attributes %}
+    <dl class="product-sheet__facts">
+      {% for key, value in attributes %}
+      <div class="product-sheet__fact">
+        <dt>{{ key }}</dt>
+        <dd>{{ value }}</dd>
+      </div>
+      {% endfor %}
+    </dl>
+    {% endif %}
+
+    <p class="product-sheet__price">
+      <span class="product-sheet__amount">{{ shop.currency }} {{ product.selling_price|floatformat:2 }}</span>
+      <span class="product-sheet__unit">{% blocktranslate with unit=product.unit %}per {{ unit }}{% endblocktranslate %}</span>
+    </p>
+
+    <p class="stock-line stock-line--{{ product.stock_state }}" data-stock-badge>
+      <span class="stock-line__mark" aria-hidden="true"></span>
+      <span data-stock-text>
+        {% if product.quantity <= 0 %}
+          {% translate 'Out of stock at the moment' %}
+        {% elif product.stock_state == 'low' %}
+          {% blocktranslate with count=product.quantity|floatformat:0 %}Only {{ count }} left{% endblocktranslate %}
+        {% else %}
+          {% blocktranslate with count=product.quantity|floatformat:0 %}{{ count }} in stock{% endblocktranslate %}
+        {% endif %}
+      </span>
+    </p>
+
+    {% if product.quantity > 0 %}
+    <form class="buy-form" data-order-form data-product="{{ product.share_token }}">
+      <h2 class="buy-form__title">{% translate 'Ask for this item' %}</h2>
+      <p class="buy-form__lead">
+        {% translate 'Leave your name and number. The shop will call to arrange it.' %}
+      </p>
+
+      <div class="field">
+        <label class="field__label" for="order-name">{% translate 'Your name' %}</label>
+        <input class="field__control" id="order-name" name="customer_name" type="text" required maxlength="120" placeholder="{% translate 'Full Name' %}" />
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="order-phone">{% translate 'Phone number' %}</label>
+        <input class="field__control" id="order-phone" name="customer_phone" type="tel" required maxlength="40" placeholder="+254 700 000 000" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="order-quantity">{% translate 'How many' %}</label>
+          <input class="field__control" id="order-quantity" name="quantity" type="number" step="any" min="1" max="{{ product.quantity|floatformat:0 }}" value="1" required />
+        </div>
+        <div class="field">
+          <label class="field__label" for="order-email">{% translate 'Email' %} <span class="field__optional">{% translate 'optional' %}</span></label>
+          <input class="field__control" id="order-email" name="customer_email" type="email" placeholder="{% translate 'you@example.com' %}" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="order-note">{% translate 'Anything else' %} <span class="field__optional">{% translate 'optional' %}</span></label>
+        <input class="field__control" id="order-note" name="note" type="text" maxlength="240" placeholder="{% translate 'You can collect from the shop' %}" />
+      </div>
+
+      <p class="form-error" data-order-error role="alert" hidden></p>
+
+      <button class="btn btn--primary btn--block" type="submit" data-order-submit>
+        <span data-order-label>{% translate 'Ask for this item' %}</span>
+      </button>
+
+      <p class="buy-form__done" data-order-done hidden>
+        <span class="buy-form__reference" data-order-reference></span>
+        <span>{% translate 'The shop has your request and will call you to confirm.' %}</span>
+      </p>
+    </form>
+    {% else %}
+    <p class="buy-form__gone">
+      {% translate 'This item has run out. Ask the shop when it will be back.' %}
+    </p>
+    {% endif %}
+
+    <div class="assurance">
+      <p class="assurance__row">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"></use></svg>
+        <span><strong>{% translate 'Your request holds the stock.' %}</strong> {% translate 'Nobody else can ask for the last one.' %}</span>
+      </p>
+      <p class="assurance__row">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-clock"></use></svg>
+        <span><strong>{% translate 'The shop confirms by phone.' %}</strong> {% blocktranslate with shop=shop.name %}You will hear from {{ shop }} before anything is set aside.{% endblocktranslate %}</span>
+      </p>
+      {% if shop.phone %}
+      <p class="assurance__row">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-phone"></use></svg>
+        <span><strong>{% translate 'Prefer to call?' %}</strong> <a href="tel:{{ shop.phone }}">{{ shop.phone }}</a></span>
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</article>
+{% endblock %}

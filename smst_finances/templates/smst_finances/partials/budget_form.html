@@ -1,0 +1,101 @@
+{% load i18n %}
+<div class="sheet" data-budget-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="budget-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'Budgets' %}</p>
+        <h2 class="sheet__title" id="budget-title" data-budget-title>{% translate 'Set a budget' %}</h2>
+        <p class="sheet__note">
+          {% translate 'A budget is measured against posted entries in its account or finance option. It warns before the plan is spent.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-budget-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="field">
+        <label class="field__label" for="budget-name">{% translate 'Name' %}</label>
+        <input class="field__control" id="budget-name" name="name" type="text" maxlength="120" required placeholder="{% translate 'Transport this month' %}" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="budget-amount">{% translate 'Amount' %}</label>
+          <input class="field__control" id="budget-amount" name="amount" type="number" min="0" step="0.01" inputmode="decimal" required placeholder="0.00" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="budget-period">{% translate 'Period' %}</label>
+          <select class="field__control" id="budget-period" name="period">
+            {% for value, label in budget_periods %}
+            <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="budget-account">{% translate 'Watch an account' %}</label>
+          <select class="field__control" id="budget-account" name="account">
+            <option value="">{% translate 'No account' %}</option>
+            {% for account in accounts %}
+            <option
+              value="{{ account.id }}"
+              data-eyebrow="{{ account.code }}"
+              data-meta="{{ account.get_type_display }}"
+              data-badge="{{ shop.currency }} {{ account.balance|floatformat:2 }}"
+            >{{ account.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="budget-option">{% translate 'Or watch an option' %}</label>
+          <select class="field__control" id="budget-option" name="option">
+            <option value="">{% translate 'No option' %}</option>
+            {% for option in finance_options %}
+            <option
+              value="{{ option.id }}"
+              data-title="{{ option.name }}"
+              data-eyebrow="{{ option.get_kind_display }}"
+              data-meta="{{ option.get_applies_to_display }}"
+              data-badge="{% if option.rate_type == 'percentage' %}{{ option.rate|floatformat:2 }}%{% else %}{{ shop.currency }} {{ option.rate|floatformat:2 }}{% endif %}"
+            >{{ option.name }} · {{ option.get_kind_display }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="budget-start">{% translate 'Starts on' %}</label>
+          <input class="field__control" id="budget-start" name="starts_on" type="date" value="{{ today|date:'Y-m-d' }}" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="budget-end">{% translate 'Ends on' %}</label>
+          <input class="field__control" id="budget-end" name="ends_on" type="date" placeholder="{% translate 'Optional' %}" />
+          <p class="field__hint">{% translate 'Leave it empty to follow the period.' %}</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="budget-notes">{% translate 'Notes' %}</label>
+        <input class="field__control" id="budget-notes" name="notes" type="text" maxlength="240" placeholder="{% translate 'Optional' %}" />
+      </div>
+
+      <p class="form-error" data-budget-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-budget-submit>
+          <span data-budget-label>{% translate 'Save the budget' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-reset-budget hidden>{% translate 'Start a new budget' %}</button>
+      </div>
+    </form>
+  </div>
+</div>

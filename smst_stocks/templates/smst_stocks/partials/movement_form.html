@@ -1,0 +1,97 @@
+{% load i18n %}
+<div class="sheet" data-movement-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="movement-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'The ledger' %}</p>
+        <h2 class="sheet__title" id="movement-title">{% translate 'Record a movement' %}</h2>
+        <p class="sheet__note">
+          {% translate 'The count on every item follows from what you record here.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-movement-form>
+      <div class="field">
+        <label class="field__label" for="movement-product">{% translate 'Item' %}</label>
+        <select class="field__control" id="movement-product" name="product" required>
+          <option value="">{% translate 'Choose an item' %}</option>
+          {% for item in all_products %}
+          <option
+            value="{{ item.id }}"
+            {% if item.image %}data-image="{{ item.image.url }}"{% else %} data-logo="https://res.cloudinary.com/wkuo7imf/image/upload/v1793094958/smst_stocks.png"{% endif %}
+
+            data-eyebrow="{{ item.sku|default:'' }}"
+            data-meta="{% blocktranslate with quantity=item.quantity|floatformat:0 unit=item.unit %}{{ quantity }} {{ unit }} in hand{% endblocktranslate %}"
+          >{{ item.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="movement-kind">{% translate 'What happened' %}</label>
+        <select class="field__control" id="movement-kind" name="kind">
+          {% if can_stocks_move %}<option value="sale">{% translate 'Sold to a customer' %}</option>{% endif %}
+          {% if can_stocks_add %}<option value="delivery">{% translate 'Delivery arrived' %}</option>{% endif %}
+          <option value="opening">{% translate 'Opening stock' %}</option>
+          <option value="return">{% translate 'Customer return' %}</option>
+          <option value="loss">{% translate 'Lost or damaged' %}</option>
+          <option value="adjustment">{% translate 'Adjustment' %}</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="movement-quantity">{% translate 'How many' %}</label>
+        <input class="field__control" id="movement-quantity" name="quantity" type="number" step="any" inputmode="decimal" required />
+        <p class="field__hint">
+          {% translate 'A sale takes the number off the shelf, a delivery puts it on. Use a negative number for an adjustment that takes stock away.' %}
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="movement-account">{% translate 'Money account' %}</label>
+        <select class="field__control" id="movement-account" name="account" data-money-account>
+          <option value="">{% translate 'No money movement (stock only)' %}</option>
+          {% for account in finance_accounts %}
+          <option
+            value="{{ account.id }}"
+            data-code="{{ account.code }}"
+            data-eyebrow="{{ account.code }}"
+            data-image="https://res.cloudinary.com/wkuo7imf/image/upload/v1793096024/smst_finance.png"
+            data-meta="{{ account.get_type_display }}"
+            data-badge="{{ shop.currency }} {{ account.balance|floatformat:2 }}"
+            {% if account.code == '1000' %}data-default="true" selected{% endif %}
+          >{{ account.name }}</option>
+          {% endfor %}
+        </select>
+        <p class="field__hint" data-money-hint>
+          {% if finance_accounts %}
+          {% translate 'The movement is posted to SmSt Finances automatically. Choose where the money came from or went, such as Cash or Bank.' %}
+          {% else %}
+          {% translate 'SmSt Finances has no accounts for this shop yet, so the movement stays in stock only.' %}
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="movement-note">{% translate 'Note' %}</label>
+        <input class="field__control" id="movement-note" name="note" type="text" maxlength="240" placeholder="{% translate 'Optional' %}" />
+      </div>
+
+      <p class="form-error" data-movement-error role="alert" hidden></p>
+
+      <button class="btn btn--primary btn--block" type="submit" data-movement-submit>
+        <span data-movement-label>{% translate 'Record it' %}</span>
+      </button>
+
+      <p class="sheet__foot">
+        {% translate 'A sale of more than the shop holds is refused, so the count never goes below what is on the shelf.' %}
+      </p>
+    </form>
+  </div>
+</div>

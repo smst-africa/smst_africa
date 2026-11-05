@@ -1,0 +1,19 @@
+{% extends 'user/profile/pages/dynamicPageHolder.html' %}
+{% load i18n %}
+{% block content %}
+<div class="editingHeader">
+    <h1>{% blocktranslate %}Edit your {{ edit_name }}{% endblocktranslate %}</h1>
+</div>
+<div class="editingInputHolder">
+    <div class="inputHolder">
+        <input type="text" id="{{input_id}}" value="{{input_value}}" data-edit-name="{{edit_name}}">
+        {% include 'snippets/attachables/feedback_icon.html' %}
+    </div>
+</div>
+{% include 'snippets/notifications/formOutput.html' %}
+<div class="editingButtonHolder">
+    <div class="buttonHolder flex">
+        <button>{% translate 'Save Changes' %}</button>
+    </div>
+</div>
+{% endblock %}

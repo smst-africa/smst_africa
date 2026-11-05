@@ -1,0 +1,5179 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-29 21:09+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: core/account/account.py:44
+msgid "Username Changed."
+msgstr "Jina la mtumiaji limebadilishwa."
+
+#: core/account/account.py:44
+msgid "You have changed your username recently."
+msgstr "Umebadilisha jina lako la mtumiaji hivi karibuni."
+
+#: core/account/account.py:71
+msgid "Password Changed."
+msgstr "Nenosiri limebadilishwa"
+
+#: core/account/account.py:71
+msgid "You have changed your password"
+msgstr "Umebadilisha nenosiri lako"
+
+#: core/account/account.py:90
+msgid "Notification"
+msgstr "Taarifa"
+
+#: core/account/account.py:90
+msgid "Here is a message"
+msgstr "Hapa kuna habari"
+
+#: core/account/pro.py:40
+msgid "Upgraded to Smst Pro"
+msgstr "Umeboreshwa hadi Smst Pro"
+
+#: core/account/pro.py:40
+msgid "Enjoy Premium Experience"
+msgstr "Furahia uzoefu wa kiwango cha juu"
+
+#: smst_app/models/smst_stock.py:24
+msgid "Stock Updated"
+msgstr "Stoki imesasishwa"
+
+#: smst_app/models/smst_stock.py:24
+#, python-brace-format
+msgid "Product {product_name} has been created"
+msgstr "Bidhaa {product_name} imeundwa"
+
+#: smst_app/models/smst_stock.py:38
+msgid "Stock Deleted"
+msgstr "Stoki imefutwa"
+
+#: smst_app/models/smst_stock.py:38
+#, python-brace-format
+msgid "Product {product_name} has been deleted"
+msgstr "Bidhaa {product_name} imefutwa"
+
+#: smst_finances/templates/smst_finances/accounts.html:4
+#: smst_finances/templates/smst_finances/accounts.html:5
+#: smst_finances/templates/smst_finances/partials/account_form.html:7
+msgid "Chart of accounts"
+msgstr "Chati ya akaunti"
+
+#: smst_finances/templates/smst_finances/accounts.html:10
+msgid "The frame"
+msgstr "Sura"
+
+#: smst_finances/templates/smst_finances/accounts.html:11
+msgid "The accounts every figure hangs on"
+msgstr "Hesabu ambazo kila takwimu inategemea"
+
+#: smst_finances/templates/smst_finances/accounts.html:13
+msgid ""
+"The shop starts with a full chart of accounts. Rename one to match the way "
+"you talk about the business; the built-in ones keep their code so the "
+"statements never lose their place."
+msgstr ""
+"Duka unaanza na orodha kamili ya akaunti. Badilisha jina la akaunti mojawapo "
+"ili ilingane na jinsi unavyozungumzia biashara yako; akaunti zilizokuwepo "
+"awali zinabaki na misimbo yake, hivyo taarifa za kifedha hazipotezi "
+"mpangilio wake."
+
+#: smst_finances/templates/smst_finances/accounts.html:20
+#: smst_finances/templates/smst_finances/accounts.html:117
+#: smst_finances/templates/smst_finances/partials/account_form.html:8
+msgid "Add an account"
+msgstr "Ongeza Akaunti"
+
+#: smst_finances/templates/smst_finances/accounts.html:26
+msgid "Trial balance"
+msgstr "Mizania ya majaribio"
+
+#: smst_finances/templates/smst_finances/accounts.html:33
+msgid "Filter accounts"
+msgstr "Chuja akaunti"
+
+#: smst_finances/templates/smst_finances/accounts.html:34
+#: smst_finances/templates/smst_finances/options.html:42
+#: smst_finances/templates/smst_finances/partials/option_form.html:43
+#: smst_stocks/templates/smst_stocks/movements.html:49
+msgid "Everything"
+msgstr "Kila Kitu"
+
+#: smst_finances/templates/smst_finances/accounts.html:45
+#, python-format
+msgid "%(type)s accounts"
+msgstr "Akaunti za %(type)s"
+
+#: smst_finances/templates/smst_finances/accounts.html:45
+msgid "All accounts"
+msgstr "Akaunti zote"
+
+#: smst_finances/templates/smst_finances/accounts.html:46
+msgid "The chart"
+msgstr "Chati"
+
+#: smst_finances/templates/smst_finances/accounts.html:48
+#, python-format
+msgid "%(counter)s account"
+msgid_plural "%(counter)s accounts"
+msgstr[0] "Akaunti ya %(counter)s"
+msgstr[1] "Akaunti za %(counter)s"
+
+#: smst_finances/templates/smst_finances/accounts.html:56
+#: smst_finances/templates/smst_finances/partials/account_form.html:24
+#: smst_finances/templates/smst_finances/statements.html:193
+#: smst_stocks/templates/smst_stocks/pages/cart.html:48
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:52
+msgid "Code"
+msgstr "Msimbo"
+
+#: smst_finances/templates/smst_finances/accounts.html:57
+#: smst_finances/templates/smst_finances/entries.html:180
+#: smst_finances/templates/smst_finances/options.html:68
+#: smst_finances/templates/smst_finances/statements.html:194
+#: smst_finances/templates/smst_finances/statements.html:244
+#: templates/user/profile/page.html:40
+msgid "Account"
+msgstr "Akaunti"
+
+#: smst_finances/templates/smst_finances/accounts.html:58
+#: smst_finances/templates/smst_finances/partials/account_form.html:29
+#: smst_finances/templates/smst_finances/statements.html:195
+msgid "Type"
+msgstr "Aina"
+
+#: smst_finances/templates/smst_finances/accounts.html:59
+msgid "Grows on"
+msgstr "Hukua kwenye"
+
+#: smst_finances/templates/smst_finances/accounts.html:60
+#: smst_finances/templates/smst_finances/statements.html:198
+msgid "Balance"
+msgstr "Uwiano"
+
+#: smst_finances/templates/smst_finances/accounts.html:61
+#: smst_finances/templates/smst_finances/dashboard.html:167
+#: smst_finances/templates/smst_finances/entries.html:86
+#: smst_finances/templates/smst_finances/options.html:69
+#: smst_finances/templates/smst_finances/partials/entry_form.html:32
+#: smst_stocks/templates/smst_stocks/dashboard.html:147
+#: smst_stocks/templates/smst_stocks/links.html:35
+#: smst_stocks/templates/smst_stocks/orders.html:65
+#: smst_stocks/templates/smst_stocks/products.html:82
+#: smst_works/templates/smst_works/dashboard.html:155
+#: smst_works/templates/smst_works/employees.html:52
+#: smst_works/templates/smst_works/jobs.html:52
+#: smst_works/templates/smst_works/partials/employee_form.html:61
+msgid "State"
+msgstr "Hali"
+
+#: smst_finances/templates/smst_finances/accounts.html:62
+#: smst_finances/templates/smst_finances/entries.html:87
+#: smst_finances/templates/smst_finances/options.html:70
+#: smst_stocks/templates/smst_stocks/dashboard.html:148
+#: smst_stocks/templates/smst_stocks/links.html:36
+#: smst_stocks/templates/smst_stocks/low_stock.html:55
+#: smst_stocks/templates/smst_stocks/orders.html:66
+#: smst_stocks/templates/smst_stocks/products.html:83
+#: smst_works/templates/smst_works/customers.html:60
+#: smst_works/templates/smst_works/employees.html:54
+#: smst_works/templates/smst_works/jobs.html:56
+#: smst_works/templates/smst_works/suppliers.html:48
+msgid "Actions"
+msgstr "Vitendo"
+
+#: smst_finances/templates/smst_finances/accounts.html:89
+#: smst_finances/templates/smst_finances/options.html:103
+msgid "Paused"
+msgstr "Imesitishwa"
+
+#: smst_finances/templates/smst_finances/accounts.html:91
+msgid "Built in"
+msgstr "Imejengwa ndani"
+
+#: smst_finances/templates/smst_finances/accounts.html:93
+msgid "Your own"
+msgstr "Chako "
+
+#: smst_finances/templates/smst_finances/accounts.html:99
+#: smst_finances/templates/smst_finances/budgets.html:56
+#: smst_finances/templates/smst_finances/entries.html:148
+#: smst_finances/templates/smst_finances/options.html:109
+#: smst_stocks/templates/smst_stocks/product_form.html:9
+#: smst_stocks/templates/smst_stocks/products.html:124
+#: smst_works/templates/smst_works/customers.html:90
+#: smst_works/templates/smst_works/employees.html:92
+#: smst_works/templates/smst_works/suppliers.html:83
+msgid "Edit"
+msgstr "Hariri"
+
+#: smst_finances/templates/smst_finances/accounts.html:101
+#: smst_finances/templates/smst_finances/budgets.html:57
+#: smst_finances/templates/smst_finances/entries.html:154
+#: smst_finances/templates/smst_finances/options.html:110
+msgid "Delete"
+msgstr "Futa"
+
+#: smst_finances/templates/smst_finances/accounts.html:115
+msgid "No accounts of that type"
+msgstr "Hakuna akaunti za aina hiyo"
+
+#: smst_finances/templates/smst_finances/accounts.html:116
+msgid "Choose another type, or add an account of your own."
+msgstr "Chagua aina nyingine, au ongeza akaunti yako mwenyewe."
+
+#: smst_finances/templates/smst_finances/base.html:5
+msgid "Skip to the money book"
+msgstr "Rukia Daftari la hisa"
+
+#: smst_finances/templates/smst_finances/base.html:8
+#: smst_finances/templates/smst_finances/base.html:10
+#: smst_finances/templates/smst_finances/base.html:135
+#: smst_finances/templates/smst_finances/base.html:152
+#: smst_finances/templates/smst_finances/base.html:253
+#: smst_finances/templates/smst_finances/empty.html:10
+#: templates/app/homepage.html:107
+msgid "SmSt Finances"
+msgstr "Fedha za SmSt"
+
+#: smst_finances/templates/smst_finances/base.html:136
+msgid "The money book"
+msgstr "Daftari la hisa"
+
+#: smst_finances/templates/smst_finances/base.html:147
+#: smst_stocks/templates/smst_stocks/base.html:115
+#: smst_works/templates/smst_works/base.html:118
+msgid "Collapse the menu"
+msgstr "Funga menyu"
+
+#: smst_finances/templates/smst_finances/base.html:154
+#: smst_finances/templates/smst_finances/dashboard.html:10
+#: smst_stocks/templates/smst_stocks/base.html:122
+#: smst_stocks/templates/smst_stocks/dashboard.html:9
+#: smst_works/templates/smst_works/base.html:126
+msgid "Overview"
+msgstr "Muhtasari"
+
+#: smst_finances/templates/smst_finances/base.html:158
+#: smst_finances/templates/smst_finances/dashboard.html:4
+#: smst_stocks/templates/smst_stocks/base.html:126
+#: smst_stocks/templates/smst_stocks/dashboard.html:3
+msgid "Dashboard"
+msgstr "Dashibodi"
+
+#: smst_finances/templates/smst_finances/base.html:164
+#: smst_finances/templates/smst_finances/statements.html:4
+#: smst_finances/templates/smst_finances/statements.html:5
+msgid "Statements"
+msgstr "Kauli"
+
+#: smst_finances/templates/smst_finances/base.html:170
+#: smst_finances/templates/smst_finances/reports.html:4
+#: smst_finances/templates/smst_finances/reports.html:5
+#: smst_finances/templates/smst_finances/reports.html:10
+#: smst_stocks/templates/smst_stocks/base.html:132
+#: smst_stocks/templates/smst_stocks/reports.html:4
+#: smst_stocks/templates/smst_stocks/reports.html:5
+#: smst_stocks/templates/smst_stocks/reports.html:10
+msgid "Reports"
+msgstr "Ripoti"
+
+#: smst_finances/templates/smst_finances/base.html:176
+msgid "The books"
+msgstr "Vitabu"
+
+#: smst_finances/templates/smst_finances/base.html:180
+#: smst_finances/templates/smst_finances/entries.html:4
+#: smst_finances/templates/smst_finances/entries.html:5
+msgid "Entries"
+msgstr "Ingizo"
+
+#: smst_finances/templates/smst_finances/base.html:186
+#: smst_finances/templates/smst_finances/receipts.html:4
+#: smst_finances/templates/smst_finances/receipts.html:5
+#: smst_finances/templates/smst_finances/receipts.html:10
+#: smst_finances/templates/smst_finances/receipts.html:22
+msgid "Receipts"
+msgstr ""
+
+#: smst_finances/templates/smst_finances/base.html:192
+#: smst_finances/templates/smst_finances/entries.html:26
+#: smst_finances/templates/smst_finances/options.html:4
+#: smst_finances/templates/smst_finances/options.html:5
+#: smst_finances/templates/smst_finances/partials/option_form.html:7
+msgid "Finance options"
+msgstr "Chaguzi za ufadhili"
+
+#: smst_finances/templates/smst_finances/base.html:198
+#, fuzzy
+#| msgid "Account"
+msgid "Accounts"
+msgstr "Akaunti"
+
+#: smst_finances/templates/smst_finances/base.html:204
+#, fuzzy
+#| msgid "Plan"
+msgid "Planning"
+msgstr "Mpango"
+
+#: smst_finances/templates/smst_finances/base.html:208
+#: smst_finances/templates/smst_finances/charts.html:4
+#: smst_finances/templates/smst_finances/charts.html:5
+msgid "Graph builder"
+msgstr "Kiunda grafu"
+
+#: smst_finances/templates/smst_finances/base.html:214
+#: smst_finances/templates/smst_finances/budgets.html:4
+#: smst_finances/templates/smst_finances/budgets.html:5
+#: smst_finances/templates/smst_finances/partials/budget_form.html:7
+msgid "Budgets"
+msgstr "Bajeti"
+
+#: smst_finances/templates/smst_finances/base.html:223
+#: smst_works/templates/smst_works/base.html:157
+#: smst_works/templates/smst_works/base.html:182
+msgid "The shop"
+msgstr "Rafu"
+
+#: smst_finances/templates/smst_finances/base.html:229
+#, python-format
+msgid "%(counter)s item linked from stock"
+msgid_plural "%(counter)s items linked from stock"
+msgstr[0] "Bidhaa %(counter)s imeunganishwa kutoka kwenye hisa"
+msgstr[1] "Bidhaa %(counter)s zimeunganishwa kutoka kwenye hisa"
+
+#: smst_finances/templates/smst_finances/base.html:244
+#: smst_stocks/templates/smst_stocks/base.html:221
+#: smst_works/templates/smst_works/base.html:209
+msgid "Choose a shop"
+msgstr "Chagua Duka"
+
+#: smst_finances/templates/smst_finances/base.html:268
+#: smst_finances/templates/smst_finances/dashboard.html:25
+#: smst_finances/templates/smst_finances/dashboard.html:205
+#: smst_finances/templates/smst_finances/entries.html:20
+#: smst_finances/templates/smst_finances/entries.html:206
+#: smst_finances/templates/smst_finances/options.html:26
+#: smst_finances/templates/smst_finances/partials/entry_form.html:8
+msgid "Record an entry"
+msgstr "Rekodi harakati"
+
+#: smst_finances/templates/smst_finances/budgets.html:10
+#: smst_finances/templates/smst_finances/dashboard.html:214
+msgid "Plans"
+msgstr "Mipango"
+
+#: smst_finances/templates/smst_finances/budgets.html:11
+msgid "What you mean to spend"
+msgstr "Kiasi unachokusudia kutumia"
+
+#: smst_finances/templates/smst_finances/budgets.html:13
+msgid ""
+"A budget watches one account or one finance option. The bar fills from the "
+"posted entries in the current period, so it never needs a second tally."
+msgstr ""
+"Bajeti hufuatilia akaunti moja au chaguo moja la kifedha. Upau hujazwa "
+"kulingana na rekodi zilizowekwa katika kipindi cha sasa, hivyo hakuna haja "
+"ya kufanya hesabu ya pili."
+
+#: smst_finances/templates/smst_finances/budgets.html:20
+#: smst_finances/templates/smst_finances/dashboard.html:218
+#: smst_finances/templates/smst_finances/partials/budget_form.html:8
+msgid "Set a budget"
+msgstr "Weka bajeti"
+
+#: smst_finances/templates/smst_finances/budgets.html:26
+#, fuzzy
+#| msgid "Entries"
+msgid "The entries"
+msgstr "Ingizo"
+
+#: smst_finances/templates/smst_finances/budgets.html:65
+msgid "Spent"
+msgstr "Imetumika"
+
+#: smst_finances/templates/smst_finances/budgets.html:69
+msgid "Of"
+msgstr "Ya"
+
+#: smst_finances/templates/smst_finances/budgets.html:73
+msgid "Over"
+msgstr "Juu"
+
+#: smst_finances/templates/smst_finances/budgets.html:73
+#: smst_works/templates/smst_works/employees.html:31
+#: smst_works/templates/smst_works/partials/employee_form.html:65
+msgid "Left"
+msgstr "Baki"
+
+#: smst_finances/templates/smst_finances/budgets.html:80
+#, python-format
+msgid "%(name)s spent"
+msgstr "%(name)s imetumika"
+
+#: smst_finances/templates/smst_finances/budgets.html:84
+#, python-format
+msgid "%(percent)s%% used"
+msgstr "%(percent)s%% imetumika"
+
+#: smst_finances/templates/smst_finances/budgets.html:96
+msgid "No budgets yet"
+msgstr "Hakuna bajeti bado"
+
+#: smst_finances/templates/smst_finances/budgets.html:98
+msgid ""
+"Set a monthly transport budget, a yearly rent plan, or a cap on discounts. "
+"The app will measure it against the book."
+msgstr ""
+"Weka bajeti ya kila mwezi ya usafiri, mpango wa kila mwaka wa kodi ya "
+"pangoni, au kikomo cha punguzo. Programu italinganisha hilo na kumbukumbu "
+"zilizopo."
+
+#: smst_finances/templates/smst_finances/budgets.html:100
+msgid "Set the first budget"
+msgstr "Weka bajeti ya kwanza"
+
+#: smst_finances/templates/smst_finances/charts.html:10
+msgid "Graphs"
+msgstr "Grafu"
+
+#: smst_finances/templates/smst_finances/charts.html:11
+msgid "Choose the X, then choose the Y"
+msgstr "Chagua X, kisha chagua Y"
+
+#: smst_finances/templates/smst_finances/charts.html:13
+msgid ""
+"Time, product, category, option, account or entry kind on one axis; the "
+"amount, profit, loss, stock value or a figure you type on the other. The two "
+"sides are picked separately, so any pair you need is allowed."
+msgstr ""
+"Wakati, bidhaa, kategoria, chaguo, akaunti au aina ya ingizo kwenye mhimili "
+"mmoja; kiasi, faida, hasara, thamani ya hisa au namba unayoiingiza kwenye "
+"mhimili mwingine. Pande hizi mbili huchaguliwa kivyake, hivyo unaweza "
+"kuchagua jozi yoyote unayohitaji."
+
+#: smst_finances/templates/smst_finances/charts.html:20
+#: smst_finances/templates/smst_finances/statements.html:10
+msgid "The statements"
+msgstr "Kauli hizo"
+
+#: smst_finances/templates/smst_finances/charts.html:31
+msgid "The builder"
+msgstr "Mjenzi"
+
+#: smst_finances/templates/smst_finances/charts.html:32
+msgid "A graph, exactly as you want it"
+msgstr "Grafu, hasa kama unavyoitaka"
+
+#: smst_finances/templates/smst_finances/charts.html:38
+#: smst_works/templates/smst_works/partials/guide_form.html:23
+msgid "Title"
+msgstr "Kichwa"
+
+#: smst_finances/templates/smst_finances/charts.html:39
+msgid "Stock value through the month"
+msgstr "Thamani ya hisa katika kipindi cha mwezi"
+
+#: smst_finances/templates/smst_finances/charts.html:44
+msgid "How to draw it"
+msgstr "Jinsi ya kuchora"
+
+#: smst_finances/templates/smst_finances/charts.html:46
+msgid "Bars"
+msgstr "Pau"
+
+#: smst_finances/templates/smst_finances/charts.html:47
+msgid "Line"
+msgstr "Mstari"
+
+#: smst_finances/templates/smst_finances/charts.html:48
+msgid "Area"
+msgstr "Eneo"
+
+#: smst_finances/templates/smst_finances/charts.html:49
+msgid "Donut"
+msgstr "Donati"
+
+#: smst_finances/templates/smst_finances/charts.html:53
+#: smst_finances/templates/smst_finances/partials/account_form.html:46
+#: smst_finances/templates/smst_finances/partials/option_form.html:84
+#: smst_stocks/templates/smst_stocks/product_form.html:74
+msgid "Description"
+msgstr "Maelezo"
+
+#: smst_finances/templates/smst_finances/charts.html:54
+#: smst_finances/templates/smst_finances/partials/budget_form.html:81
+#: smst_finances/templates/smst_finances/partials/budget_form.html:88
+#: smst_finances/templates/smst_finances/partials/entry_form.html:56
+#: smst_finances/templates/smst_finances/partials/entry_form.html:83
+#: smst_finances/templates/smst_finances/partials/entry_form.html:165
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:83
+msgid "Optional"
+msgstr "Hiari"
+
+#: smst_finances/templates/smst_finances/charts.html:60
+msgid "Along the bottom (X)"
+msgstr "Kando ya sehemu ya chini (X)"
+
+#: smst_finances/templates/smst_finances/charts.html:68
+msgid "Up the side (Y)"
+msgstr "Kando (Y)"
+
+#: smst_finances/templates/smst_finances/charts.html:79
+#: smst_finances/templates/smst_finances/dashboard.html:42
+#: smst_finances/templates/smst_finances/entries.html:41
+#: smst_finances/templates/smst_finances/reports.html:28
+#: smst_finances/templates/smst_finances/statements.html:36
+msgid "From"
+msgstr "Kutoka"
+
+#: smst_finances/templates/smst_finances/charts.html:83
+#: smst_finances/templates/smst_finances/dashboard.html:44
+#: smst_finances/templates/smst_finances/entries.html:43
+#: smst_finances/templates/smst_finances/reports.html:30
+#: smst_finances/templates/smst_finances/statements.html:38
+msgid "To"
+msgstr "Kuenda"
+
+#: smst_finances/templates/smst_finances/charts.html:89
+msgid "Or type the X and Y values yourself"
+msgstr "Au weka thamani za X na Y wewe mwenyewe"
+
+#: smst_finances/templates/smst_finances/charts.html:91
+msgid ""
+"Fill both boxes to plot exactly what you type. One label or number per line; "
+"the two lists must be the same length."
+msgstr ""
+"Jaza visanduku vyote viwili ili kuchora kile hasa unachochapa. Weka lebo "
+"moja au nambari moja kwenye kila mstari; orodha hizo mbili lazima ziwe na "
+"urefu sawa."
+
+#: smst_finances/templates/smst_finances/charts.html:95
+msgid "X values"
+msgstr "Thamani ya X"
+
+#: smst_finances/templates/smst_finances/charts.html:96
+msgid "January&#10;February&#10;March"
+msgstr "Januari&#10;Februari&#10;Machi"
+
+#: smst_finances/templates/smst_finances/charts.html:99
+msgid "Y values"
+msgstr "Thamani ya Y"
+
+#: smst_finances/templates/smst_finances/charts.html:109
+msgid "Save the graph"
+msgstr "Hifadhi grafu"
+
+#: smst_finances/templates/smst_finances/charts.html:113
+#: smst_finances/templates/smst_finances/charts.html:122
+msgid "Preview"
+msgstr "Hakiki ya awali"
+
+#: smst_finances/templates/smst_finances/charts.html:123
+msgid "The graph so far"
+msgstr "Grafu kufikia sasa"
+
+#: smst_finances/templates/smst_finances/charts.html:131
+msgid "Choose the axes, then press Preview."
+msgstr "Chagua mhimili, kisha bonyeza Hakiki."
+
+#: smst_finances/templates/smst_finances/charts.html:133
+msgid "Saved graphs stay on this page and follow the shop."
+msgstr ""
+"Grafu zilizohifadhiwa hubaki kwenye ukurasa huu na zinafuata duka hilo."
+
+#: smst_finances/templates/smst_finances/charts.html:139
+msgid "Your rank can open saved graphs, but not generate new ones."
+msgstr ""
+"Grafu zilizohifadhiwa hubaki kwenye ukurasa huu na zinafuata duka hilo."
+
+#: smst_finances/templates/smst_finances/charts.html:147
+#: smst_finances/templates/smst_finances/charts.html:179
+msgid "Saved"
+msgstr "Imehifadhiwa"
+
+#: smst_finances/templates/smst_finances/charts.html:148
+msgid "The graphs on the wall"
+msgstr "Grafu zilizo ukutani"
+
+#: smst_finances/templates/smst_finances/charts.html:150
+#, python-format
+msgid "%(count)s saved"
+msgstr "%(count)s imehifadhiwa"
+
+#: smst_finances/templates/smst_finances/charts.html:159
+#, python-format
+msgid "%(x)s by %(y)s"
+msgstr ""
+
+#: smst_finances/templates/smst_finances/charts.html:164
+#, python-format
+msgid "Delete %(title)s"
+msgstr "Futa %(title)s"
+
+#: smst_finances/templates/smst_finances/charts.html:174
+msgid "Drawing…"
+msgstr "Kuchora…"
+
+#: smst_finances/templates/smst_finances/charts.html:176
+msgid "No data for this graph yet."
+msgstr "Hakuna data kwa ajili ya grafu hii bado."
+
+#: smst_finances/templates/smst_finances/charts.html:179
+msgid "by"
+msgstr "kwa"
+
+#: smst_finances/templates/smst_finances/charts.html:188
+msgid "No graphs yet"
+msgstr "Hakuna grafu bado"
+
+#: smst_finances/templates/smst_finances/charts.html:190
+msgid ""
+"Build one above. The example the shop asked for — stock amount on Y and time "
+"on X — is two choices away."
+msgstr ""
+"Jenga moja hapo juu. Mfano ulioombwa na duka — kiasi cha bidhaa kwenye "
+"mhimili wa Y na muda kwenye mhimili wa X — unapatikana kwa kuchagua chaguo "
+"mbili mbele."
+
+#: smst_finances/templates/smst_finances/dashboard.html:11
+msgid "What the money did"
+msgstr "Yale ambayo pesa ilifanya"
+
+#: smst_finances/templates/smst_finances/dashboard.html:14
+#, python-format
+msgid "%(counter)s entry in this period."
+msgid_plural "%(counter)s entries in this period."
+msgstr[0] "Ingizo %(counter)s katika kipindi hiki."
+msgstr[1] "Maingizo %(counter)s katika kipindi hiki."
+
+#: smst_finances/templates/smst_finances/dashboard.html:15
+msgid ""
+"Every figure below comes from the same posted lines the statements read."
+msgstr ""
+"Kila takwimu iliyo hapa chini inatokana na mistari ileile iliyowekwa, kama "
+"kauli hizo zinavyoeleza."
+
+#: smst_finances/templates/smst_finances/dashboard.html:17
+msgid ""
+"The book is open and waiting. Record the first sale, bill or tax and the "
+"numbers will fill in."
+msgstr ""
+"Hakuna kilichoingizwa kwenye kumbukumbu bado. Ongeza kipengele cha kwanza, "
+"na namba zitajazwa."
+
+#: smst_finances/templates/smst_finances/dashboard.html:31
+msgid "Read the statements"
+msgstr "Soma kauli hizo"
+
+#: smst_finances/templates/smst_finances/dashboard.html:38
+#: smst_finances/templates/smst_finances/partials/budget_form.html:33
+msgid "Period"
+msgstr "Kipindi"
+
+#: smst_finances/templates/smst_finances/dashboard.html:46
+msgid "Apply"
+msgstr "Weka"
+
+#: smst_finances/templates/smst_finances/dashboard.html:51
+msgid "Money totals"
+msgstr "Jumla ya fedha"
+
+#: smst_finances/templates/smst_finances/dashboard.html:53
+msgid "Money in"
+msgstr "Fedha zinazoingia"
+
+#: smst_finances/templates/smst_finances/dashboard.html:55
+msgid "income and profit from sales"
+msgstr "mapato na faida kutokana na mauzo"
+
+#: smst_finances/templates/smst_finances/dashboard.html:58
+msgid "Money out"
+msgstr "Pesa zinazotoka"
+
+#: smst_finances/templates/smst_finances/dashboard.html:60
+msgid "expenses, losses, discounts and refunds"
+msgstr "gharama, hasara, punguzo na marejesho"
+
+#: smst_finances/templates/smst_finances/dashboard.html:63
+msgid "Left over"
+msgstr "Kilichobaki"
+
+#: smst_finances/templates/smst_finances/dashboard.html:65
+msgid "after tax, before owner drawings"
+msgstr "baada ya kodi, kabla ya michomo ya mmiliki"
+
+#: smst_finances/templates/smst_finances/dashboard.html:68
+msgid "Cash and bank"
+msgstr "Fedha taslimu na benki"
+
+#: smst_finances/templates/smst_finances/dashboard.html:70
+msgid "what the till and the bank hold now"
+msgstr "kilichomo kwenye droo ya pesa na benkini kwa sasa"
+
+#: smst_finances/templates/smst_finances/dashboard.html:79
+msgid "The last 90 days"
+msgstr "Siku 90 zilizopita"
+
+#: smst_finances/templates/smst_finances/dashboard.html:80
+#, fuzzy
+#| msgid "What came in and went out"
+msgid "What came in and what went out"
+msgstr "Kilichoingia na kilichotoka"
+
+#: smst_finances/templates/smst_finances/dashboard.html:82
+#: smst_stocks/templates/smst_stocks/dashboard.html:67
+#: smst_stocks/templates/smst_stocks/movements.html:30
+msgid "Chart range"
+msgstr "Masafa ya chati"
+
+#: smst_finances/templates/smst_finances/dashboard.html:83
+#: smst_stocks/templates/smst_stocks/dashboard.html:69
+#: smst_stocks/templates/smst_stocks/movements.html:32
+msgid "14d"
+msgstr "14d"
+
+#: smst_finances/templates/smst_finances/dashboard.html:84
+#: smst_stocks/templates/smst_stocks/dashboard.html:70
+#: smst_stocks/templates/smst_stocks/movements.html:33
+msgid "30d"
+msgstr "30d"
+
+#: smst_finances/templates/smst_finances/dashboard.html:85
+#: smst_stocks/templates/smst_stocks/dashboard.html:71
+#: smst_stocks/templates/smst_stocks/movements.html:34
+msgid "90d"
+msgstr "90d"
+
+#: smst_finances/templates/smst_finances/dashboard.html:93
+msgid "No entries in this period yet."
+msgstr "Hakuna maingizo yoyote katika kipindi hiki bado"
+
+#: smst_finances/templates/smst_finances/dashboard.html:95
+msgid "Two lines from one book: income above the rule, spending below it."
+msgstr ""
+"Mistari miwili kutoka katika kitabu kimoja: mapato yawe juu ya kiwango "
+"kilichowekwa, matumizi yawe chini yake."
+
+#: smst_finances/templates/smst_finances/dashboard.html:101
+msgid "Where it went"
+msgstr "Mahali ilipoenda"
+
+#: smst_finances/templates/smst_finances/dashboard.html:102
+msgid "Spending by finance option"
+msgstr "Matumizi kulingana na njia ya malipo"
+
+#: smst_finances/templates/smst_finances/dashboard.html:105
+msgid "The options"
+msgstr "Chaguzi"
+
+#: smst_finances/templates/smst_finances/dashboard.html:110
+msgid "Nothing has been spent in this period."
+msgstr "Hakuna kilichotumika katika kipindi hiki."
+
+#: smst_finances/templates/smst_finances/dashboard.html:114
+#, python-format
+msgid "%(name)s is the largest line."
+msgstr "%(name)s ndiyo laini kubwa zaidi."
+
+#: smst_finances/templates/smst_finances/dashboard.html:116
+msgid "Expenses, discounts and losses group here once they are recorded."
+msgstr "Gharama, punguzo na hasara hukusanyika hapa pindi zinaporekodiwa."
+
+#: smst_finances/templates/smst_finances/dashboard.html:123
+msgid "Balance totals"
+msgstr "Jumla ya salio"
+
+#: smst_finances/templates/smst_finances/dashboard.html:125
+msgid "Tax owed"
+msgstr "Kodi inayodaiwa"
+
+#: smst_finances/templates/smst_finances/dashboard.html:127
+#, python-format
+msgid "%(amount)s collected in this period"
+msgstr "%(amount)s imekusanywa katika kipindi hiki"
+
+#: smst_finances/templates/smst_finances/dashboard.html:130
+msgid "Still to receive"
+msgstr "Bado kupokea"
+
+#: smst_finances/templates/smst_finances/dashboard.html:132
+msgid "customers who owe the shop"
+msgstr "wateja wanaodaiwa na duka"
+
+#: smst_finances/templates/smst_finances/dashboard.html:135
+msgid "Still to pay"
+msgstr "Bado kulipa"
+
+#: smst_finances/templates/smst_finances/dashboard.html:137
+msgid "suppliers and bills outstanding"
+msgstr "wasambazaji na bili ambazo hazijalipwa"
+
+#: smst_finances/templates/smst_finances/dashboard.html:140
+msgid "Stock at selling price"
+msgstr "Stoki kwa bei ya kuuzia"
+
+#: smst_finances/templates/smst_finances/dashboard.html:142
+#, python-format
+msgid "cost %(currency)s %(cost)s · %(units)s units"
+msgstr "gharama %(currency)s %(cost)s · vitengo %(units)s"
+
+#: smst_finances/templates/smst_finances/dashboard.html:150
+#: smst_finances/templates/smst_finances/entries.html:10
+#: smst_finances/templates/smst_finances/partials/entry_form.html:7
+msgid "The book"
+msgstr "kitabu"
+
+#: smst_finances/templates/smst_finances/dashboard.html:151
+msgid "The latest entries"
+msgstr "Machapisho ya hivi karibuni"
+
+#: smst_finances/templates/smst_finances/dashboard.html:154
+msgid "Open the entries"
+msgstr "Fungua maingizo"
+
+#: smst_finances/templates/smst_finances/dashboard.html:163
+#: smst_finances/templates/smst_finances/entries.html:80
+#: smst_finances/templates/smst_finances/partials/entry_form.html:160
+#: smst_finances/templates/smst_finances/statements.html:241
+#: smst_stocks/templates/smst_stocks/movements.html:73
+#: smst_stocks/templates/smst_stocks/orders.html:59
+msgid "When"
+msgstr "Lini"
+
+#: smst_finances/templates/smst_finances/dashboard.html:164
+#, fuzzy
+#| msgid "Entries"
+msgid "Entry"
+msgstr "Ingizo"
+
+#: smst_finances/templates/smst_finances/dashboard.html:165
+#: smst_finances/templates/smst_finances/entries.html:82
+#: smst_finances/templates/smst_finances/options.html:65
+#: smst_finances/templates/smst_finances/partials/option_form.html:29
+#: smst_stocks/templates/smst_stocks/movements.html:75
+msgid "Kind"
+msgstr "Aina"
+
+#: smst_finances/templates/smst_finances/dashboard.html:166
+#: smst_finances/templates/smst_finances/entries.html:85
+#: smst_finances/templates/smst_finances/partials/budget_form.html:29
+#: smst_finances/templates/smst_finances/partials/entry_form.html:50
+msgid "Amount"
+msgstr "Kiasi"
+
+#: smst_finances/templates/smst_finances/dashboard.html:187
+#: smst_finances/templates/smst_finances/entries.html:137
+msgid "Posted"
+msgstr "Imetumwa"
+
+#: smst_finances/templates/smst_finances/dashboard.html:189
+#: smst_finances/templates/smst_finances/entries.html:139
+#: smst_works/templates/smst_works/guides.html:63
+msgid "Draft"
+msgstr "Rasimu"
+
+#: smst_finances/templates/smst_finances/dashboard.html:191
+#: smst_finances/templates/smst_finances/entries.html:141
+#: smst_finances/templates/smst_finances/entries.html:151
+msgid "Void"
+msgstr "Utupu"
+
+#: smst_finances/templates/smst_finances/dashboard.html:203
+msgid "The first page is empty"
+msgstr "Ukurasa wa kwanza ni tupu"
+
+#: smst_finances/templates/smst_finances/dashboard.html:204
+msgid "Record a sale, a bill or a tax payment and it will appear here."
+msgstr "Rekodi mauzo, bili, au malipo ya kodi, na yataonekana hapa"
+
+#: smst_finances/templates/smst_finances/dashboard.html:215
+msgid "What the budgets say"
+msgstr "Yaliyomo kwenye bajeti"
+
+#: smst_finances/templates/smst_finances/dashboard.html:222
+msgid "Reading the plans…"
+msgstr "Kusoma mipango…"
+
+#: smst_finances/templates/smst_finances/empty.html:4
+#: smst_finances/templates/smst_finances/empty.html:5
+#: smst_works/templates/smst_works/empty.html:4
+#: smst_works/templates/smst_works/empty.html:5
+msgid "Start with a shop"
+msgstr "Anza na duka"
+
+#: smst_finances/templates/smst_finances/empty.html:11
+msgid "The books need a shop"
+msgstr "Vitabu vinahitaji duka."
+
+#: smst_finances/templates/smst_finances/empty.html:13
+msgid ""
+"Money belongs to a shop. Once you have one in SmSt Stocks, the chart of "
+"accounts, the entries and the reports open here with the same name and "
+"currency."
+msgstr ""
+"Fedha ni mali ya duka. Mara tu unapokuwa na duka katika SmSt Stocks, chati "
+"ya akaunti, rekodi za miamala, na ripoti hufunguka hapa zikiwa na jina na "
+"sarafu ileile."
+
+#: smst_finances/templates/smst_finances/empty.html:17
+#: smst_works/templates/smst_works/empty.html:17
+msgid "1. Start the shop"
+msgstr "1. Anzisha duka"
+
+#: smst_finances/templates/smst_finances/empty.html:18
+#: smst_works/templates/smst_works/empty.html:18
+msgid "In SmSt Stocks"
+msgstr "Katika Hisa za Smst"
+
+#: smst_finances/templates/smst_finances/empty.html:21
+#: smst_stocks/templates/smst_stocks/empty.html:21
+msgid "2. Add what you sell"
+msgstr "2. Ongeza unachouza"
+
+#: smst_finances/templates/smst_finances/empty.html:22
+#: smst_stocks/templates/smst_stocks/empty.html:22
+#: smst_stocks/templates/smst_stocks/product_form.html:123
+msgid "Price and count"
+msgstr "Bei na idadi"
+
+#: smst_finances/templates/smst_finances/empty.html:25
+msgid "3. Keep the money"
+msgstr "3. Weka pesa"
+
+#: smst_finances/templates/smst_finances/empty.html:26
+msgid "Every figure linked"
+msgstr "Kila takwimu imeunganishwa"
+
+#: smst_finances/templates/smst_finances/empty.html:32
+#: smst_works/templates/smst_works/empty.html:32
+msgid "Open SmSt Stocks"
+msgstr "Fungua Hisa za Smst"
+
+#: smst_finances/templates/smst_finances/empty.html:38
+#: smst_works/templates/smst_works/empty.html:38
+msgid "What waits inside"
+msgstr "Kilichomo ndani"
+
+#: smst_finances/templates/smst_finances/empty.html:39
+msgid "A book that agrees with itself"
+msgstr "Kitabu kinachopatana chenyewe kwa chenyewe"
+
+#: smst_finances/templates/smst_finances/empty.html:42
+msgid "Double-entry entries"
+msgstr "Ingizo la uhasibu wa pande mbili"
+
+#: smst_finances/templates/smst_finances/empty.html:43
+msgid "Every amount posts two sides"
+msgstr "Kila kiasi huonyesha pande mbili"
+
+#: smst_finances/templates/smst_finances/empty.html:46
+msgid "Stock-linked money"
+msgstr "Fedha iliyounganishwa na hisa"
+
+#: smst_finances/templates/smst_finances/empty.html:47
+msgid "Profit, loss and refunds follow the movement"
+msgstr "Faida, hasara na marejesho hufuata mjongeo"
+
+#: smst_finances/templates/smst_finances/empty.html:50
+msgid "Tax and discounts"
+msgstr "Kodi na punguzo"
+
+#: smst_finances/templates/smst_finances/empty.html:51
+msgid "Fixed or a percentage, kept with the entry"
+msgstr "Kiasi kisichobadilika au asilimia, kinachohifadhiwa pamoja na ingizo"
+
+#: smst_finances/templates/smst_finances/empty.html:54
+msgid "Graphs you choose"
+msgstr "Grafu unazochagua"
+
+#: smst_finances/templates/smst_finances/empty.html:55
+msgid "Pick the X and the Y separately"
+msgstr "Chagua X na Y kando"
+
+#: smst_finances/templates/smst_finances/empty.html:58
+msgid "Reports to download"
+msgstr "Ripoti za kupakua"
+
+#: smst_finances/templates/smst_finances/empty.html:59
+msgid "PDF for the file, Excel for the work"
+msgstr "PDF kwa ajili ya faili, Excel kwa ajili ya kazi"
+
+#: smst_finances/templates/smst_finances/entries.html:11
+msgid "Every amount, with its two sides"
+msgstr "Kila kiasi, pamoja na pande zake mbili"
+
+#: smst_finances/templates/smst_finances/entries.html:13
+msgid ""
+"Sales, bills, tax, discounts, losses and refunds. Each entry can carry a "
+"product and a stock movement, so the money follows what actually moved."
+msgstr ""
+"Mauzo, bili, kodi, punguzo, hasara na marejesho ya pesa. Kila ingizo "
+"linaweza kuhusisha bidhaa na mabadiliko katika akiba, hivyo fedha hufuata "
+"kile ambacho kimesogezwa au kubadilika kihalisia."
+
+#: smst_finances/templates/smst_finances/entries.html:37
+msgid "Search entries"
+msgstr "Tafuta maingizo"
+
+#: smst_finances/templates/smst_finances/entries.html:38
+msgid "Search a description or reference"
+msgstr "Tafuta maelezo au rejeleo"
+
+#: smst_finances/templates/smst_finances/entries.html:45
+msgid "Filter"
+msgstr "Chuja"
+
+#: smst_finances/templates/smst_finances/entries.html:47
+msgid "Filter entries"
+msgstr "Chuja viingizo"
+
+#: smst_finances/templates/smst_finances/entries.html:48
+msgid "All kinds"
+msgstr "Kila Aina"
+
+#: smst_finances/templates/smst_finances/entries.html:56
+msgid "Filter state"
+msgstr "Hali ya kichujio"
+
+#: smst_finances/templates/smst_finances/entries.html:57
+msgid "Any state"
+msgstr "Jimbo lolote"
+
+#: smst_finances/templates/smst_finances/entries.html:69
+#: smst_finances/templates/smst_finances/options.html:53
+#: smst_stocks/templates/smst_stocks/products.html:64
+msgid "Filtered"
+msgstr "Imechujwa"
+
+#: smst_finances/templates/smst_finances/entries.html:69
+msgid "All entries"
+msgstr "Maingizo yote"
+
+#: smst_finances/templates/smst_finances/entries.html:70
+msgid "What matches"
+msgstr "Kinacholingana"
+
+#: smst_finances/templates/smst_finances/entries.html:70
+msgid "The book, newest first"
+msgstr "Kitabu, kile kipya zaidi kwanza"
+
+#: smst_finances/templates/smst_finances/entries.html:72
+#: smst_finances/templates/smst_finances/options.html:56
+#: smst_finances/templates/smst_finances/reports.html:63
+#: smst_stocks/templates/smst_stocks/movements.html:65
+#: smst_stocks/templates/smst_stocks/orders.html:50
+#: smst_stocks/templates/smst_stocks/products.html:69
+#: smst_works/templates/smst_works/customers.html:28
+#: smst_works/templates/smst_works/suppliers.html:28
+#, python-format
+msgid "%(count)s shown"
+msgstr "%(count)s zinaonyeshwa"
+
+#: smst_finances/templates/smst_finances/entries.html:81
+#: smst_finances/templates/smst_finances/partials/entry_form.html:44
+#: smst_finances/templates/smst_finances/statements.html:243
+msgid "What it was for"
+msgstr "Ilikuwa kwa ajili ya nini"
+
+#: smst_finances/templates/smst_finances/entries.html:83
+#: smst_finances/templates/smst_finances/options.html:64
+msgid "Option"
+msgstr "Chaguo"
+
+#: smst_finances/templates/smst_finances/entries.html:84
+msgid "Linked to"
+msgstr "Imeunganishwa na"
+
+#: smst_finances/templates/smst_finances/entries.html:119
+#, python-format
+msgid "via %(name)s"
+msgstr "kupitia %(name)s"
+
+#: smst_finances/templates/smst_finances/entries.html:164
+msgid "The two sides"
+msgstr "Pande hizo mbili"
+
+#: smst_finances/templates/smst_finances/entries.html:169
+#, python-format
+msgid "Dr %(currency)s %(amount)s"
+msgstr ""
+
+#: smst_finances/templates/smst_finances/entries.html:169
+#, python-format
+msgid "Cr %(currency)s %(amount)s"
+msgstr ""
+
+#: smst_finances/templates/smst_finances/entries.html:172
+msgid "Nothing posted yet."
+msgstr "Hakuna kilichochapishwa bado"
+
+#: smst_finances/templates/smst_finances/entries.html:177
+msgid "The detail"
+msgstr "Maelezo"
+
+#: smst_finances/templates/smst_finances/entries.html:179
+msgid "Source"
+msgstr "Chanzo"
+
+#: smst_finances/templates/smst_finances/entries.html:180
+msgid "Chosen by the app"
+msgstr "Imechaguliwa na programu"
+
+#: smst_finances/templates/smst_finances/entries.html:181
+msgid "Money through"
+msgstr "Pesa kupitia"
+
+#: smst_finances/templates/smst_finances/entries.html:181
+#: smst_finances/templates/smst_finances/partials/entry_form.html:142
+msgid "Cash"
+msgstr "Taslimu"
+
+#: smst_finances/templates/smst_finances/entries.html:182
+msgid "Base amount"
+msgstr "Kiasi cha msingi"
+
+#: smst_finances/templates/smst_finances/entries.html:183
+#: smst_finances/templates/smst_finances/options.html:66
+#: smst_finances/templates/smst_finances/partials/option_form.html:62
+msgid "Rate"
+msgstr "Kadiria"
+
+#: smst_finances/templates/smst_finances/entries.html:184
+#: smst_finances/templates/smst_finances/partials/entry_form.html:164
+#: smst_stocks/templates/smst_stocks/movements.html:77
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:82
+#: smst_works/templates/smst_works/partials/stock_form.html:52
+msgid "Note"
+msgstr "kiandiko"
+
+#: smst_finances/templates/smst_finances/entries.html:198
+msgid "Nothing matches"
+msgstr "Hakuna kinacholingana"
+
+#: smst_finances/templates/smst_finances/entries.html:201
+msgid ""
+"Try a different word, kind or period. The book keeps everything that was "
+"recorded."
+msgstr ""
+"Jaribu neno, aina au kipindi kingine. Kitabu hicho kinahifadhi kila kitu "
+"kilichorekodiwa."
+
+#: smst_finances/templates/smst_finances/entries.html:203
+msgid ""
+"Record the first entry. A sale, a bill, a tax payment or a discount all "
+"start here."
+msgstr ""
+"Rekodi ingizo la kwanza. Mauzo, ankara, malipo ya kodi au punguzo—yote "
+"huanzia hapa."
+
+#: smst_finances/templates/smst_finances/options.html:10
+msgid "The rules"
+msgstr "Sheria"
+
+#: smst_finances/templates/smst_finances/options.html:11
+msgid "Taxes, discounts and the cost of doing business"
+msgstr "Kodi, punguzo na gharama za kuendesha biashara"
+
+#: smst_finances/templates/smst_finances/options.html:13
+msgid ""
+"A finance option is a rule the shop applies again and again: VAT at a "
+"percentage, a delivery fee at a fixed amount, a loyalty discount. Each one "
+"points at the account it should post to."
+msgstr ""
+"Chaguo la kifedha ni kanuni ambayo duka huitumia mara kwa mara: VAT kwa "
+"asilimia fulani, ada ya usafirishaji ya kiasi kisichobadilika, au punguzo la "
+"uaminifu. Kila moja kati ya hizi huelekeza kwenye akaunti ambapo kiasi "
+"husika kinapaswa kurekodiwa."
+
+#: smst_finances/templates/smst_finances/options.html:20
+msgid "Add an option"
+msgstr "Ongeza chaguo"
+
+#: smst_finances/templates/smst_finances/options.html:36
+msgid "Search options"
+msgstr "Chaguo za utafutaji"
+
+#: smst_finances/templates/smst_finances/options.html:37
+#: smst_stocks/templates/smst_stocks/products.html:49
+msgid "Search by name"
+msgstr "Tafuta kwa jina"
+
+#: smst_finances/templates/smst_finances/options.html:39
+#: smst_works/templates/smst_works/customers.html:38
+#: smst_works/templates/smst_works/employees.html:39
+#: smst_works/templates/smst_works/guides.html:39
+#: smst_works/templates/smst_works/jobs.html:41
+#: smst_works/templates/smst_works/suppliers.html:35
+msgid "Search"
+msgstr "Tafuta"
+
+#: smst_finances/templates/smst_finances/options.html:41
+msgid "Filter options"
+msgstr "Chaguzi za kuchuja"
+
+#: smst_finances/templates/smst_finances/options.html:53
+msgid "All options"
+msgstr "Vitendo vyote"
+
+#: smst_finances/templates/smst_finances/options.html:54
+msgid "The rules the shop uses"
+msgstr "Sheria zinazotumiwa na duka hilo"
+
+#: smst_finances/templates/smst_finances/options.html:67
+#: smst_finances/templates/smst_finances/partials/option_form.html:41
+msgid "Applies to"
+msgstr "Inatumika kwa"
+
+#: smst_finances/templates/smst_finances/options.html:90
+msgid "Used by default"
+msgstr "Inatumika kwa chaguo-msingi"
+
+#: smst_finances/templates/smst_finances/options.html:98
+msgid "Chosen by kind"
+msgstr "Imechaguliwa kulingana na aina"
+
+#: smst_finances/templates/smst_finances/options.html:101
+#: smst_finances/templates/smst_finances/partials/account_form.html:55
+#: smst_finances/templates/smst_finances/partials/option_form.html:94
+msgid "Active"
+msgstr "Inafanya kazi"
+
+#: smst_finances/templates/smst_finances/options.html:123
+msgid "No finance options yet"
+msgstr "Hakuna chaguzi za kifedha bado"
+
+#: smst_finances/templates/smst_finances/options.html:125
+msgid ""
+"Add the taxes and discounts the shop uses. An entry can then carry the rule, "
+"the rate and the amount it worked out."
+msgstr ""
+"Ongeza kodi na punguzo zinazotumiwa na duka. Kisha, ingizo linaweza kubeba "
+"kanuni hiyo, kiwango husika pamoja na kiasi kilichopatikana kutokana na "
+"hesabu hiyo."
+
+#: smst_finances/templates/smst_finances/options.html:127
+msgid "Add the first option"
+msgstr "Ongeza chaguo la kwanza"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:10
+msgid ""
+"Assets and expenses grow on the debit side. Liabilities, equity and income "
+"grow on the credit side."
+msgstr ""
+"Mali na matumizi huongezeka upande wa debit. Madeni, usawa wa wamiliki na "
+"mapatohuongezeka upande wa credit."
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:14
+#: smst_finances/templates/smst_finances/partials/budget_form.html:14
+#: smst_finances/templates/smst_finances/partials/entry_form.html:14
+#: smst_finances/templates/smst_finances/partials/option_form.html:14
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:14
+#: smst_works/templates/smst_works/partials/customer_form.html:14
+#: smst_works/templates/smst_works/partials/employee_form.html:14
+#: smst_works/templates/smst_works/partials/guide_form.html:14
+#: smst_works/templates/smst_works/partials/job_form.html:14
+#: smst_works/templates/smst_works/partials/points_form.html:14
+#: smst_works/templates/smst_works/partials/rank_form.html:14
+#: smst_works/templates/smst_works/partials/stock_form.html:14
+#: smst_works/templates/smst_works/partials/supplier_form.html:14
+msgid "Close"
+msgstr "Funga"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:26
+msgid "A built-in account keeps its code."
+msgstr "Akaunti iliyojengewa ndani huhifadhi msimbo wake."
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:31
+msgid "Asset"
+msgstr "Rasilimali"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:32
+msgid "Liability"
+msgstr "Dhima"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:33
+msgid "Equity"
+msgstr "Usawa"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:34
+#: smst_finances/templates/smst_finances/partials/option_form.html:34
+#: smst_finances/templates/smst_finances/statements.html:67
+msgid "Income"
+msgstr "Mapato"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:35
+#: smst_finances/templates/smst_finances/partials/option_form.html:33
+msgid "Expense"
+msgstr "Gharama"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:41
+#: smst_finances/templates/smst_finances/partials/budget_form.html:23
+#: smst_finances/templates/smst_finances/partials/option_form.html:23
+#: smst_stocks/templates/smst_stocks/product_form.html:68
+#: smst_works/templates/smst_works/partials/customer_form.html:23
+#: smst_works/templates/smst_works/partials/employee_form.html:24
+#: smst_works/templates/smst_works/partials/rank_form.html:23
+#: smst_works/templates/smst_works/partials/supplier_form.html:23
+msgid "Name"
+msgstr "Jina"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:42
+msgid "Repairs and maintenance"
+msgstr "Ukarabati na matengenezo"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:47
+msgid "What belongs in this account"
+msgstr "Ni nini kinachopaswa kuwemo katika akaunti hii"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:56
+msgid "Inactive accounts are hidden from new entries but keep their history."
+msgstr ""
+"Akaunti zisizotumika hufichwa zisionekane kwenye ingizo mpya, lakini "
+"historia yake hubaki."
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:63
+msgid "Save the account"
+msgstr "Hifadhi akaunti"
+
+#: smst_finances/templates/smst_finances/partials/account_form.html:65
+msgid "Start a new account"
+msgstr "Fungua akaunti mpya"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:10
+msgid ""
+"A budget is measured against posted entries in its account or finance "
+"option. It warns before the plan is spent."
+msgstr ""
+"Bajeti hulinganishwa na rekodi zilizowekwa katika akaunti yake au sehemu ya "
+"fedha. Inatoa onyo kabla ya mpango huo kutumika."
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:24
+msgid "Transport this month"
+msgstr "Usafiri mwezi huu"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:44
+msgid "Watch an account"
+msgstr "Fuatilia akaunti"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:46
+msgid "No account"
+msgstr "Hakuna kaunti"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:58
+msgid "Or watch an option"
+msgstr "Au tazama chaguo"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:60
+#: smst_finances/templates/smst_finances/partials/entry_form.html:64
+msgid "No option"
+msgstr "Hakuna chaguo"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:76
+msgid "Starts on"
+msgstr "Huanza tarehe"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:80
+msgid "Ends on"
+msgstr "Inaisha tarehe"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:82
+msgid "Leave it empty to follow the period."
+msgstr "Iache ikiwa tupu ili kufuata kipindi hicho"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:87
+#: smst_works/templates/smst_works/partials/customer_form.html:39
+#: smst_works/templates/smst_works/partials/employee_form.html:82
+#: smst_works/templates/smst_works/partials/job_form.html:28
+#: smst_works/templates/smst_works/partials/supplier_form.html:65
+msgid "Notes"
+msgstr "Vidokezo"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:95
+msgid "Save the budget"
+msgstr "Okoa bajeti"
+
+#: smst_finances/templates/smst_finances/partials/budget_form.html:97
+msgid "Start a new budget"
+msgstr "Anzisha bajeti mpya"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:10
+msgid ""
+"Every entry posts two sides into the chart of accounts, so the ledger always "
+"agrees with itself."
+msgstr ""
+"Kila ingizo huweka pande mbili kwenye chati ya akaunti, hivyo daftari la "
+"uhasibu huwa linajisawazisha lenyewe kila wakati."
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:24
+msgid "What kind of money"
+msgstr "Aina gani ya pesa"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:45
+msgid "Sold a bag of maize"
+msgstr "Aliuza gunia la mahindi"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:52
+msgid "Leave it empty when the option works it out."
+msgstr "Iache ikiwa tupu wakati chaguo hilo linashughulikia suala hilo."
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:55
+msgid "The sale or bill it applies to"
+msgstr "Uuzaji au bili inatumika"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:62
+msgid "Finance option"
+msgstr "Chaguzi za ufadhili"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:82
+msgid "Rate kept with the entry"
+msgstr "Kiwango kimezingatiwa kulingana na ingizo"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:89
+msgid "Product"
+msgstr "Bidhaa"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:91
+msgid "No product"
+msgstr "Hakuna Bidhaa"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:97
+#: smst_stocks/templates/smst_stocks/pages/cart.html:157
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:181
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:30
+#: smst_works/templates/smst_works/partials/job_form.html:74
+#: smst_works/templates/smst_works/partials/stock_form.html:30
+#: smst_works/templates/smst_works/partials/supplier_form.html:57
+#, python-format
+msgid "%(quantity)s %(unit)s in hand"
+msgstr ""
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:103
+msgid "Stock movement"
+msgstr "Mzunguko wa hisa"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:105
+msgid "No movement"
+msgstr "Hakuna harakati"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:125
+msgid "The account it belongs to"
+msgstr "Akaunti ambayo inamilikiwa nayo"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:127
+#: smst_finances/templates/smst_finances/partials/option_form.html:71
+msgid "Let the app choose"
+msgstr "Acha programu ichague"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:140
+msgid "Money moved through"
+msgstr "Pesa zilipita"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:173
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:89
+msgid "Record it"
+msgstr "Rekodi hiyo"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:175
+msgid "Start a new entry"
+msgstr "Anzisha ingizo jipya"
+
+#: smst_finances/templates/smst_finances/partials/entry_form.html:179
+msgid ""
+"A posted entry changes the statements at once. Void it instead of deleting "
+"it when the paper record has to stay."
+msgstr ""
+"Ingizo lililochapishwa hubadilisha taarifa mara moja. Lifute kisheria (tupu) "
+"badala ya kulifuta kabisa ikiwa rekodi ya karatasi inapaswa kubaki."
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:8
+msgid "Add a finance option"
+msgstr "Chaguzi za ufadhili"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:10
+msgid ""
+"A tax, a discount, a fee or an expense. Fixed amounts stay the same; a "
+"percentage follows the sale or bill it is applied to."
+msgstr ""
+"Kodi, punguzo, ada, au gharama. Kiasi kisichobadilika hubaki vilevile; "
+"asilimia hufuata mauzo au bili ambayo inatumika kwake."
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:24
+msgid "VAT, delivery, loyalty discount"
+msgstr "VAT, usafirishaji, punguzo la uaminifu"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:31
+msgid "Tax"
+msgstr "Kodi"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:32
+msgid "Discount"
+msgstr "Punguzo"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:35
+msgid "Fee"
+msgstr "Ada"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:36
+msgid "Refund"
+msgstr "Rejesho la pesa"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:37
+msgid "Other"
+msgstr "Nyingine"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:44
+#: smst_stocks/templates/smst_stocks/movements.html:50
+msgid "Sales"
+msgstr "Mauzo"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:45
+msgid "Purchases"
+msgstr "Ununuzi"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:46
+msgid "Stock movements"
+msgstr "Miondoko ya hisa"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:47
+#: smst_finances/templates/smst_finances/statements.html:85
+msgid "Expenses"
+msgstr "Gharama"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:54
+msgid "How it is worked out"
+msgstr "Jinsi inavyokokotolewa"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:56
+msgid "Fixed amount"
+msgstr "Kiasi kisichobadilika"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:57
+msgid "Percentage"
+msgstr "Asilimia"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:58
+msgid "Percentage, already inside the amount"
+msgstr ""
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:64
+#, python-format
+msgid "An amount in %(currency)s."
+msgstr "Kiasi cha %(currency)s."
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:69
+msgid "Account it posts to"
+msgstr "Akaunti inakotumwa"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:85
+msgid "What this rule is for"
+msgstr "Madhumuni ya kanuni hii"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:95
+msgid "Inactive options stay on the record but are not offered."
+msgstr "Chaguo zisizotumika hubaki kwenye rekodi lakini hazitolewi"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:102
+msgid "Use by default"
+msgstr "Tumia kwa chaguo-msingi"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:103
+msgid "Pre-select it when an entry of this kind is recorded."
+msgstr "Iteue mapema wakati ingizo la aina hii linaporekodiwa."
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:111
+msgid "Save the option"
+msgstr "Hifadhi chaguo"
+
+#: smst_finances/templates/smst_finances/partials/option_form.html:113
+msgid "Start a new option"
+msgstr "Chaguzi za ufadhili"
+
+#: smst_finances/templates/smst_finances/receipts.html:11
+#, fuzzy
+#| msgid "Skip to the shop floor"
+msgid "The slips from the counter"
+msgstr "Nenda kwenye eneo la uzalishaji"
+
+#: smst_finances/templates/smst_finances/receipts.html:13
+msgid ""
+"Every sale or purchase processed in the cart leaves a receipt here. Print it "
+"again or keep the PDF."
+msgstr ""
+
+#: smst_finances/templates/smst_finances/receipts.html:21
+#: smst_finances/templates/smst_finances/reports.html:60
+#: smst_stocks/templates/smst_stocks/reports.html:42
+msgid "History"
+msgstr "Historia"
+
+#: smst_finances/templates/smst_finances/receipts.html:24
+#, fuzzy, python-format
+#| msgid "%(count)s shown"
+msgid "%(counter)s shown"
+msgid_plural "%(counter)s shown"
+msgstr[0] "%(count)s zinaonyeshwa"
+msgstr[1] "%(count)s zinaonyeshwa"
+
+#: smst_finances/templates/smst_finances/receipts.html:42
+#: smst_finances/templates/smst_finances/statements.html:19
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:16
+msgid "Print"
+msgstr "Chapisha"
+
+#: smst_finances/templates/smst_finances/receipts.html:46
+#: smst_finances/templates/smst_finances/reports.html:77
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:18
+#: smst_stocks/templates/smst_stocks/reports.html:59
+msgid "Download"
+msgstr "Pakua"
+
+#: smst_finances/templates/smst_finances/receipts.html:56
+#, fuzzy
+#| msgid "No reports yet"
+msgid "No receipts yet"
+msgstr "Hakuna ripoti bado"
+
+#: smst_finances/templates/smst_finances/receipts.html:57
+msgid "Process a line in the SmSt Stocks cart and its receipt will wait here."
+msgstr ""
+
+#: smst_finances/templates/smst_finances/reports.html:11
+msgid "Take the books with you"
+msgstr "Chukua vitabu pamoja nawe"
+
+#: smst_finances/templates/smst_finances/reports.html:13
+msgid ""
+"Build a report for the bank, the tax office or the shop's own file. A PDF "
+"for reading and signing, an Excel workbook for sorting and checking."
+msgstr ""
+"Andaa ripoti kwa ajili ya benki, mamlaka ya kodi, au kumbukumbu za duka "
+"lenyewe. Faili la PDF la kusoma na kusaini, na faili la Excel la kupanga na "
+"kuhakiki taarifa."
+
+#: smst_finances/templates/smst_finances/reports.html:20
+msgid "Read them on screen"
+msgstr "Yasome kwenye skrini"
+
+#: smst_finances/templates/smst_finances/reports.html:32
+msgid "The period every report below will use."
+msgstr "Muda ambao kila ripoti iliyo hapa chini itautumia."
+
+#: smst_finances/templates/smst_finances/reports.html:39
+#: smst_stocks/templates/smst_stocks/reports.html:21
+msgid "Report"
+msgstr "Ripoti"
+
+#: smst_finances/templates/smst_finances/reports.html:45
+#: smst_stocks/templates/smst_stocks/reports.html:27
+msgid "PDF"
+msgstr "PDF"
+
+#: smst_finances/templates/smst_finances/reports.html:49
+#: smst_stocks/templates/smst_stocks/reports.html:31
+msgid "Excel"
+msgstr "Excel"
+
+#: smst_finances/templates/smst_finances/reports.html:61
+#: smst_stocks/templates/smst_stocks/reports.html:43
+msgid "Reports you have built"
+msgstr "Ripoti ulizounda"
+
+#: smst_finances/templates/smst_finances/reports.html:80
+#: smst_stocks/templates/smst_stocks/reports.html:62
+msgid "Ready"
+msgstr "Tayari"
+
+#: smst_finances/templates/smst_finances/reports.html:83
+#: smst_stocks/templates/smst_stocks/reports.html:65
+msgid "Failed"
+msgstr "Imeshindwa"
+
+#: smst_finances/templates/smst_finances/reports.html:85
+#: smst_stocks/templates/smst_stocks/reports.html:67
+msgid "Building"
+msgstr "Jengo"
+
+#: smst_finances/templates/smst_finances/reports.html:95
+#: smst_stocks/templates/smst_stocks/reports.html:77
+msgid "No reports yet"
+msgstr "Hakuna ripoti bado"
+
+#: smst_finances/templates/smst_finances/reports.html:96
+msgid "Build one above and it will wait here, ready to download."
+msgstr "Jenga moja juu na itasubiri hapa, ikiwa tayari kupakuliwa"
+
+#: smst_finances/templates/smst_finances/statements.html:13
+#, python-format
+msgid ""
+"%(start)s to %(end)s. Read straight from the posted lines, with no separate "
+"totals kept by hand."
+msgstr ""
+"%(start)s hadi %(end)s. Soma moja kwa moja kutoka kwenye mistari "
+"iliyorekodiwa, bila kuhitaji kuweka jumla kando kwa kuandika kwa mkono."
+
+#: smst_finances/templates/smst_finances/statements.html:23
+msgid "Download PDF"
+msgstr "Pakua PDF"
+
+#: smst_finances/templates/smst_finances/statements.html:28
+msgid "Choose a statement"
+msgstr "Chagua kauli"
+
+#: smst_finances/templates/smst_finances/statements.html:41
+msgid "Apply the period"
+msgstr "Weka kipindi"
+
+#: smst_finances/templates/smst_finances/statements.html:46
+msgid "The two sides agree"
+msgstr "Pande hizo mbili zinakubaliana"
+
+#: smst_finances/templates/smst_finances/statements.html:48
+msgid "The two sides do not agree"
+msgstr "Pande hizo mbili hazikubaliani"
+
+#: smst_finances/templates/smst_finances/statements.html:59
+msgid "Income and expense"
+msgstr "Mapato na matumizi"
+
+#: smst_finances/templates/smst_finances/statements.html:60
+msgid "What was earned and what it cost"
+msgstr "Kilichoingia na kilichotoka"
+
+#: smst_finances/templates/smst_finances/statements.html:62
+#, python-format
+msgid "%(income)s income · %(expense)s expense accounts"
+msgstr "Akaunti za mapato %(income)s · akaunti za matumizi %(expense)s"
+
+#: smst_finances/templates/smst_finances/statements.html:75
+msgid "No income in this period."
+msgstr "Hakuna mapato katika kipindi hiki."
+
+#: smst_finances/templates/smst_finances/statements.html:78
+msgid "Total income"
+msgstr "Jumla ya mapato"
+
+#: smst_finances/templates/smst_finances/statements.html:93
+msgid "No expenses in this period."
+msgstr "Hakuna matumizi katika kipindi hiki."
+
+#: smst_finances/templates/smst_finances/statements.html:96
+msgid "Total expenses"
+msgstr "Jumla ya gharama"
+
+#: smst_finances/templates/smst_finances/statements.html:104
+msgid "Loss for the period"
+msgstr "Hasara ya kipindi"
+
+#: smst_finances/templates/smst_finances/statements.html:104
+msgid "Profit for the period"
+msgstr "Faida ya kipindi"
+
+#: smst_finances/templates/smst_finances/statements.html:113
+msgid "Position"
+msgstr "Nafasi"
+
+#: smst_finances/templates/smst_finances/statements.html:114
+msgid "What the shop owns and owes"
+msgstr "Mali na madeni ya duka"
+
+#: smst_finances/templates/smst_finances/statements.html:116
+#, python-format
+msgid "As at %(date)s"
+msgstr "Kufikia tarehe %(date)s"
+
+#: smst_finances/templates/smst_finances/statements.html:121
+msgid "Assets"
+msgstr "Mali"
+
+#: smst_finances/templates/smst_finances/statements.html:129
+msgid "No assets yet."
+msgstr "Hakuna rasilimali bado."
+
+#: smst_finances/templates/smst_finances/statements.html:132
+msgid "Total assets"
+msgstr "Jumla ya mali"
+
+#: smst_finances/templates/smst_finances/statements.html:139
+msgid "Liabilities"
+msgstr "Madeni"
+
+#: smst_finances/templates/smst_finances/statements.html:147
+msgid "No liabilities yet."
+msgstr "Hakuna dhima bado."
+
+#: smst_finances/templates/smst_finances/statements.html:150
+msgid "Total liabilities"
+msgstr "Jumla ya madeni"
+
+#: smst_finances/templates/smst_finances/statements.html:155
+msgid "Owner's equity"
+msgstr "Haki ya mmiliki"
+
+#: smst_finances/templates/smst_finances/statements.html:163
+msgid "No equity yet."
+msgstr "Bado hakuna hisa"
+
+#: smst_finances/templates/smst_finances/statements.html:166
+msgid "Total equity"
+msgstr "Jumla ya usawa"
+
+#: smst_finances/templates/smst_finances/statements.html:174
+msgid "Liabilities and equity"
+msgstr "Madeni na usawa"
+
+#: smst_finances/templates/smst_finances/statements.html:183
+msgid "Every account"
+msgstr "Kila akaunti"
+
+#: smst_finances/templates/smst_finances/statements.html:184
+msgid "Debits against credits"
+msgstr "Debiti dhidi ya mikopo"
+
+#: smst_finances/templates/smst_finances/statements.html:186
+#, python-format
+msgid "%(counter)s account touched"
+msgid_plural "%(counter)s accounts touched"
+msgstr[0] "Akaunti %(counter)s imeguswa"
+msgstr[1] "Akaunti %(counter)s zimeguswa"
+
+#: smst_finances/templates/smst_finances/statements.html:196
+msgid "Debit"
+msgstr "Debiti"
+
+#: smst_finances/templates/smst_finances/statements.html:197
+msgid "Credit"
+msgstr "Mkopo"
+
+#: smst_finances/templates/smst_finances/statements.html:212
+msgid "No posted entries in this period."
+msgstr "Hakuna machapisho katika kipindi hiki."
+
+#: smst_finances/templates/smst_finances/statements.html:217
+#: smst_finances/templates/smst_finances/statements.html:267
+msgid "Totals"
+msgstr "Jumla"
+
+#: smst_finances/templates/smst_finances/statements.html:231
+msgid "The till and the bank"
+msgstr "Kasha la pesa na benki"
+
+#: smst_finances/templates/smst_finances/statements.html:232
+msgid "What actually moved"
+msgstr "Kilichosogea hasa"
+
+#: smst_finances/templates/smst_finances/statements.html:234
+#: smst_stocks/templates/smst_stocks/pages/cart.html:27
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:31
+#, python-format
+msgid "%(counter)s line"
+msgid_plural "%(counter)s lines"
+msgstr[0] "Mstari wa %(counter)s"
+msgstr[1] "Mistari wa %(counter)s"
+
+#: smst_finances/templates/smst_finances/statements.html:242
+#: smst_stocks/templates/smst_stocks/orders.html:58
+msgid "Reference"
+msgstr "Rejeleo"
+
+#: smst_finances/templates/smst_finances/statements.html:245
+msgid "In"
+msgstr "Iko"
+
+#: smst_finances/templates/smst_finances/statements.html:246
+#: smst_stocks/templates/smst_stocks/dashboard.html:166
+#: smst_stocks/templates/smst_stocks/products.html:106
+msgid "Out"
+msgstr "Kwisha"
+
+#: smst_finances/templates/smst_finances/statements.html:247
+msgid "Net"
+msgstr "Net"
+
+#: smst_finances/templates/smst_finances/statements.html:262
+msgid "No cash moved in this period."
+msgstr "Hakuna pesa zilizohamishwa katika kipindi hiki."
+
+#: smst_finances/templates/smst_finances/statements.html:281
+msgid "The full book"
+msgstr "Kitabu kizima"
+
+#: smst_finances/templates/smst_finances/statements.html:282
+msgid "Every entry and its lines"
+msgstr "Kila ingizo na mistari yake"
+
+#: smst_finances/templates/smst_finances/statements.html:284
+#, python-format
+msgid "%(counter)s entry"
+msgid_plural "%(counter)s entries"
+msgstr[0] "Ingizo %(counter)s"
+msgstr[1] "Maingizo %(counter)s"
+
+#: smst_finances/templates/smst_finances/statements.html:302
+#, python-format
+msgid "Dr %(amount)s"
+msgstr ""
+
+#: smst_finances/templates/smst_finances/statements.html:302
+#, python-format
+msgid "Cr %(amount)s"
+msgstr ""
+
+#: smst_finances/templates/smst_finances/statements.html:313
+#, fuzzy
+#| msgid "The ledger is empty"
+msgid "The ledger is empty for this period"
+msgstr "Daftari la hesabu ni tupu"
+
+#: smst_finances/templates/smst_finances/statements.html:314
+msgid "Record an entry and its two sides will be written here."
+msgstr "Weka ingizo, na pande zake mbili zitaandikwa hapa."
+
+#: smst_stocks/models.py:255
+msgid "pending"
+msgstr ""
+
+#: smst_stocks/models.py:256
+msgid "confirmed"
+msgstr ""
+
+#: smst_stocks/models.py:257
+#, fuzzy
+#| msgid "Fulfilled"
+msgid "fulfilled"
+msgstr "Imetimizwa"
+
+#: smst_stocks/models.py:258
+#, fuzzy
+#| msgid "Cancelled"
+msgid "cancelled"
+msgstr "Imeghairishwa"
+
+#: smst_stocks/templates/smst_stocks/base.html:5
+msgid "Skip to the stock book"
+msgstr "Rukia Daftari la hisa"
+
+#: smst_stocks/templates/smst_stocks/base.html:8
+#: smst_stocks/templates/smst_stocks/base.html:10
+#: smst_stocks/templates/smst_stocks/base.html:103
+#: smst_stocks/templates/smst_stocks/base.html:120
+#: smst_stocks/templates/smst_stocks/base.html:230
+#: smst_stocks/templates/smst_stocks/empty.html:10
+#, fuzzy
+#| msgid "Smst Stocks"
+msgid "SmSt Stocks"
+msgstr "Hisa za Smst"
+
+#: smst_stocks/templates/smst_stocks/base.html:104
+msgid "The stock book"
+msgstr "Daftari la hisa"
+
+#: smst_stocks/templates/smst_stocks/base.html:138
+#: smst_stocks/templates/smst_stocks/pages/cart.html:136
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:160
+#: smst_stocks/templates/smst_stocks/products.html:10
+msgid "The shelf"
+msgstr "Rafu"
+
+#: smst_stocks/templates/smst_stocks/base.html:142
+msgid "Products"
+msgstr "Bidhaa"
+
+#: smst_stocks/templates/smst_stocks/base.html:148
+#: smst_stocks/templates/smst_stocks/movements.html:4
+#: smst_stocks/templates/smst_stocks/movements.html:5
+msgid "Ledger"
+msgstr "Daftari la hesabu"
+
+#: smst_stocks/templates/smst_stocks/base.html:154
+#: smst_stocks/templates/smst_stocks/low_stock.html:4
+#: smst_stocks/templates/smst_stocks/low_stock.html:5
+#: smst_stocks/templates/smst_stocks/low_stock.html:10
+msgid "To restock"
+msgstr "Kujaza tena akiba"
+
+#: smst_stocks/templates/smst_stocks/base.html:161
+#: smst_stocks/templates/smst_stocks/cart.html:10
+#: smst_stocks/templates/smst_stocks/pages/cart.html:4
+msgid "Trade"
+msgstr "Biashara"
+
+#: smst_stocks/templates/smst_stocks/base.html:165
+#: smst_stocks/templates/smst_stocks/cart.html:4
+#: smst_stocks/templates/smst_stocks/cart.html:5
+msgid "Cart"
+msgstr "Kikapu"
+
+#: smst_stocks/templates/smst_stocks/base.html:172
+#: smst_stocks/templates/smst_stocks/orders.html:4
+#: smst_stocks/templates/smst_stocks/orders.html:5
+#: smst_stocks/templates/smst_stocks/orders.html:10
+#: smst_stocks/templates/smst_stocks/product_detail.html:210
+msgid "Orders"
+msgstr "Maagizo"
+
+#: smst_stocks/templates/smst_stocks/base.html:179
+#: smst_stocks/templates/smst_stocks/links.html:4
+#: smst_stocks/templates/smst_stocks/links.html:5
+#: smst_stocks/templates/smst_stocks/links.html:10
+msgid "Shared links"
+msgstr "Viungo vilivyoshirikiwa"
+
+#: smst_stocks/templates/smst_stocks/base.html:185
+#: smst_stocks/templates/smst_stocks/base.html:191
+#: smst_stocks/templates/smst_stocks/shops.html:4
+#: smst_stocks/templates/smst_stocks/shops.html:10
+msgid "Shop"
+msgstr "Duka"
+
+#: smst_stocks/templates/smst_stocks/base.html:191
+msgid "Smst"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/base.html:200
+#: smst_stocks/templates/smst_stocks/shops.html:109
+#: smst_stocks/templates/smst_stocks/shops.html:116
+msgid "Plan"
+msgstr "Mpango"
+
+#: smst_stocks/templates/smst_stocks/base.html:202
+#: smst_stocks/templates/smst_stocks/shops.html:117
+#, fuzzy
+#| msgid "SmSt Works"
+msgid "SmSt Pro"
+msgstr "SmSt Kazi"
+
+#: smst_stocks/templates/smst_stocks/base.html:202
+#: smst_stocks/templates/smst_stocks/shops.html:117
+msgid "Free"
+msgstr "Bure"
+
+#: smst_stocks/templates/smst_stocks/base.html:203
+msgid "shop"
+msgstr "duka"
+
+#: smst_stocks/templates/smst_stocks/base.html:203
+msgid "unlimited"
+msgstr "bila kikomo"
+
+#: smst_stocks/templates/smst_stocks/base.html:206
+#, fuzzy, python-format
+#| msgid " %(products)s items on the books"
+msgid "%(counter)s item on the books"
+msgid_plural "%(counter)s items on the books"
+msgstr[0] "Bidhaa %(products)s zilizopo kwenye kumbukumbu"
+msgstr[1] "Bidhaa %(products)s zilizopo kwenye kumbukumbu"
+
+#: smst_stocks/templates/smst_stocks/base.html:244
+#: smst_stocks/templates/smst_stocks/dashboard.html:23
+#: smst_stocks/templates/smst_stocks/movements.html:19
+#: smst_stocks/templates/smst_stocks/movements.html:116
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:8
+#: smst_stocks/templates/smst_stocks/product_detail.html:19
+msgid "Record a movement"
+msgstr "Rekodi harakati"
+
+#: smst_stocks/templates/smst_stocks/cart.html:11
+#: smst_stocks/templates/smst_stocks/pages/cart.html:5
+msgid "The cart"
+msgstr "Kikapu"
+
+#: smst_stocks/templates/smst_stocks/cart.html:13
+#: smst_stocks/templates/smst_stocks/pages/cart.html:7
+msgid ""
+"Hold what you are buying or selling, then process it into the ledger. Stock "
+"leaves the shelf the moment it goes into the cart, so nothing is traded "
+"twice."
+msgstr ""
+"Weka bidhaa unazonunua au kuuza, kisha zirekodi kwenye daftari la hesabu. "
+"Bidhaa huondolewa kwenye rafu pindi tu zinapowekwa kwenye toroli, hivyo "
+"hakuna bidhaa inayoweza kuuzwa mara mbili."
+
+#: smst_stocks/templates/smst_stocks/cart.html:32
+msgid "Barcode"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/cart.html:34
+msgid "Scan a barcode or type its code"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/cart.html:38
+#, fuzzy
+#| msgid "Add an item"
+msgid "Add one"
+msgstr "Ongeza kipengee"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:10
+msgid "Where the shop stands today"
+msgstr "Mahali duka lilipo leo"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:13
+#, python-format
+msgid " %(products)s items on the books"
+msgstr "Bidhaa %(products)s zilizopo kwenye kumbukumbu"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:13
+#, python-format
+msgid ""
+" %(product)s of them running low. Every figure here moves the moment you "
+"record something"
+msgstr ""
+"kati ya hizo, %(product)s zinakaribia kuisha. Kila kipengele hapa kinasogea "
+"pindi tu unaporekodi kitu fulani."
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:15
+msgid ""
+"Nothing on the books yet. Add the first item and the numbers will fill in."
+msgstr ""
+"Hakuna kilichoingizwa kwenye kumbukumbu bado. Ongeza kipengele cha kwanza, "
+"na namba zitajazwa."
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:29
+#: smst_stocks/templates/smst_stocks/product_form.html:3
+#: smst_stocks/templates/smst_stocks/product_form.html:10
+#: smst_stocks/templates/smst_stocks/products.html:20
+msgid "Add an item"
+msgstr "Ongeza kipengee"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:35
+msgid "Shop totals"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:37
+msgid "Shelf value"
+msgstr "Thamani ya bidhaa kwenye rafu"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:39
+msgid "what the shelf would bring in"
+msgstr "mapato ambayo rafu hiyo ingeleta"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:42
+msgid "Cost of the stock"
+msgstr "Gharama ya hisa"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:44
+msgid "what you paid for it"
+msgstr "kile ulichokilipia"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:47
+msgid "Units in hand"
+msgstr "Vitengo vilivyopo mkononi"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:49
+#, python-format
+msgid "across %(products)s items"
+msgstr "katika bidhaa %(products)s"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:52
+msgid "Needs ordering"
+msgstr "Inahitaji kupangwa"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:55
+msgid "already out of stock"
+msgstr "Imekwisha dukani"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:55
+msgid "none out of stock"
+msgstr "hakuna kilichoishiwa dukani"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:64
+msgid "Movement flow"
+msgstr "Mtiririko wa miondoko"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:65
+msgid "What came in and went out"
+msgstr "Kilichoingia na kilichotoka"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:68
+#: smst_stocks/templates/smst_stocks/movements.html:31
+#: smst_works/templates/smst_works/dashboard.html:71
+msgid "7d"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:79
+#: smst_stocks/templates/smst_stocks/movements.html:42
+msgid "No movements in this period yet."
+msgstr "Hakuna miondoko yoyote katika kipindi hiki bado"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:81
+msgid ""
+"Sales and losses leave the shelf. Deliveries, returns and opening stock "
+"arrive."
+msgstr ""
+"Mauzo na hasara huondoka kwenye rafu. Bidhaa zinazoingia, bidhaa "
+"zinazorudishwa, na akiba ya awali hufika."
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:87
+msgid "Stock health"
+msgstr "Afya ya hisa"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:88
+msgid "How the shelf is holding up"
+msgstr "Jinsi rafu inavyoshikilia"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:91
+msgid "Restock list"
+msgstr "Orodha ya bidhaa za kujaza tena"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:96
+msgid "Add an item to see the health of the shelf."
+msgstr "Ongeza bidhaa ili kuona hali ya rafu."
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:99
+#, python-format
+msgid ""
+"\n"
+"          %(published)s item published to a shared page.\n"
+"      "
+msgid_plural ""
+"\n"
+"          %(published)s items published to a shared page.\n"
+"      "
+msgstr[0] ""
+"\n"
+" Kipengee cha %(published)s kimechapishwa kwenye ukurasa unaoshirikiwa."
+msgstr[1] ""
+"\n"
+" Bidhaa %(published)s vimechapishwa kwenye ukurasa unaoshirikiwa."
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:112
+msgid "Composition"
+msgstr "Utunzi"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:113
+msgid "Where the value sits"
+msgstr "Mahali ambapo thamani ipo"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:115
+#: smst_stocks/templates/smst_stocks/low_stock.html:24
+#: smst_stocks/templates/smst_stocks/products.html:32
+msgid "Chart measure"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:116
+#: smst_stocks/templates/smst_stocks/products.html:33
+msgid "Value"
+msgstr "Thamani"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:117
+#: smst_stocks/templates/smst_stocks/low_stock.html:25
+#: smst_stocks/templates/smst_stocks/products.html:34
+msgid "Units"
+msgstr "Vitengo"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:118
+#: smst_stocks/templates/smst_stocks/product_detail.html:63
+#: smst_stocks/templates/smst_stocks/products.html:35
+#: smst_stocks/templates/smst_stocks/products.html:81
+msgid "Margin"
+msgstr "Ukingo"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:123
+msgid "No items on the shelf yet."
+msgstr "Hakuna vitu kwenye rafu bado."
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:125
+msgid "The seven largest items by the measure you choose."
+msgstr "Vitu saba vikubwa zaidi kulingana na kigezo unachochagua."
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:131
+msgid "Attention"
+msgstr "Tahadhari"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:132
+#: smst_stocks/templates/smst_stocks/products.html:54
+msgid "Running low"
+msgstr "Inakaribia kuisha"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:135
+msgid "See everything to order"
+msgstr "Tazama kila kitu cha kuagiza"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:144
+#: smst_stocks/templates/smst_stocks/low_stock.html:50
+#: smst_stocks/templates/smst_stocks/movements.html:74
+#: smst_stocks/templates/smst_stocks/orders.html:60
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:21
+#: smst_stocks/templates/smst_stocks/products.html:77
+#: smst_works/templates/smst_works/partials/job_form.html:67
+#: smst_works/templates/smst_works/partials/stock_form.html:21
+msgid "Item"
+msgstr "Bidhaa"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:145
+#: smst_stocks/templates/smst_stocks/low_stock.html:51
+#: smst_stocks/templates/smst_stocks/product_detail.html:47
+#: smst_stocks/templates/smst_stocks/product_form.html:145
+#: smst_stocks/templates/smst_stocks/products.html:78
+msgid "In hand"
+msgstr "Mkononi"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:146
+#: smst_stocks/templates/smst_stocks/product_detail.html:51
+msgid "Reorder at"
+msgstr "Agiza tena saa"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:157
+#: smst_stocks/templates/smst_stocks/low_stock.html:64
+#: smst_stocks/templates/smst_stocks/pages/cart.html:37
+#: smst_stocks/templates/smst_stocks/pages/cart.html:148
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:41
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:172
+#: smst_stocks/templates/smst_stocks/product_form.html:34
+#: smst_stocks/templates/smst_stocks/products.html:92
+#, fuzzy, python-format
+#| msgid "Edit your %(edit_name)s"
+msgid "Photo of %(name)s"
+msgstr "Hariri %(edit_name)s yako"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:168
+#: smst_stocks/templates/smst_stocks/product_detail.html:40
+#: smst_stocks/templates/smst_stocks/products.html:108
+msgid "Low"
+msgstr "Chini"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:174
+#: smst_stocks/templates/smst_stocks/low_stock.html:80
+msgid "Add a delivery"
+msgstr "Ongeza uwasilishaji"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:187
+#: smst_stocks/templates/smst_stocks/low_stock.html:93
+msgid "Nothing is running low"
+msgstr "Hakuna kinachopungua"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:189
+#: smst_stocks/templates/smst_stocks/low_stock.html:95
+msgid ""
+"Set a restock level on an item and it will be listed here before it runs out."
+msgstr ""
+"Weka kiwango cha kuagiza upya kwa bidhaa, nayo itaorodheshwa hapa kabla "
+"haijaisha."
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:201
+#: smst_stocks/templates/smst_stocks/movements.html:10
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:7
+#: smst_stocks/templates/smst_stocks/product_detail.html:124
+msgid "The ledger"
+msgstr "Daftari la hesabu"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:202
+msgid "The latest movements"
+msgstr "Harakati za hivi karibuni"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:205
+msgid "Open the ledger"
+msgstr "Fungua daftari la hesabu"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:226
+msgid "The ledger is empty"
+msgstr "Daftari la hesabu ni tupu"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:239
+msgid "Requests"
+msgstr "Maombi"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:240
+msgid "Coming in from customers"
+msgstr "Kutoka kwa wateja"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:243
+#: smst_stocks/templates/smst_stocks/product_detail.html:214
+msgid "All orders"
+msgstr "Maagizo Yote"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:262
+#: smst_stocks/templates/smst_stocks/orders.html:106
+#: smst_stocks/templates/smst_stocks/product_detail.html:233
+msgid "No orders yet"
+msgstr "Hakuna oda bado"
+
+#: smst_stocks/templates/smst_stocks/dashboard.html:264
+msgid ""
+"Publish an item and share its link. Requests from customers will land here."
+msgstr ""
+"Chapisha bidhaa na ushiriki kiungo chake. Maombi kutoka kwa wateja yataingia "
+"hapa."
+
+#: smst_stocks/templates/smst_stocks/empty.html:4
+#: smst_stocks/templates/smst_stocks/empty.html:5
+msgid "Start a shop"
+msgstr "Anzisha Duka"
+
+#: smst_stocks/templates/smst_stocks/empty.html:11
+msgid "Start with the shop"
+msgstr "Anzia na Duka Yako"
+
+#: smst_stocks/templates/smst_stocks/empty.html:13
+msgid ""
+"A shop holds your items. Once it exists you can add what you sell, record "
+"the stock and share it with customers."
+msgstr ""
+"Duka huhifadhi bidhaa zako. Mara tu linapokuwepo, unaweza kuongeza vitu "
+"unavyouuza, kuweka kumbukumbu ya bidhaa zilizopo, na kulishiriki na wateja."
+
+#: smst_stocks/templates/smst_stocks/empty.html:17
+msgid "1. Name the shop"
+msgstr "1. Taja duka hilo"
+
+#: smst_stocks/templates/smst_stocks/empty.html:18
+msgid "One minute"
+msgstr "Dakika moja"
+
+#: smst_stocks/templates/smst_stocks/empty.html:25
+msgid "3. Share a link"
+msgstr "Viungo vilivyoshirikiwa"
+
+#: smst_stocks/templates/smst_stocks/empty.html:26
+msgid "Customers ask, you confirm"
+msgstr "Wateja huuliza, wewe unathibitisha"
+
+#: smst_stocks/templates/smst_stocks/empty.html:32
+msgid "The new shop"
+msgstr "Duka jipya"
+
+#: smst_stocks/templates/smst_stocks/empty.html:35
+#: smst_stocks/templates/smst_stocks/shops.html:30
+msgid "Shop name"
+msgstr "Jina la duka"
+
+#: smst_stocks/templates/smst_stocks/empty.html:36
+msgid "Sokoni Traders"
+msgstr "Wafanyabiashara wa Sokoni"
+
+#: smst_stocks/templates/smst_stocks/empty.html:40
+#: smst_stocks/templates/smst_stocks/shops.html:56
+msgid "Currency"
+msgstr "Sarafu"
+
+#: smst_stocks/templates/smst_stocks/empty.html:42
+msgid "The letters that go before every price, such as Ksh."
+msgstr "Herufi zinazotangulia kila bei, kama vile Ksh."
+
+#: smst_stocks/templates/smst_stocks/empty.html:48
+msgid "Create the shop"
+msgstr "Unda duka"
+
+#: smst_stocks/templates/smst_stocks/links.html:11
+msgid "Links you can hand out"
+msgstr "Viungo unavyoweza kugawa"
+
+#: smst_stocks/templates/smst_stocks/links.html:13
+msgid ""
+"Every link here opens a page a customer can read without an account. Switch "
+"one off and it stops working straight away."
+msgstr ""
+"Kila kiungo hapa hufungua ukurasa ambao mteja anaweza kuusoma bila kuhitaji "
+"akaunti. Ukizima kiungo kimoja, kitaacha kufanya kazi mara moja."
+
+#: smst_stocks/templates/smst_stocks/links.html:21
+msgid "The links"
+msgstr "Viungo"
+
+#: smst_stocks/templates/smst_stocks/links.html:22
+msgid "What is open right now"
+msgstr "Ni nini kiko wazi sasa hivi?"
+
+#: smst_stocks/templates/smst_stocks/links.html:24
+#, python-format
+msgid "%(count)s made"
+msgstr "%(count)s zimetengenezwa"
+
+#: smst_stocks/templates/smst_stocks/links.html:32
+msgid "Link"
+msgstr "Kiungo"
+
+#: smst_stocks/templates/smst_stocks/links.html:33
+msgid "Points at"
+msgstr "Inaelekeza kwenye"
+
+#: smst_stocks/templates/smst_stocks/links.html:34
+msgid "Views"
+msgstr "Maoni"
+
+#: smst_stocks/templates/smst_stocks/links.html:47
+msgid "Open"
+msgstr "Wazi"
+
+#: smst_stocks/templates/smst_stocks/links.html:49
+msgid "Expired"
+msgstr "Umekwisha"
+
+#: smst_stocks/templates/smst_stocks/links.html:51
+msgid "Switched off"
+msgstr "Imezimwa"
+
+#: smst_stocks/templates/smst_stocks/links.html:56
+msgid "Copy link"
+msgstr "Nakili kiungo"
+
+#: smst_stocks/templates/smst_stocks/links.html:68
+msgid "No links yet"
+msgstr "Hakuna oda bado"
+
+#: smst_stocks/templates/smst_stocks/links.html:70
+msgid ""
+"Share a product from its page, or turn on the catalogue, and the links will "
+"be listed here."
+msgstr ""
+"Shiriki bidhaa kutoka kwenye ukurasa wake, au washa katalogi, na viungo "
+"vitaorodheshwa hapa."
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:11
+msgid "What is running out"
+msgstr "Ni nini kinachoisha"
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:13
+msgid ""
+"Items at or below their restock level, and how much to ask the supplier for "
+"to bring the shelf back up."
+msgstr ""
+"Bidhaa ambazo zimefikia au ziko chini ya kiwango chake cha kuagiza upya, "
+"pamoja na kiasi cha kuomba kutoka kwa msambazaji ili kurejesha akiba kwenye "
+"rafu."
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:21
+msgid "Supplier list"
+msgstr "Orodha ya wasambazaji"
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:22
+msgid "How much to ask for"
+msgstr "Ni kiasi gani cha kudai"
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:26
+msgid "Cost"
+msgstr "Gharama"
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:31
+msgid "Nothing needs ordering right now."
+msgstr "Hakuna kinachohitaji kuagizwa kwa sasa."
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:33
+#, python-format
+msgid "%(counter)s item at or below the reorder level."
+msgid_plural "%(counter)s items at or below the reorder level."
+msgstr[0] ""
+"Bidhaa %(counter)s iko katika kiwango cha kuagiza upya au chini yake."
+msgstr[1] ""
+"Bidhaa %(counter)s ziko katika kiwango cha kuagiza upya au chini yake."
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:39
+#: smst_stocks/templates/smst_stocks/orders.html:47
+#: smst_works/templates/smst_works/customers.html:46
+msgid "The list"
+msgstr "Orodha hiyo"
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:40
+msgid "Items to order"
+msgstr "Vitu vya kuagiza"
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:42
+#, python-format
+msgid "%(counter)s item"
+msgid_plural "%(counter)s items"
+msgstr[0] "Bidhaa %(counter)s"
+msgstr[1] "Bidhaa %(counter)s"
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:52
+#: smst_stocks/templates/smst_stocks/product_form.html:152
+#, fuzzy
+#| msgid "Restock list"
+msgid "Restock at"
+msgstr "Orodha ya bidhaa za kujaza tena"
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:53
+msgid "Ask for"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:54
+msgid "It will cost"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:68
+#: smst_stocks/templates/smst_stocks/product_detail.html:40
+#: smst_stocks/templates/smst_stocks/products.html:55
+#: smst_stocks/templates/smst_stocks/public_shop.html:49
+#, fuzzy
+#| msgid "none out of stock"
+msgid "Out of stock"
+msgstr "hakuna kilichoishiwa dukani"
+
+#: smst_stocks/templates/smst_stocks/low_stock.html:97
+#: smst_stocks/templates/smst_stocks/orders.html:110
+#: smst_stocks/templates/smst_stocks/pages/cart.html:189
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:216
+msgid "Open the items"
+msgstr "Fungua daftari la bidhaa"
+
+#: smst_stocks/templates/smst_stocks/movements.html:11
+#, fuzzy
+#| msgid "See everything to order"
+msgid "Everything that moved"
+msgstr "Tazama kila kitu cha kuagiza"
+
+#: smst_stocks/templates/smst_stocks/movements.html:13
+msgid ""
+"Every sale, delivery, return and correction, in the order it happened. This "
+"is what the count on each item is made of."
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/movements.html:27
+#, fuzzy
+#| msgid "What came in and went out"
+msgid "Stock in and out"
+msgstr "Kilichoingia na kilichotoka"
+
+#: smst_stocks/templates/smst_stocks/movements.html:28
+msgid "The shape of the last few weeks"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/movements.html:44
+msgid "Turn a series off to read the other on its own."
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/movements.html:48
+#, fuzzy
+#| msgid "The latest movements"
+msgid "Filter movements"
+msgstr "Harakati za hivi karibuni"
+
+#: smst_stocks/templates/smst_stocks/movements.html:51
+msgid "Deliveries"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/movements.html:52
+msgid "Returns"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/movements.html:53
+msgid "Losses"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/movements.html:54
+msgid "Adjustments"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/movements.html:62
+#, fuzzy
+#| msgid "Movement flow"
+msgid "Movements"
+msgstr "Mtiririko wa miondoko"
+
+#: smst_stocks/templates/smst_stocks/movements.html:63
+msgid "The line by line"
+msgstr "Mstari kwa mstari"
+
+#: smst_stocks/templates/smst_stocks/movements.html:76
+#: templates/user/profile/pages/verification/password_change.html:12
+msgid "Change"
+msgstr "Badilisha"
+
+#: smst_stocks/templates/smst_stocks/movements.html:78
+msgid "By"
+msgstr "Kwa"
+
+#: smst_stocks/templates/smst_stocks/movements.html:112
+#: smst_stocks/templates/smst_stocks/product_detail.html:149
+msgid "Nothing has moved yet"
+msgstr "Hakuna kilichosogea bado"
+
+#: smst_stocks/templates/smst_stocks/movements.html:114
+msgid ""
+"Record a sale or a delivery and it will be written here, with the name of "
+"the person who recorded it."
+msgstr ""
+"Rekodi mauzo au uwasilishaji, na itaandikwa hapa, pamoja na jina la mtu "
+"aliyeifanya rekodi hiyo."
+
+#: smst_stocks/templates/smst_stocks/orders.html:11
+msgid "What customers have asked for"
+msgstr "Mambo ambayo wateja wameomba"
+
+#: smst_stocks/templates/smst_stocks/orders.html:13
+msgid ""
+"Requests come in through your shared pages. The stock is held as soon as a "
+"request arrives, so nothing is promised twice."
+msgstr ""
+"Maombi huingia kupitia kurasa zako zilizoshirikiwa. Bidhaa hutengwa mara tu "
+"ombi linapowasili, hivyo hakuna kitu kinachoahidiwa mara mbili."
+
+#: smst_stocks/templates/smst_stocks/orders.html:21
+msgid "Order book"
+msgstr "Daftari la oda"
+
+#: smst_stocks/templates/smst_stocks/orders.html:22
+msgid "Where the requests stand"
+msgstr "Hali ya maombi"
+
+#: smst_stocks/templates/smst_stocks/orders.html:24
+msgid "Select a status to filter the list below"
+msgstr "Chagua hali ili kuchuja orodha iliyo hapa chini"
+
+#: smst_stocks/templates/smst_stocks/orders.html:28
+msgid "No orders have come in yet."
+msgstr "Hakuna oda bado"
+
+#: smst_stocks/templates/smst_stocks/orders.html:30
+msgid ""
+"The stock for pending and confirmed orders is already held off the shelf."
+msgstr ""
+"Bidhaa kwa ajili ya oda zinazosubiri na zile zilizothibitishwa tayari "
+"zimetengwa kutoka kwenye hisa."
+
+#: smst_stocks/templates/smst_stocks/orders.html:34
+msgid "Filter orders"
+msgstr "Chuja maagizo"
+
+#: smst_stocks/templates/smst_stocks/orders.html:35
+#: smst_stocks/templates/smst_stocks/products.html:53
+#: smst_works/templates/smst_works/employees.html:28
+#: smst_works/templates/smst_works/guides.html:28
+#: smst_works/templates/smst_works/jobs.html:28
+msgid "All"
+msgstr "Yote"
+
+#: smst_stocks/templates/smst_stocks/orders.html:36
+msgid "Pending"
+msgstr "Inasubiri"
+
+#: smst_stocks/templates/smst_stocks/orders.html:37
+msgid "Confirmed"
+msgstr "Imethibitishwa"
+
+#: smst_stocks/templates/smst_stocks/orders.html:38
+msgid "Fulfilled"
+msgstr "Imetimizwa"
+
+#: smst_stocks/templates/smst_stocks/orders.html:39
+msgid "Cancelled"
+msgstr "Imeghairishwa"
+
+#: smst_stocks/templates/smst_stocks/orders.html:48
+msgid "The orders"
+msgstr "Maagizo Yote"
+
+#: smst_stocks/templates/smst_stocks/orders.html:61
+msgid "Quantity"
+msgstr "Kiasi"
+
+#: smst_stocks/templates/smst_stocks/orders.html:62
+#: smst_works/templates/smst_works/customers.html:56
+msgid "Customer"
+msgstr "Mteja"
+
+#: smst_stocks/templates/smst_stocks/orders.html:63
+#: smst_stocks/templates/smst_stocks/shops.html:41
+#: smst_works/templates/smst_works/partials/customer_form.html:29
+#: smst_works/templates/smst_works/partials/employee_form.html:28
+#: smst_works/templates/smst_works/partials/supplier_form.html:33
+msgid "Phone"
+msgstr "Simu"
+
+#: smst_stocks/templates/smst_stocks/orders.html:64
+msgid "Total"
+msgstr "Jumla"
+
+#: smst_stocks/templates/smst_stocks/orders.html:92
+msgid "Mark done"
+msgstr "Kamilisha"
+
+#: smst_stocks/templates/smst_stocks/orders.html:93
+#: smst_stocks/templates/smst_stocks/product_form.html:189
+#: smst_stocks/templates/smst_stocks/product_form.html:209
+#: templates/app/apps/smst_stocks/forms/create_product.html:279
+#: templates/user/profile/pages/minipages/smstpro.html:27
+msgid "Cancel"
+msgstr "Ghairi"
+
+#: smst_stocks/templates/smst_stocks/orders.html:108
+msgid ""
+"Publish an item and share its link. Customers can then ask for it and the "
+"request lands here."
+msgstr ""
+"Chapisha bidhaa na ushiriki kiungo chake. Maombi kutoka kwa wateja yataingia "
+"hapa."
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:24
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:28
+msgid "In the cart"
+msgstr "Kwenye gari la ununuzi"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:25
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:29
+msgid "What is being held"
+msgstr "Kinachofanyika"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:49
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:53
+#, python-format
+msgid "%(quantity)s %(unit)s held"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:56
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:60
+#, fuzzy
+#| msgid "Units"
+msgid "Unit"
+msgstr "Vitengo"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:57
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:61
+msgid "Line total"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:64
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:109
+msgid "Money settles in"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:66
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:111
+#, fuzzy
+#| msgid " %(products)s items on the books"
+msgid "Not posted to the books"
+msgstr "Bidhaa %(products)s zilizopo kwenye kumbukumbu"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:75
+#, fuzzy
+#| msgid "Actions"
+msgid "Options"
+msgstr "Vitendo"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:87
+msgid "Process"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:94
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:67
+msgid "Release"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:103
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:76
+msgid "The cart is empty"
+msgstr "Kikapu chako ni tupu"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:104
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:77
+msgid ""
+"Add something from the shelf below, then process it when the trade is done."
+msgstr ""
+"Ongeza kitu kutoka kwenye rafu iliyo hapo chini, kisha ukishughulikie mara "
+"biashara hiyo itakapokamilika."
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:114
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:87
+msgid "The sums"
+msgstr "Jumla"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:115
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:88
+msgid "What it comes to"
+msgstr "Hatimaye, jambo lenyewe ni hili"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:120
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:93
+msgid "Selling to customers"
+msgstr "Kuuza kwa wateja"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:124
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:97
+msgid "Buying in"
+msgstr "Kushiriki kikamilifu"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:128
+msgid "Processed lines leave the cart and land in the ledger and the books."
+msgstr ""
+"Mistari iliyoshughulikiwa huondoka kwenye rukwama na kuingia kwenye daftari "
+"la hesabu na vitabu vya kumbukumbu."
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:137
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:161
+msgid "Add to the cart"
+msgstr "Ongeza kwenye kikapu"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:139
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:163
+#, python-format
+msgid "%(counter)s item in hand"
+msgid_plural "%(counter)s items in hand"
+msgstr[0] "bidhaa %(counter)s mkononi"
+msgstr[1] "bidhaa %(counter)s mkononi"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:152
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:176
+#: smst_stocks/templates/smst_stocks/products.html:113
+#, python-format
+msgid "%(count)s in a cart"
+msgstr "%(count)s kwenye kikapu"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:160
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:185
+#, python-format
+msgid "Sells %(currency)s %(price)s"
+msgstr "Inauzwa kwa %(currency)s %(price)s"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:161
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:186
+#, python-format
+msgid "Buys %(currency)s %(price)s"
+msgstr "Hununua %(currency)s %(price)s"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:168
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:194
+#, python-format
+msgid "Quantity of %(name)s"
+msgstr "Idadi ya %(name)s"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:173
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:199
+msgid "Sell"
+msgstr "Uza"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:176
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:202
+msgid "Buy"
+msgstr "Nunua"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:187
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:214
+msgid "Nothing is in hand"
+msgstr "Hakuna kitu mkononi"
+
+#: smst_stocks/templates/smst_stocks/pages/cart.html:188
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:215
+msgid "Record a delivery to bring items onto the shelf, then hold them here."
+msgstr ""
+"Rekodi uwasilishaji ili kuweka bidhaa kwenye rafu, kisha uzihifadhi hapo."
+
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:10
+#, python-format
+msgid "%(counter)s receipt saved."
+msgid_plural "%(counter)s receipts saved."
+msgstr[0] "Risiti %(counter)s imehifadhiwa."
+msgstr[1] "Risiti %(counter)s zimehifadhiwa."
+
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:11
+msgid "Open the receipts"
+msgstr "Fungua daftari la hesabu"
+
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:15
+#, python-format
+msgid "Receipt %(reference)s saved."
+msgstr "Risiti %(reference)s imehifadhiwa."
+
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:126
+msgid "Options for every line"
+msgstr "Chaguo kwa kila mstari"
+
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:138
+#, python-format
+msgid "Process the line"
+msgid_plural "Process all %(counter)s lines"
+msgstr[0] "Chakata mstari"
+msgstr[1] "Chakata mistari zote $(counter)s"
+
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:145
+msgid ""
+"The finances above apply to every line in the cart. Processed lines leave "
+"the cart and land in the ledger and the books."
+msgstr ""
+"Masuala ya kifedha yaliyo hapo juu yanahusu kila kipengele kilicho kwenye "
+"kikapu. Vipengele vilivyoshughulikiwa huondoka kwenye kikapu na kuingia "
+"kwenye daftari la uhasibu na vitabu vya hesabu."
+
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:152
+#: smst_stocks/templates/smst_stocks/products.html:48
+msgid "Search items"
+msgstr "Tafuta bidhaa"
+
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:154
+msgid "Search the shelf by name or code"
+msgstr "Tafuta kwenye rafu kwa kutumia jina au msimbo"
+
+#: smst_stocks/templates/smst_stocks/partials/cart_live.html:209
+msgid "No items match that search."
+msgstr "Hakuna vipengele vinavyolingana na utafutaji huo"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:10
+msgid "The count on every item follows from what you record here."
+msgstr "Idadi ya kila bidhaa inatokana na kile unachorekodi hapa."
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:23
+msgid "Choose an item"
+msgstr "Chagua kipengee"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:37
+#: smst_works/templates/smst_works/partials/stock_form.html:38
+msgid "What happened"
+msgstr "Nini kilitokea"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:39
+msgid "Sold to a customer"
+msgstr "Imeuzwa kwa mteja"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:40
+msgid "Delivery arrived"
+msgstr "Mzigo umefika"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:41
+msgid "Opening stock"
+msgstr "Stoki ya kuanzia"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:42
+msgid "Customer return"
+msgstr "Marejesho kutoka kwa mteja"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:43
+msgid "Lost or damaged"
+msgstr "Imepotea au kuharibika"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:44
+msgid "Adjustment"
+msgstr "Marekebisho"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:49
+#: smst_stocks/templates/smst_stocks/public_product.html:91
+#: smst_works/templates/smst_works/partials/job_form.html:78
+#: smst_works/templates/smst_works/partials/stock_form.html:46
+msgid "How many"
+msgstr "Kaisi gani"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:52
+msgid ""
+"A sale takes the number off the shelf, a delivery puts it on. Use a negative "
+"number for an adjustment that takes stock away."
+msgstr ""
+"Mauzo huondoa idadi fulani kutoka kwenye orodha ya bidhaa zilizopo, wakati "
+"uwasilishaji huongeza idadi hiyo. Tumia namba hasi kwa marekebisho "
+"yanayopunguza kiwango cha bidhaa zilizopo."
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:57
+msgid "Money account"
+msgstr "Akaunti ya pesa"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:59
+msgid "No money movement (stock only)"
+msgstr "Hakuna mzunguko wa fedha (hisa pekee)"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:74
+msgid ""
+"The movement is posted to SmSt Finances automatically. Choose where the "
+"money came from or went, such as Cash or Bank."
+msgstr ""
+"Miamala huingizwa kwenye SmSt Finances kiotomatiki. Chagua chanzo cha pesa "
+"au mahali zilipoelekea, kama vile Pesa Taslimu au Benki."
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:76
+msgid ""
+"SmSt Finances has no accounts for this shop yet, so the movement stays in "
+"stock only."
+msgstr ""
+"SmSt Finances bado haina akaunti kwa ajili ya duka hili, hivyo miamala "
+"inabaki katika kiwango cha hisa pekee"
+
+#: smst_stocks/templates/smst_stocks/partials/movement_form.html:93
+msgid ""
+"A sale of more than the shop holds is refused, so the count never goes below "
+"what is on the shelf."
+msgstr ""
+"Mauzo yanayozidi kiasi kilichopo dukani hukataliwa, hivyo idadi hiyo haiwezi "
+"kamwe kushuka chini ya kiasi kilichopo kwenye rafu."
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:10
+#: smst_stocks/templates/smst_stocks/product_form.html:9
+#: smst_stocks/templates/smst_stocks/products.html:4
+#: smst_stocks/templates/smst_stocks/products.html:5
+msgid "Items"
+msgstr "Bidhaa"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:13
+msgid ""
+"No description yet. Add one from the edit page so customers know what they "
+"are asking for."
+msgstr ""
+"Hakuna maelezo bado. Ongeza maelezo kupitia ukurasa wa kuhariri ili wateja "
+"wafahamu kile wanachokiomba."
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:25
+msgid "Edit the item"
+msgstr "Hariri bidhaa"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:36
+msgid "The numbers"
+msgstr "Mahesabu"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:37
+msgid "What this item is doing"
+msgstr "Kile ambacho bidhaa hii inafanya"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:40
+#: smst_stocks/templates/smst_stocks/products.html:110
+#: smst_stocks/templates/smst_stocks/public_shop.html:53
+msgid "In stock"
+msgstr "Ipo dukani"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:48
+#: smst_stocks/templates/smst_stocks/product_detail.html:74
+msgid "s"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:55
+#: smst_stocks/templates/smst_stocks/product_form.html:128
+msgid "Buying price"
+msgstr "Bei ya kununua"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:59
+#: smst_stocks/templates/smst_stocks/product_form.html:136
+msgid "Selling price"
+msgstr "Bei ya kuuzia"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:67
+msgid "Value on the shelf"
+msgstr "Hakuna vitu kwenye rafu bado."
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:74
+msgid "held in a cart and off the shelf."
+msgstr "imewekwa kwenye kikapu na nje ya rafu."
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:105
+msgid "Stock history"
+msgstr "Afya ya hisa"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:106
+msgid "How the count got here"
+msgstr "Jinsi hesabu ilivyofika hapa"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:108
+msgid "History range"
+msgstr "Muda wa historia"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:116
+msgid "No movements recorded for this item yet."
+msgstr "Hakuna miondoko iliyorekodiwa kwa bidhaa hii bado."
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:118
+msgid ""
+"The line follows the quantity in hand after each movement. Hover or focus a "
+"point for the detail."
+msgstr ""
+"Mstari unafuatilia kiasi kilichopo mkononi baada ya kila mabadiliko. Elekeza "
+"kielekezi au weka mwelekezi kwenye nukta ili kuona maelezo."
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:125
+msgid "Every movement"
+msgstr "Kila harakati"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:128
+msgid "All movements"
+msgstr "Harakati zote"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:150
+msgid "Sales and deliveries for this item will be listed here."
+msgstr "Mauzo na usafirishaji wa bidhaa hii vitaorodheshwa hapa"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:161
+msgid "Sharing"
+msgstr "Shiriki"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:162
+msgid "The customer page"
+msgstr "Ukurasa wa mteja"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:168
+msgid ""
+"A shared page shows the item, what is in hand right now and a way for a "
+"customer to ask for it. It updates as you record stock."
+msgstr ""
+"Ukurasa unaoshirikiwa unaonyesha bidhaa, kiasi kilichopo kwa sasa, na njia "
+"inayomwezesha mteja kuiomba. Ukurasa huo hujisasisha kadiri unavyoweka "
+"kumbukumbu za bidhaa zilizopo."
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:172
+msgid "Link to this item"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:178
+#: smst_stocks/templates/smst_stocks/product_detail.html:199
+#: smst_stocks/templates/smst_stocks/shops.html:100
+msgid "Copy"
+msgstr "Nakili"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:185
+msgid "On the shared page"
+msgstr "Fungua daftari la hesabu"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:185
+msgid "Hidden"
+msgstr "Imefichwa"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:188
+msgid "Hide it"
+msgstr "Ifiche"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:188
+msgid "Publish it"
+msgstr "Ichapishe"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:193
+msgid "Link to the whole catalogue"
+msgstr "Kiungo cha orodha nzima"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:202
+msgid "Turn the catalogue on from the shop page."
+msgstr "Washa katalogi kutoka kwenye ukurasa wa duka."
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:211
+msgid "Requests for this item"
+msgstr "Maombi ya bidhaa hii"
+
+#: smst_stocks/templates/smst_stocks/product_detail.html:234
+msgid "Customer requests for this item will show up here."
+msgstr "Maombi ya bidhaa hii"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:3
+#: smst_stocks/templates/smst_stocks/product_form.html:10
+#, python-format
+msgid "Edit %(name)s"
+msgstr "Hariri %(name)s yako"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:4
+msgid "Edit item"
+msgstr "Hariri bidhaa"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:4
+msgid "New item"
+msgstr "Bidhaa Mpya"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:9
+msgid "New"
+msgstr "Mpya"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:12
+msgid ""
+"A stock item is a product and its price. Give it the details the shop floor "
+"needs and the count will follow itself."
+msgstr ""
+"Bidhaa iliyopo dukani inajumuisha bidhaa yenyewe na bei yake. Ipe maelezo "
+"yanayohitajika katika eneo la mauzo, na hesabu ya bidhaa itajirekebisha "
+"yenyewe."
+
+#: smst_stocks/templates/smst_stocks/product_form.html:19
+msgid "Picture"
+msgstr "Picha"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:60
+#: templates/app/apps/smst_stocks/forms/create_product.html:197
+msgid "Add Your Product Image"
+msgstr "Ongeza picha ya bidhaa yako"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:70
+msgid "Mumias Sugar 1kg"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/product_form.html:76
+msgid "A short line about the item"
+msgstr "Mstari mfupi kuhusu bidhaa hiyo"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:79
+#: smst_stocks/templates/smst_stocks/shops.html:22
+msgid "Details"
+msgstr "Maelezo"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:80
+msgid "Pairs such as Weight and 500g. Customers see these on the shared page."
+msgstr ""
+"Jozi kama vile Uzito na 500g. Wateja huziona hizi kwenye ukurasa wa pamoja."
+
+#: smst_stocks/templates/smst_stocks/product_form.html:84
+msgid "Weight"
+msgstr "mf. Uzito"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:84
+msgid "Detail name"
+msgstr "Jina la maelezo"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:85
+#, fuzzy
+#| msgid "e.g 500g"
+msgid "500g"
+msgstr "mf. gramu 500"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:85
+msgid "Detail value"
+msgstr "Thamani ya maelezo"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:86
+msgid "Remove this detail"
+msgstr "Ondoa maelezo haya"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:92
+msgid "Add a detail"
+msgstr "Ongeza elezo"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:96
+msgid "The item"
+msgstr "kipengee"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:102
+msgid "Barcode or code"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/product_form.html:104
+msgid "Scan the barcode here"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/product_form.html:105
+msgid "Scanning this code in the cart adds the item to a sale."
+msgstr ""
+"Kuchanganua msimbo huu kwenye toroli huongeza bidhaa hiyo kwenye mauzo."
+
+#: smst_stocks/templates/smst_stocks/product_form.html:109
+#: smst_works/templates/smst_works/partials/guide_form.html:29
+msgid "Category"
+msgstr "Kategoria"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:111
+msgid "Groceries"
+msgstr "Bidhaa za chakula"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:139
+msgid "Margin shows here once both prices are in."
+msgstr "Faida inaonekana hapa mara bei zote mbili zitakapowekwa."
+
+#: smst_stocks/templates/smst_stocks/product_form.html:148
+msgid "Changes here are recorded in the ledger."
+msgstr "Mabadiliko hapa yanarekodiwa kwenye daftari la uhasibu."
+
+#: smst_stocks/templates/smst_stocks/product_form.html:155
+msgid "We will tell you when the count falls to this number."
+msgstr "Tutakuambia wakati idadi itakaposhuka hadi kufikia namba hii."
+
+#: smst_stocks/templates/smst_stocks/product_form.html:161
+msgid "Sold by"
+msgstr "Inauzwa na"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:163
+msgid "Each"
+msgstr "Kila"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:164
+msgid "Kilogram"
+msgstr "Kilo"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:165
+msgid "Litre"
+msgstr "Lita"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:166
+msgid "Pack"
+msgstr "Paketi"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:167
+msgid "Carton"
+msgstr "Katoni"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:168
+msgid "Bag"
+msgstr "Mfuko"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:169
+msgid "Crate"
+msgstr "Kreti"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:178
+msgid "Show on the shared page"
+msgstr "Onyesha kwenye ukurasa ulioshirikiwa"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:179
+msgid "Customers can see this item and ask for it."
+msgstr "Wateja wanaweza kuona bidhaa hii na kuiomba."
+
+#: smst_stocks/templates/smst_stocks/product_form.html:191
+msgid "Save the changes"
+msgstr "Hifadhi mabadiliko"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:191
+#, fuzzy
+#| msgid "Add an item"
+msgid "Add the item"
+msgstr "Ongeza kipengee"
+
+#: smst_stocks/templates/smst_stocks/product_form.html:214
+#: templates/app/apps/smst_stocks/forms/create_product.html:284
+msgid "Save"
+msgstr "Hifadhi"
+
+#: smst_stocks/templates/smst_stocks/products.html:11
+msgid "Everything on the shelf"
+msgstr "Kila kitu kwenye rafu"
+
+#: smst_stocks/templates/smst_stocks/products.html:13
+msgid ""
+"Each item carries what it cost, what it sells for and how many are in hand. "
+"Publish one to share it with customers."
+msgstr ""
+"Kila bidhaa inaonyesha gharama yake, bei yake ya kuuzia, na idadi iliyopo "
+"mkononi. Chapisha bidhaa ili kuishiriki na wateja."
+
+#: smst_stocks/templates/smst_stocks/products.html:29
+msgid "Inventory mix"
+msgstr "Mchanganyiko wa bidhaa zilizopo"
+
+#: smst_stocks/templates/smst_stocks/products.html:30
+msgid "How the catalogue is made up"
+msgstr "Jinsi rafu inavyoshikilia"
+
+#: smst_stocks/templates/smst_stocks/products.html:40
+msgid "Add items to see how the catalogue is made up."
+msgstr "Ongeza vipengele ili kuona jinsi orodha hiyo inavyoundwa."
+
+#: smst_stocks/templates/smst_stocks/products.html:42
+msgid "Grouped by category. Click a bar to open the items in it."
+msgstr "Imepangwa kwa kategoria. Bofya upau ili kufungua vipengele vilivyomo."
+
+#: smst_stocks/templates/smst_stocks/products.html:52
+msgid "Filter items"
+msgstr "Chuja bidhaa"
+
+#: smst_stocks/templates/smst_stocks/products.html:64
+msgid "All items"
+msgstr "Bidhaa Zote"
+
+#: smst_stocks/templates/smst_stocks/products.html:66
+msgid "Items that match"
+msgstr "Bidhaa zinavyolingana"
+
+#: smst_stocks/templates/smst_stocks/products.html:66
+msgid "The catalogue"
+msgstr "Orodha"
+
+#: smst_stocks/templates/smst_stocks/products.html:79
+msgid "Buying"
+msgstr "Kununua"
+
+#: smst_stocks/templates/smst_stocks/products.html:80
+msgid "Selling"
+msgstr "Kuuza"
+
+#: smst_stocks/templates/smst_stocks/products.html:120
+msgid "Move"
+msgstr "Songesha"
+
+#: smst_stocks/templates/smst_stocks/products.html:137
+msgid "No items here yet"
+msgstr "Hakuna bidhaa hapa bado."
+
+#: smst_stocks/templates/smst_stocks/products.html:140
+msgid "Nothing matches that search. Try a different name, or clear the filter."
+msgstr ""
+"Hakuna kinacholingana na utafutaji huo. Jaribu jina lingine, au ondoa "
+"kichujio."
+
+#: smst_stocks/templates/smst_stocks/products.html:142
+msgid ""
+"Add the products you sell. Each one needs a name, a price and how many you "
+"have in hand."
+msgstr ""
+"Ongeza bidhaa unazouza. Kila moja inahitaji jina, bei, na idadi uliyonayo "
+"mkononi."
+
+#: smst_stocks/templates/smst_stocks/products.html:147
+msgid "Add the first item"
+msgstr "Ongeza kipengele cha kwanza"
+
+#: smst_stocks/templates/smst_stocks/public_base.html:9
+#, python-format
+msgid "Items available from %(shop)s."
+msgstr "Bidhaa zinapatikana kutoka %(shop)s."
+
+#: smst_stocks/templates/smst_stocks/public_product.html:3
+#, python-format
+msgid "%(product)s by %(shop)s at Smst"
+msgstr "%(product)s kutoka %(shop)s katika Smst"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:5
+#, python-format
+msgid "%(name)s from %(shop)s, %(currency)s %(price)s."
+msgstr "%(name)s kutoka %(shop)s, %(currency)s %(price)s"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:8
+#, python-format
+msgid "Buy %(name)s from %(shop)s"
+msgstr "Nunua %(name)s kutoka %(shop)s"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:9
+#, python-format
+msgid "%(name)s from %(shop)s, %(currency)s %(price)s"
+msgstr "%(name)s kutoka %(shop)s, %(currency)s %(price)s"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:56
+#, python-format
+msgid "per %(unit)s"
+msgstr "kwa kila %(unit)s"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:63
+msgid "Out of stock at the moment"
+msgstr "Hakuna bidhaa kwa sasa"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:65
+#: smst_stocks/templates/smst_stocks/public_shop.html:51
+#, python-format
+msgid "Only %(count)s left"
+msgstr "Zimesalia %(count)s pekee"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:67
+#, python-format
+msgid "%(count)s in stock"
+msgstr "%(count)s zipo dukani"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:74
+#: smst_stocks/templates/smst_stocks/public_product.html:108
+msgid "Ask for this item"
+msgstr "Ulizia bidhaa hii"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:76
+msgid "Leave your name and number. The shop will call to arrange it."
+msgstr ""
+"Acha jina lako na namba yako. Duka litakupigia simu ili kupanga jambo hilo."
+
+#: smst_stocks/templates/smst_stocks/public_product.html:80
+msgid "Your name"
+msgstr "Jina lako"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:81
+msgid "Full Name"
+msgstr "Jina Kamili"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:85
+msgid "Phone number"
+msgstr "Nambari ya simu"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:95
+#: smst_stocks/templates/smst_stocks/shops.html:45
+#: smst_works/templates/smst_works/partials/customer_form.html:33
+#: smst_works/templates/smst_works/partials/employee_form.html:35
+#: smst_works/templates/smst_works/partials/supplier_form.html:40
+#: templates/user/profile/pages/minipages/account.html:61
+msgid "Email"
+msgstr "Barua pepe"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:95
+#: smst_stocks/templates/smst_stocks/public_product.html:101
+#: smst_works/templates/smst_works/partials/customer_form.html:39
+#: smst_works/templates/smst_works/partials/employee_form.html:82
+#: smst_works/templates/smst_works/partials/job_form.html:28
+#: smst_works/templates/smst_works/partials/rank_form.html:28
+#: smst_works/templates/smst_works/partials/stock_form.html:52
+#: smst_works/templates/smst_works/partials/supplier_form.html:65
+msgid "optional"
+msgstr "huria"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:96
+msgid "you@example.com"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/public_product.html:101
+msgid "Anything else"
+msgstr "Kitu kingine chochote"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:102
+msgid "You can collect from the shop"
+msgstr "Unaweza kuchukua dukani"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:113
+msgid "The shop has your request and will call you to confirm."
+msgstr "Duka limepokea ombi lako na litakupigia simu ili kuthibitisha."
+
+#: smst_stocks/templates/smst_stocks/public_product.html:118
+msgid "This item has run out. Ask the shop when it will be back."
+msgstr "Bidhaa hii imeisha. Uliza dukani ni lini itapatikana tena."
+
+#: smst_stocks/templates/smst_stocks/public_product.html:125
+msgid "Your request holds the stock."
+msgstr "Ombi lako linashikilia bidhaa zilizopo."
+
+#: smst_stocks/templates/smst_stocks/public_product.html:125
+msgid "Nobody else can ask for the last one."
+msgstr "Hakuna mwingine anayeweza kuomba kile cha mwisho."
+
+#: smst_stocks/templates/smst_stocks/public_product.html:129
+msgid "The shop confirms by phone."
+msgstr "Duka linathibitisha kwa simu"
+
+#: smst_stocks/templates/smst_stocks/public_product.html:129
+#, python-format
+msgid "You will hear from %(shop)s before anything is set aside."
+msgstr "Utapata taarifa kutoka kwa %(shop)s kabla ya kitu chochote kutengwa."
+
+#: smst_stocks/templates/smst_stocks/public_product.html:134
+msgid "Prefer to call?"
+msgstr "Je, unapendelea kupiga simu?"
+
+#: smst_stocks/templates/smst_stocks/public_shop.html:9
+msgid "Available now"
+msgstr "Tunapatikana sasa"
+
+#: smst_stocks/templates/smst_stocks/public_shop.html:64
+msgid ""
+"Stock changes through the day. What you see here is what the shop has on the "
+"shelf at the moment the page loaded."
+msgstr ""
+"Hali ya bidhaa hubadilika katika kipindi cha siku. Unachokiona hapa ni kile "
+"ambacho duka linacho kwenye rafu wakati ukurasa huu unapofunguka."
+
+#: smst_stocks/templates/smst_stocks/public_shop.html:67
+msgid "This shop has not listed anything yet."
+msgstr "Duka hili bado halijaorodhesha chochote."
+
+#: smst_stocks/templates/smst_stocks/reports.html:11
+msgid "Take the numbers with you"
+msgstr "Chukua namba hizo pamoja nawe"
+
+#: smst_stocks/templates/smst_stocks/reports.html:13
+msgid ""
+"Build a report and download it as a PDF for the supplier, or as a "
+"spreadsheet for the shop's own records."
+msgstr ""
+"Andaa ripoti na uipakue kama PDF kwa ajili ya msambazaji, au kama jedwali "
+"kwa ajili ya kumbukumbu za duka lenyewe."
+
+#: smst_stocks/templates/smst_stocks/reports.html:45
+#, python-format
+msgid "%(count)s kept"
+msgstr "%(count)s zimehifadhiwa"
+
+#: smst_stocks/templates/smst_stocks/reports.html:78
+msgid "Build one above and it will be waiting here, ready to download."
+msgstr "Jenga moja hapo juu, nayo itakuwa inasubiri hapa, tayari kupakuliwa."
+
+#: smst_stocks/templates/smst_stocks/shops.html:5
+msgid "Shop details"
+msgstr "Maelezo ya duka"
+
+#: smst_stocks/templates/smst_stocks/shops.html:13
+msgid ""
+"The details your customers see on a shared page, and the place the reports "
+"are headed."
+msgstr ""
+"Maelezo ambayo wateja wako huona kwenye ukurasa ulioshirikiwa, na mahali "
+"ambapo ripoti hupelekwa."
+
+#: smst_stocks/templates/smst_stocks/shops.html:23
+msgid "The shop as customers see it"
+msgstr "Duka jinsi wateja wanavyoliona"
+
+#: smst_stocks/templates/smst_stocks/shops.html:35
+msgid "Tagline"
+msgstr "Kaulimbiu"
+
+#: smst_stocks/templates/smst_stocks/shops.html:36
+msgid "Groceries and household goods"
+msgstr "Vyakula na bidhaa za nyumbani"
+
+#: smst_stocks/templates/smst_stocks/shops.html:51
+#, fuzzy
+#| msgid "Where the shop stands today"
+msgid "Where the shop is"
+msgstr "Mahali duka lilipo leo"
+
+#: smst_stocks/templates/smst_stocks/shops.html:52
+msgid "Kenyatta Avenue, Nairobi"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:65
+msgid "Share the whole catalogue"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:66
+msgid "Customers can browse every published item on one page."
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:75
+#, fuzzy
+#| msgid "The shop"
+msgid "Save the shop"
+msgstr "Rafu"
+
+#: smst_stocks/templates/smst_stocks/shops.html:78
+msgid "Only the owner can change the shop details."
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:88
+msgid "Catalogue"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:89
+msgid "Your catalogue link"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:94
+msgid ""
+"One link that shows every published item, with what is in hand right now."
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:110
+msgid "What this account carries"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:120
+#, fuzzy
+#| msgid "Shop"
+msgid "Shops"
+msgstr "Duka"
+
+#: smst_stocks/templates/smst_stocks/shops.html:121
+#, fuzzy
+#| msgid "unlimited"
+msgid "Unlimited"
+msgstr "bila kikomo"
+
+#: smst_stocks/templates/smst_stocks/shops.html:124
+msgid "Items per shop"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:128
+msgid "Items in this shop"
+msgstr ""
+
+#: smst_stocks/templates/smst_stocks/shops.html:133
+msgid "See what Pro adds"
+msgstr ""
+
+#: smst_works/templates/smst_works/base.html:5
+msgid "Skip to the shop floor"
+msgstr "Nenda kwenye eneo la uzalishaji"
+
+#: smst_works/templates/smst_works/base.html:8
+#: smst_works/templates/smst_works/base.html:10
+#: smst_works/templates/smst_works/base.html:106
+#: smst_works/templates/smst_works/base.html:123
+#: smst_works/templates/smst_works/base.html:218
+#: smst_works/templates/smst_works/empty.html:10
+#: templates/app/homepage.html:133
+msgid "SmSt Works"
+msgstr "SmSt Kazi"
+
+#: smst_works/templates/smst_works/base.html:107
+#: smst_works/templates/smst_works/partials/job_form.html:7
+#: smst_works/templates/smst_works/partials/stock_form.html:7
+#, fuzzy
+#| msgid "Shop floor"
+msgid "The shop floor"
+msgstr "Sakafu ya kiwanda"
+
+#: smst_works/templates/smst_works/base.html:129
+#: smst_works/templates/smst_works/dashboard.html:4
+msgid "Shop floor"
+msgstr "Sakafu ya kiwanda"
+
+#: smst_works/templates/smst_works/base.html:135
+#: smst_works/templates/smst_works/jobs.html:10
+#, fuzzy
+#| msgid "on the books"
+msgid "The work"
+msgstr "katika vitabu"
+
+#: smst_works/templates/smst_works/base.html:139
+#: smst_works/templates/smst_works/jobs.html:4
+#: smst_works/templates/smst_works/jobs.html:5
+msgid "Jobs"
+msgstr "Kazi"
+
+#: smst_works/templates/smst_works/base.html:145
+#: smst_works/templates/smst_works/employees.html:4
+#: smst_works/templates/smst_works/employees.html:5
+msgid "Employees"
+msgstr "Wafanyakazi"
+
+#: smst_works/templates/smst_works/base.html:151
+#: smst_works/templates/smst_works/partials/rank_form.html:7
+#: smst_works/templates/smst_works/ranks.html:4
+#: smst_works/templates/smst_works/ranks.html:5
+msgid "Ranks"
+msgstr "Vyeo"
+
+#: smst_works/templates/smst_works/base.html:161
+#: smst_works/templates/smst_works/customers.html:5
+#: smst_works/templates/smst_works/customers.html:47
+msgid "Loyalty customers"
+msgstr "Wateja waaminifu"
+
+#: smst_works/templates/smst_works/base.html:167
+#: smst_works/templates/smst_works/partials/supplier_form.html:7
+#: smst_works/templates/smst_works/suppliers.html:4
+#: smst_works/templates/smst_works/suppliers.html:5
+#: smst_works/templates/smst_works/suppliers.html:10
+#: smst_works/templates/smst_works/suppliers.html:27
+msgid "Suppliers"
+msgstr "Wauzaji"
+
+#: smst_works/templates/smst_works/base.html:173
+#: smst_works/templates/smst_works/guides.html:4
+msgid "Guides"
+msgstr "Miongozo"
+
+#: smst_works/templates/smst_works/base.html:189
+#: smst_works/templates/smst_works/base.html:194
+#, python-format
+msgid "%(count)s on the team · you are %(rank)s"
+msgstr ""
+
+#: smst_works/templates/smst_works/base.html:228
+msgid "The timeline moves forward every second"
+msgstr ""
+
+#: smst_works/templates/smst_works/base.html:235
+#: smst_works/templates/smst_works/dashboard.html:32
+#: smst_works/templates/smst_works/partials/stock_form.html:8
+msgid "Stock action"
+msgstr "Mwenendo wa hisa"
+
+#: smst_works/templates/smst_works/base.html:241
+#: smst_works/templates/smst_works/dashboard.html:26
+#: smst_works/templates/smst_works/jobs.html:20
+msgid "New job"
+msgstr "Kazi Mpya"
+
+#: smst_works/templates/smst_works/customers.html:4
+#: smst_works/templates/smst_works/customers.html:10
+#: smst_works/templates/smst_works/partials/customer_form.html:7
+#: smst_works/templates/smst_works/partials/points_form.html:7
+msgid "Loyalty"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:11
+msgid "The customers who come back"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:13
+msgid ""
+"Register a customer, add points on a good visit and take them away when they "
+"are redeemed. The points history below keeps every change honest."
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:20
+#: smst_works/templates/smst_works/customers.html:109
+#: smst_works/templates/smst_works/partials/customer_form.html:8
+msgid "Register a customer"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:27
+#, fuzzy
+#| msgid "Loyalty customers"
+msgid "Loyalty tier"
+msgstr "Wateja waaminifu"
+
+#: smst_works/templates/smst_works/customers.html:29
+msgid "Bronze under 200"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:30
+msgid "Silver 200+"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:31
+msgid "Gold 500+"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:35
+#, fuzzy
+#| msgid "Loyalty customers"
+msgid "Search customers"
+msgstr "Wateja waaminifu"
+
+#: smst_works/templates/smst_works/customers.html:36
+msgid "Search a customer"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:57
+#: smst_works/templates/smst_works/employees.html:50
+#: smst_works/templates/smst_works/suppliers.html:46
+msgid "Contact"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:58
+#: smst_works/templates/smst_works/customers.html:87
+#: smst_works/templates/smst_works/partials/points_form.html:23
+msgid "Points"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:59
+msgid "Tier"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:74
+#, python-format
+msgid "joined %(date)s"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:104
+#, fuzzy
+#| msgid "Loyalty customers"
+msgid "No loyalty customers yet"
+msgstr "Wateja waaminifu"
+
+#: smst_works/templates/smst_works/customers.html:106
+#: smst_works/templates/smst_works/employees.html:112
+msgid "No one matches that search."
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:106
+msgid "Register the first customer and start the points."
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:119
+#: smst_works/templates/smst_works/dashboard.html:141
+#, fuzzy
+#| msgid "The ledger"
+msgid "The record"
+msgstr "Daftari la hesabu"
+
+#: smst_works/templates/smst_works/customers.html:120
+msgid "Recent points"
+msgstr ""
+
+#: smst_works/templates/smst_works/customers.html:137
+#, fuzzy
+#| msgid "No items on the shelf yet."
+msgid "No points have moved yet."
+msgstr "Hakuna vitu kwenye rafu bado."
+
+#: smst_works/templates/smst_works/dashboard.html:10
+#, fuzzy
+#| msgid "Shop floor"
+msgid "Live shop floor"
+msgstr "Sakafu ya kiwanda"
+
+#: smst_works/templates/smst_works/dashboard.html:11
+msgid "The work, as it happens"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:14
+#, python-format
+msgid "%(counter)s job running"
+msgid_plural "%(counter)s jobs running"
+msgstr[0] ""
+msgstr[1] ""
+
+#: smst_works/templates/smst_works/dashboard.html:15
+#, python-format
+msgid "%(count)s waiting"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:15
+#, python-format
+msgid "%(count)s finished well"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:16
+msgid "The line moves forward on its own; an unfinished job keeps counting."
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:18
+msgid ""
+"The floor is quiet. Create the first job and the timeline will start moving "
+"from this moment."
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:38
+#, fuzzy
+#| msgid "Shop floor"
+msgid "Shop floor totals"
+msgstr "Sakafu ya kiwanda"
+
+#: smst_works/templates/smst_works/dashboard.html:40
+#: smst_works/templates/smst_works/employees.html:29
+#: smst_works/templates/smst_works/partials/employee_form.html:63
+#, fuzzy
+#| msgid "Open the ledger"
+msgid "On the team"
+msgstr "Fungua daftari la hesabu"
+
+#: smst_works/templates/smst_works/dashboard.html:42
+msgid "active people, plus the owner"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:45
+#, fuzzy
+#| msgid "Running low"
+msgid "Running now"
+msgstr "Inakaribia kuisha"
+
+#: smst_works/templates/smst_works/dashboard.html:47
+msgid "counted from the moment they started"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:50
+msgid "Waiting"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:52
+#, fuzzy
+#| msgid "Skip to the shop floor"
+msgid "next up on the floor"
+msgstr "Nenda kwenye eneo la uzalishaji"
+
+#: smst_works/templates/smst_works/dashboard.html:55
+#: smst_works/templates/smst_works/partials/points_form.html:8
+#, fuzzy
+#| msgid "Loyalty customers"
+msgid "Loyalty points"
+msgstr "Wateja waaminifu"
+
+#: smst_works/templates/smst_works/dashboard.html:57
+#, python-format
+msgid "%(counter)s customer"
+msgid_plural "%(counter)s customers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: smst_works/templates/smst_works/dashboard.html:64
+msgid "The live timeline"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:65
+msgid "A video editor for the work"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:67
+msgid "Timeline range"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:68
+msgid "6h"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:69
+msgid "12h"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:70
+msgid "24h"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:77
+#: smst_works/templates/smst_works/dashboard.html:154
+#: smst_works/templates/smst_works/jobs.html:51
+#, fuzzy
+#| msgid "Jobs"
+msgid "Job"
+msgstr "Kazi"
+
+#: smst_works/templates/smst_works/dashboard.html:81
+msgid "Reading the timeline…"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:84
+msgid "No jobs in this window yet. Create one and it will appear on the line."
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:89
+msgid ""
+"The line at the right is now. A running job grows until someone finishes it; "
+"a finished job stays exactly where it ended."
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:97
+msgid "Next up"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:98
+msgid "Waiting to start"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:101
+#, fuzzy
+#| msgid "All orders"
+msgid "All jobs"
+msgstr "Maagizo Yote"
+
+#: smst_works/templates/smst_works/dashboard.html:112
+#, python-format
+msgid "waiting %(waiting)s · %(inputs)s in / %(outputs)s out"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:118
+#: smst_works/templates/smst_works/jobs.html:100
+msgid "Start"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:128
+#, fuzzy
+#| msgid "Nothing is running low"
+msgid "Nothing is waiting"
+msgstr "Hakuna kinachopungua"
+
+#: smst_works/templates/smst_works/dashboard.html:129
+msgid "Every job on the floor has been started or finished."
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:131
+#: smst_works/templates/smst_works/jobs.html:136
+#: smst_works/templates/smst_works/partials/job_form.html:8
+#, fuzzy
+#| msgid "Create A Product"
+msgid "Create a job"
+msgstr "Unda Bidhaa"
+
+#: smst_works/templates/smst_works/dashboard.html:142
+#, fuzzy
+#| msgid "The latest movements"
+msgid "The latest jobs"
+msgstr "Harakati za hivi karibuni"
+
+#: smst_works/templates/smst_works/dashboard.html:145
+#, fuzzy
+#| msgid "Open the ledger"
+msgid "Open the jobs"
+msgstr "Fungua daftari la hesabu"
+
+#: smst_works/templates/smst_works/dashboard.html:156
+#: smst_works/templates/smst_works/jobs.html:55
+msgid "Time"
+msgstr ""
+
+#: smst_works/templates/smst_works/dashboard.html:157
+#, fuzzy
+#| msgid "Smst Stocks"
+msgid "Stock"
+msgstr "Hisa za Smst"
+
+#: smst_works/templates/smst_works/dashboard.html:182
+#, fuzzy
+#| msgid "The ledger is empty"
+msgid "The line is clean"
+msgstr "Daftari la hesabu ni tupu"
+
+#: smst_works/templates/smst_works/dashboard.html:183
+msgid "The first job will be drawn here from the moment it starts."
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:10
+#: smst_works/templates/smst_works/partials/employee_form.html:7
+msgid "The team"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:11
+msgid "The people on the floor"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:13
+msgid ""
+"Hire someone, give them a rank and the rank decides what they can touch. "
+"When the email matches an existing SmSt account, their login is linked."
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:20
+#: smst_works/templates/smst_works/employees.html:115
+#: smst_works/templates/smst_works/partials/employee_form.html:8
+msgid "Hire someone"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:27
+#, fuzzy
+#| msgid "Employees"
+msgid "Employee state"
+msgstr "Wafanyakazi"
+
+#: smst_works/templates/smst_works/employees.html:30
+#: smst_works/templates/smst_works/partials/employee_form.html:64
+msgid "Suspended"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:35
+msgid "Search the team"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:36
+msgid "Search a person"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:49
+msgid "Person"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:51
+#: smst_works/templates/smst_works/partials/employee_form.html:46
+#: smst_works/templates/smst_works/partials/employee_form.html:54
+#, fuzzy
+#| msgid "Ranks"
+msgid "Rank"
+msgstr "Vyeo"
+
+#: smst_works/templates/smst_works/employees.html:53
+msgid "Hired"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:72
+msgid "· login linked"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:81
+#, python-format
+msgid "%(counter)s permission"
+msgid_plural "%(counter)s permissions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: smst_works/templates/smst_works/employees.html:83
+#: smst_works/templates/smst_works/partials/employee_form.html:48
+msgid "No rank"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:84
+msgid "Cannot change anything"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:95
+msgid "Fire"
+msgstr ""
+
+#: smst_works/templates/smst_works/employees.html:110
+#, fuzzy
+#| msgid "The ledger is empty"
+msgid "The floor is empty"
+msgstr "Daftari la hesabu ni tupu"
+
+#: smst_works/templates/smst_works/employees.html:112
+msgid "Hire the first person and give them a rank."
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:11
+#, fuzzy
+#| msgid "Choose a shop"
+msgid "The floor needs a shop"
+msgstr "Chagua Duka"
+
+#: smst_works/templates/smst_works/empty.html:13
+msgid ""
+"A team belongs to a shop. Once you have one in SmSt Stocks, the ranks, the "
+"employees, the loyalty customers and the live job timeline open here with "
+"the same name and currency."
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:21
+#, fuzzy
+#| msgid "Add an item"
+msgid "2. Add the items"
+msgstr "Ongeza kipengee"
+
+#: smst_works/templates/smst_works/empty.html:22
+msgid "Jobs take them in and out"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:25
+msgid "3. Hire the team"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:26
+msgid "Give everyone a rank"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:39
+msgid "A shop floor that tells the truth"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:42
+msgid "Ranks with real teeth"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:43
+msgid "Every action checks the permission first"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:46
+#, fuzzy
+#| msgid "Team, Jobs, Timeline"
+msgid "A live job timeline"
+msgstr "Timu, Kazi, Ratiba"
+
+#: smst_works/templates/smst_works/empty.html:47
+msgid "Running jobs keep counting; the line moves forward"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:50
+msgid "Stock in, stock out"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:51
+msgid "A successful job takes its inputs and makes its outputs"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:54
+#, fuzzy
+#| msgid "Loyalty customers"
+msgid "Loyalty and suppliers"
+msgstr "Wateja waaminifu"
+
+#: smst_works/templates/smst_works/empty.html:55
+msgid "Points with a history; suppliers linked to items"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:58
+msgid "Guides anyone can read"
+msgstr ""
+
+#: smst_works/templates/smst_works/empty.html:59
+msgid "The rules stay open on the busiest shift"
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:5
+#: smst_works/templates/smst_works/guides.html:10
+#: smst_works/templates/smst_works/partials/guide_form.html:7
+msgid "Workplace guides"
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:11
+#, fuzzy
+#| msgid "How the shelf is holding up"
+msgid "How this shop does things"
+msgstr "Jinsi rafu inavyoshikilia"
+
+#: smst_works/templates/smst_works/guides.html:13
+msgid ""
+"The rules, the opening routine, the till count. Anyone on the team can open "
+"a guide at any time, even in the middle of a shift."
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:20
+#: smst_works/templates/smst_works/guides.html:90
+#: smst_works/templates/smst_works/partials/guide_form.html:8
+msgid "Write a guide"
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:27
+msgid "Guide category"
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:35
+msgid "Search guides"
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:36
+msgid "Search a guide"
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:62
+#, python-format
+msgid "updated %(date)s"
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:66
+msgid "Read"
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:73
+msgid "Edit this guide"
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:85
+#, fuzzy
+#| msgid "The ledger is empty"
+msgid "The guidebook is empty"
+msgstr "Daftari la hesabu ni tupu"
+
+#: smst_works/templates/smst_works/guides.html:87
+msgid "Nothing matches that search."
+msgstr ""
+
+#: smst_works/templates/smst_works/guides.html:87
+msgid "Write the first rule, routine or how-to for the team."
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:11
+msgid "Every job on the floor"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:13
+msgid ""
+"A job waits, starts, then succeeds or fails. A success takes its inputs from "
+"stock and puts its outputs on the shelf. A failure leaves stock where it is."
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:27
+msgid "Job state"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:36
+msgid "Search jobs"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:37
+msgid "Search a job"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:53
+#: smst_works/templates/smst_works/partials/job_form.html:34
+msgid "Takes in"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:54
+#: smst_works/templates/smst_works/partials/job_form.html:45
+msgid "Makes"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:73
+#: smst_works/templates/smst_works/jobs.html:82
+msgid "Nothing"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:88
+msgid "and counting"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:88
+#, python-format
+msgid "waiting %(waiting)s"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:91
+#, python-format
+msgid "started %(date)s"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:91
+msgid "not started"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:105
+msgid "Succeed"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:109
+msgid "Fail"
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:114
+#, fuzzy
+#| msgid "Stock Deleted"
+msgid "Stock moved"
+msgstr "Stoki imefutwa"
+
+#: smst_works/templates/smst_works/jobs.html:116
+#, fuzzy
+#| msgid "Left over"
+msgid "Left alone"
+msgstr "Kilichobaki"
+
+#: smst_works/templates/smst_works/jobs.html:131
+#, fuzzy
+#| msgid "No items on the shelf yet."
+msgid "No jobs here yet"
+msgstr "Hakuna vitu kwenye rafu bado."
+
+#: smst_works/templates/smst_works/jobs.html:133
+msgid "Try another search or state."
+msgstr ""
+
+#: smst_works/templates/smst_works/jobs.html:133
+msgid "Create the first job and give the timeline something to draw."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/customer_form.html:10
+msgid ""
+"Points are added after a visit. 200 points makes silver, 500 makes gold."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/customer_form.html:24
+msgid "Wanjiku Kamau"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/customer_form.html:34
+msgid "wanjiku@example.com"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/customer_form.html:40
+#, fuzzy
+#| msgid "What the budgets say"
+msgid "What they usually buy"
+msgstr "Yaliyomo kwenye bajeti"
+
+#: smst_works/templates/smst_works/partials/customer_form.html:47
+msgid "Register them"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/customer_form.html:49
+#, fuzzy
+#| msgid "Record an entry"
+msgid "Start a new customer"
+msgstr "Rekodi harakati"
+
+#: smst_works/templates/smst_works/partials/employee_form.html:10
+msgid ""
+"A rank sets what the person can do. If the email matches an existing SmSt "
+"account, the login is linked automatically."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/employee_form.html:25
+msgid "Amina Wanjiru"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/employee_form.html:36
+msgid "amina@example.com"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/employee_form.html:39
+#, fuzzy
+#| msgid "Skip to the shop floor"
+msgid "Role on the floor"
+msgstr "Nenda kwenye eneo la uzalishaji"
+
+#: smst_works/templates/smst_works/partials/employee_form.html:40
+msgid "Cook, till, cleaner…"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/employee_form.html:72
+msgid "Hired on"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/employee_form.html:76
+#, fuzzy
+#| msgid "Ranks"
+msgid "Rank note"
+msgstr "Vyeo"
+
+#: smst_works/templates/smst_works/partials/employee_form.html:77
+msgid "Choose a rank to see what it allows."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/employee_form.html:83
+msgid "Shift, training, anything useful"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/employee_form.html:90
+msgid "Hire them"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/employee_form.html:92
+#, fuzzy
+#| msgid "Record an entry"
+msgid "Start a new hire"
+msgstr "Rekodi harakati"
+
+#: smst_works/templates/smst_works/partials/guide_form.html:10
+msgid ""
+"Keep it short and plain. The team can read it at any time, even on a busy "
+"shift."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/guide_form.html:24
+#, fuzzy
+#| msgid "The shop"
+msgid "Opening the shop"
+msgstr "Rafu"
+
+#: smst_works/templates/smst_works/partials/guide_form.html:30
+msgid "Opening, Safety, Till…"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/guide_form.html:33
+#, fuzzy
+#| msgid "Orders"
+msgid "Order"
+msgstr "Maagizo"
+
+#: smst_works/templates/smst_works/partials/guide_form.html:39
+#, fuzzy
+#| msgid "The builder"
+msgid "The guide"
+msgstr "Mjenzi"
+
+#: smst_works/templates/smst_works/partials/guide_form.html:40
+msgid ""
+"1. Unlock the front door.&#10;2. Count the till.&#10;3. Switch on the fridge."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/guide_form.html:48
+msgid "Published"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/guide_form.html:49
+msgid "The team sees published guides; drafts stay with the managers."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/guide_form.html:56
+#, fuzzy
+#| msgid "Open the ledger"
+msgid "Save the guide"
+msgstr "Fungua daftari la hesabu"
+
+#: smst_works/templates/smst_works/partials/guide_form.html:58
+msgid "Write a new guide"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/job_form.html:10
+msgid ""
+"Pick the items the job takes in and the items it makes. The stock moves only "
+"when the job succeeds."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/job_form.html:23
+msgid "What is the job?"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/job_form.html:24
+msgid "Fry the chapatis for the lunch rush"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/job_form.html:29
+msgid "Anything the team should know"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/job_form.html:36
+#: smst_works/templates/smst_works/partials/job_form.html:47
+#, fuzzy
+#| msgid "Add an item"
+msgid "Add item"
+msgstr "Ongeza kipengee"
+
+#: smst_works/templates/smst_works/partials/job_form.html:40
+msgid "Example: 200 g sugar, 1 kg flour and 4 eggs come off the shelf."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/job_form.html:51
+msgid "Example: 20 pieces of chapati go onto the shelf."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/job_form.html:58
+#, fuzzy
+#| msgid "Create A Product"
+msgid "Create the job"
+msgstr "Unda Bidhaa"
+
+#: smst_works/templates/smst_works/partials/job_form.html:68
+#: smst_works/templates/smst_works/partials/stock_form.html:23
+#, fuzzy
+#| msgid "Choose a shop"
+msgid "Choose an item…"
+msgstr "Chagua Duka"
+
+#: smst_works/templates/smst_works/partials/job_form.html:79
+#, fuzzy
+#| msgid "Open the ledger"
+msgid "Remove this item"
+msgstr "Fungua daftari la hesabu"
+
+#: smst_works/templates/smst_works/partials/points_form.html:10
+msgid "Add points after a visit, or take them away when they are redeemed."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/points_form.html:25
+msgid "Use a negative number to redeem, for example -100."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/points_form.html:29
+msgid "Reason"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/points_form.html:30
+msgid "Bought groceries"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/points_form.html:37
+#, fuzzy
+#| msgid "Finance options"
+msgid "Save the points"
+msgstr "Chaguzi za ufadhili"
+
+#: smst_works/templates/smst_works/partials/rank_form.html:8
+#: smst_works/templates/smst_works/ranks.html:20
+msgid "New rank"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/rank_form.html:10
+msgid ""
+"Tick the views this rank may open, the actions it may take, and the entries "
+"it may see. An accountant often keeps stock out of their hands; a cleaner "
+"often cannot add stock or read the whole ledger."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/rank_form.html:24
+#, fuzzy
+#| msgid "Account"
+msgid "Accountant"
+msgstr "Akaunti"
+
+#: smst_works/templates/smst_works/partials/rank_form.html:28
+#, fuzzy
+#| msgid "What it was for"
+msgid "What the rank is for"
+msgstr "Ilikuwa kwa ajili ya nini"
+
+#: smst_works/templates/smst_works/partials/rank_form.html:29
+msgid "Keeps the books; does not move stock"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/rank_form.html:33
+msgid "Permissions"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/rank_form.html:54
+#, fuzzy
+#| msgid "Create New Stock"
+msgid "Create the rank"
+msgstr "Unda Hisa Mpya"
+
+#: smst_works/templates/smst_works/partials/rank_form.html:56
+#, fuzzy
+#| msgid "Record an entry"
+msgid "Start a new rank"
+msgstr "Rekodi harakati"
+
+#: smst_works/templates/smst_works/partials/stock_form.html:10
+msgid ""
+"A delivery or opening adds stock. A sale, loss, return or adjustment moves "
+"it. Your rank decides which you may do."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/stock_form.html:53
+#, fuzzy
+#| msgid "What it was for"
+msgid "Who or what it was for"
+msgstr "Ilikuwa kwa ajili ya nini"
+
+#: smst_works/templates/smst_works/partials/stock_form.html:56
+msgid "A loss is always written to the books as stock leaving."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/stock_form.html:61
+#, fuzzy
+#| msgid "Record a movement"
+msgid "Record the movement"
+msgstr "Rekodi harakati"
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:8
+#: smst_works/templates/smst_works/suppliers.html:20
+#: smst_works/templates/smst_works/suppliers.html:103
+#, fuzzy
+#| msgid "Add a delivery"
+msgid "Add a supplier"
+msgstr "Ongeza uwasilishaji"
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:10
+msgid "Link the items they bring so the next reorder is one look away."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:24
+msgid "Nairobi Flour Millers"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:29
+msgid "Contact person"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:30
+msgid "Peter"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:41
+msgid "sales@millers.example"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:44
+msgid "Address"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:45
+msgid "Industrial Area, Nairobi"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:50
+#: smst_works/templates/smst_works/suppliers.html:47
+msgid "Items they bring"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:61
+msgid "Hold Ctrl (or Cmd) to pick more than one."
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:66
+msgid "Delivery days, prices, credit terms"
+msgstr ""
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:73
+#, fuzzy
+#| msgid "The shop"
+msgid "Save the supplier"
+msgstr "Rafu"
+
+#: smst_works/templates/smst_works/partials/supplier_form.html:75
+#, fuzzy
+#| msgid "Record an entry"
+msgid "Start a new supplier"
+msgstr "Rekodi harakati"
+
+#: smst_works/templates/smst_works/ranks.html:10
+#, fuzzy
+#| msgid "Skip to the shop floor"
+msgid "The rules of the floor"
+msgstr "Nenda kwenye eneo la uzalishaji"
+
+#: smst_works/templates/smst_works/ranks.html:11
+msgid "What each rank may do"
+msgstr ""
+
+#: smst_works/templates/smst_works/ranks.html:13
+msgid ""
+"A rank is a list of permissions. An accountant often keeps the stock still; "
+"a cleaner can use stock but cannot add it. The owner can always do "
+"everything."
+msgstr ""
+
+#: smst_works/templates/smst_works/ranks.html:42
+#, fuzzy, python-format
+#| msgid "%(count)s shown"
+msgid "%(counter)s person"
+msgid_plural "%(counter)s people"
+msgstr[0] "%(count)s zinaonyeshwa"
+msgstr[1] "%(count)s zinaonyeshwa"
+
+#: smst_works/templates/smst_works/ranks.html:52
+msgid "No permissions. This rank can read the floor but change nothing."
+msgstr ""
+
+#: smst_works/templates/smst_works/ranks.html:57
+#, fuzzy
+#| msgid "item"
+msgid "Edit the rank"
+msgstr "kipengee"
+
+#: smst_works/templates/smst_works/ranks.html:68
+#, fuzzy
+#| msgid "No orders yet"
+msgid "No ranks yet"
+msgstr "Hakuna oda bado"
+
+#: smst_works/templates/smst_works/ranks.html:69
+msgid "The starter ranks appear the first time the shop opens."
+msgstr ""
+
+#: smst_works/templates/smst_works/ranks.html:71
+#, fuzzy
+#| msgid "Create A Product"
+msgid "Create a rank"
+msgstr "Unda Bidhaa"
+
+#: smst_works/templates/smst_works/ranks.html:81
+#, fuzzy
+#| msgid "Entries"
+msgid "The permission keys"
+msgstr "Ingizo"
+
+#: smst_works/templates/smst_works/ranks.html:82
+#, fuzzy
+#| msgid "What the budgets say"
+msgid "What the switches mean"
+msgstr "Yaliyomo kwenye bajeti"
+
+#: smst_works/templates/smst_works/ranks.html:101
+msgid ""
+"The owner bypasses every switch. A person with no rank can read the floor "
+"and the guides, but cannot change the shop."
+msgstr ""
+
+#: smst_works/templates/smst_works/suppliers.html:11
+msgid "Who brings what"
+msgstr ""
+
+#: smst_works/templates/smst_works/suppliers.html:13
+msgid ""
+"Keep each supplier with the items they bring, so the next restock is a "
+"glance instead of a phone-around."
+msgstr ""
+
+#: smst_works/templates/smst_works/suppliers.html:32
+#, fuzzy
+#| msgid "Suppliers"
+msgid "Search suppliers"
+msgstr "Wauzaji"
+
+#: smst_works/templates/smst_works/suppliers.html:33
+#, fuzzy
+#| msgid "Loyalty customers"
+msgid "Search a supplier"
+msgstr "Wateja waaminifu"
+
+#: smst_works/templates/smst_works/suppliers.html:45
+#, fuzzy
+#| msgid "Suppliers"
+msgid "Supplier"
+msgstr "Wauzaji"
+
+#: smst_works/templates/smst_works/suppliers.html:76
+#, fuzzy
+#| msgid "Units in hand"
+msgid "Nothing linked"
+msgstr "Vitengo vilivyopo mkononi"
+
+#: smst_works/templates/smst_works/suppliers.html:98
+msgid "No suppliers saved"
+msgstr ""
+
+#: smst_works/templates/smst_works/suppliers.html:100
+msgid "No supplier matches that search."
+msgstr ""
+
+#: smst_works/templates/smst_works/suppliers.html:100
+msgid "Save the first one and link the items they bring."
+msgstr ""
+
+#: templates/app/apps/smst_stocks/forms/create_product.html:152
+#, fuzzy
+#| msgid "Create A Product"
+msgid "Create A Product"
+msgstr "Unda Bidhaa"
+
+#: templates/app/apps/smst_stocks/forms/create_product.html:207
+#, fuzzy
+#| msgid "Products"
+msgid "Product Name"
+msgstr "Bidhaa"
+
+#: templates/app/apps/smst_stocks/forms/create_product.html:213
+msgid "Enter the name of your Product"
+msgstr ""
+
+#: templates/app/apps/smst_stocks/forms/create_product.html:225
+#, fuzzy
+#| msgid "Description"
+msgid "Product Description"
+msgstr "Maelezo"
+
+#: templates/app/apps/smst_stocks/forms/create_product.html:231
+#, fuzzy
+#| msgid "Description"
+msgid "Description Type"
+msgstr "Maelezo"
+
+#: templates/app/apps/smst_stocks/forms/create_product.html:239
+#, fuzzy
+#| msgid "Description"
+msgid "Description Value"
+msgstr "Maelezo"
+
+#: templates/app/apps/smst_stocks/forms/create_product.html:249
+#, fuzzy
+#| msgid "Description"
+msgid "Add Description"
+msgstr "Maelezo"
+
+#: templates/app/apps/smst_stocks/forms/create_product.html:259
+#, fuzzy
+#| msgid "Products"
+msgid "Create Product"
+msgstr "Bidhaa"
+
+#: templates/app/homepage.html:81
+#, fuzzy
+#| msgid "Smst Stocks"
+msgid "Smst Stocks"
+msgstr "Hisa za Smst"
+
+#: templates/app/homepage.html:84
+msgid "Stocks, Shop, Analytics"
+msgstr ""
+
+#: templates/app/homepage.html:110
+msgid "Money, Books, Insight"
+msgstr ""
+
+#: templates/app/homepage.html:136
+#, fuzzy
+#| msgid "Team, Jobs, Timeline"
+msgid "Team, Jobs, Timeline"
+msgstr "Timu, Kazi, Ratiba"
+
+#: templates/app/states/empty_state.html:142
+#, fuzzy
+#| msgid "Smst Stocks"
+msgid "Empty Stocks"
+msgstr "Hisa za Smst"
+
+#: templates/app/states/empty_state.html:145
+msgid "Create a New Stock Item which comprises of a Product and its Price."
+msgstr ""
+
+#: templates/app/states/empty_state.html:150
+#, fuzzy
+#| msgid "Create New Stock"
+msgid "Create New Stock"
+msgstr "Unda Hisa Mpya"
+
+#: templates/snippets/extendors/inputs/reset_email_input.html:6
+msgid "Enter your Logged In Email."
+msgstr ""
+
+#: templates/snippets/extendors/inputs/reset_password_input.html:4
+#: templates/snippets/extendors/inputs/reset_password_input_rep.html:4
+msgid "Repeat Your Password"
+msgstr ""
+
+#: templates/snippets/extendors/login_password_input.html:5
+msgid "Enter Login Password"
+msgstr ""
+
+#: templates/user/profile/page.html:12
+#, fuzzy
+#| msgid "Welcome"
+msgid "Welcome"
+msgstr "Karibu"
+
+#: templates/user/profile/page.html:24
+msgid "Search for Account Settings, Apps and More"
+msgstr ""
+
+#: templates/user/profile/page.html:61
+msgid "Security"
+msgstr ""
+
+#: templates/user/profile/page.html:84
+#, fuzzy
+#| msgid "Notification"
+msgid "Notifications"
+msgstr "Taarifa"
+
+#: templates/user/profile/page.html:112
+#: templates/user/profile/pages/minipages/translation.html:17
+msgid "Language"
+msgstr ""
+
+#: templates/user/profile/page.html:154
+msgid "Logout"
+msgstr ""
+
+#: templates/user/profile/pages/editingpages/edit.html:5
+#, fuzzy, python-format
+#| msgid "Edit your %(edit_name)s"
+msgid "Edit your %(edit_name)s"
+msgstr "Hariri %(edit_name)s yako"
+
+#: templates/user/profile/pages/editingpages/edit.html:16
+#, fuzzy
+#| msgid "Save Changes"
+msgid "Save Changes"
+msgstr "Hifadhi mabadiliko"
+
+#: templates/user/profile/pages/minipages/account.html:9
+msgid "First Name"
+msgstr ""
+
+#: templates/user/profile/pages/minipages/account.html:26
+#, fuzzy
+#| msgid "Last Name"
+msgid "Last Name"
+msgstr "Jina La Mwisho"
+
+#: templates/user/profile/pages/minipages/account.html:29
+msgid "Empty"
+msgstr ""
+
+#: templates/user/profile/pages/minipages/account.html:44
+msgid "Smst Username"
+msgstr ""
+
+#: templates/user/profile/pages/minipages/notifications.html:17
+#, fuzzy
+#| msgid "Notification"
+msgid "Receive Notifications"
+msgstr "Taarifa"
+
+#: templates/user/profile/pages/minipages/notifications.html:37
+#, fuzzy
+#| msgid "Notification"
+msgid "Receive Email Notifications"
+msgstr "Taarifa"
+
+#: templates/user/profile/pages/minipages/security.html:52
+msgid "Change Password"
+msgstr ""
+
+#: templates/user/profile/pages/minipages/smstpro.html:11
+msgid "Join Smst Pro and Enjoy Premium Features"
+msgstr ""
+
+#: templates/user/profile/pages/minipages/smstpro.html:15
+msgid "Ad Free Smst Apps"
+msgstr ""
+
+#: templates/user/profile/pages/minipages/smstpro.html:16
+msgid "Raised Limits in Restricted Features."
+msgstr ""
+
+#: templates/user/profile/pages/minipages/smstpro.html:17
+msgid "24/7 Contact Support."
+msgstr ""
+
+#: templates/user/profile/pages/minipages/smstpro.html:18
+msgid "Request for your own SmSt App."
+msgstr ""
+
+#: templates/user/profile/pages/minipages/smstpro.html:24
+#, fuzzy
+#| msgid "SmSt Works"
+msgid "Join Smst Pro"
+msgstr "SmSt Kazi"
+
+#: templates/user/profile/pages/minipages/smstpro.html:33
+msgid "By joining Smst Pro you agree to our"
+msgstr ""
+
+#: templates/user/profile/pages/minipages/smstpro.html:33
+msgid "Payment Policy"
+msgstr ""
+
+#: templates/user/profile/pages/minipages/translation.html:59
+msgid "Report Wrong Translation"
+msgstr ""
+
+#: templates/user/profile/pages/verification/password.html:5
+msgid "Verify your Password."
+msgstr ""
+
+#: templates/user/profile/pages/verification/password.html:10
+msgid "Verify"
+msgstr ""
+
+#: templates/user/profile/pages/verification/password_change.html:5
+msgid "Enter your New Password."
+msgstr ""
+
+#: templates/user/profile/username.html:8
+#, fuzzy
+#| msgid "Username Changed."
+msgid "Username"
+msgstr "Jina la mtumiaji limebadilishwa."
+
+#: templates/user/profile/username.html:12
+msgid "Enter your unique username"
+msgstr ""
+
+#: templates/user/profile/username.html:37
+msgid "Save Username"
+msgstr ""
+
+#~ msgid "item"
+#~ msgstr "kipengee"
+
+#~ msgid "on the books"
+#~ msgstr "katika vitabu"
+
+#, fuzzy, python-format
+#~| msgid "Units in hand"
+#~ msgid "%(quantity)s in hand"
+#~ msgstr "Vitengo vilivyopo mkononi"

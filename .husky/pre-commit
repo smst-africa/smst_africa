@@ -1,0 +1,6 @@
+npm run format
+npm run format-check
+npm run lint
+./scripts/collect_css.sh
+./scripts/check_and_collect.sh
+./scripts/test_and_deploy.sh

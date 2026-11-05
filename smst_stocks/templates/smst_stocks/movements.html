@@ -1,0 +1,122 @@
+{% extends 'smst_stocks/base.html' %}
+{% load i18n %}
+
+{% block stocks_title %}{% translate 'Ledger' %}{% endblock %}
+{% block stocks_crumb %}{% translate 'Ledger' %}{% endblock %}
+
+{% block stocks_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'The ledger' %}</p>
+    <h1 class="page-head__title">{% translate 'Everything that moved' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Every sale, delivery, return and correction, in the order it happened. This is what the count on each item is made of.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    <button class="btn btn--primary" type="button" data-open-movement>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Record a movement' %}
+    </button>
+  </div>
+</header>
+
+<section class="card" data-chart="movements-flow" data-shop="{{ shop.id }}" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'Stock in and out' %}</p>
+      <h2 class="card__title">{% translate 'The shape of the last few weeks' %}</h2>
+    </div>
+    <div class="segmented" data-flow-range role="group" aria-label="{% translate 'Chart range' %}">
+      <button class="segmented__btn" type="button" data-range="7">{% translate '7d' %}</button>
+      <button class="segmented__btn" type="button" data-range="14">{% translate '14d' %}</button>
+      <button class="segmented__btn is-active" type="button" data-range="30">{% translate '30d' %}</button>
+      <button class="segmented__btn" type="button" data-range="90">{% translate '90d' %}</button>
+    </div>
+  </header>
+  <div class="chart">
+    <div class="chart__top">
+      <div class="chart__legend" data-chart-legend></div>
+    </div>
+    <div class="chart__canvas" data-chart-canvas></div>
+    <p class="chart__empty" data-chart-empty hidden>{% translate 'No movements in this period yet.' %}</p>
+  </div>
+  <div class="card__foot">{% translate 'Turn a series off to read the other on its own.' %}</div>
+</section>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Filter movements' %}">
+    <a class="chip {% if not kind %}is-active{% endif %}" href="?kind=">{% translate 'Everything' %}</a>
+    <a class="chip {% if kind == 'sale' %}is-active{% endif %}" href="?kind=sale">{% translate 'Sales' %}</a>
+    <a class="chip {% if kind == 'delivery' %}is-active{% endif %}" href="?kind=delivery">{% translate 'Deliveries' %}</a>
+    <a class="chip {% if kind == 'return' %}is-active{% endif %}" href="?kind=return">{% translate 'Returns' %}</a>
+    <a class="chip {% if kind == 'loss' %}is-active{% endif %}" href="?kind=loss">{% translate 'Losses' %}</a>
+    <a class="chip {% if kind == 'adjustment' %}is-active{% endif %}" href="?kind=adjustment">{% translate 'Adjustments' %}</a>
+  </div>
+  {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+</form>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'Movements' %}</p>
+      <h2 class="card__title">{% translate 'The line by line' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate with count=ledger|length %}{{ count }} shown{% endblocktranslate %}</p>
+  </header>
+
+  {% if ledger %}
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'When' %}</th>
+          <th scope="col">{% translate 'Item' %}</th>
+          <th scope="col">{% translate 'Kind' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Change' %}</th>
+          <th scope="col">{% translate 'Note' %}</th>
+          <th scope="col">{% translate 'By' %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for movement in ledger %}
+        <tr data-movement data-kind="{{ movement.kind }}" data-quantity="{{ movement.quantity }}" data-at="{{ movement.created_at|date:'c' }}" data-product="{{ movement.product.name }}">
+          <th scope="row" class="is-when">
+            <span data-time="{{movement.created_at|date:'c'}}">{{ movement.created_at|time:"H:i" }}</span>
+          </th>
+          <td>
+            <a class="table__item" href="{% url 'smst_stocks:product_detail' movement.product.id %}">{{ movement.product.name }}</a>
+          </td>
+          <td><span class="tag tag--{{ movement.kind }}">{{ movement.get_kind_display }}</span></td>
+          <td class="is-numeric {% if movement.quantity < 0 %}is-down{% else %}is-up{% endif %}">
+            {% if movement.quantity > 0 %}+{% endif %}{{ movement.quantity|floatformat:0 }}
+          </td>
+          <td class="is-note">{{ movement.note|default:"—" }}</td>
+          <td>
+            {% if movement.created_by %}
+              {{ movement.created_by.get_full_name|default:movement.created_by.username }}
+            {% else %}
+              —
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ledger"></use></svg>
+      <p class="empty__title">{% translate 'Nothing has moved yet' %}</p>
+      <p class="empty__text">
+        {% translate 'Record a sale or a delivery and it will be written here, with the name of the person who recorded it.' %}
+      </p>
+      <button class="btn btn--primary" type="button" data-open-movement>{% translate 'Record a movement' %}</button>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{% if can_stocks_move or can_stocks_add %}{% include 'smst_stocks/partials/movement_form.html' %}{% endif %}
+{% endblock %}

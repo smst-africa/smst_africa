@@ -1,0 +1,53 @@
+{% load i18n %}
+<div class="sheet" data-customer-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="customer-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'Loyalty' %}</p>
+        <h2 class="sheet__title" id="customer-title" data-customer-title>{% translate 'Register a customer' %}</h2>
+        <p class="sheet__note">
+          {% translate 'Points are added after a visit. 200 points makes silver, 500 makes gold.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-customer-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="field">
+        <label class="field__label" for="customer-name">{% translate 'Name' %}</label>
+        <input class="field__control" id="customer-name" name="name" type="text" maxlength="120" required placeholder="{% translate 'Wanjiku Kamau' %}" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="customer-phone">{% translate 'Phone' %}</label>
+          <input class="field__control" id="customer-phone" name="phone" type="tel" maxlength="40" placeholder="+254 7…" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="customer-email">{% translate 'Email' %}</label>
+          <input class="field__control" id="customer-email" name="email" type="email" maxlength="254" placeholder="{% translate 'wanjiku@example.com' %}" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="customer-notes">{% translate 'Notes' %} <span class="field__optional">{% translate 'optional' %}</span></label>
+        <textarea class="field__control" id="customer-notes" name="notes" rows="2" placeholder="{% translate 'What they usually buy' %}"></textarea>
+      </div>
+
+      <p class="form-error" data-customer-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-customer-submit>
+          <span data-customer-label>{% translate 'Register them' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-reset-customer hidden>{% translate 'Start a new customer' %}</button>
+      </div>
+    </form>
+  </div>
+</div>

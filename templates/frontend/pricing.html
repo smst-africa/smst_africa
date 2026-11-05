@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smst Pricing</title>
+    <link rel="stylesheet" href="{% static 'frontend/frontend.min.css' %}" />
+    {% include 'smst/smst_header.html' %}
+    
+</head>
+<body>
+    {% include 'snippets/theme/shader.html' %}
+    {% include 'snippets/frontend/header.html' %}
+    {% include 'snippets/frontend/pricing.html' %}
+    <script type="module" src="{% static 'js/frontend/frontend.prod.js' %}"></script>
+    {% include 'snippets/frontend/footer.html' %}
+    
+</body>
+</html>

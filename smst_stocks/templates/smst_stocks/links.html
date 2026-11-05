@@ -1,0 +1,76 @@
+{% extends 'smst_stocks/base.html' %}
+{% load i18n %}
+
+{% block stocks_title %}{% translate 'Shared links' %}{% endblock %}
+{% block stocks_crumb %}{% translate 'Shared links' %}{% endblock %}
+
+{% block stocks_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Shared links' %}</p>
+    <h1 class="page-head__title">{% translate 'Links you can hand out' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Every link here opens a page a customer can read without an account. Switch one off and it stops working straight away.' %}
+    </p>
+  </div>
+</header>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'The links' %}</p>
+      <h2 class="card__title">{% translate 'What is open right now' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate with count=links|length %}{{ count }} made{% endblocktranslate %}</p>
+  </header>
+
+  {% if links %}
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'Link' %}</th>
+          <th scope="col">{% translate 'Points at' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Views' %}</th>
+          <th scope="col">{% translate 'State' %}</th>
+          <th scope="col"><span class="sr-only">{% translate 'Actions' %}</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for link in links %}
+        <tr>
+          <th scope="row" class="is-reference">{{ link.token|slice:":10" }}…</th>
+          <td>{{ link.product.name|default:link.shop.name }}</td>
+          <td class="is-numeric">{{ link.views }}</td>
+          <td>
+            {% if link.is_open %}
+            <span class="tag tag--ok">{% translate 'Open' %}</span>
+            {% elif link.is_expired %}
+            <span class="tag tag--muted">{% translate 'Expired' %}</span>
+            {% else %}
+            <span class="tag tag--out">{% translate 'Switched off' %}</span>
+            {% endif %}
+          </td>
+          <td class="is-actions">
+            <div class="row-actions">
+              <button class="link-button" type="button" data-copy="{{ request.scheme }}://{{ request.get_host }}{{ link.target_path }}">{% translate 'Copy link' %}</button>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-links"></use></svg>
+      <p class="empty__title">{% translate 'No links yet' %}</p>
+      <p class="empty__text">
+        {% translate 'Share a product from its page, or turn on the catalogue, and the links will be listed here.' %}
+      </p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

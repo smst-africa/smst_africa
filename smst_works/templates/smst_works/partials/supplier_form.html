@@ -1,0 +1,79 @@
+{% load i18n %}
+<div class="sheet" data-supplier-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="supplier-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'Suppliers' %}</p>
+        <h2 class="sheet__title" id="supplier-title" data-supplier-title>{% translate 'Add a supplier' %}</h2>
+        <p class="sheet__note">
+          {% translate 'Link the items they bring so the next reorder is one look away.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-supplier-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="field">
+        <label class="field__label" for="supplier-name">{% translate 'Name' %}</label>
+        <input class="field__control" id="supplier-name" name="name" type="text" maxlength="120" required placeholder="{% translate 'Nairobi Flour Millers' %}" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="supplier-contact">{% translate 'Contact person' %}</label>
+          <input class="field__control" id="supplier-contact" name="contact_name" type="text" maxlength="120" placeholder="{% translate 'Peter' %}" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="supplier-phone">{% translate 'Phone' %}</label>
+          <input class="field__control" id="supplier-phone" name="phone" type="tel" maxlength="40" placeholder="+254 7…" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="supplier-email">{% translate 'Email' %}</label>
+          <input class="field__control" id="supplier-email" name="email" type="email" maxlength="254" placeholder="{% translate 'sales@millers.example' %}" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="supplier-address">{% translate 'Address' %}</label>
+          <input class="field__control" id="supplier-address" name="address" type="text" maxlength="200" placeholder="{% translate 'Industrial Area, Nairobi' %}" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="supplier-products">{% translate 'Items they bring' %}</label>
+        <select class="field__control" id="supplier-products" name="products" multiple size="5">
+          {% for product in products %}
+          <option
+            value="{{ product.id }}"
+            {% if product.image %}data-image="{{ product.image.url }}"{% endif %}
+            data-eyebrow="{{ product.sku|default:'' }}"
+            data-meta="{% blocktranslate with quantity=product.quantity|floatformat:'2g' unit=product.unit %}{{ quantity }} {{ unit }} in hand{% endblocktranslate %}"
+          >{{ product.name }}</option>
+          {% endfor %}
+        </select>
+        <p class="field__hint">{% translate 'Hold Ctrl (or Cmd) to pick more than one.' %}</p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="supplier-notes">{% translate 'Notes' %} <span class="field__optional">{% translate 'optional' %}</span></label>
+        <textarea class="field__control" id="supplier-notes" name="notes" rows="2" placeholder="{% translate 'Delivery days, prices, credit terms' %}"></textarea>
+      </div>
+
+      <p class="form-error" data-supplier-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-supplier-submit>
+          <span data-supplier-label>{% translate 'Save the supplier' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-reset-supplier hidden>{% translate 'Start a new supplier' %}</button>
+      </div>
+    </form>
+  </div>
+</div>

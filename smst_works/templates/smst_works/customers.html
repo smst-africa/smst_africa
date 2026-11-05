@@ -1,0 +1,142 @@
+{% extends 'smst_works/base.html' %}
+{% load works_tags i18n %}
+
+{% block works_title %}{% translate 'Loyalty' %}{% endblock %}
+{% block works_crumb %}{% translate 'Loyalty customers' %}{% endblock %}
+
+{% block works_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Loyalty' %}</p>
+    <h1 class="page-head__title">{% translate 'The customers who come back' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Register a customer, add points on a good visit and take them away when they are redeemed. The points history below keeps every change honest.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_customers %}
+    <button class="btn btn--primary" type="button" data-open-customer>
+      <svg aria-hidden="true"><use href="#i-user-plus"></use></svg>
+      {% translate 'Register a customer' %}
+    </button>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Loyalty tier' %}">
+    <span class="chip is-active">{% blocktranslate with count=customer_list|length %}{{ count }} shown{% endblocktranslate %}</span>
+    <span class="chip">{% translate 'Bronze under 200' %}</span>
+    <span class="chip">{% translate 'Silver 200+' %}</span>
+    <span class="chip">{% translate 'Gold 500+' %}</span>
+  </div>
+  <div class="toolbar__search">
+    <svg aria-hidden="true"><use href="#i-search"></use></svg>
+    <label class="sr-only" for="customer-search">{% translate 'Search customers' %}</label>
+    <input id="customer-search" type="search" name="search" value="{{ search }}" placeholder="{% translate 'Search a customer' %}" />
+    {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+    <button class="btn btn--ghost btn--small" type="submit">{% translate 'Search' %}</button>
+  </div>
+</form>
+
+<div class="dash-grid dash-grid--lower">
+  <section class="card" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'The list' %}</p>
+        <h2 class="card__title">{% translate 'Loyalty customers' %}</h2>
+      </div>
+    </header>
+
+    {% if customer_list %}
+    <div class="table-scroll">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">{% translate 'Customer' %}</th>
+            <th scope="col">{% translate 'Contact' %}</th>
+            <th scope="col" class="is-numeric">{% translate 'Points' %}</th>
+            <th scope="col">{% translate 'Tier' %}</th>
+            {% if can_customers %}<th scope="col">{% translate 'Actions' %}</th>{% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for customer in customer_list %}
+          <tr
+            data-customer-row="{{ customer.id }}"
+            data-name="{{ customer.name }}"
+            data-phone="{{ customer.phone }}"
+            data-email="{{ customer.email }}"
+            data-notes="{{ customer.notes }}"
+          >
+            <th scope="row">
+              <span class="table__name">{{ customer.name }}</span>
+              <span class="table__meta">{% blocktranslate with date=customer.joined_at|date:"d M Y" %}joined {{ date }}{% endblocktranslate %}</span>
+            </th>
+            <td>
+              <span class="table__name">{{ customer.phone|default:"—" }}</span>
+              <span class="table__meta">{{ customer.email|default:"" }}</span>
+            </td>
+            <td class="is-numeric"><span data-customer-points="{{ customer.id }}">{{ customer.points|floatformat:"0g" }}</span></td>
+            <td><span class="tag tag--tier-{{ customer.tier }}">{{ customer.tier|capfirst }}</span></td>
+            {% if can_customers %}
+            <td>
+              <div class="works-lines">
+                <button class="btn btn--ghost btn--small" type="button" data-add-points="{{ customer.id }}" data-customer-name="{{ customer.name }}" data-customer-points-value="{{ customer.points }}">
+                  <svg aria-hidden="true"><use href="#i-star"></use></svg>
+                  {% translate 'Points' %}
+                </button>
+                <button class="btn btn--ghost btn--small" type="button" data-edit-customer="{{ customer.id }}">
+                  {% translate 'Edit' %}
+                </button>
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="card__body">
+      <div class="empty empty--tall">
+        <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-star"></use></svg>
+        <p class="empty__title">{% translate 'No loyalty customers yet' %}</p>
+        <p class="empty__text">
+          {% if search %}{% translate 'No one matches that search.' %}{% else %}{% translate 'Register the first customer and start the points.' %}{% endif %}
+        </p>
+        {% if can_customers %}
+        <button class="btn btn--primary" type="button" data-open-customer>{% translate 'Register a customer' %}</button>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <section class="card" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'The record' %}</p>
+        <h2 class="card__title">{% translate 'Recent points' %}</h2>
+      </div>
+    </header>
+    {% if recent_points %}
+    <div class="card__body works-queue">
+      {% for line in recent_points %}
+      <div class="works-queue__item">
+        <div class="works-queue__main">
+          <p class="works-queue__title">{{ line.customer.name }}</p>
+          <p class="works-queue__meta">{{ line.created_at|date:"d M H:i" }} · {{ line.reason|default:line.get_kind_display }}</p>
+        </div>
+        <span class="tag tag--{% if line.points > 0 %}ok{% else %}out{% endif %}">{% if line.points > 0 %}+{% endif %}{{ line.points|floatformat:"0g" }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card__body">
+      <p class="card__note">{% translate 'No points have moved yet.' %}</p>
+    </div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'smst_works/base.html' %}
+{% load works_tags i18n %}
+
+{% block works_title %}{% translate 'Employees' %}{% endblock %}
+{% block works_crumb %}{% translate 'Employees' %}{% endblock %}
+
+{% block works_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'The team' %}</p>
+    <h1 class="page-head__title">{% translate 'The people on the floor' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Hire someone, give them a rank and the rank decides what they can touch. When the email matches an existing SmSt account, their login is linked.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_employees %}
+    <button class="btn btn--primary" type="button" data-open-employee>
+      <svg aria-hidden="true"><use href="#i-user-plus"></use></svg>
+      {% translate 'Hire someone' %}
+    </button>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Employee state' %}">
+    <a class="chip {% if not status_filter %}is-active{% endif %}" href="{% url 'smst_works:employees' %}{% if shop %}?shop={{ shop.id }}{% endif %}">{% translate 'All' %}</a>
+    <a class="chip {% if status_filter == 'hired' %}is-active{% endif %}" href="{% url 'smst_works:employees' %}?status=hired{% if shop %}&shop={{ shop.id }}{% endif %}">{% translate 'On the team' %}</a>
+    <a class="chip {% if status_filter == 'suspended' %}is-active{% endif %}" href="{% url 'smst_works:employees' %}?status=suspended{% if shop %}&shop={{ shop.id }}{% endif %}">{% translate 'Suspended' %}</a>
+    <a class="chip {% if status_filter == 'left' %}is-active{% endif %}" href="{% url 'smst_works:employees' %}?status=left{% if shop %}&shop={{ shop.id }}{% endif %}">{% translate 'Left' %}</a>
+  </div>
+  <div class="toolbar__search">
+    <svg aria-hidden="true"><use href="#i-search"></use></svg>
+    <label class="sr-only" for="employee-search">{% translate 'Search the team' %}</label>
+    <input id="employee-search" type="search" name="search" value="{{ search }}" placeholder="{% translate 'Search a person' %}" />
+    {% if status_filter %}<input type="hidden" name="status" value="{{ status_filter }}" />{% endif %}
+    {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+    <button class="btn btn--ghost btn--small" type="submit">{% translate 'Search' %}</button>
+  </div>
+</form>
+
+{% if employee_list %}
+<section class="card" data-reveal>
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'Person' %}</th>
+          <th scope="col">{% translate 'Contact' %}</th>
+          <th scope="col">{% translate 'Rank' %}</th>
+          <th scope="col">{% translate 'State' %}</th>
+          <th scope="col">{% translate 'Hired' %}</th>
+          {% if can_employees %}<th scope="col">{% translate 'Actions' %}</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for employee in employee_list %}
+        <tr
+          data-employee-row="{{ employee.id }}"
+          data-name="{{ employee.name }}"
+          data-phone="{{ employee.phone }}"
+          data-email="{{ employee.email }}"
+          data-role="{{ employee.role }}"
+          data-rank="{{ employee.rank_id|default:'' }}"
+          data-status="{{ employee.status }}"
+          data-hired="{{ employee.hired_at|date:'Y-m-d' }}"
+          data-notes="{{ employee.notes }}"
+        >
+          <th scope="row">
+            <span class="table__name">{{ employee.name }}</span>
+            <span class="table__meta">{{ employee.role|default:"No role set" }}{% if employee.user %} {% translate '· login linked' %}{% endif %}</span>
+          </th>
+          <td>
+            <span class="table__name">{{ employee.phone|default:"—" }}</span>
+            <span class="table__meta">{{ employee.email|default:"" }}</span>
+          </td>
+          <td>
+            {% if employee.rank %}
+            <span class="tag tag--confirmed">{{ employee.rank.name }}</span>
+            <span class="table__meta">{% blocktranslate count counter=employee.rank.permissions|length %}{{ counter }} permission{% plural %}{{ counter }} permissions{% endblocktranslate %}</span>
+            {% else %}
+            <span class="tag tag--muted">{% translate 'No rank' %}</span>
+            <span class="table__meta">{% translate 'Cannot change anything' %}</span>
+            {% endif %}
+          </td>
+          <td><span class="tag tag--{% if employee.status == 'hired' %}ok{% elif employee.status == 'suspended' %}low{% else %}muted{% endif %}">{{ employee.get_status_display }}</span></td>
+          <td><span class="table__name">{{ employee.hired_at|date:"d M Y" }}</span></td>
+          {% if can_employees %}
+          <td>
+            <button class="btn btn--ghost btn--small" type="button" data-edit-employee="{{ employee.id }}">
+              {% translate 'Edit' %}
+            </button>
+            <button class="btn btn--ghost btn--small" type="button" data-fire-employee="{{ employee.id }}">
+              {% translate 'Fire' %}
+            </button>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% else %}
+<section class="card" data-reveal>
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-team"></use></svg>
+      <p class="empty__title">{% translate 'The floor is empty' %}</p>
+      <p class="empty__text">
+        {% if search or status_filter %}{% translate 'No one matches that search.' %}{% else %}{% translate 'Hire the first person and give them a rank.' %}{% endif %}
+      </p>
+      {% if can_employees %}
+      <button class="btn btn--primary" type="button" data-open-employee>{% translate 'Hire someone' %}</button>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

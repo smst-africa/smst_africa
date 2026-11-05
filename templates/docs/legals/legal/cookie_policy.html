@@ -1,0 +1,24 @@
+{% extends 'docs/legals/legal.html' %}
+
+{% block legalTitle %}Cookie Policy{% endblock %}
+{% block legalSubTitle %}Cookie Policy{% endblock %}
+{% block content %}
+{% for section in sections %}
+    {% include "docs/legals/snippets/subSection.html" with section=section %}
+{% endfor %}
+{% endblock %}
+
+{% block linkContent %}
+<a href="https://smst.africa/docs/privacy_policy" class="toc_content">
+    <span>Privacy Policy</span>
+</a>
+<a href="https://smst.africa/docs/terms_of_use" class="toc_content">
+    <span>Terms of Use</span>
+</a>
+<a href="https://smst.africa/docs/payment_policy" class="toc_content">
+    <span>Payment Policy</span>
+</a>
+<a href="https://smst.africa/docs/cookie_policy" class="toc_content active ">
+    <span>Cookie Policy</span>
+</a>
+{% endblock %}

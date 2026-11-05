@@ -1,0 +1,139 @@
+{% extends 'smst_stocks/base.html' %}
+{% load i18n %}
+
+{% block stocks_title %}{% translate 'Shop' %}{% endblock %}
+{% block stocks_crumb %}{% translate 'Shop details' %}{% endblock %}
+
+{% block stocks_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Shop' %}</p>
+    <h1 class="page-head__title">{{ shop.name }}</h1>
+    <p class="page-head__lede">
+      {% translate 'The details your customers see on a shared page, and the place the reports are headed.' %}
+    </p>
+  </div>
+</header>
+
+<div class="split split--wide-left">
+  <section class="card" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Details' %}</p>
+        <h2 class="card__title">{% translate 'The shop as customers see it' %}</h2>
+      </div>
+    </header>
+
+    <div class="card__body">
+      <form class="form" data-shop-form>
+        <div class="field">
+          <label class="field__label" for="shop-name">{% translate 'Shop name' %}</label>
+          <input class="field__control" id="shop-name" name="name" type="text" required maxlength="120" value="{{ shop.name }}" />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="shop-tagline">{% translate 'Tagline' %}</label>
+          <input class="field__control" id="shop-tagline" name="tagline" type="text" maxlength="200" value="{{ shop.tagline }}" placeholder="{% translate 'Groceries and household goods' %}" />
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="field__label" for="shop-phone">{% translate 'Phone' %}</label>
+            <input class="field__control" id="shop-phone" name="phone" type="tel" maxlength="40" value="{{ shop.phone }}" placeholder="+254 700 000 000" />
+          </div>
+          <div class="field">
+            <label class="field__label" for="shop-email">{% translate 'Email' %}</label>
+            <input class="field__control" id="shop-email" name="email" type="email" value="{{ shop.email }}" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="shop-address">{% translate 'Where the shop is' %}</label>
+          <input class="field__control" id="shop-address" name="address" type="text" maxlength="200" value="{{ shop.address }}" placeholder="{% translate 'Kenyatta Avenue, Nairobi' %}" />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="shop-currency">{% translate 'Currency' %}</label>
+          <input class="field__control" id="shop-currency" name="currency" type="text" maxlength="8" value="{{ shop.currency }}" />
+        </div>
+
+        <div class="field field--switch">
+          <label class="switch">
+            <input type="checkbox" name="is_public" {% if shop.is_public %}checked{% endif %} />
+            <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+            <span class="switch__text">
+              <span class="switch__title">{% translate 'Share the whole catalogue' %}</span>
+              <span class="switch__hint">{% translate 'Customers can browse every published item on one page.' %}</span>
+            </span>
+          </label>
+        </div>
+
+        <p class="form-error" data-shop-error role="alert" hidden></p>
+
+        {% if shop.owner_id == request.user.id %}
+        <button class="btn btn--primary" type="submit" data-shop-submit>
+          <span data-shop-label>{% translate 'Save the shop' %}</span>
+        </button>
+        {% else %}
+        <p class="card__note">{% translate 'Only the owner can change the shop details.' %}</p>
+        {% endif %}
+      </form>
+    </div>
+  </section>
+
+  <div class="stack">
+    <section class="card" data-reveal>
+      <header class="card__head">
+        <div class="card__head-main">
+          <p class="card__eyebrow">{% translate 'Catalogue' %}</p>
+          <h2 class="card__title">{% translate 'Your catalogue link' %}</h2>
+        </div>
+      </header>
+      <div class="card__body">
+        <p class="group__text">
+          {% translate 'One link that shows every published item, with what is in hand right now.' %}
+        </p>
+        <div class="share-box__row">
+          <input class="field__control" type="text" readonly value="{{ request.scheme }}://{{ request.get_host }}{{ shop.share_url }}" />
+          <button class="btn btn--ghost" type="button" data-copy="{{ request.scheme }}://{{ request.get_host }}{{ shop.share_url }}">
+            <svg aria-hidden="true"><use href="#i-copy"></use></svg>
+            {% translate 'Copy' %}
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" data-reveal>
+      <header class="card__head">
+        <div class="card__head-main">
+          <p class="card__eyebrow">{% translate 'Plan' %}</p>
+          <h2 class="card__title">{% translate 'What this account carries' %}</h2>
+        </div>
+      </header>
+      <div class="card__body">
+        <dl class="fact-list">
+          <div class="fact">
+            <dt>{% translate 'Plan' %}</dt>
+            <dd>{% if limits.plan == 'pro' %}{% translate 'SmSt Pro' %}{% else %}{% translate 'Free' %}{% endif %}</dd>
+          </div>
+          <div class="fact">
+            <dt>{% translate 'Shops' %}</dt>
+            <dd>{% if limits.shops %}{{ limits.shops }}{% else %}{% translate 'Unlimited' %}{% endif %}</dd>
+          </div>
+          <div class="fact">
+            <dt>{% translate 'Items per shop' %}</dt>
+            <dd>{{ limits.items_per_shop }}</dd>
+          </div>
+          <div class="fact">
+            <dt>{% translate 'Items in this shop' %}</dt>
+            <dd>{{ product_count }}</dd>
+          </div>
+        </dl>
+        {% if limits.plan != 'pro' %}
+        <a class="btn btn--ghost btn--block" href="https://user.smst.africa/accounts/profile/?view_page=smstpro">{% translate 'See what Pro adds' %}</a>
+        {% endif %}
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

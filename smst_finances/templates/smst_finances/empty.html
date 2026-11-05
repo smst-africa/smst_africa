@@ -1,0 +1,64 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Start with a shop' %}{% endblock %}
+{% block finances_crumb %}{% translate 'Start with a shop' %}{% endblock %}
+
+{% block finances_content %}
+<div class="split split--even">
+  <div class="empty-page" data-reveal>
+    <p class="empty-page__eyebrow">{% translate 'SmSt Finances' %}</p>
+    <h1 class="empty-page__title">{% translate 'The books need a shop' %}</h1>
+    <p class="empty-page__lede">
+      {% translate 'Money belongs to a shop. Once you have one in SmSt Stocks, the chart of accounts, the entries and the reports open here with the same name and currency.' %}
+    </p>
+    <dl class="fact-list">
+      <div class="fact">
+        <dt>{% translate '1. Start the shop' %}</dt>
+        <dd>{% translate 'In SmSt Stocks' %}</dd>
+      </div>
+      <div class="fact">
+        <dt>{% translate '2. Add what you sell' %}</dt>
+        <dd>{% translate 'Price and count' %}</dd>
+      </div>
+      <div class="fact">
+        <dt>{% translate '3. Keep the money' %}</dt>
+        <dd>{% translate 'Every figure linked' %}</dd>
+      </div>
+    </dl>
+    <div class="page-head__actions" style="margin-top: 1.4rem">
+      <a class="btn btn--primary" href="/smst_stocks/?shop=">
+        <svg aria-hidden="true"><use href="#i-shop"></use></svg>
+        {% translate 'Open SmSt Stocks' %}
+      </a>
+    </div>
+  </div>
+
+  <div class="empty-page" data-reveal>
+    <p class="empty-page__eyebrow">{% translate 'What waits inside' %}</p>
+    <h2 class="empty-page__title">{% translate 'A book that agrees with itself' %}</h2>
+    <ul class="ledger-list">
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'Double-entry entries' %}</span>
+        <span class="ledger-list__kind">{% translate 'Every amount posts two sides' %}</span>
+      </li>
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'Stock-linked money' %}</span>
+        <span class="ledger-list__kind">{% translate 'Profit, loss and refunds follow the movement' %}</span>
+      </li>
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'Tax and discounts' %}</span>
+        <span class="ledger-list__kind">{% translate 'Fixed or a percentage, kept with the entry' %}</span>
+      </li>
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'Graphs you choose' %}</span>
+        <span class="ledger-list__kind">{% translate 'Pick the X and the Y separately' %}</span>
+      </li>
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'Reports to download' %}</span>
+        <span class="ledger-list__kind">{% translate 'PDF for the file, Excel for the work' %}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

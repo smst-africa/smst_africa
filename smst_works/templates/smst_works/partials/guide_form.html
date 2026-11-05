@@ -1,0 +1,62 @@
+{% load i18n %}
+<div class="sheet" data-guide-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="guide-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'Workplace guides' %}</p>
+        <h2 class="sheet__title" id="guide-title" data-guide-title>{% translate 'Write a guide' %}</h2>
+        <p class="sheet__note">
+          {% translate 'Keep it short and plain. The team can read it at any time, even on a busy shift.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-guide-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="field">
+        <label class="field__label" for="guide-name">{% translate 'Title' %}</label>
+        <input class="field__control" id="guide-name" name="title" type="text" maxlength="160" required placeholder="{% translate 'Opening the shop' %}" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="guide-category">{% translate 'Category' %}</label>
+          <input class="field__control" id="guide-category" name="category" type="text" maxlength="80" placeholder="{% translate 'Opening, Safety, Till…' %}" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="guide-position">{% translate 'Order' %}</label>
+          <input class="field__control" id="guide-position" name="position" type="number" min="0" step="1" value="0" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="guide-body">{% translate 'The guide' %}</label>
+        <textarea class="field__control" id="guide-body" name="body" rows="8" required placeholder="{% translate '1. Unlock the front door.&#10;2. Count the till.&#10;3. Switch on the fridge.' %}"></textarea>
+      </div>
+
+      <label class="field field--switch">
+        <span class="switch">
+          <input type="checkbox" name="is_published" checked />
+          <span class="switch__track"><span class="switch__thumb"></span></span>
+        </span>
+        <span class="switch__title">{% translate 'Published' %}</span>
+        <span class="switch__hint">{% translate 'The team sees published guides; drafts stay with the managers.' %}</span>
+      </label>
+
+      <p class="form-error" data-guide-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-guide-submit>
+          <span data-guide-label>{% translate 'Save the guide' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-reset-guide hidden>{% translate 'Write a new guide' %}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{% extends 'app/format/app_home.html' %}
+
+{% block title %}Smst Stocks{% endblock %}
+
+{% block headerTitle %}Smst Stocks{% endblock %}
+
+{% block content %}
+{% if trigger %}
+{% include 'app/states/loaded_state.html' %}
+{% else %}
+{% include 'app/states/empty_state.html' %}
+{% endif %}
+{% endblock %}
+

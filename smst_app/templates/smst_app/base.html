@@ -1,0 +1,157 @@
+{% load static %}<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ app.page_title }}</title>
+    <meta name="description" content="{{ app.page_description }}" />
+    <meta name="theme-color" content="{{ app.theme }}" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SmSt Africa" />
+    <meta property="og:title" content="{{ app.page_title }}" />
+    <meta property="og:description" content="{{ app.page_description }}" />
+    <link rel="preconnect" href="https://static.smartstock.africa" crossorigin />
+    <link rel="stylesheet" href="{% static 'smst_app/css/base.css' %}" />
+    <link rel="stylesheet" href="{% static theme_css %}" />
+    {% block extra_css %}{% endblock %}
+    <script>
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body class="lp lp--{{ app.slug }}">
+    <a class="lp-skip" href="#main">Skip to content</a>
+    {% include icons_template %}
+
+    <header class="lp-header">
+      <div class="lp-shell lp-header__inner">
+        <a class="lp-brand" href="{% url 'apps' %}" aria-label="All SmSt Apps">
+          <div class="headerLogo">
+            {% block headerLogo %}{% endblock %}
+          </div>
+          <span class="lp-brand__text">
+            <strong>{{ app.name }}</strong>
+            <small>{{ app.kicker }}</small>
+          </span>
+        </a>
+
+        <nav class="lp-nav" aria-label="SmSt Apps">
+          {% for item in apps %}
+          <a
+            class="lp-nav__link{% if item.current %} is-current{% endif %}"
+            href="{{ item.url }}"
+            {% if item.current %}aria-current="page"{% endif %}
+          >{{ item.short }}</a>
+          {% endfor %}
+          <a
+            class="lp-nav__link{% if support_active %} is-current{% endif %}"
+            href="{% url 'smst_support:hub' %}"
+            {% if support_active %}aria-current="page"{% endif %}
+          >Support</a>
+          <a class="lp-nav__link lp-nav__link--quiet" href="{% url 'apps' %}">All apps</a>
+        </nav>
+
+        <div class="lp-header__actions">
+          <a class="lp-login" href="{{ account_url }}">Log in</a>
+          {% block header_cta %}
+          <a class="lp-btn lp-btn--solid lp-btn--small" href="{{ app.open_url }}">
+            Open {{ app.short }}
+            <svg class="lp-icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a>
+          {% endblock %}
+          <button
+            class="lp-menu"
+            type="button"
+            aria-expanded="false"
+            aria-controls="lp-drawer"
+            data-menu
+          >
+            <span class="lp-sr">Open menu</span>
+            <svg class="lp-icon" aria-hidden="true"><use href="#i-panel"></use></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="lp-drawer" id="lp-drawer" data-drawer hidden>
+      <div class="lp-drawer__backdrop" data-drawer-close></div>
+      <div class="lp-drawer__panel" role="dialog" aria-modal="true" aria-label="SmSt Apps menu">
+        <div class="lp-drawer__head">
+          <span class="lp-brand__text">
+            <strong>{{ app.name }}</strong>
+            <small>{{ app.kicker }}</small>
+          </span>
+          <button class="lp-icon-btn" type="button" data-drawer-close>
+            <span class="lp-sr">Close menu</span>
+            <svg class="lp-icon" aria-hidden="true"><use href="#i-close"></use></svg>
+          </button>
+        </div>
+        <nav class="lp-drawer__nav" aria-label="Mobile">
+          {% for item in apps %}
+          <a href="{{ item.url }}"{% if item.current %} aria-current="page"{% endif %}>{{ item.name }}</a>
+          {% endfor %}
+          <a href="{% url 'smst_support:hub' %}"{% if support_active %} aria-current="page"{% endif %}>Support centre</a>
+          <a href="{% url 'apps' %}">All SmSt Apps</a>
+        </nav>
+        {% block drawer_foot %}
+        <div class="lp-drawer__foot">
+          <a class="lp-btn lp-btn--solid lp-btn--block" href="{{ app.open_url }}">Open {{ app.name }}</a>
+          <a class="lp-btn lp-btn--ghost lp-btn--block" href="{{ account_url }}">Create a free account</a>
+        </div>
+        {% endblock %}
+      </div>
+    </div>
+
+    <main id="main">{% block content %}{% endblock %}</main>
+
+    <footer class="lp-footer">
+      <div class="lp-shell">
+        <div class="lp-footer__top">
+          <div class="lp-footer__brand">
+            <div class="footerLogo">
+              {% block footerLogo %}
+              {% endblock %}
+            </div>
+            <div>
+              <p class="lp-footer__name">{{ app.name }}</p>
+              <p class="lp-footer__blurb">
+                {{ app.kicker|capfirst }}. Part of SmSt Africa, built for the shops
+                that keep the day moving.
+              </p>
+            </div>
+          </div>
+          <div class="lp-footer__links">
+            <div>
+              <p class="lp-footer__label">The apps</p>
+              {% for item in apps %}
+              <a href="{{ item.url }}">{{ item.name }}</a>
+              {% endfor %}
+              <a href="{% url 'apps' %}">The catalogue</a>
+            </div>
+            <div>
+              <p class="lp-footer__label">Account</p>
+              <a href="{{ account_url }}">Create an account</a>
+              <a href="{{ account_url }}">Log in</a>
+              <a href="{% url 'pricing' %}">Pricing</a>
+            </div>
+            <div>
+              <p class="lp-footer__label">Company</p>
+              <a href="{% url 'home' %}">SmSt Africa</a>
+              <a href="{% url 'smst_support:hub' %}">Support centre</a>
+              <a href="mailto:smartstock.africa@gmail.com">Email the team</a>
+              <a href="{% url 'legal' doc='privacy_policy' %}">Privacy</a>
+            </div>
+          </div>
+        </div>
+        <div class="lp-footer__bottom">
+          <p>&copy; <span data-year>2026</span> SmSt Africa. All rights reserved.</p>
+          <p>Built in Nairobi for shops everywhere.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{% static 'smst_app/js/landing.js' %}" defer></script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

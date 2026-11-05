@@ -1,0 +1,69 @@
+{% load i18n %}
+<div class="sheet" data-account-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="account-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'Chart of accounts' %}</p>
+        <h2 class="sheet__title" id="account-title" data-account-title>{% translate 'Add an account' %}</h2>
+        <p class="sheet__note">
+          {% translate 'Assets and expenses grow on the debit side. Liabilities, equity and income grow on the credit side.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-account-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="account-code">{% translate 'Code' %}</label>
+          <input class="field__control" id="account-code" name="code" type="text" maxlength="16" required placeholder="6600" />
+          <p class="field__hint">{% translate 'A built-in account keeps its code.' %}</p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="account-type">{% translate 'Type' %}</label>
+          <select class="field__control" id="account-type" name="type">
+            <option value="asset">{% translate 'Asset' %}</option>
+            <option value="liability">{% translate 'Liability' %}</option>
+            <option value="equity">{% translate 'Equity' %}</option>
+            <option value="income">{% translate 'Income' %}</option>
+            <option value="expense" selected>{% translate 'Expense' %}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="account-name">{% translate 'Name' %}</label>
+        <input class="field__control" id="account-name" name="name" type="text" maxlength="120" required placeholder="{% translate 'Repairs and maintenance' %}" />
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="account-description">{% translate 'Description' %}</label>
+        <input class="field__control" id="account-description" name="description" type="text" maxlength="240" placeholder="{% translate 'What belongs in this account' %}" />
+      </div>
+
+      <label class="field field--switch">
+        <span class="switch">
+          <input type="checkbox" name="is_active" checked />
+          <span class="switch__track"><span class="switch__thumb"></span></span>
+        </span>
+        <span class="switch__title">{% translate 'Active' %}</span>
+        <span class="switch__hint">{% translate 'Inactive accounts are hidden from new entries but keep their history.' %}</span>
+      </label>
+
+      <p class="form-error" data-account-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-account-submit>
+          <span data-account-label>{% translate 'Save the account' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-reset-account hidden>{% translate 'Start a new account' %}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{% load static i18n %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{{ shop.name }}{% endblock %}</title>
+    
+    <meta name="description" content="{% block description %}{% blocktranslate with shop=shop.name %}Items available from {{ shop }}.{% endblocktranslate %}{% endblock %}" />
+    <meta name="theme-color" content="#f6f1e9" />
+    <meta name="csrf-token" content="{{ csrf_token }}" />
+    <link rel="stylesheet" href="{% static 'smst_stocks/stocks.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'smst_stocks/public.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/numeric_keypad.css' %}" />
+    <link rel="canonical" href="https://app.smst.africa{{ request.path }}">
+    {% block headerMetas %}
+    {% endblock %}
+  </head>
+  <body class="public">
+    {% include 'smst_stocks/partials/icons.html' %}
+
+    <main class="public-page">
+      {% block content %}{% endblock %}
+    </main>
+
+    <script src="{% static 'js/smst_stocks/js/public.prod.js' %}"></script>
+    <script src="{% static 'js/numeric_keypad.js' %}"></script>
+  </body>
+</html>

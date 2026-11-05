@@ -1,0 +1,183 @@
+{% load i18n %}
+<div class="sheet" data-entry-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="entry-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'The book' %}</p>
+        <h2 class="sheet__title" id="entry-title" data-entry-title>{% translate 'Record an entry' %}</h2>
+        <p class="sheet__note">
+          {% translate 'Every entry posts two sides into the chart of accounts, so the ledger always agrees with itself.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-entry-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="entry-kind">{% translate 'What kind of money' %}</label>
+          <select class="field__control" id="entry-kind" name="kind">
+            {% for value, label in entry_kinds %}
+            <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="entry-status">{% translate 'State' %}</label>
+          <select class="field__control" id="entry-status" name="status">
+            {% for value, label in entry_statuses %}
+            {% if value != 'void' %}
+            <option value="{{ value }}"{% if value == 'posted' %} selected{% endif %}>{{ label }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="entry-description">{% translate 'What it was for' %}</label>
+        <input class="field__control" id="entry-description" name="description" type="text" maxlength="240" required placeholder="{% translate 'Sold a bag of maize' %}" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="entry-amount">{% translate 'Amount' %}</label>
+          <input class="field__control" id="entry-amount" name="amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" />
+          <p class="field__hint">{% translate 'Leave it empty when the option works it out.' %}</p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="entry-base">{% translate 'The sale or bill it applies to' %}</label>
+          <input class="field__control" id="entry-base" name="base_amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="{% translate 'Optional' %}" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="entry-option">{% translate 'Finance option' %}</label>
+          <select class="field__control" id="entry-option" name="option">
+            <option value="">{% translate 'No option' %}</option>
+            {% for option in finance_options %}
+            <option
+              value="{{ option.id }}"
+              data-title="{{ option.name }}"
+              data-image="https://res.cloudinary.com/wkuo7imf/image/upload/v1793096024/smst_finance.png"
+              data-eyebrow="{{ option.get_kind_display }}"
+              data-meta="{{ option.get_applies_to_display }}"
+              data-badge="{% if option.rate_type == 'percentage' %}{{ option.rate|floatformat:2 }}%{% else %}{{ shop.currency }} {{ option.rate|floatformat:2 }}{% endif %}"
+              data-rate="{{ option.rate }}"
+              data-rate-type="{{ option.rate_type }}"
+              data-account="{{ option.account_id|default:'' }}"
+              data-kind="{{ option.kind }}"
+            >{{ option.name }} · {{ option.get_kind_display }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="entry-rate">{% translate 'Rate kept with the entry' %}</label>
+          <input class="field__control" id="entry-rate" name="rate" type="number" min="0" step="0.0001" inputmode="decimal" placeholder="{% translate 'Optional' %}" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="entry-product">{% translate 'Product' %}</label>
+          <select class="field__control" id="entry-product" name="product">
+            <option value="">{% translate 'No product' %}</option>
+            {% for product in all_products %}
+            <option
+              value="{{ product.id }}"
+              {% if product.image %}data-image="{{ product.image.url }}"{% endif %}
+              data-eyebrow="{{ product.sku|default:'' }}"
+              data-meta="{% blocktranslate with quantity=product.quantity|floatformat:0 unit=product.unit %}{{ quantity }} {{ unit }} in hand{% endblocktranslate %}"
+            >{{ product.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="entry-movement">{% translate 'Stock movement' %}</label>
+          <select class="field__control" id="entry-movement" name="movement">
+            <option value="">{% translate 'No movement' %}</option>
+            {% for movement in recent_movements %}
+            <option
+              value="{{ movement.id }}"
+              data-image="https://res.cloudinary.com/wkuo7imf/image/upload/v1793094958/smst_stocks.png"
+              data-product="{{ movement.product_id }}"
+              data-title="{{ movement.product.name }}"
+              data-eyebrow="{{ movement.get_kind_display }}"
+              data-meta="{{ movement.quantity|floatformat:0 }} {{ movement.product.unit }}"
+              data-badge="{{ movement.created_at|date:'d M' }}"
+            >
+              {{ movement.get_kind_display }} · {{ movement.quantity|floatformat:0 }} · {{ movement.product.name }} · {{ movement.created_at|date:"d M" }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="entry-account">{% translate 'The account it belongs to' %}</label>
+          <select class="field__control" id="entry-account" name="account">
+            <option value="">{% translate 'Let the app choose' %}</option>
+            {% for account in accounts %}
+            <option
+              value="{{ account.id }}"
+              data-image="https://res.cloudinary.com/wkuo7imf/image/upload/v1793096024/smst_finance.png"
+              data-eyebrow="{{ account.code }}"
+              data-meta="{{ account.get_type_display }}"
+              data-badge="{{ shop.currency }} {{ account.balance|floatformat:2 }}"
+            >{{ account.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="entry-payment-account">{% translate 'Money moved through' %}</label>
+          <select class="field__control" id="entry-payment-account" name="payment_account">
+            <option value="">{% translate 'Cash' %}</option>
+            {% for account in accounts %}
+            {% if account.type == 'asset' %}
+            <option
+              value="{{ account.id }}"
+              data-image="https://res.cloudinary.com/wkuo7imf/image/upload/v1793096024/smst_finance.png"
+              data-eyebrow="{{ account.code }}"
+              data-meta="{{ account.get_type_display }}"
+              data-badge="{{ shop.currency }} {{ account.balance|floatformat:2 }}"
+            >{{ account.name }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="entry-date">{% translate 'When' %}</label>
+          <input class="field__control" id="entry-date" name="occurred_at" type="date" value="{{ today|date:'Y-m-d' }}" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="entry-note">{% translate 'Note' %}</label>
+          <input class="field__control" id="entry-note" name="note" type="text" maxlength="240" placeholder="{% translate 'Optional' %}" />
+        </div>
+      </div>
+
+      <p class="form-error" data-entry-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-entry-submit>
+          <span data-entry-label>{% translate 'Record it' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-reset-entry hidden>{% translate 'Start a new entry' %}</button>
+      </div>
+
+      <p class="sheet__foot">
+        {% translate 'A posted entry changes the statements at once. Void it instead of deleting it when the paper record has to stay.' %}
+      </p>
+    </form>
+  </div>
+</div>

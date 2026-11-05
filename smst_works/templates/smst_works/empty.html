@@ -1,0 +1,64 @@
+{% extends 'smst_works/base.html' %}
+{% load i18n %}
+
+{% block works_title %}{% translate 'Start with a shop' %}{% endblock %}
+{% block works_crumb %}{% translate 'Start with a shop' %}{% endblock %}
+
+{% block works_content %}
+<div class="split split--even">
+  <div class="empty-page" data-reveal>
+    <p class="empty-page__eyebrow">{% translate 'SmSt Works' %}</p>
+    <h1 class="empty-page__title">{% translate 'The floor needs a shop' %}</h1>
+    <p class="empty-page__lede">
+      {% translate 'A team belongs to a shop. Once you have one in SmSt Stocks, the ranks, the employees, the loyalty customers and the live job timeline open here with the same name and currency.' %}
+    </p>
+    <dl class="fact-list">
+      <div class="fact">
+        <dt>{% translate '1. Start the shop' %}</dt>
+        <dd>{% translate 'In SmSt Stocks' %}</dd>
+      </div>
+      <div class="fact">
+        <dt>{% translate '2. Add the items' %}</dt>
+        <dd>{% translate 'Jobs take them in and out' %}</dd>
+      </div>
+      <div class="fact">
+        <dt>{% translate '3. Hire the team' %}</dt>
+        <dd>{% translate 'Give everyone a rank' %}</dd>
+      </div>
+    </dl>
+    <div class="page-head__actions" style="margin-top: 1.4rem">
+      <a class="btn btn--primary" href="/smst_stocks/?shop=">
+        <svg aria-hidden="true"><use href="#i-shop"></use></svg>
+        {% translate 'Open SmSt Stocks' %}
+      </a>
+    </div>
+  </div>
+
+  <div class="empty-page" data-reveal>
+    <p class="empty-page__eyebrow">{% translate 'What waits inside' %}</p>
+    <h2 class="empty-page__title">{% translate 'A shop floor that tells the truth' %}</h2>
+    <ul class="ledger-list">
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'Ranks with real teeth' %}</span>
+        <span class="ledger-list__kind">{% translate 'Every action checks the permission first' %}</span>
+      </li>
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'A live job timeline' %}</span>
+        <span class="ledger-list__kind">{% translate 'Running jobs keep counting; the line moves forward' %}</span>
+      </li>
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'Stock in, stock out' %}</span>
+        <span class="ledger-list__kind">{% translate 'A successful job takes its inputs and makes its outputs' %}</span>
+      </li>
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'Loyalty and suppliers' %}</span>
+        <span class="ledger-list__kind">{% translate 'Points with a history; suppliers linked to items' %}</span>
+      </li>
+      <li class="ledger-list__row">
+        <span class="ledger-list__name">{% translate 'Guides anyone can read' %}</span>
+        <span class="ledger-list__kind">{% translate 'The rules stay open on the busiest shift' %}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

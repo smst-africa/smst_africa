@@ -1,0 +1,104 @@
+{% extends 'smst_stocks/base.html' %}
+{% load i18n %}
+
+{% block stocks_title %}{% translate 'Cart' %}{% endblock %}
+{% block stocks_crumb %}{% translate 'Cart' %}{% endblock %}
+
+{% block stocks_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Trade' %}</p>
+    <h1 class="page-head__title">{% translate 'The cart' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Hold what you are buying or selling, then process it into the ledger. Stock leaves the shelf the moment it goes into the cart, so nothing is traded twice.' %}
+    </p>
+  </div>
+</header>
+
+{% if messages %}
+<div class="flashes" role="status" aria-live="polite">
+  {% for message in messages %}
+  <p class="flash flash--{{ message.tags }}">{{ message }}</p>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div style="display: grid; gap: 10px; margin-bottom: 18px">
+  <form class="toolbar" method="post" action="{% url 'smst_stocks:cart_scan' %}" data-cart-scan
+        hx-post="{% url 'smst_stocks:cart_scan' %}" hx-target="#cart-live" hx-swap="outerHTML">
+    {% csrf_token %}
+    <div class="toolbar__search">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-search"></use></svg>
+      <label class="sr-only" for="cart-code">{% translate 'Barcode' %}</label>
+      <input id="cart-code" name="code" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+             placeholder="{% translate 'Scan a barcode or type its code' %}" />
+      <div class="scanBarCodeIconHolder">
+        <div class="scanBarIcon">
+          <svg width="24px" height="24px" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path fill="#000000" d="M60 50v6a6 6 0 0 0 4.8-2.4L60 50Zm12-16v-6a6 6 0 0 0-4.8 2.4L72 34Zm60 16-4.8 3.6A6 6 0 0 0 132 56v-6Zm-12-16 4.8-3.6A6 6 0 0 0 120 28v6Zm44 32v76h12V66h-12Zm-10 86H38v12h116v-12ZM28 142V66H16v76h12Zm10-86h22V44H38v12Zm26.8-2.4 12-16-9.6-7.2-12 16 9.6 7.2ZM132 56h22V44h-22v12Zm4.8-9.6-12-16-9.6 7.2 12 16 9.6-7.2ZM120 28H72v12h48V28ZM38 152c-5.523 0-10-4.477-10-10H16c0 12.15 9.85 22 22 22v-12Zm126-10c0 5.523-4.477 10-10 10v12c12.15 0 22-9.85 22-22h-12Zm12-76c0-12.15-9.85-22-22-22v12c5.523 0 10 4.477 10 10h12ZM28 66c0-5.523 4.477-10 10-10V44c-12.15 0-22 9.85-22 22h12Z"/>
+            <circle cx="96" cy="102" r="28" stroke="#000000" stroke-width="12"/>
+          </svg>
+        </div>
+        <div class="scanBarText">
+          {% translate 'Scan' %}
+        </div>
+      </div>
+    </div>
+    <button class="btn btn--primary btn--small" type="submit">
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Add one' %}
+    </button>
+  </form>
+
+  
+</div>
+
+{% include 'smst_stocks/partials/cart_live.html' %}
+<script nonce="{{ csp_nonce }}" async defer src="https://static.smartstock.africa/js/html5-qrcode.min.js"></script>
+<script nonce="{{ csp_nonce }}">
+  (function () {
+    'use strict';
+
+    var scan = document.querySelector('[data-cart-scan]');
+    var code = scan ? scan.querySelector('input[name="code"]') : null;
+    var search = document.getElementById('cart-search');
+
+    function filter() {
+      var query = search ? search.value.trim().toLowerCase() : '';
+      var shown = 0;
+      document.querySelectorAll('#cart-live [data-shelf-item]').forEach(function (item) {
+        var hit = !query || (item.getAttribute('data-search') || '').indexOf(query) !== -1;
+        item.style.display = hit ? '' : 'none';
+        if (hit) shown += 1;
+      });
+      var note = document.querySelector('[data-cart-no-match]');
+      if (note) note.style.display = query && !shown ? '' : 'none';
+    }
+
+    if (search) {
+      search.addEventListener('input', filter);
+      filter();
+    }
+
+    if (code && !('ontouchstart' in window)) {
+      code.focus();
+    }
+
+    document.body.addEventListener('htmx:afterSwap', filter);
+
+    if (scan) {
+      scan.addEventListener('htmx:afterRequest', function (event) {
+        if (event.detail && event.detail.successful) {
+          scan.reset();
+          if (code) code.focus();
+        }
+      });
+    }
+
+    document.body.addEventListener('receipt:print', function (event) {
+      var url = event.detail && event.detail.url;
+      if (url) window.open(url, '_blank', 'noopener');
+    });
+  })();
+</script>
+{% endblock %}

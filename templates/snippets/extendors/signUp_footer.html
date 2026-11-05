@@ -1,0 +1,10 @@
+{% extends 'snippets/attachables/formFooter.html' %}
+
+{% block content  %}
+<div class="footerText">
+      <span>By Signing In or Creating An Account, you agree to our <a href="https://smst.africa/docs/terms_of_use">Terms of Service</a> and <a href="https://smst.africa/docs/privacy_policy">Privacy Policy</a></span>
+    </div>
+    <div class="footerText">
+      <span>Already have a SmSt Account? <a hx-get="?page=login_user" hx-target="#formContent" hx-swap="replace" hx-push-url="">Login Here</a></span>
+    </div>
+{% endblock %}

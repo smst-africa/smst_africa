@@ -1,0 +1,6 @@
+{% extends 'snippets/attachables/inputHolder.html' %}
+{% load i18n %}
+
+{% block inputId %}reset_email{% endblock %}
+{% block inputValue %}{{email}}{% endblock %}
+{% block inputPlaceholder %}{% translate 'Enter your Logged In Email.' %}{% endblock %}

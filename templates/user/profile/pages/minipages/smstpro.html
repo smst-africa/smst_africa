@@ -1,0 +1,37 @@
+{% load i18n %}
+
+<div class="proContainer">
+    <div class="proHolder animate__animated animate__fadeInUp">
+        <div class="proLogoHolder flex justify-center">
+            <div class="proLogo">
+                <img alt="Smst Pro Logo" src="https://res.cloudinary.com/di3bh4qsl/image/upload/v1791388671/smst_pro_logo_fobkyu.png">
+            </div>
+        </div>
+        <div class="proHeader">
+            <h1>{% translate 'Join Smst Pro and Enjoy Premium Features' %}</h1>
+        </div>
+        <div class="proParagraph">
+            <ul>
+                <li>{% translate 'Ad Free Smst Apps' %}</li>
+                <li>{% translate 'Raised Limits in Restricted Features.' %}</li>
+                <li>{% translate '24/7 Contact Support.' %}</li>
+                <li>{% translate 'Request for your own SmSt App.' %}</li>
+            </ul>
+        </div>
+        <div class="proButtonHolder">
+            <div class="buttonHolder">
+                <div class="proButton flex">
+                    <button id="join_smst_pro_button">{% translate 'Join Smst Pro' %}</button>
+                </div>
+                <div class="proButton flex" >
+                    <button id="cancel_join_smst_pro">{% translate 'Cancel' %}</button>
+                </div>
+            </div>
+        </div>
+        <div class="proFooter">
+            <div class="footerHolder">
+                {% translate 'By joining Smst Pro you agree to our' %} <a href="https://smst.africa/docs/payment_policy">{% translate 'Payment Policy' %}</a>
+            </div>
+        </div>
+    </div>
+</div>

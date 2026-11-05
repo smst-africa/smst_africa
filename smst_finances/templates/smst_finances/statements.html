@@ -1,0 +1,320 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Statements' %}{% endblock %}
+{% block finances_crumb %}{% translate 'Statements' %}{% endblock %}
+
+{% block finances_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'The statements' %}</p>
+    <h1 class="page-head__title">{{ statement.title }}</h1>
+    <p class="page-head__lede">
+      {% blocktranslate with start=statement.start|date:"d M Y" end=statement.end|date:"d M Y" %}{{ start }} to {{ end }}. Read straight from the posted lines, with no separate totals kept by hand.{% endblocktranslate %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    <button class="btn btn--ghost" type="button" data-print>
+      <svg aria-hidden="true"><use href="#i-print"></use></svg>
+      {% translate 'Print' %}
+    </button>
+    <button class="btn btn--primary" type="button" data-statement-download data-kind="{{ statement_kind }}">
+      <svg aria-hidden="true"><use href="#i-download"></use></svg>
+      {% translate 'Download PDF' %}
+    </button>
+  </div>
+</header>
+
+<div class="segmented" role="group" aria-label="{% translate 'Choose a statement' %}" data-reveal>
+  {% for value, label in statement_kinds %}
+  <a class="segmented__btn {% if statement_kind == value %}is-active{% endif %}" href="?kind={{ value }}&amp;date_from={{ date_from|date:'Y-m-d' }}&amp;date_to={{ date_to|date:'Y-m-d' }}{% if shop %}&amp;shop={{ shop.id }}{% endif %}">{{ label }}</a>
+  {% endfor %}
+</div>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__search">
+    <label class="sr-only" for="statement-from">{% translate 'From' %}</label>
+    <input id="statement-from" type="date" name="date_from" value="{{ date_from|date:'Y-m-d' }}" />
+    <label class="sr-only" for="statement-to">{% translate 'To' %}</label>
+    <input id="statement-to" type="date" name="date_to" value="{{ date_to|date:'Y-m-d' }}" />
+    <input type="hidden" name="kind" value="{{ statement_kind }}" />
+    <button class="btn btn--ghost btn--small" type="submit">{% translate 'Apply the period' %}</button>
+  </div>
+  <p class="card__note">
+    {% if statement.balanced is not None %}
+      {% if statement.balanced %}
+      <span class="tag tag--ok">{% translate 'The two sides agree' %}</span>
+      {% else %}
+      <span class="tag tag--out">{% translate 'The two sides do not agree' %}</span>
+      {% endif %}
+    {% endif %}
+  </p>
+  {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+</form>
+
+{% if statement_kind == 'profit_loss' %}
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'Income and expense' %}</p>
+      <h2 class="card__title">{% translate 'What was earned and what it cost' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate with income=statement.income|length expense=statement.expense|length %}{{ income }} income · {{ expense }} expense accounts{% endblocktranslate %}</p>
+  </header>
+
+  <div class="split split--even statement-split">
+    <div class="card__body">
+      <p class="card__eyebrow">{% translate 'Income' %}</p>
+      <ul class="attribute-list">
+        {% for row in statement.income %}
+        <li class="attribute-list__row">
+          <span><span class="num">{{ row.code }}</span> {{ row.name }}</span>
+          <span class="num">{{ shop.currency }} {{ row.amount|floatformat:"2g" }}</span>
+        </li>
+        {% empty %}
+        <li class="attribute-list__row"><span>{% translate 'No income in this period.' %}</span><span></span></li>
+        {% endfor %}
+        <li class="attribute-list__row attribute-list__row--total">
+          <span>{% translate 'Total income' %}</span>
+          <span class="num">{{ shop.currency }} {{ statement.income_total|floatformat:"2g" }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card__body">
+      <p class="card__eyebrow">{% translate 'Expenses' %}</p>
+      <ul class="attribute-list">
+        {% for row in statement.expense %}
+        <li class="attribute-list__row">
+          <span><span class="num">{{ row.code }}</span> {{ row.name }}</span>
+          <span class="num">{{ shop.currency }} {{ row.amount|floatformat:"2g" }}</span>
+        </li>
+        {% empty %}
+        <li class="attribute-list__row"><span>{% translate 'No expenses in this period.' %}</span><span></span></li>
+        {% endfor %}
+        <li class="attribute-list__row attribute-list__row--total">
+          <span>{% translate 'Total expenses' %}</span>
+          <span class="num">{{ shop.currency }} {{ statement.expense_total|floatformat:"2g" }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="statement-total {% if statement.net < 0 %}statement-total--down{% endif %}">
+    <span>{% if statement.net < 0 %}{% translate 'Loss for the period' %}{% else %}{% translate 'Profit for the period' %}{% endif %}</span>
+    <strong>{{ shop.currency }} {{ statement.net|floatformat:"2g" }}</strong>
+  </div>
+</section>
+
+{% elif statement_kind == 'balance_sheet' %}
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'Position' %}</p>
+      <h2 class="card__title">{% translate 'What the shop owns and owes' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate with date=statement.end|date:"d M Y" %}As at {{ date }}{% endblocktranslate %}</p>
+  </header>
+
+  <div class="split split--even statement-split">
+    <div class="card__body">
+      <p class="card__eyebrow">{% translate 'Assets' %}</p>
+      <ul class="attribute-list">
+        {% for row in statement.assets %}
+        <li class="attribute-list__row">
+          <span><span class="num">{{ row.code }}</span> {{ row.name }}</span>
+          <span class="num">{{ shop.currency }} {{ row.amount|floatformat:"2g" }}</span>
+        </li>
+        {% empty %}
+        <li class="attribute-list__row"><span>{% translate 'No assets yet.' %}</span><span></span></li>
+        {% endfor %}
+        <li class="attribute-list__row attribute-list__row--total">
+          <span>{% translate 'Total assets' %}</span>
+          <span class="num">{{ shop.currency }} {{ statement.assets_total|floatformat:"2g" }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card__body">
+      <p class="card__eyebrow">{% translate 'Liabilities' %}</p>
+      <ul class="attribute-list">
+        {% for row in statement.liabilities %}
+        <li class="attribute-list__row">
+          <span><span class="num">{{ row.code }}</span> {{ row.name }}</span>
+          <span class="num">{{ shop.currency }} {{ row.amount|floatformat:"2g" }}</span>
+        </li>
+        {% empty %}
+        <li class="attribute-list__row"><span>{% translate 'No liabilities yet.' %}</span><span></span></li>
+        {% endfor %}
+        <li class="attribute-list__row attribute-list__row--total">
+          <span>{% translate 'Total liabilities' %}</span>
+          <span class="num">{{ shop.currency }} {{ statement.liabilities_total|floatformat:"2g" }}</span>
+        </li>
+      </ul>
+
+      <p class="card__eyebrow" style="margin-top: 1.4rem">{% translate "Owner's equity" %}</p>
+      <ul class="attribute-list">
+        {% for row in statement.equity %}
+        <li class="attribute-list__row">
+          <span><span class="num">{{ row.code }}</span> {{ row.name }}</span>
+          <span class="num">{{ shop.currency }} {{ row.amount|floatformat:"2g" }}</span>
+        </li>
+        {% empty %}
+        <li class="attribute-list__row"><span>{% translate 'No equity yet.' %}</span><span></span></li>
+        {% endfor %}
+        <li class="attribute-list__row attribute-list__row--total">
+          <span>{% translate 'Total equity' %}</span>
+          <span class="num">{{ shop.currency }} {{ statement.equity_total|floatformat:"2g" }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="statement-total">
+    <span>{% translate 'Liabilities and equity' %}</span>
+    <strong>{{ shop.currency }} {{ statement.liabilities_equity_total|floatformat:"2g" }}</strong>
+  </div>
+</section>
+
+{% elif statement_kind == 'trial_balance' %}
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'Every account' %}</p>
+      <h2 class="card__title">{% translate 'Debits against credits' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate count counter=statement.rows|length %}{{ counter }} account touched{% plural %}{{ counter }} accounts touched{% endblocktranslate %}</p>
+  </header>
+
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'Code' %}</th>
+          <th scope="col">{% translate 'Account' %}</th>
+          <th scope="col">{% translate 'Type' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Debit' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Credit' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Balance' %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in statement.rows %}
+        <tr>
+          <th scope="row" class="num">{{ row.code }}</th>
+          <td>{{ row.name }}</td>
+          <td><span class="tag tag--account-{{ row.type }}">{{ row.type|title }}</span></td>
+          <td class="is-numeric">{{ row.debit|floatformat:"2g" }}</td>
+          <td class="is-numeric">{{ row.credit|floatformat:"2g" }}</td>
+          <td class="is-numeric {% if row.balance < 0 %}is-down{% else %}is-up{% endif %}">{{ row.balance|floatformat:"2g" }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">{% translate 'No posted entries in this period.' %}</td></tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row" colspan="3">{% translate 'Totals' %}</th>
+          <td class="is-numeric">{{ statement.total_debit|floatformat:"2g" }}</td>
+          <td class="is-numeric">{{ statement.total_credit|floatformat:"2g" }}</td>
+          <td class="is-numeric">{{ statement.difference|floatformat:"2g" }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
+{% elif statement_kind == 'cash_flow' %}
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'The till and the bank' %}</p>
+      <h2 class="card__title">{% translate 'What actually moved' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate count counter=statement.rows|length %}{{ counter }} line{% plural %}{{ counter }} lines{% endblocktranslate %}</p>
+  </header>
+
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'When' %}</th>
+          <th scope="col">{% translate 'Reference' %}</th>
+          <th scope="col">{% translate 'What it was for' %}</th>
+          <th scope="col">{% translate 'Account' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'In' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Out' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Net' %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in statement.rows %}
+        <tr>
+          <th scope="row">{{ row.date|date:"d M Y" }}</th>
+          <td class="num">{{ row.reference }}</td>
+          <td>{{ row.description }}</td>
+          <td>{{ row.account }}</td>
+          <td class="is-numeric is-up">{{ row.inflow|floatformat:"2g" }}</td>
+          <td class="is-numeric is-down">{{ row.outflow|floatformat:"2g" }}</td>
+          <td class="is-numeric">{{ row.net|floatformat:"2g" }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="7">{% translate 'No cash moved in this period.' %}</td></tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row" colspan="4">{% translate 'Totals' %}</th>
+          <td class="is-numeric">{{ statement.inflow_total|floatformat:"2g" }}</td>
+          <td class="is-numeric">{{ statement.outflow_total|floatformat:"2g" }}</td>
+          <td class="is-numeric">{{ statement.net|floatformat:"2g" }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
+{% else %}
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'The full book' %}</p>
+      <h2 class="card__title">{% translate 'Every entry and its lines' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate count counter=statement.rows|length %}{{ counter }} entry{% plural %}{{ counter }} entries{% endblocktranslate %}</p>
+  </header>
+
+  {% if statement.rows %}
+  <div class="ledger-book">
+    {% for entry in statement.rows %}
+    <article class="ledger-book__entry">
+      <header class="ledger-book__head">
+        <div>
+          <p class="ledger-book__ref">{{ entry.reference }} · <span data-time="{{ entry.occurred_at|date:'c'}}">{{ entry.occurred_at|date:"d M Y, H:i" }}</span> </p>
+          <h3 class="ledger-book__title">{{ entry.description }}</h3>
+        </div>
+        <span class="tag tag--{{ entry.kind }}">{{ entry.get_kind_display }}</span>
+      </header>
+      <ul class="attribute-list">
+        {% for line in entry.lines.all %}
+        <li class="attribute-list__row">
+          <span><span class="num">{{ line.account.code }}</span> {{ line.account.name }}</span>
+          <span class="num">{% if line.debit %}{% blocktranslate with amount=line.debit|floatformat:"2g" %}Dr {{ amount }}{% endblocktranslate %}{% else %}{% blocktranslate with amount=line.credit|floatformat:"2g" %}Cr {{ amount }}{% endblocktranslate %}{% endif %}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-journal"></use></svg>
+      <p class="empty__title">{% translate 'The ledger is empty for this period' %}</p>
+      <p class="empty__text">{% translate 'Record an entry and its two sides will be written here.' %}</p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}

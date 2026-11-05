@@ -1,0 +1,19 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cake</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://static.smartstock.africa/js/three.module.js"
+        }
+      }
+    </script>
+  </head>
+  <body style="margin:0;">
+    <script type="module" src="{% static 'js/cake/cake.prod.js' %}"></script>
+  </body>
+</html>

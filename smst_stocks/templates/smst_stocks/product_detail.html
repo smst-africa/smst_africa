@@ -1,0 +1,255 @@
+{% extends 'smst_stocks/base.html' %}
+{% load i18n %}
+
+{% block stocks_title %}{{ product.name }}{% endblock %}
+{% block stocks_crumb %}{{ product.name }}{% endblock %}
+
+{% block stocks_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><a href="{% url 'smst_stocks:products' %}">{% translate 'Items' %}</a><span aria-hidden="true">/</span>{{ product.category|default:"Uncategorised" }}</p>
+    <h1 class="page-head__title">{{ product.name }}</h1>
+    <p class="page-head__lede">
+      {% if product.description %}{% translate 'No description yet. Add one from the edit page so customers know what they are asking for.' %}{% else %}{% translate 'No description yet. Add one from the edit page so customers know what they are asking for.' %}{% endif %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_stocks_move %}
+    <button class="btn btn--ghost" type="button" data-quick-movement="sale" data-product="{{ product.id }}" data-name="{{ product.name }}">
+      {% translate 'Record a movement' %}
+    </button>
+    {% endif %}
+    {% if can_stocks_add %}
+    <a class="btn btn--primary" href="{% url 'smst_stocks:product_edit' product.id %}">
+      <svg aria-hidden="true"><use href="#i-sliders"></use></svg>
+      {% translate 'Edit the item' %}
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+<div class="split split--even">
+  <div class="stack">
+    <section class="card" data-product-detail="{{ product.id }}" data-reveal>
+      <header class="card__head">
+        <div class="card__head-main">
+          <p class="card__eyebrow">{% translate 'The numbers' %}</p>
+          <h2 class="card__title">{% translate 'What this item is doing' %}</h2>
+        </div>
+        <span class="tag {% if product.quantity <= 0 %}tag--out{% elif product.stock_state == 'low' %}tag--low{% else %}tag--ok{% endif %}">
+          {% if product.quantity <= 0 %}{% translate 'Out of stock' %}{% elif product.stock_state == 'low' %}{% translate 'Low' %}{% else %}{% translate 'In stock' %}{% endif %}
+        </span>
+      </header>
+
+      <div class="card__body">
+        <dl class="fact-list">
+          <div class="fact fact--hero">
+            <dt>{% translate 'In hand' %}</dt>
+            <dd class="num" data-cell="quantity">{{ product.quantity|floatformat:0 }} {{ product.unit }}{% if product.quantity != 1 %}{% translate 's' %}{% endif %}</dd>
+          </div>
+          <div class="fact">
+            <dt>{% translate 'Reorder at' %}</dt>
+            <dd class="num">{{ product.reorder_level|floatformat:0 }}</dd>
+          </div>
+          <div class="fact">
+            <dt>{% translate 'Buying price' %}</dt>
+            <dd class="num">{{ shop.currency }} {{ product.buying_price|floatformat:2 }}</dd>
+          </div>
+          <div class="fact">
+            <dt>{% translate 'Selling price' %}</dt>
+            <dd class="num">{{ shop.currency }} {{ product.selling_price|floatformat:2 }}</dd>
+          </div>
+          <div class="fact">
+            <dt>{% translate 'Margin' %}</dt>
+            <dd class="num {% if product.margin < 10 %}is-thin{% endif %}">{{ product.margin|floatformat:1 }}%</dd>
+          </div>
+          <div class="fact">
+            <dt>{% translate 'Value on the shelf' %}</dt>
+            <dd class="num">{{ shop.currency }} {{ product.stock_value|floatformat:2 }}</dd>
+          </div>
+        </dl>
+
+        {% if product.cart_total %}
+        <p class="group__text">
+          {{ product.cart_total|floatformat:0 }} {{ product.unit }}{% if product.cart_total != 1 %}{% translate 's' %}{% endif %} {% translate 'held in a cart and off the shelf.' %}
+        </p>
+        {% endif %}
+
+        {% if holders %}
+        <div class="attribute-list">
+          {% for line in holders %}
+          <div class="attribute-list__row">
+            <span>{{ line.user.get_full_name|default:line.user.username }} · {{ line.get_direction_display }}</span>
+            <span class="num">{{ line.quantity|floatformat:0 }} {{ line.product.unit }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if product.attribute_lines %}
+        <div class="attribute-list">
+          {% for key, value in product.attribute_lines %}
+          <div class="attribute-list__row">
+            <span>{{ key }}</span>
+            <span class="num">{{ value }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="card" data-chart="product-history" data-product="{{ product.id }}" data-quantity="{{ product.quantity }}" data-unit="{{ product.unit }}" data-reveal>
+      <header class="card__head">
+        <div class="card__head-main">
+          <p class="card__eyebrow">{% translate 'Stock history' %}</p>
+          <h2 class="card__title">{% translate 'How the count got here' %}</h2>
+        </div>
+        <div class="segmented" data-history-range role="group" aria-label="{% translate 'History range' %}">
+          <button class="segmented__btn" type="button" data-range="10">10</button>
+          <button class="segmented__btn is-active" type="button" data-range="20">20</button>
+          <button class="segmented__btn" type="button" data-range="40">40</button>
+        </div>
+      </header>
+      <div class="chart">
+        <div class="chart__canvas" data-chart-canvas></div>
+        <p class="chart__empty" data-chart-empty hidden>{% translate 'No movements recorded for this item yet.' %}</p>
+      </div>
+      <div class="card__foot">{% translate 'The line follows the quantity in hand after each movement. Hover or focus a point for the detail.' %}</div>
+    </section>
+
+    <section class="card" data-reveal>
+      <header class="card__head">
+        <div class="card__head-main">
+          <p class="card__eyebrow">{% translate 'The ledger' %}</p>
+          <h2 class="card__title">{% translate 'Every movement' %}</h2>
+        </div>
+        {% if 'stocks.view.movements' in permissions %}
+        <a class="card__link" href="{% url 'smst_stocks:movements' %}">{% translate 'All movements' %}</a>
+        {% endif %}
+      </header>
+
+      {% if movements %}
+      <ul class="ledger-list">
+        {% for movement in movements %}
+        <li class="ledger-list__row">
+          <span class="ledger-list__time" data-time="{{movement.created_at|date:'c'}}">{{ movement.created_at|date:"d M, H:i" }}</span>
+          <span class="ledger-list__name">{{ movement.get_kind_display }}</span>
+          <span class="ledger-list__kind">{{ movement.note|default:"—" }}</span>
+          <span class="ledger-list__change {% if movement.quantity < 0 %}is-down{% else %}is-up{% endif %}">
+            {% if movement.quantity > 0 %}+{% endif %}{{ movement.quantity|floatformat:0 }}
+          </span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="card__body">
+        <div class="empty">
+          <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ledger"></use></svg>
+          <p class="empty__title">{% translate 'Nothing has moved yet' %}</p>
+          <p class="empty__text">{% translate 'Sales and deliveries for this item will be listed here.' %}</p>
+        </div>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+
+  <div class="stack">
+    <section class="card" data-reveal>
+      <header class="card__head">
+        <div class="card__head-main">
+          <p class="card__eyebrow">{% translate 'Sharing' %}</p>
+          <h2 class="card__title">{% translate 'The customer page' %}</h2>
+        </div>
+      </header>
+
+      <div class="card__body">
+        <p class="group__text">
+          {% translate 'A shared page shows the item, what is in hand right now and a way for a customer to ask for it. It updates as you record stock.' %}
+        </p>
+
+        <div class="share-box">
+          <p class="field__label">{% translate 'Link to this item' %}</p>
+          <div class="share-box__row">
+            <input class="field__control" id="share-link" type="text" readonly
+                   value="{{ request.scheme }}://{{ request.get_host }}{{ product.share_url }}" />
+            <button class="btn btn--ghost" type="button" data-copy="{{ request.scheme }}://{{ request.get_host }}{{ product.share_url }}">
+              <svg aria-hidden="true"><use href="#i-copy"></use></svg>
+              {% translate 'Copy' %}
+            </button>
+          </div>
+        </div>
+
+        <div class="publish-state">
+          <span class="tag {% if product.is_published %}tag--ok{% else %}tag--muted{% endif %}">
+            {% if product.is_published %}{% translate 'On the shared page' %}{% else %}{% translate 'Hidden' %}{% endif %}
+          </span>
+          <button class="link-button" type="button" data-publish="{{ product.id }}" data-published="{{ product.is_published|yesno:'1,0' }}">
+            {% if product.is_published %}{% translate 'Hide it' %}{% else %}{% translate 'Publish it' %}{% endif %}
+          </button>
+        </div>
+
+        <div class="share-box">
+          <p class="field__label">{% translate 'Link to the whole catalogue' %}</p>
+          <div class="share-box__row">
+            <input class="field__control" id="catalogue-link" type="text" readonly
+                   value="{{ request.scheme }}://{{ request.get_host }}{{ shop.share_url }}" />
+            <button class="btn btn--ghost" type="button" data-copy="{{ request.scheme }}://{{ request.get_host }}{{ shop.share_url }}">
+              <svg aria-hidden="true"><use href="#i-copy"></use></svg>
+              {% translate 'Copy' %}
+            </button>
+          </div>
+          <p class="field__hint">{% translate 'Turn the catalogue on from the shop page.' %}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" data-reveal>
+      <header class="card__head">
+        <div class="card__head-main">
+          <p class="card__eyebrow">{% translate 'Orders' %}</p>
+          <h2 class="card__title">{% translate 'Requests for this item' %}</h2>
+        </div>
+        {% if 'stocks.view.orders' in permissions %}
+        <a class="card__link" href="{% url 'smst_stocks:orders' %}">{% translate 'All orders' %}</a>
+        {% endif %}
+      </header>
+
+      {% if orders %}
+      <ul class="ledger-list">
+        {% for order in orders %}
+        <li class="ledger-list__row">
+          <span class="ledger-list__time">{{ order.created_at|date:"d M" }}</span>
+          <span class="ledger-list__name">{{ order.customer_name }}</span>
+          <span class="ledger-list__kind">{{ order.quantity|floatformat:0 }} {{ product.unit }}</span>
+          <span class="ledger-list__change">{{ order.reference }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="card__body">
+        <div class="empty">
+          <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-orders"></use></svg>
+          <p class="empty__title">{% translate 'No orders yet' %}</p>
+          <p class="empty__text">{% translate 'Customer requests for this item will show up here.' %}</p>
+        </div>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+</div>
+
+<div hidden data-history-source>
+  {% for movement in movements %}
+  <span
+    data-kind="{{ movement.kind }}"
+    data-kind-label="{{ movement.get_kind_display }}"
+    data-quantity="{{ movement.quantity }}"
+    data-at="{{ movement.created_at|date:'c' }}"
+    data-note="{{ movement.note|default:'' }}"
+  ></span>
+  {% endfor %}
+</div>
+
+{% if can_stocks_move or can_stocks_add %}{% include 'smst_stocks/partials/movement_form.html' %}{% endif %}
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'smst_works/base.html' %}
+{% load works_tags i18n %}
+
+{% block works_title %}{% translate 'Guides' %}{% endblock %}
+{% block works_crumb %}{% translate 'Workplace guides' %}{% endblock %}
+
+{% block works_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Workplace guides' %}</p>
+    <h1 class="page-head__title">{% translate 'How this shop does things' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'The rules, the opening routine, the till count. Anyone on the team can open a guide at any time, even in the middle of a shift.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_guides %}
+    <button class="btn btn--primary" type="button" data-open-guide>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Write a guide' %}
+    </button>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Guide category' %}">
+    <a class="chip {% if not category %}is-active{% endif %}" href="{% url 'smst_works:guides' %}{% if shop %}?shop={{ shop.id }}{% endif %}">{% translate 'All' %}</a>
+    {% for item in categories %}
+    <a class="chip {% if category == item %}is-active{% endif %}" href="{% url 'smst_works:guides' %}?category={{ item|urlencode }}{% if shop %}&shop={{ shop.id }}{% endif %}">{{ item }}</a>
+    {% endfor %}
+  </div>
+  <div class="toolbar__search">
+    <svg aria-hidden="true"><use href="#i-search"></use></svg>
+    <label class="sr-only" for="guide-search">{% translate 'Search guides' %}</label>
+    <input id="guide-search" type="search" name="search" value="{{ search }}" placeholder="{% translate 'Search a guide' %}" />
+    {% if category %}<input type="hidden" name="category" value="{{ category }}" />{% endif %}
+    {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+    <button class="btn btn--ghost btn--small" type="submit">{% translate 'Search' %}</button>
+  </div>
+</form>
+
+{% if guide_list %}
+<div class="guide-list">
+  {% for guide in guide_list %}
+  <article
+    class="guide-card"
+    data-guide-row="{{ guide.id }}"
+    data-title="{{ guide.title }}"
+    data-category="{{ guide.category }}"
+    data-body="{{ guide.body }}"
+    data-position="{{ guide.position }}"
+    data-is-published="{{ guide.is_published|yesno:'1,0' }}"
+    data-reveal
+  >
+    <details>
+      <summary>
+        <span>
+          <span class="guide-card__title">{{ guide.title }}</span>
+          <span class="guide-card__meta">
+            {% if guide.category %}<span>{{ guide.category }}</span>{% endif %}
+            <span>{% blocktranslate with date=guide.updated_at|date:"d M Y" %}updated {{ date }}{% endblocktranslate %}</span>
+            {% if not guide.is_published %}<span class="tag tag--muted">{% translate 'Draft' %}</span>{% endif %}
+          </span>
+        </span>
+        <span class="tag tag--confirmed">{% translate 'Read' %}</span>
+      </summary>
+      <div class="guide-card__body">{{ guide.body|linebreaks }}</div>
+    </details>
+    {% if can_guides %}
+    <div class="works-lines" style="margin-top: 0.85rem">
+      <button class="btn btn--ghost btn--small" type="button" data-edit-guide="{{ guide.id }}">
+        {% translate 'Edit this guide' %}
+      </button>
+    </div>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<section class="card" data-reveal>
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-book"></use></svg>
+      <p class="empty__title">{% translate 'The guidebook is empty' %}</p>
+      <p class="empty__text">
+        {% if search or category %}{% translate 'Nothing matches that search.' %}{% else %}{% translate 'Write the first rule, routine or how-to for the team.' %}{% endif %}
+      </p>
+      {% if can_guides %}
+      <button class="btn btn--primary" type="button" data-open-guide>{% translate 'Write a guide' %}</button>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends 'smst_works/base.html' %}
+{% load works_tags i18n %}
+
+{% block works_title %}{% translate 'Shop floor' %}{% endblock %}
+{% block works_crumb %}{{ shop.name }}{% endblock %}
+
+{% block works_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Live shop floor' %}</p>
+    <h1 class="page-head__title">{% translate 'The work, as it happens' %}</h1>
+    <p class="page-head__lede">
+      {% if summary.jobs %}
+        {% blocktranslate count counter=summary.running %}{{ counter }} job running{% plural %}{{ counter }} jobs running{% endblocktranslate %},
+        {% blocktranslate with count=summary.pending %}{{ count }} waiting{% endblocktranslate %}, {% blocktranslate with count=summary.succeeded %}{{ count }} finished well{% endblocktranslate %}.
+        {% translate 'The line moves forward on its own; an unfinished job keeps counting.' %}
+      {% else %}
+        {% translate 'The floor is quiet. Create the first job and the timeline will start moving from this moment.' %}
+      {% endif %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_jobs_create %}
+    <button class="btn btn--primary" type="button" data-open-job>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'New job' %}
+    </button>
+    {% endif %}
+    {% if can_stock_action %}
+    <button class="btn btn--ghost" type="button" data-open-stock>
+      <svg aria-hidden="true"><use href="#i-items"></use></svg>
+      {% translate 'Stock action' %}
+    </button>
+    {% endif %}
+  </div>
+</header>
+
+<section class="stats" aria-label="{% translate 'Shop floor totals' %}" data-reveal>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-team"></use></svg>{% translate 'On the team' %}</p>
+    <p class="stat__value" data-stat="employees">{{ summary.employees }}</p>
+    <p class="stat__note">{% translate 'active people, plus the owner' %}</p>
+  </article>
+  <article class="stat {% if summary.running %}stat--warn{% endif %}">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-timeline"></use></svg>{% translate 'Running now' %}</p>
+    <p class="stat__value" data-stat="running">{{ summary.running }}</p>
+    <p class="stat__note">{% translate 'counted from the moment they started' %}</p>
+  </article>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-clock"></use></svg>{% translate 'Waiting' %}</p>
+    <p class="stat__value" data-stat="pending">{{ summary.pending }}</p>
+    <p class="stat__note">{% translate 'next up on the floor' %}</p>
+  </article>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-star"></use></svg>{% translate 'Loyalty points' %}</p>
+    <p class="stat__value" data-stat="points">{{ summary.points|floatformat:"0g" }}</p>
+    <p class="stat__note">{% blocktranslate count counter=summary.customers %}{{ counter }} customer{% plural %}{{ counter }} customers{% endblocktranslate %}</p>
+  </article>
+</section>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'The live timeline' %}</p>
+      <h2 class="card__title">{% translate 'A video editor for the work' %}</h2>
+    </div>
+    <div class="segmented" data-timeline-ranges role="group" aria-label="{% translate 'Timeline range' %}">
+      <button class="segmented__btn" type="button" data-timeline-range="6">{% translate '6h' %}</button>
+      <button class="segmented__btn" type="button" data-timeline-range="12">{% translate '12h' %}</button>
+      <button class="segmented__btn is-active" type="button" data-timeline-range="24">{% translate '24h' %}</button>
+      <button class="segmented__btn" type="button" data-timeline-range="168">{% translate '7d' %}</button>
+    </div>
+  </header>
+
+  <div class="timeline" data-timeline data-hours="24" style="--now: 100%">
+    <div class="timeline__ruler">
+      <span class="timeline__ruler-label">{% translate 'Job' %}</span>
+      <div class="timeline__ticks" data-timeline-ruler></div>
+    </div>
+    <div class="timeline__lanes" data-timeline-lanes>
+      <p class="timeline__empty">{% translate 'Reading the timeline…' %}</p>
+    </div>
+    <p class="timeline__empty" data-timeline-empty hidden>
+      {% translate 'No jobs in this window yet. Create one and it will appear on the line.' %}
+    </p>
+  </div>
+
+  <div class="card__foot">
+    {% translate 'The line at the right is now. A running job grows until someone finishes it; a finished job stays exactly where it ended.' %}
+  </div>
+</section>
+
+<div class="dash-grid dash-grid--lower">
+  <section class="card" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Next up' %}</p>
+        <h2 class="card__title">{% translate 'Waiting to start' %}</h2>
+      </div>
+      {% if 'works.view.jobs' in permissions %}
+      <a class="card__link" href="{% url 'smst_works:jobs' %}?status=pending">{% translate 'All jobs' %}</a>
+      {% endif %}
+    </header>
+
+    {% if pending_jobs %}
+    <div class="card__body works-queue">
+      {% for job in pending_jobs %}
+      <div class="works-queue__item">
+        <div class="works-queue__main">
+          <p class="works-queue__title">{{ job.title }}</p>
+          <p class="works-queue__meta">
+            {% blocktranslate with waiting=job.waiting_seconds|duration inputs=job.inputs.all|length outputs=job.outputs.all|length %}waiting {{ waiting }} · {{ inputs }} in / {{ outputs }} out{% endblocktranslate %}
+          </p>
+        </div>
+        {% if can_jobs_run %}
+        <button class="btn btn--ghost btn--small" type="button" data-job-start="{{ job.id }}">
+          <svg aria-hidden="true"><use href="#i-play"></use></svg>
+          {% translate 'Start' %}
+        </button>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card__body">
+      <div class="empty">
+        <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-jobs"></use></svg>
+        <p class="empty__title">{% translate 'Nothing is waiting' %}</p>
+        <p class="empty__text">{% translate 'Every job on the floor has been started or finished.' %}</p>
+        {% if can_jobs_create %}
+        <button class="btn btn--primary" type="button" data-open-job>{% translate 'Create a job' %}</button>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <section class="card" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'The record' %}</p>
+        <h2 class="card__title">{% translate 'The latest jobs' %}</h2>
+      </div>
+      {% if 'works.view.jobs' in permissions %}
+      <a class="card__link" href="{% url 'smst_works:jobs' %}">{% translate 'Open the jobs' %}</a>
+      {% endif %}
+    </header>
+
+    {% if recent_jobs %}
+    <div class="table-scroll">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">{% translate 'Job' %}</th>
+            <th scope="col">{% translate 'State' %}</th>
+            <th scope="col">{% translate 'Time' %}</th>
+            <th scope="col" class="is-numeric">{% translate 'Stock' %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for job in recent_jobs %}
+          <tr>
+            <th scope="row">
+              <span class="table__name">{{ job.title }}</span>
+              <span class="table__meta">{{ job.created_by.username|default:"—" }}</span>
+            </th>
+            <td><span class="tag tag--{{ job.status }}">{{ job.get_status_display }}</span></td>
+            <td>
+              <span data-time="{{ job.started_at|date:'c' }}">{{ job.started_at|date:"d M H:i"|default:"—" }}</span>
+              <span class="table__meta">{{ job.elapsed_seconds|duration }}</span>
+            </td>
+            <td class="is-numeric">{{ job.inputs.all|length }} → {{ job.outputs.all|length }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="card__body">
+      <div class="empty">
+        <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-timeline"></use></svg>
+        <p class="empty__title">{% translate 'The line is clean' %}</p>
+        <p class="empty__text">{% translate 'The first job will be drawn here from the moment it starts.' %}</p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

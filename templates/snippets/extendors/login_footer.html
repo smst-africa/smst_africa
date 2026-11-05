@@ -1,0 +1,13 @@
+{% extends 'snippets/attachables/formFooter.html' %}
+
+{% block content  %}
+<div class="footerText">
+      <span>By Logging In, you agree to our <a href="https://smst.africa/docs/terms_of_use">Terms of Service</a> and <a href="https://smst.africa/docs/privacy_policy">Privacy Policy</a></span>
+    </div>
+    <div class="footerText">
+      <span>Don't have an account? <a onclick="window.location.reload()">Create Account Here</a></span>
+    </div>
+     <div class="footerText">
+      <span>Forgot your password? <a hx-get="?page=reset_password" hx-target="#formContent" hx-swap="replace" hx-push-url="">Reset your password Here</a></span>
+    </div>
+{% endblock %}

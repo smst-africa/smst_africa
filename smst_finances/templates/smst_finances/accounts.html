@@ -1,0 +1,124 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Chart of accounts' %}{% endblock %}
+{% block finances_crumb %}{% translate 'Chart of accounts' %}{% endblock %}
+
+{% block finances_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'The frame' %}</p>
+    <h1 class="page-head__title">{% translate 'The accounts every figure hangs on' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'The shop starts with a full chart of accounts. Rename one to match the way you talk about the business; the built-in ones keep their code so the statements never lose their place.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_manage %}
+    <button class="btn btn--primary" type="button" data-open-account>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Add an account' %}
+    </button>
+    {% endif %}
+    {% if 'finances.view.statements' in permissions %}
+    <a class="btn btn--ghost" href="{% url 'smst_finances:statements' %}?kind=trial_balance">
+      <svg aria-hidden="true"><use href="#i-scale"></use></svg>
+      {% translate 'Trial balance' %}
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Filter accounts' %}">
+    <a class="chip {% if not account_type %}is-active{% endif %}" href="?">{% translate 'Everything' %}</a>
+    {% for value, label in account_types %}
+    <a class="chip {% if account_type == value %}is-active{% endif %}" href="?type={{ value }}">{{ label }}</a>
+    {% endfor %}
+  </div>
+  {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+</form>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% if account_type %}{% blocktranslate with type=account_type|title %}{{ type }} accounts{% endblocktranslate %}{% else %}{% translate 'All accounts' %}{% endif %}</p>
+      <h2 class="card__title">{% translate 'The chart' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate count counter=items|length %}{{ counter }} account{% plural %}{{ counter }} accounts{% endblocktranslate %}</p>
+  </header>
+
+  {% if items %}
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'Code' %}</th>
+          <th scope="col">{% translate 'Account' %}</th>
+          <th scope="col">{% translate 'Type' %}</th>
+          <th scope="col">{% translate 'Grows on' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Balance' %}</th>
+          <th scope="col">{% translate 'State' %}</th>
+          <th scope="col"><span class="sr-only">{% translate 'Actions' %}</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for account in items %}
+        <tr
+          data-account-row="{{ account.id }}"
+          data-account-id="{{ account.id }}"
+          data-code="{{ account.code }}"
+          data-name="{{ account.name }}"
+          data-type="{{ account.type }}"
+          data-description="{{ account.description }}"
+          data-active="{{ account.is_active|yesno:'1,0' }}"
+          data-system="{{ account.is_system|yesno:'1,0' }}"
+        >
+          <th scope="row" class="num">{{ account.code }}</th>
+          <td>
+            <span class="table__name">{{ account.name }}</span>
+            {% if account.description %}<span class="table__meta">{{ account.description }}</span>{% endif %}
+          </td>
+          <td><span class="tag tag--account-{{ account.type }}">{{ account.get_type_display }}</span></td>
+          <td><span class="table__meta">{{ account.normal_balance|title }}</span></td>
+          <td class="is-numeric {% if account.balance < 0 %}is-down{% endif %}">
+            {{ shop.currency }} {{ account.balance|floatformat:"2g" }}
+          </td>
+          <td>
+            {% if not account.is_active %}
+            <span class="tag tag--muted">{% translate 'Paused' %}</span>
+            {% elif account.is_system %}
+            <span class="tag tag--ok">{% translate 'Built in' %}</span>
+            {% else %}
+            <span class="tag tag--muted">{% translate 'Your own' %}</span>
+            {% endif %}
+          </td>
+          <td class="is-actions">
+            {% if can_manage %}
+            <div class="row-actions">
+              <button class="link-button" type="button" data-edit-account="{{ account.id }}">{% translate 'Edit' %}</button>
+              {% if not account.is_system %}
+              <button class="link-button" type="button" data-delete-account="{{ account.id }}">{% translate 'Delete' %}</button>
+              {% endif %}
+            </div>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ledger"></use></svg>
+      <p class="empty__title">{% translate 'No accounts of that type' %}</p>
+      <p class="empty__text">{% translate 'Choose another type, or add an account of your own.' %}</p>
+      {% if can_manage %}<button class="btn btn--primary" type="button" data-open-account>{% translate 'Add an account' %}</button>{% endif %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{% include 'smst_finances/partials/account_form.html' %}
+{% endblock %}

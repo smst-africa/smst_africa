@@ -1,0 +1,104 @@
+{% extends 'smst_works/base.html' %}
+{% load works_tags i18n %}
+
+{% block works_title %}{% translate 'Ranks' %}{% endblock %}
+{% block works_crumb %}{% translate 'Ranks' %}{% endblock %}
+
+{% block works_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'The rules of the floor' %}</p>
+    <h1 class="page-head__title">{% translate 'What each rank may do' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'A rank is a list of permissions. An accountant often keeps the stock still; a cleaner can use stock but cannot add it. The owner can always do everything.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_ranks %}
+    <button class="btn btn--primary" type="button" data-open-rank>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'New rank' %}
+    </button>
+    {% endif %}
+  </div>
+</header>
+
+{% if rank_list %}
+<div class="rank-grid">
+  {% for rank in rank_list %}
+  <article
+    class="rank-card"
+    data-rank-row="{{ rank.id }}"
+    data-name="{{ rank.name }}"
+    data-description="{{ rank.description }}"
+    data-permissions="{{ rank.permissions|join:',' }}"
+    data-reveal
+  >
+    <div class="rank-card__head">
+      <div>
+        <h2 class="rank-card__title">{{ rank.name }}</h2>
+        <p class="rank-card__note">{{ rank.description|default:"No description yet." }}</p>
+      </div>
+      <span class="rank-card__count">{% blocktranslate count counter=rank.employees.all|length %}{{ counter }} person{% plural %}{{ counter }} people{% endblocktranslate %}</span>
+    </div>
+
+    {% if rank.permissions %}
+    <div class="permission-list">
+      {% for key, label in rank.permission_items %}
+      <span class="permission-pill" title="{{ key }}">{{ label }}</span>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="card__note">{% translate 'No permissions. This rank can read the floor but change nothing.' %}</p>
+    {% endif %}
+
+    {% if can_ranks %}
+    <button class="btn btn--ghost btn--small" type="button" data-edit-rank="{{ rank.id }}">
+      {% translate 'Edit the rank' %}
+    </button>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<section class="card" data-reveal>
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-rank"></use></svg>
+      <p class="empty__title">{% translate 'No ranks yet' %}</p>
+      <p class="empty__text">{% translate 'The starter ranks appear the first time the shop opens.' %}</p>
+      {% if can_ranks %}
+      <button class="btn btn--primary" type="button" data-open-rank>{% translate 'Create a rank' %}</button>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'The permission keys' %}</p>
+      <h2 class="card__title">{% translate 'What the switches mean' %}</h2>
+    </div>
+  </header>
+  <div class="card__body">
+    {% for group_label, group_permissions in permission_groups %}
+    <p class="card__eyebrow">{{ group_label }}</p>
+    <div class="permission-grid">
+      {% for key, label in group_permissions %}
+      <div class="permission-option">
+        <span>
+          <strong>{{ label }}</strong>
+          <small>{{ key }}</small>
+        </span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="card__foot">
+    {% translate 'The owner bypasses every switch. A person with no rank can read the floor and the guides, but cannot change the shop.' %}
+  </div>
+</section>
+{% endblock %}

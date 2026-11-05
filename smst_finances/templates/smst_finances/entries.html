@@ -1,0 +1,211 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Entries' %}{% endblock %}
+{% block finances_crumb %}{% translate 'Entries' %}{% endblock %}
+
+{% block finances_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'The book' %}</p>
+    <h1 class="page-head__title">{% translate 'Every amount, with its two sides' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Sales, bills, tax, discounts, losses and refunds. Each entry can carry a product and a stock movement, so the money follows what actually moved.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_manage %}
+    <button class="btn btn--primary" type="button" data-open-entry>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Record an entry' %}
+    </button>
+    {% endif %}
+    {% if 'finances.view.options' in permissions %}
+    <a class="btn btn--ghost" href="{% url 'smst_finances:options' %}">
+      <svg aria-hidden="true"><use href="#i-sliders"></use></svg>
+      {% translate 'Finance options' %}
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" id="entry__toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__search__holder">
+    <div class="toolbar__search">
+      <div class="toolbar__search__input">
+        <svg aria-hidden="true"><use href="#i-search"></use></svg>
+        <label class="sr-only" for="entry-search">{% translate 'Search entries' %}</label>
+        <input id="entry-search" type="search" name="search" value="{{ search }}" placeholder="{% translate 'Search a description or reference' %}" />
+      </div>
+  
+      <label class="sr-only" for="entry-from">{% translate 'From' %}</label>
+      <input id="entry-from" type="date" name="date_from" value="{{ date_from|date:'Y-m-d' }}" />
+      <label class="sr-only" for="entry-to">{% translate 'To' %}</label>
+      <input id="entry-to" type="date" name="date_to" value="{{ date_to|date:'Y-m-d' }}" />
+      <button class="btn btn--ghost btn--small" type="submit">{% translate 'Filter' %}</button>
+    </div>
+    <div class="toolbar__filters" role="group" aria-label="{% translate 'Filter entries' %}">
+      <a class="chip {% if not kind %}is-active{% endif %}" href="?search={{ search }}&amp;date_from={{ date_from|date:'Y-m-d' }}&amp;date_to={{ date_to|date:'Y-m-d' }}">{% translate 'All kinds' %}</a>
+      {% for value, label in entry_kinds %}
+      <a class="chip {% if kind == value %}is-active{% endif %}" href="?kind={{ value }}&amp;search={{ search }}&amp;date_from={{ date_from|date:'Y-m-d' }}&amp;date_to={{ date_to|date:'Y-m-d' }}">{{ label }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Filter state' %}">
+    <a class="chip {% if not status %}is-active{% endif %}" href="?kind={{ kind }}&amp;search={{ search }}&amp;date_from={{ date_from|date:'Y-m-d' }}&amp;date_to={{ date_to|date:'Y-m-d' }}">{% translate 'Any state' %}</a>
+    {% for value, label in entry_statuses %}
+    <a class="chip {% if status == value %}is-active{% endif %}" href="?kind={{ kind }}&amp;status={{ value }}&amp;search={{ search }}&amp;date_from={{ date_from|date:'Y-m-d' }}&amp;date_to={{ date_to|date:'Y-m-d' }}">{{ label }}</a>
+    {% endfor %}
+  </div>
+
+  {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+</form>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% if search or kind or status %}{% translate 'Filtered' %}{% else %}{% translate 'All entries' %}{% endif %}</p>
+      <h2 class="card__title">{% if search or kind or status %}{% translate 'What matches' %}{% else %}{% translate 'The book, newest first' %}{% endif %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate with count=items|length %}{{ count }} shown{% endblocktranslate %}</p>
+  </header>
+
+  {% if items %}
+  <div class="table-scroll">
+    <table class="table" data-entries-table>
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'When' %}</th>
+          <th scope="col">{% translate 'What it was for' %}</th>
+          <th scope="col">{% translate 'Kind' %}</th>
+          <th scope="col">{% translate 'Option' %}</th>
+          <th scope="col">{% translate 'Linked to' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Amount' %}</th>
+          <th scope="col">{% translate 'State' %}</th>
+          <th scope="col"><span class="sr-only">{% translate 'Actions' %}</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in items %}
+        <tr
+          data-entry-row="{{ entry.id }}"
+          data-entry-id="{{ entry.id }}"
+          data-kind="{{ entry.kind }}"
+          data-status="{{ entry.status }}"
+          data-amount="{{ entry.amount }}"
+          data-base="{{ entry.base_amount|default_if_none:'' }}"
+          data-rate="{{ entry.rate|default_if_none:'' }}"
+          data-description="{{ entry.description }}"
+          data-note="{{ entry.note }}"
+          data-option="{{ entry.option_id|default:'' }}"
+          data-product="{{ entry.product_id|default:'' }}"
+          data-movement="{{ entry.movement_id|default:'' }}"
+          data-account="{{ entry.account_id|default:'' }}"
+          data-payment-account="{{ entry.payment_account_id|default:'' }}"
+          data-date="{{ entry.occurred_at|date:'Y-m-d' }}"
+          data-reference="{{ entry.reference }}"
+        >
+          <th scope="row" class="is-when">
+            <span data-time="{{entry.occurred_at|date:'c'}}"> {{ entry.occurred_at|date:"d M Y" }}</span>
+            <span class="table__meta">{{ entry.reference }}</span>
+          </th>
+          <td>
+            <button class="link-button" type="button" data-toggle-lines="{{ entry.id }}" aria-expanded="false">
+              {{ entry.description }}
+            </button>
+            {% if entry.product %}<span class="table__meta">{{ entry.product.name }}</span>{% endif %}
+            {% if entry.payment_account %}<span class="table__meta">{% blocktranslate with name=entry.payment_account.name %}via {{ name }}{% endblocktranslate %}</span>{% endif %}
+          </td>
+          <td><span class="tag tag--{{ entry.kind }}">{{ entry.get_kind_display }}</span></td>
+          <td>{% if entry.option %}{{ entry.option.name }}{% else %}<span class="table__meta">—</span>{% endif %}</td>
+          <td>
+            {% if entry.movement %}
+            <span class="table__meta">{{ entry.movement_label }}</span>
+            {% elif entry.product %}
+            <span class="table__meta">{{ entry.product.name }}</span>
+            {% else %}
+            <span class="table__meta">—</span>
+            {% endif %}
+          </td>
+          <td class="is-numeric {% if entry.signed_amount < 0 %}is-down{% else %}is-up{% endif %}">
+            {{ shop.currency }} {{ entry.amount|floatformat:"2g" }}
+          </td>
+          <td>
+            {% if entry.status == 'posted' %}
+            <span class="tag tag--ok">{% translate 'Posted' %}</span>
+            {% elif entry.status == 'draft' %}
+            <span class="tag tag--muted">{% translate 'Draft' %}</span>
+            {% else %}
+            <span class="tag tag--out">{% translate 'Void' %}</span>
+            {% endif %}
+          </td>
+          <td class="is-actions">
+            {% if can_manage %}
+            <div class="row-actions">
+              {% if entry.status != 'void' %}
+              <button class="link-button" type="button" data-edit-entry="{{ entry.id }}">{% translate 'Edit' %}</button>
+              {% endif %}
+              {% if entry.status == 'posted' %}
+              <button class="link-button" type="button" data-void-entry="{{ entry.id }}">{% translate 'Void' %}</button>
+              {% endif %}
+              {% if entry.status == 'draft' %}
+              <button class="link-button" type="button" data-delete-entry="{{ entry.id }}">{% translate 'Delete' %}</button>
+              {% endif %}
+            </div>
+            {% endif %}
+          </td>
+        </tr>
+        <tr class="entry-lines" data-entry-lines="{{ entry.id }}" hidden>
+          <td colspan="8">
+            <div class="entry-lines__grid">
+              <div>
+                <p class="card__eyebrow">{% translate 'The two sides' %}</p>
+                <ul class="attribute-list">
+                  {% for line in entry.lines.all %}
+                  <li class="attribute-list__row">
+                    <span>{{ line.account.code }} · {{ line.account.name }}</span>
+                    <span class="num">{% if line.debit %}{% blocktranslate with currency=shop.currency amount=line.debit|floatformat:"2g" %}Dr {{ currency }} {{ amount }}{% endblocktranslate %}{% else %}{% blocktranslate with currency=shop.currency amount=line.credit|floatformat:"2g" %}Cr {{ currency }} {{ amount }}{% endblocktranslate %}{% endif %}</span>
+                  </li>
+                  {% empty %}
+                  <li class="attribute-list__row"><span>{% translate 'Nothing posted yet.' %}</span><span></span></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div>
+                <p class="card__eyebrow">{% translate 'The detail' %}</p>
+                <ul class="attribute-list">
+                  <li class="attribute-list__row"><span>{% translate 'Source' %}</span><span>{{ entry.get_source_display }}</span></li>
+                  <li class="attribute-list__row"><span>{% translate 'Account' %}</span><span>{% if entry.account %}{{ entry.account.name }}{% else %}{% translate 'Chosen by the app' %}{% endif %}</span></li>
+                  <li class="attribute-list__row"><span>{% translate 'Money through' %}</span><span>{% if entry.payment_account %}{{ entry.payment_account.name }}{% else %}{% translate 'Cash' %}{% endif %}</span></li>
+                  {% if entry.base_amount %}<li class="attribute-list__row"><span>{% translate 'Base amount' %}</span><span>{{ shop.currency }} {{ entry.base_amount|floatformat:"2g" }}</span></li>{% endif %}
+                  {% if entry.rate %}<li class="attribute-list__row"><span>{% translate 'Rate' %}</span><span>{{ entry.rate }}</span></li>{% endif %}
+                  {% if entry.note %}<li class="attribute-list__row"><span>{% translate 'Note' %}</span><span>{{ entry.note }}</span></li>{% endif %}
+                </ul>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-journal"></use></svg>
+      <p class="empty__title">{% translate 'Nothing matches' %}</p>
+      <p class="empty__text">
+        {% if search or kind or status %}
+          {% translate 'Try a different word, kind or period. The book keeps everything that was recorded.' %}
+        {% else %}
+          {% translate 'Record the first entry. A sale, a bill, a tax payment or a discount all start here.' %}
+        {% endif %}
+      </p>
+      {% if can_manage %}<button class="btn btn--primary" type="button" data-open-entry>{% translate 'Record an entry' %}</button>{% endif %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

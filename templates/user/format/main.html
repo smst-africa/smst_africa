@@ -1,0 +1,21 @@
+{% extends 'user/user.html' %}
+{% load static %}
+
+{% block content %}
+<div id="signUpForm" class=" animate__animated animate__fadeInUp">
+  <div class="formHeader">
+    <h1>Create a SmSt Account</h1>
+  </div>
+  <div class="formContent">
+    <div class="formContentHolder">
+      <div id="formContent">
+        {% block innerContent %}
+        {% endblock %}
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+    <script nonce="{{csp_nonce}}" type="module" src="{% static 'js/account/account.prod.js' %}"></script>
+{% endblock %}

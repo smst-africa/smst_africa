@@ -1,0 +1,83 @@
+{% load i18n %}
+<div class="sheet" data-job-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="job-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'The shop floor' %}</p>
+        <h2 class="sheet__title" id="job-title">{% translate 'Create a job' %}</h2>
+        <p class="sheet__note">
+          {% translate 'Pick the items the job takes in and the items it makes. The stock moves only when the job succeeds.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-job-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="field">
+        <label class="field__label" for="job-name">{% translate 'What is the job?' %}</label>
+        <input class="field__control" id="job-name" name="title" type="text" maxlength="160" required placeholder="{% translate 'Fry the chapatis for the lunch rush' %}" />
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="job-description">{% translate 'Notes' %} <span class="field__optional">{% translate 'optional' %}</span></label>
+        <textarea class="field__control" id="job-description" name="description" rows="2" placeholder="{% translate 'Anything the team should know' %}"></textarea>
+      </div>
+
+      <div class="sheet-form__section">
+        <div class="job-lines__head">
+          <p class="field__label">{% translate 'Takes in' %}</p>
+          <button class="btn btn--ghost btn--small" type="button" data-add-input>
+            {% translate 'Add item' %}
+          </button>
+        </div>
+        <div class="job-lines" data-job-inputs></div>
+        <p class="field__hint">{% translate 'Example: 200 g sugar, 1 kg flour and 4 eggs come off the shelf.' %}</p>
+      </div>
+
+      <div class="sheet-form__section">
+        <div class="job-lines__head">
+          <p class="field__label">{% translate 'Makes' %}</p>
+          <button class="btn btn--ghost btn--small" type="button" data-add-output>
+            {% translate 'Add item' %}
+          </button>
+        </div>
+        <div class="job-lines" data-job-outputs></div>
+        <p class="field__hint">{% translate 'Example: 20 pieces of chapati go onto the shelf.' %}</p>
+      </div>
+
+      <p class="form-error" data-job-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-job-submit>
+          <span data-job-label>{% translate 'Create the job' %}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<template data-job-line-template>
+  <div class="job-line" data-job-line>
+    <select class="field__control" name="product" aria-label="{% translate 'Item' %}">
+      <option value="">{% translate 'Choose an item…' %}</option>
+      {% for product in products %}
+      <option
+        value="{{ product.id }}"
+        {% if product.image %}data-image="{{ product.image.url }}"{% else %}data-image="https://res.cloudinary.com/wkuo7imf/image/upload/v1793094958/smst_stocks.png"{% endif %}
+        data-eyebrow="{{ product.sku|default:'' }}"
+        data-meta="{% blocktranslate with quantity=product.quantity|floatformat:'2g' unit=product.unit %}{{ quantity }} {{ unit }} in hand{% endblocktranslate %}"
+      >{{ product.name }}</option>
+      {% endfor %}
+    </select>
+    <input class="field__control" name="quantity" type="number" min="0.01" step="0.01" inputmode="decimal" aria-label="{% translate 'How many' %}" placeholder="{% translate 'How many' %}" />
+    <button class="job-line__remove" type="button" data-remove-line aria-label="{% translate 'Remove this item' %}">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-minus"></use></svg>
+    </button>
+  </div>
+</template>

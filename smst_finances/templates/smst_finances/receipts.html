@@ -1,0 +1,62 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Receipts' %}{% endblock %}
+{% block finances_crumb %}{% translate 'Receipts' %}{% endblock %}
+
+{% block finances_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Receipts' %}</p>
+    <h1 class="page-head__title">{% translate 'The slips from the counter' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Every sale or purchase processed in the cart leaves a receipt here. Print it again or keep the PDF.' %}
+    </p>
+  </div>
+</header>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'History' %}</p>
+      <h2 class="card__title">{% translate 'Receipts' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate count counter=receipts|length %}{{ counter }} shown{% plural %}{{ counter }} shown{% endblocktranslate %}</p>
+  </header>
+
+  {% if receipts %}
+  <ul class="report-list">
+    {% for item in receipts %}
+    <li class="report-list__row">
+      <span class="report-list__name">
+        {{ item.details.product|default:item.reference }}
+        <span class="tag {% if item.details.direction == 'Selling' %}tag--ok{% else %}tag--low{% endif %}">{{ item.details.direction }}</span>
+      </span>
+      <span class="report-list__meta" >
+        {{ item.reference }} · <span data-time="{{item.created_at|date:'c'}}">{{ item.created_at|date:"d M Y, H:i" }}</span> 
+        · {{ item.details.currency }} {{ item.details.total }}
+      </span>
+      <span class="report-list__state">
+        <a class="btn btn--ghost btn--small" href="{% url 'smst_finances:receipt_print' item.id %}" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-print"></use></svg>
+          {% translate 'Print' %}
+        </a>
+        <a class="btn btn--ghost btn--small" href="{% url 'smst_finances:receipt_download' item.id %}">
+          <svg aria-hidden="true"><use href="#i-download"></use></svg>
+          {% translate 'Download' %}
+        </a>
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <div class="card__body">
+    <div class="empty">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-print"></use></svg>
+      <p class="empty__title">{% translate 'No receipts yet' %}</p>
+      <p class="empty__text">{% translate 'Process a line in the SmSt Stocks cart and its receipt will wait here.' %}</p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

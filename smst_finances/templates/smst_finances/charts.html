@@ -1,0 +1,196 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Graph builder' %}{% endblock %}
+{% block finances_crumb %}{% translate 'Graph builder' %}{% endblock %}
+
+{% block finances_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Graphs' %}</p>
+    <h1 class="page-head__title">{% translate 'Choose the X, then choose the Y' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Time, product, category, option, account or entry kind on one axis; the amount, profit, loss, stock value or a figure you type on the other. The two sides are picked separately, so any pair you need is allowed.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if 'finances.view.statements' in permissions %}
+    <a class="btn btn--ghost" href="{% url 'smst_finances:statements' %}">
+      <svg aria-hidden="true"><use href="#i-scale"></use></svg>
+      {% translate 'The statements' %}
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+{% if can_generate_graphs %}
+<div class="split split--wide-left" data-reveal>
+  <section class="card">
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'The builder' %}</p>
+        <h2 class="card__title">{% translate 'A graph, exactly as you want it' %}</h2>
+      </div>
+    </header>
+
+    <form class="form card__body" data-chart-form>
+      <div class="field">
+        <label class="field__label" for="chart-title">{% translate 'Title' %}</label>
+        <input class="field__control" id="chart-title" name="title" type="text" maxlength="160" required placeholder="{% translate 'Stock value through the month' %}" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="chart-type">{% translate 'How to draw it' %}</label>
+          <select class="field__control" id="chart-type" name="chart_type">
+            <option value="bar">{% translate 'Bars' %}</option>
+            <option value="line">{% translate 'Line' %}</option>
+            <option value="area">{% translate 'Area' %}</option>
+            <option value="donut">{% translate 'Donut' %}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="chart-description">{% translate 'Description' %}</label>
+          <input class="field__control" id="chart-description" name="description" type="text" maxlength="240" placeholder="{% translate 'Optional' %}" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="chart-x-source">{% translate 'Along the bottom (X)' %}</label>
+          <select class="field__control" id="chart-x-source" name="x_source" data-x-source>
+            {% for value, label in x_sources %}
+            <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="chart-y-source">{% translate 'Up the side (Y)' %}</label>
+          <select class="field__control" id="chart-y-source" name="y_source" data-y-source>
+            {% for value, label in y_sources %}
+            <option value="{{ value }}"{% if value == 'income' %} selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="chart-from">{% translate 'From' %}</label>
+          <input class="field__control" id="chart-from" name="date_from" type="date" value="{{ date_from|date:'Y-m-d' }}" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="chart-to">{% translate 'To' %}</label>
+          <input class="field__control" id="chart-to" name="date_to" type="date" value="{{ date_to|date:'Y-m-d' }}" />
+        </div>
+      </div>
+
+      <details class="chart-typed" data-typed-values>
+        <summary class="card__eyebrow">{% translate 'Or type the X and Y values yourself' %}</summary>
+        <p class="field__hint">
+          {% translate 'Fill both boxes to plot exactly what you type. One label or number per line; the two lists must be the same length.' %}
+        </p>
+        <div class="grid-2">
+          <div class="field">
+            <label class="field__label" for="chart-x-values">{% translate 'X values' %}</label>
+            <textarea class="field__control" id="chart-x-values" name="x_values" rows="6" placeholder="{% translate 'January&#10;February&#10;March' %}"></textarea>
+          </div>
+          <div class="field">
+            <label class="field__label" for="chart-y-values">{% translate 'Y values' %}</label>
+            <textarea class="field__control" id="chart-y-values" name="y_values" rows="6" placeholder="12000&#10;18500&#10;21400"></textarea>
+          </div>
+        </div>
+      </details>
+
+      <p class="form-error" data-chart-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary" type="submit" data-chart-save>
+          <span data-chart-label>{% translate 'Save the graph' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-chart-preview>
+          <svg aria-hidden="true"><use href="#i-chart"></use></svg>
+          {% translate 'Preview' %}
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Preview' %}</p>
+        <h2 class="card__title" data-preview-title>{% translate 'The graph so far' %}</h2>
+      </div>
+    </header>
+    <div class="chart" data-chart-preview>
+      <div class="chart__top">
+        <div class="chart__legend" data-chart-legend></div>
+      </div>
+      <div class="chart__canvas" data-chart-canvas></div>
+      <p class="chart__empty" data-chart-empty>{% translate 'Choose the axes, then press Preview.' %}</p>
+    </div>
+    <div class="card__foot">{% translate 'Saved graphs stay on this page and follow the shop.' %}</div>
+  </section>
+</div>
+{% else %}
+<section class="card" data-reveal>
+  <div class="card__body">
+    <p class="card__note">{% translate 'Your rank can open saved graphs, but not generate new ones.' %}</p>
+  </div>
+</section>
+{% endif %}
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'Saved' %}</p>
+      <h2 class="card__title">{% translate 'The graphs on the wall' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate with count=charts|length %}{{ count }} saved{% endblocktranslate %}</p>
+  </header>
+
+  {% if charts %}
+  <div class="chart-grid" data-saved-charts>
+    {% for chart in charts %}
+    <article class="chart-card" data-saved-chart="{{ chart.id }}">
+      <header class="chart-card__head">
+        <div>
+          <p class="card__eyebrow">{{ chart.get_chart_type_display }} · {% blocktranslate with x=chart.get_x_source_display y=chart.get_y_source_display %}{{ x }} by {{ y }}{% endblocktranslate %}</p>
+          <h3 class="chart-card__title">{{ chart.title }}</h3>
+          {% if chart.description %}<p class="chart-card__text">{{ chart.description }}</p>{% endif %}
+        </div>
+        {% if can_manage %}
+        <button class="icon-button" type="button" data-delete-chart="{{ chart.id }}" aria-label="{% blocktranslate with title=chart.title %}Delete {{ title }}{% endblocktranslate %}">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+        </button>
+        {% endif %}
+      </header>
+      <div class="chart">
+        <div class="chart__top">
+          <div class="chart__legend" data-chart-legend></div>
+        </div>
+        <div class="chart__canvas" data-chart-canvas>
+          <p class="chart__empty">{% translate 'Drawing…' %}</p>
+        </div>
+        <p class="chart__empty" data-chart-empty hidden>{% translate 'No data for this graph yet.' %}</p>
+      </div>
+      <p class="chart-card__foot">
+        {% translate 'Saved' %} {{ chart.created_at|date:"d M Y" }}{% if chart.created_by_name %} {% translate 'by' %} {{ chart.created_by_name }}{% endif %}
+      </p>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-chart"></use></svg>
+      <p class="empty__title">{% translate 'No graphs yet' %}</p>
+      <p class="empty__text">
+        {% translate 'Build one above. The example the shop asked for — stock amount on Y and time on X — is two choices away.' %}
+      </p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

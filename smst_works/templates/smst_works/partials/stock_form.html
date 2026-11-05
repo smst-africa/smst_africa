@@ -1,0 +1,66 @@
+{% load i18n %}
+<div class="sheet" data-stock-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="stock-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'The shop floor' %}</p>
+        <h2 class="sheet__title" id="stock-title">{% translate 'Stock action' %}</h2>
+        <p class="sheet__note">
+          {% translate 'A delivery or opening adds stock. A sale, loss, return or adjustment moves it. Your rank decides which you may do.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-stock-form>
+      <div class="field">
+        <label class="field__label" for="stock-product">{% translate 'Item' %}</label>
+        <select class="field__control" id="stock-product" name="product" required>
+          <option value="">{% translate 'Choose an item…' %}</option>
+          {% for product in products %}
+          <option
+            value="{{ product.id }}"
+            {% if product.image %}data-image="{{ product.image.url }}"{% else %}data-image="https://res.cloudinary.com/wkuo7imf/image/upload/v1793094958/smst_stocks.png"{% endif %}
+
+            data-eyebrow="{{ product.sku|default:'' }}"
+            data-meta="{% blocktranslate with quantity=product.quantity|floatformat:'2g' unit=product.unit %}{{ quantity }} {{ unit }} in hand{% endblocktranslate %}"
+          >{{ product.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="stock-kind">{% translate 'What happened' %}</label>
+          <select class="field__control" id="stock-kind" name="kind">
+            {% for key, label in stock_kinds %}
+            <option value="{{ key }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="stock-quantity">{% translate 'How many' %}</label>
+          <input class="field__control" id="stock-quantity" name="quantity" type="number" min="0.01" step="0.01" inputmode="decimal" required placeholder="12" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="stock-note">{% translate 'Note' %} <span class="field__optional">{% translate 'optional' %}</span></label>
+        <input class="field__control" id="stock-note" name="note" type="text" maxlength="240" placeholder="{% translate 'Who or what it was for' %}" />
+      </div>
+
+      <p class="field__hint">{% translate 'A loss is always written to the books as stock leaving.' %}</p>
+      <p class="form-error" data-stock-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-stock-submit>
+          <span data-stock-label>{% translate 'Record the movement' %}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,204 @@
+{% extends "smst_app/base.html" %}
+{% load static %}
+
+{% block headerLogo %}
+<span class="lp-brand__mark" aria-hidden="true">{{ app.initial }}</span>
+{% endblock %}
+
+{% block footerLogo %}
+<span class="lp-brand__mark" aria-hidden="true">{{ app.initial }}</span>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'smst_support/css/support.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="sp-app-hero">
+  <div class="lp-shell sp-app-hero__grid">
+    <div class="sp-app-hero__copy">
+      <p class="lp-kicker">{{ app.name }} support</p>
+      <h1 class="lp-display sp-app-hero__title">{{ support.headline }}</h1>
+      <p class="lp-lede">{{ support.intro }}</p>
+      <div class="lp-actions">
+        <a class="lp-btn lp-btn--solid lp-btn--large" href="{{ app.open_url }}">
+          Open {{ app.short }}
+          <svg class="lp-icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+        <a class="lp-btn lp-btn--ghost lp-btn--large" href="mailto:{{ contact_email }}">Email support</a>
+      </div>
+    </div>
+
+    <div class="sp-app-hero__panel lp-reveal" aria-label="Support summary for {{ app.name }}">
+      <div class="sp-panel__head">
+        <span class="sp-app__mark">{{ app.initial }}</span>
+        <span class="sp-panel__name">
+          <strong>{{ app.name }}</strong>
+          <small>{{ app.kicker }}</small>
+        </span>
+      </div>
+      <dl class="sp-panel__stats">
+        <div>
+          <dt>Manuals</dt>
+          <dd class="lp-num">{{ support.manual_count }}</dd>
+        </div>
+        <div>
+          <dt>Tips</dt>
+          <dd class="lp-num">{{ support.tip_count }}</dd>
+        </div>
+        <div>
+          <dt>Release notes</dt>
+          <dd class="lp-num">{{ support.update_count }}</dd>
+        </div>
+      </dl>
+      <p class="sp-panel__note">
+        Latest version <strong class="lp-num">{{ support.version }}</strong>, updated {{ support.updated }}.
+      </p>
+      <a class="lp-text-link" href="{{ app.open_url }}">
+        Open the app
+        <svg class="lp-icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<nav class="sp-bar" aria-label="On this page">
+  <div class="lp-shell sp-bar__inner">
+    <span class="sp-bar__label">On this page</span>
+    <a href="#manuals">Manuals</a>
+    <a href="#tips">Tips and tricks</a>
+    <a href="#updates">Version updates</a>
+    <a href="#support-help">Get help</a>
+  </div>
+</nav>
+
+<div class="sp-switch">
+  <div class="lp-shell sp-switch__inner">
+    <span class="sp-switch__label">Support for</span>
+    {% for item in support_apps %}
+    <a
+      class="sp-switch__chip{% if item.slug == app.slug %} is-current{% endif %}"
+      href="{{ item.url }}"
+      style="--app: {{ item.theme }}"
+      {% if item.slug == app.slug %}aria-current="page"{% endif %}
+    >{{ item.short }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+<section class="lp-section sp-manuals" id="manuals">
+  <div class="lp-shell">
+    <div class="lp-section__head">
+      <p class="lp-kicker">Manuals</p>
+      <h2 class="lp-title">Step by step, from a clean shop.</h2>
+      <p class="lp-lede">{{ support.manuals_intro }}</p>
+    </div>
+
+    <div class="sp-manuals__grid">
+      <ol class="sp-index" aria-label="The {{ app.short }} manuals">
+        {% for manual in support.manuals %}
+        <li>
+          <a href="#{{ manual.slug }}">
+            <span class="sp-index__num lp-num">{{ manual.number }}</span>
+            <span class="sp-index__title">{{ manual.title }}</span>
+          </a>
+          <small>{{ manual.role }} &middot; {{ manual.minutes }} min</small>
+        </li>
+        {% endfor %}
+      </ol>
+
+      <div class="sp-manual-list">
+        {% for manual in support.manuals %}
+        <article class="sp-manual" id="{{ manual.slug }}">
+          <header>
+            <span class="sp-manual__num lp-num">{{ manual.number }}</span>
+            <div>
+              <h3>{{ manual.title }}</h3>
+              <p>{{ manual.summary }}</p>
+            </div>
+            <span class="lp-tag lp-tag--plain">{{ manual.role }}</span>
+          </header>
+          <ol class="sp-steps">
+            {% for step in manual.steps %}
+            <li>
+              <span class="sp-step__num lp-num">{{ forloop.counter }}</span>
+              <p>{{ step }}</p>
+            </li>
+            {% endfor %}
+          </ol>
+          <p class="sp-manual__foot">{{ manual.minutes }} minute read</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lp-section lp-section--tight sp-tips" id="tips">
+  <div class="lp-shell">
+    <div class="lp-section__head">
+      <p class="lp-kicker">Tips and tricks</p>
+      <h2 class="lp-title">Notes from the shops using it.</h2>
+      <p class="lp-lede">{{ support.tips_intro }}</p>
+    </div>
+
+    <div class="sp-tipgrid">
+      {% for tip in support.tips %}
+      <article class="sp-tip">
+        <span class="lp-tag lp-tag--plain">{{ tip.tag }}</span>
+        <h3>{{ tip.title }}</h3>
+        <p>{{ tip.body }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="lp-section sp-updates" id="updates">
+  <div class="lp-shell">
+    <div class="lp-section__head">
+      <p class="lp-kicker">Version updates</p>
+      <h2 class="lp-title">What changed, newest first.</h2>
+      <p class="lp-lede">{{ support.updates_intro }}</p>
+    </div>
+
+    <ol class="sp-timeline">
+      {% for update in support.updates %}
+      <li class="sp-update">
+        <div class="sp-update__head">
+          <span class="sp-update__version lp-num">Version {{ update.version }}</span>
+          <span class="lp-tag lp-tag--plain">{{ update.tag }}</span>
+          <span class="sp-update__date">{{ update.date }}</span>
+        </div>
+        <h3>{{ update.title }}</h3>
+        <p class="sp-update__summary">{{ update.summary }}</p>
+        <ul class="sp-update__changes">
+          {% for change in update.changes %}
+          <li>{{ change }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="lp-section lp-section--tight sp-help" id="support-help">
+  <div class="lp-shell">
+    <div class="sp-help__inner">
+      <div>
+        <p class="lp-kicker">Still stuck</p>
+        <h2 class="lp-title lp-title--small">A person reads every message.</h2>
+        <p class="lp-lede">
+          Tell us the page you were on and what you expected to see. If the
+          manual is wrong, we will fix the manual.
+        </p>
+      </div>
+      <div class="lp-actions">
+        <a class="lp-btn lp-btn--solid lp-btn--large" href="mailto:{{ contact_email }}">Email support</a>
+        <a class="lp-btn lp-btn--ghost lp-btn--large" href="{{ app.open_url }}">Open {{ app.short }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

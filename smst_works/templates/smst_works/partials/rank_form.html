@@ -1,0 +1,60 @@
+{% load i18n %}
+<div class="sheet" data-rank-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="rank-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'Ranks' %}</p>
+        <h2 class="sheet__title" id="rank-title" data-rank-title>{% translate 'New rank' %}</h2>
+        <p class="sheet__note">
+          {% translate 'Tick the views this rank may open, the actions it may take, and the entries it may see. An accountant often keeps stock out of their hands; a cleaner often cannot add stock or read the whole ledger.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-rank-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="field">
+        <label class="field__label" for="rank-name">{% translate 'Name' %}</label>
+        <input class="field__control" id="rank-name" name="name" type="text" maxlength="80" required placeholder="{% translate 'Accountant' %}" />
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="rank-description">{% translate 'What the rank is for' %} <span class="field__optional">{% translate 'optional' %}</span></label>
+        <input class="field__control" id="rank-description" name="description" type="text" maxlength="240" placeholder="{% translate 'Keeps the books; does not move stock' %}" />
+      </div>
+
+      <div class="field">
+        <p class="field__label">{% translate 'Permissions' %}</p>
+        {% for group_label, group_permissions in permission_groups %}
+        <p class="card__eyebrow">{{ group_label }}</p>
+        <div class="permission-grid">
+          {% for key, label in group_permissions %}
+          <label class="permission-option" for="perm-{{ key }}">
+            <input type="checkbox" id="perm-{{ key }}" name="permissions" value="{{ key }}" />
+            <span>
+              <strong>{{ label }}</strong>
+              <small>{{ key }}</small>
+            </span>
+          </label>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <p class="form-error" data-rank-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-rank-submit>
+          <span data-rank-label>{% translate 'Create the rank' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-reset-rank hidden>{% translate 'Start a new rank' %}</button>
+      </div>
+    </form>
+  </div>
+</div>

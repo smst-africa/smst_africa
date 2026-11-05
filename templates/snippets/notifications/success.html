@@ -1,0 +1,28 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{success_title}}</title>
+    <link rel="stylesheet" href="{% static 'smst/smst.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'frontend/frontend.min.css' %}" />
+    
+  </head>
+  <body>
+    {% include 'snippets/theme/shader.html' %} 
+    {% include 'snippets/frontend/header.html' %}
+    <div class="notification-container flex">
+      <div class="notification">
+        <div class="notification-header">
+          <span>{{success_title}}</span>
+        </div>
+        <div class="notification-content">
+          <span>{{success_content}}</span>
+        </div>
+      </div>
+    </div>
+    {% include 'snippets/frontend/footer.html' %}
+  </body>
+</html>

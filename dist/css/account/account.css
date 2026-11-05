@@ -1,0 +1,440 @@
+@property --angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.pageHeader h1 {
+  color: var(--white-color-text);
+  border-radius: 4px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.profileFormContent {
+  flex-direction: column;
+  gap: 0px;
+}
+
+.formContentHeader {
+  font-family: var(--Figtree);
+  opacity: 0.7;
+  margin: var(--spacing);
+}
+
+.formOutput {
+  overflow: hidden;
+  font-family: var(--Figtree);
+  font-weight: var(--font-weight-bold);
+}
+
+.output {
+  padding: var(--spacing);
+}
+
+#formButton {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.profilePage {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  height: 100%;
+}
+
+.profilePageContainer {
+  width: 100%;
+}
+
+#profileNavigatorHolder {
+  background: white;
+}
+
+.navigatorHolder {
+  font-family: var(--Figtree);
+  text-wrap: nowrap;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.navigator {
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: var(--font-weight-bold);
+}
+
+.pageHolder {
+  margin: 12px auto;
+  min-width: min(500px, calc(100vw - 2rem));
+}
+
+.searchIcon {
+  position: absolute;
+  padding: 12px;
+}
+
+.searchInput {
+  width: 100%;
+}
+
+#searchInput {
+  border-radius: 12pc;
+  padding-left: 40px;
+  font-size: var(--small-font-size);
+}
+
+.pageHeader {
+  text-align: center;
+  padding: 24px 12px;
+  padding-top: 0px;
+}
+
+.navigationIconHolder {
+  padding: 4px;
+}
+
+#profileNavigatorHolder {
+  box-shadow: var(--shadow);
+}
+
+#signUpForm {
+  margin: auto;
+  background: var(--secondary-color);
+  padding: var(--spacing);
+  border-radius: 12px;
+  width: min(400px, calc(100vw - 2rem));
+  opacity: 0;
+  overflow-x: hidden;
+}
+
+.social-login-button {
+  text-align: center;
+  margin: var(--spacing);
+  border-radius: 12pc;
+  font-size: var(--base-font-size);
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.social-login-button::before {
+  content: '';
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  transition: all 0.3s linear;
+  pointer-events: none;
+  animation: spins 2s linear infinite;
+  background: conic-gradient(
+    from var(--angle),
+    #e34133 25%,
+    #f3b605 25% 50%,
+    #32a350 50% 75%,
+    #4081ec 75%
+  );
+  position: absolute;
+  z-index: -1;
+}
+
+@keyframes spins {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.social-login-button-holder {
+  background: var(--white-background);
+  margin: 3px;
+  border-radius: inherit;
+}
+
+a {
+  cursor: pointer;
+}
+
+.social-login-button a {
+  padding: 12px;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  color: var(--black-color-text);
+  font-family: var(--Figtree);
+}
+
+.footerHolder {
+  margin: var(--spacing);
+  font-family: var(--Figtree);
+  font-size: var(--small-font-size);
+  opacity: 0.8;
+  text-align: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footerHolder a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.otpInputHolder {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 4ch);
+  gap: 1rem;
+  justify-content: center;
+}
+
+.otpInputHolder input {
+  font-family: var(--Inconsolata);
+  text-align: center;
+}
+
+#mainContent {
+  top: var(--header-height);
+  height: calc(var(--vh) - var(--header-height));
+}
+
+.mainContent {
+  margin: 24px 0px;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.content {
+  background: var(--white-background);
+  padding: var(--spacing);
+  border-radius: 8px;
+  font-family: var(--Figtree);
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--black-color-text);
+}
+
+.contentText,
+.notificationText {
+  flex: 1;
+  font-size: var(--base-font-size);
+  font-weight: 600;
+  user-select: none;
+}
+
+.dropDownIcon {
+  background: var(--secondary-color);
+  border-radius: 4px;
+  margin: 4px;
+}
+
+.contentIcon {
+  padding: 4px;
+}
+
+.notificationSetting {
+  text-decoration: none;
+  color: var(--black-color-text);
+}
+
+.notificationSetting,
+.securitySetting {
+  padding: 12px;
+  gap: 1rem;
+  font-family: var(--Figtree);
+  background: var(--white-background);
+  border-radius: 12px;
+  user-select: none;
+}
+
+.personalInfoBox {
+  padding: var(--spacing);
+  background: var(--white-background);
+  border-radius: 4px;
+}
+
+.personalInfoTitle {
+  font-family: var(--Figtree);
+  font-weight: 600;
+}
+
+.personalInfoValue {
+  font-family: var(--Figtree);
+  opacity: 0.5;
+}
+
+#nprogress .bar {
+  height: 4px !important;
+  background: var(--primary-color);
+}
+
+.peg {
+  box-shadow: none;
+}
+
+.personalInfoHolder,
+.contentSetting {
+  border-radius: 12px;
+  overflow: hidden;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.editingIconHolder {
+  margin-left: auto;
+}
+
+.editingContainer {
+  background: var(--white-background);
+  padding: var(--spacing);
+  border-radius: 12px;
+}
+
+.buttonHolder button {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.logout_content_button {
+  background: var(--negative-color-background);
+  color: var(--white-color-text);
+  width: 50%;
+  margin: auto;
+  margin-top: 12px;
+}
+
+.logout_content_button .contentText {
+  flex: unset;
+}
+
+.editingContainer {
+  width: clamp(300px, 75vw, 500px);
+}
+
+.headerLogoContainer {
+  text-wrap-mode: nowrap;
+}
+
+#headerLogo {
+  gap: 12px;
+  margin: 12px;
+}
+
+.proHolder {
+  background: var(--white-background);
+  border-radius: 12px;
+  padding: var(--spacing);
+}
+
+.proLogoHolder {
+  margin: 24px 0px;
+}
+
+.proLogo {
+  width: 100px;
+}
+
+.proParagraph {
+  font-family: var(--Figtree);
+  margin: 12px 0px;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#join_smst_pro_button {
+  background: #a46314;
+  box-shadow: var(--small-shadow);
+}
+
+#cancel_join_smst_pro {
+  background: var(--secondary-color);
+  color: var(--black-color-text);
+  padding: 4px;
+  width: 50%;
+  margin: var(--spacing) auto;
+}
+
+.profileInformationCenter {
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: var(--Figtree);
+}
+
+.profileInformation {
+  padding: var(--spacing);
+  background: var(--white-background);
+  border-radius: 4px;
+}
+
+.profileActionButton {
+  padding: var(--spacing);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  background: var(--negative-color-background);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.profileInformationHolder {
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media (max-width: 768px) {
+  .profilePage {
+    grid-template-columns: 1fr;
+  }
+
+  #profileNavigatorHolder {
+    position: absolute;
+    height: 100%;
+    z-index: 1;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .pageHolder {
+    margin: 0px auto;
+    width: calc(100vw - 2rem);
+  }
+
+  .pageHeader {
+    padding: 12px 8px;
+  }
+
+  #signUpForm {
+    margin-top: 20vh;
+  }
+
+  .contentText {
+    font-size: var(--small-font-size);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .content:hover {
+    box-shadow: var(--small-shadow);
+  }
+
+  .content:active {
+    box-shadow: none;
+  }
+}

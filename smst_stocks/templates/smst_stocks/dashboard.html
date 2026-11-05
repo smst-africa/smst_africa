@@ -1,0 +1,296 @@
+{% extends 'smst_stocks/base.html' %}
+{% load tz i18n%}
+{% block stocks_title %}{% translate 'Dashboard' %}{% endblock %}
+{% block stocks_crumb %}{{ shop.name }}{% endblock %}
+
+{% block stocks_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Overview' %}</p>
+    <h1 class="page-head__title">{% translate 'Where the shop stands today' %}</h1>
+    <p class="page-head__lede">
+      {% if summary.products %}
+        {% blocktranslate with products=summary.products %} {{products}} items on the books{% endblocktranslate %}, {% blocktranslate with product=summary.low_stock_count %} {{product}} of them running low. Every figure here moves the moment you record something{% endblocktranslate %}.
+      {% else %}
+        {% translate 'Nothing on the books yet. Add the first item and the numbers will fill in.' %}
+      {% endif %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_stocks_move %}
+    <button class="btn btn--primary" type="button" data-open-movement>
+      <svg aria-hidden="true"><use href="#i-reorder"></use></svg>
+      {% translate 'Record a movement' %}
+    </button>
+    {% endif %}
+    {% if can_stocks_add %}
+    <a class="btn btn--ghost" href="{% url 'smst_stocks:product_create' %}?shop={{ shop.id }}">
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Add an item' %}
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+<section class="stats" aria-label="{% translate 'Shop totals' %}" data-reveal>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-wallet"></use></svg>{% translate 'Shelf value' %}</p>
+    <p class="stat__value" data-stat="stock_value">{{ summary.stock_value_label }}</p>
+    <p class="stat__note">{% translate 'what the shelf would bring in' %}</p>
+  </article>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-items"></use></svg>{% translate 'Cost of the stock' %}</p>
+    <p class="stat__value" data-stat="buying_value">{{ summary.buying_value_label }}</p>
+    <p class="stat__note">{% translate 'what you paid for it' %}</p>
+  </article>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-box-open"></use></svg>{% translate 'Units in hand' %}</p>
+    <p class="stat__value" data-stat="units">{{ summary.units_label }}</p>
+    <p class="stat__note">{% blocktranslate with products=summary.products %}across {{ products }} items{% endblocktranslate %}</p> 
+  </article>
+  <article class="stat {% if summary.low_stock_count %}stat--warn{% endif %}">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-alert"></use></svg>{% translate 'Needs ordering' %}</p>
+    <p class="stat__value" data-stat="low_stock_count">{{ summary.low_stock_count }}</p>
+    <p class="stat__note">
+      {% if summary.out_of_stock %}{{ summary.out_of_stock }} {% translate 'already out of stock' %}{% else %}{% translate 'none out of stock' %}{% endif %}
+    </p>
+  </article>
+</section>
+
+<div class="dash-grid">
+  <section class="card dash-flow" data-chart="flow" data-shop="{{ shop.id }}" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Movement flow' %}</p>
+        <h2 class="card__title">{% translate 'What came in and went out' %}</h2>
+      </div>
+      <div class="segmented" data-flow-range role="group" aria-label="{% translate 'Chart range' %}">
+        <button class="segmented__btn" type="button" data-range="7">{% translate '7d' %}</button>
+        <button class="segmented__btn" type="button" data-range="14">{% translate '14d' %}</button>
+        <button class="segmented__btn is-active" type="button" data-range="30">{% translate '30d' %}</button>
+        <button class="segmented__btn" type="button" data-range="90">{% translate '90d' %}</button>
+      </div>
+    </header>
+    <div class="chart">
+      <canvas id="movementsChart"></canvas>
+    </div>
+    <div class="card__foot">{% translate 'Sales and losses leave the shelf. Deliveries, returns and opening stock arrive.' %}</div>
+  </section>
+
+  <section class="card dash-health" data-chart="health" data-source="products" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Stock health' %}</p>
+        <h2 class="card__title">{% translate 'How the shelf is holding up' %}</h2>
+      </div>
+      {% if 'stocks.view.low_stock' in permissions %}
+      <a class="card__link" href="{% url 'smst_stocks:low_stock' %}">{% translate 'Restock list' %}</a>
+      {% endif %}
+    </header>
+    <div class="chart">
+      <div class="donut" data-chart-canvas></div>
+      <p class="chart__empty" data-chart-empty hidden>{% translate 'Add an item to see the health of the shelf.' %}</p>
+    </div>
+    <div class="card__foot">
+      {% blocktranslate count published=summary.published %}
+          {{ published }} item published to a shared page.
+      {% plural %}
+          {{ published }} items published to a shared page.
+      {% endblocktranslate %}
+    </div>
+  </section>
+</div>
+
+<div class="dash-grid dash-grid--lower">
+  <section class="card dash-value" data-chart="value" data-source="products" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Composition' %}</p>
+        <h2 class="card__title">{% translate 'Where the value sits' %}</h2>
+      </div>
+      <div class="segmented" data-value-metric role="group" aria-label="{% translate 'Chart measure' %}">
+        <button class="segmented__btn is-active" type="button" data-metric="value">{% translate 'Value' %}</button>
+        <button class="segmented__btn" type="button" data-metric="units">{% translate 'Units' %}</button>
+        <button class="segmented__btn" type="button" data-metric="margin">{% translate 'Margin' %}</button>
+      </div>
+    </header>
+    <div class="chart">
+      <div class="bars" data-chart-canvas></div>
+      <p class="chart__empty" data-chart-empty hidden>{% translate 'No items on the shelf yet.' %}</p>
+    </div>
+    <div class="card__foot">{% translate 'The seven largest items by the measure you choose.' %}</div>
+  </section>
+
+  <section class="card dash-low" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Attention' %}</p>
+        <h2 class="card__title">{% translate 'Running low' %}</h2>
+      </div>
+      {% if 'stocks.view.low_stock' in permissions %}
+      <a class="card__link" href="{% url 'smst_stocks:low_stock' %}">{% translate 'See everything to order' %}</a>
+      {% endif %}
+    </header>
+
+    {% if summary.low_stock %}
+    <div class="table-scroll">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">{% translate 'Item' %}</th>
+            <th scope="col" class="is-numeric">{% translate 'In hand' %}</th>
+            <th scope="col" class="is-numeric">{% translate 'Reorder at' %}</th>
+            <th scope="col">{% translate 'State' %}</th>
+            <th scope="col"><span class="sr-only">{% translate 'Actions' %}</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in summary.low_stock %}
+          <tr>
+            <th scope="row">
+              <a class="table__item" href="{% url 'smst_stocks:product_detail' item.id %}">
+                {% if item.image %}
+                <img class="table__thumb" src="{{ item.image.url }}" alt="{% blocktranslate with name=item.name %}Photo of {{ name }}{% endblocktranslate %}" width="34" height="34" loading="lazy" />
+                {% endif %}
+                <span class="table__name">{{ item.name }}</span>
+              </a>
+            </th>
+            <td class="is-numeric">{{ item.quantity|floatformat:0 }}</td>
+            <td class="is-numeric">{{ item.reorder_level|floatformat:0 }}</td>
+            <td>
+              {% if item.quantity <= 0 %}
+              <span class="tag tag--out">{% translate 'Out' %}</span>
+              {% else %}
+              <span class="tag tag--low">{% translate 'Low' %}</span>
+              {% endif %}
+            </td>
+            <td class="is-actions">
+              <div class="row-actions">
+                <button class="link-button" type="button" data-quick-movement="delivery" data-product="{{ item.id }}" data-name="{{ item.name }}">
+                  {% translate 'Add a delivery' %}
+                </button>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="card__body">
+      <div class="empty">
+        <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-box-open"></use></svg>
+        <p class="empty__title">{% translate 'Nothing is running low' %}</p>
+        <p class="empty__text">
+          {% translate 'Set a restock level on an item and it will be listed here before it runs out.' %}
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+</div>
+
+<div class="dash-grid">
+  <section class="card dash-ledger" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'The ledger' %}</p>
+        <h2 class="card__title">{% translate 'The latest movements' %}</h2>
+      </div>
+      {% if 'stocks.view.movements' in permissions %}
+      <a class="card__link" href="{% url 'smst_stocks:movements' %}">{% translate 'Open the ledger' %}</a>
+      {% endif %}
+    </header>
+
+    {% if ledger %}
+    <ul class="ledger-list">
+      {% for movement in ledger %}
+      <li class="ledger-list__row">
+        <span class="ledger-list__time" data-time="{{movement.created_at|date:'c'}}">{{ movement.created_at|localtime|date:"d M, H:i" }}</span>
+        <a class="ledger-list__name" href="{% url 'smst_stocks:product_detail' movement.product.id %}">{{ movement.product.name }}</a>
+        <span class="ledger-list__kind">{{ movement.get_kind_display }}</span>
+        <span class="ledger-list__change {% if movement.quantity < 0 %}is-down{% else %}is-up{% endif %}">
+          {% if movement.quantity > 0 %}+{% endif %}{{ movement.quantity|floatformat:0 }}
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="card__body">
+      <div class="empty">
+        <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ledger"></use></svg>
+        <p class="empty__title">{% translate 'The ledger is empty' %}</p>
+        <p class="empty__text">
+          {% translate 'Every sale and every delivery lands here as it happens, with the name of the person who recorded it.' %}
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <section class="card dash-orders" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Requests' %}</p>
+        <h2 class="card__title">{% translate 'Coming in from customers' %}</h2>
+      </div>
+      {% if 'stocks.view.orders' in permissions %}
+      <a class="card__link" href="{% url 'smst_stocks:orders' %}">{% translate 'All orders' %}</a>
+      {% endif %}
+    </header>
+
+    {% if orders %}
+    <ul class="ledger-list">
+      {% for order in orders %}
+      <li class="ledger-list__row">
+        <span class="ledger-list__time">{{ order.created_at|date:"d M" }}</span>
+        <a class="ledger-list__name" href="{% url 'smst_stocks:product_detail' order.product.id %}">{{ order.product.name }}</a>
+        <span class="ledger-list__kind">{{ order.customer_name }} · {{ order.quantity|floatformat:0 }}</span>
+        <span class="tag tag--{{ order.status }}">{{ order.get_status_display }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="card__body">
+      <div class="empty">
+        <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-orders"></use></svg>
+        <p class="empty__title">{% translate 'No orders yet' %}</p>
+        <p class="empty__text">
+          {% translate 'Publish an item and share its link. Requests from customers will land here.' %}
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+</div>
+
+<div hidden data-products-source>
+  {% for item in all_products %}
+  <span
+    data-id="{{ item.id }}"
+    data-name="{{ item.name }}"
+    data-quantity="{{ item.quantity }}"
+    data-buying="{{ item.buying_price }}"
+    data-selling="{{ item.selling_price }}"
+    data-reorder="{{ item.reorder_level }}"
+    data-category="{{ item.category }}"
+    data-state="{{ item.stock_state }}"
+    data-margin="{{ item.margin }}"
+    data-url="{% url 'smst_stocks:product_detail' item.id %}"
+  ></span>
+  {% endfor %}
+</div>
+
+<div hidden data-ledger-source>
+  {% for movement in ledger %}
+  <span
+    data-kind="{{ movement.kind }}"
+    data-quantity="{{ movement.quantity }}"
+    data-at="{{ movement.created_at|date:'c' }}"
+    data-product="{{ movement.product.name }}"
+  ></span>
+  {% endfor %}
+</div>
+
+{% if can_stocks_move or can_stocks_add %}{% include 'smst_stocks/partials/movement_form.html' %}{% endif %}
+{% endblock %}

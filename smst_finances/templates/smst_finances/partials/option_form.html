@@ -1,0 +1,138 @@
+{% load i18n %}
+<div class="sheet" data-option-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="option-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'Finance options' %}</p>
+        <h2 class="sheet__title" id="option-title" data-option-title>{% translate 'Add a finance option' %}</h2>
+        <p class="sheet__note">
+          {% translate 'A tax, a discount, a fee or an expense. Fixed amounts stay the same; a percentage follows the sale or bill it is applied to.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-option-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="field">
+        <label class="field__label" for="option-name">{% translate 'Name' %}</label>
+        <input class="field__control" id="option-name" name="name" type="text" maxlength="120" required placeholder="{% translate 'VAT, delivery, loyalty discount' %}" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="option-kind">{% translate 'Kind' %}</label>
+          <select class="field__control" id="option-kind" name="kind">
+            <option value="tax">{% translate 'Tax' %}</option>
+            <option value="discount">{% translate 'Discount' %}</option>
+            <option value="expense">{% translate 'Expense' %}</option>
+            <option value="income">{% translate 'Income' %}</option>
+            <option value="fee">{% translate 'Fee' %}</option>
+            <option value="refund">{% translate 'Refund' %}</option>
+            <option value="other">{% translate 'Other' %}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="option-applies">{% translate 'Applies to' %}</label>
+          <select class="field__control" id="option-applies" name="applies_to">
+            <option value="all">{% translate 'Everything' %}</option>
+            <option value="sale">{% translate 'Sales' %}</option>
+            <option value="purchase">{% translate 'Purchases' %}</option>
+            <option value="movement">{% translate 'Stock movements' %}</option>
+            <option value="expense">{% translate 'Expenses' %}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="option-rate-type">{% translate 'How it is worked out' %}</label>
+          <select class="field__control" id="option-rate-type" name="rate_type" data-option-rate-type>
+            <option value="fixed">{% translate 'Fixed amount' %}</option>
+            <option value="percentage">{% translate 'Percentage' %}</option>
+            <option value="included">{% translate 'Percentage, already inside the amount' %}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="option-rate">{% translate 'Rate' %}</label>
+          <input class="field__control" id="option-rate" name="rate" type="number" min="0" step="0.0001" inputmode="decimal" value="0" />
+          <p class="field__hint" data-option-rate-hint>{% blocktranslate with currency=shop.currency|default:"Ksh" %}An amount in {{ currency }}.{% endblocktranslate %}</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="option-account">{% translate 'Account it posts to' %}</label>
+        <select class="field__control" id="option-account" name="account">
+          <option value="">{% translate 'Let the app choose' %}</option>
+          {% for account in accounts %}
+          <option
+            value="{{ account.id }}"
+            data-eyebrow="{{ account.code }}"
+            data-meta="{{ account.get_type_display }}"
+            data-badge="{{ shop.currency }} {{ account.balance|floatformat:2 }}"
+          >{{ account.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="option-description">{% translate 'Description' %}</label>
+        <input class="field__control" id="option-description" name="description" type="text" maxlength="240" placeholder="{% translate 'What this rule is for' %}" />
+      </div>
+
+      <div class="grid-2">
+        <label class="field field--switch">
+          <span class="switch">
+            <input type="checkbox" name="is_active" checked />
+            <span class="switch__track"><span class="switch__thumb"></span></span>
+          </span>
+          <span class="switch__title">{% translate 'Active' %}</span>
+          <span class="switch__hint">{% translate 'Inactive options stay on the record but are not offered.' %}</span>
+        </label>
+        <label class="field field--switch">
+          <span class="switch">
+            <input type="checkbox" name="is_default" />
+            <span class="switch__track"><span class="switch__thumb"></span></span>
+          </span>
+          <span class="switch__title">{% translate 'Use by default' %}</span>
+          <span class="switch__hint">{% translate 'Pre-select it when an entry of this kind is recorded.' %}</span>
+        </label>
+      </div>
+
+      <p class="form-error" data-option-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-option-submit>
+          <span data-option-label>{% translate 'Save the option' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-reset-option hidden>{% translate 'Start a new option' %}</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script nonce="{{ csp_nonce }}">
+  (function () {
+    var type = document.getElementById('option-rate-type');
+    var hint = document.querySelector('[data-option-rate-hint]');
+    if (!type || !hint) return;
+    function fix() {
+      if (type.value === 'included') {
+        hint.textContent = 'The percentage is already inside the amount.';
+      }
+    }
+    type.addEventListener('change', function () {
+      setTimeout(fix, 0);
+    });
+    document.querySelectorAll('[data-open-option]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        setTimeout(fix, 0);
+      });
+    });
+  })();
+</script>

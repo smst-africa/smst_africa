@@ -1,0 +1,101 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Reports' %}{% endblock %}
+{% block finances_crumb %}{% translate 'Reports' %}{% endblock %}
+
+{% block finances_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Reports' %}</p>
+    <h1 class="page-head__title">{% translate 'Take the books with you' %}</h1>
+    <p class="page-head__lede">
+      {% translate "Build a report for the bank, the tax office or the shop's own file. A PDF for reading and signing, an Excel workbook for sorting and checking." %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if 'finances.view.statements' in permissions %}
+    <a class="btn btn--ghost" href="{% url 'smst_finances:statements' %}">
+      <svg aria-hidden="true"><use href="#i-scale"></use></svg>
+      {% translate 'Read them on screen' %}
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" method="get" data-report-range data-reveal>
+  <div class="toolbar__search">
+    <label class="sr-only" for="report-from">{% translate 'From' %}</label>
+    <input id="report-from" type="date" name="date_from" value="{{ today|date:'Y-m-01' }}" />
+    <label class="sr-only" for="report-to">{% translate 'To' %}</label>
+    <input id="report-to" type="date" name="date_to" value="{{ today|date:'Y-m-d' }}" />
+    <span class="card__note">{% translate 'The period every report below will use.' %}</span>
+  </div>
+</form>
+
+<div class="report-grid">
+  {% for kind, title, description in report_kinds %}
+  <article class="report-card" data-reveal>
+    <p class="card__eyebrow">{% translate 'Report' %}</p>
+    <h2 class="report-card__title">{{ title }}</h2>
+    <p class="report-card__text">{{ description }}</p>
+    <div class="report-card__actions">
+      <button class="btn btn--ghost btn--small" type="button" data-build-report="{{ kind }}" data-format="pdf">
+        <svg aria-hidden="true"><use href="#i-download"></use></svg>
+        {% translate 'PDF' %}
+      </button>
+      <button class="btn btn--ghost btn--small" type="button" data-build-report="{{ kind }}" data-format="xlsx">
+        <svg aria-hidden="true"><use href="#i-download"></use></svg>
+        {% translate 'Excel' %}
+      </button>
+    </div>
+    <p class="report-card__state" data-report-state="{{ kind }}" hidden></p>
+  </article>
+  {% endfor %}
+</div>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'History' %}</p>
+      <h2 class="card__title">{% translate 'Reports you have built' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate with count=runs|length %}{{ count }} shown{% endblocktranslate %}</p>
+  </header>
+
+  {% if runs %}
+  <ul class="report-list" data-report-list>
+    {% for run in runs %}
+    <li class="report-list__row" data-report-row="{{ run.id }}" data-report-status="{{ run.status }}">
+      <span class="report-list__name">{{ run.get_kind_display }}</span>
+      <span class="report-list__meta">{{ run.get_format_display }} · {{ run.created_at|date:"d M Y, H:i" }}</span>
+      <span class="report-list__state">
+        {% if run.is_ready %}
+          {% if can_download_reports %}
+          <a class="btn btn--ghost btn--small" href="{% url 'smst_finances:report_download' run.id %}">
+            <svg aria-hidden="true"><use href="#i-download"></use></svg>
+            {% translate 'Download' %}
+          </a>
+          {% else %}
+          <span class="tag tag--muted">{% translate 'Ready' %}</span>
+          {% endif %}
+        {% elif run.status == 'failed' %}
+        <span class="tag tag--out">{% translate 'Failed' %}</span>
+        {% else %}
+        <span class="tag tag--muted">{% translate 'Building' %}</span>
+        {% endif %}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <div class="card__body">
+    <div class="empty">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-reports"></use></svg>
+      <p class="empty__title">{% translate 'No reports yet' %}</p>
+      <p class="empty__text">{% translate 'Build one above and it will wait here, ready to download.' %}</p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

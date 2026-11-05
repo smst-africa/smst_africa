@@ -1,0 +1,109 @@
+{% extends 'smst_works/base.html' %}
+{% load works_tags i18n %}
+
+{% block works_title %}{% translate 'Suppliers' %}{% endblock %}
+{% block works_crumb %}{% translate 'Suppliers' %}{% endblock %}
+
+{% block works_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Suppliers' %}</p>
+    <h1 class="page-head__title">{% translate 'Who brings what' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Keep each supplier with the items they bring, so the next restock is a glance instead of a phone-around.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_suppliers %}
+    <button class="btn btn--primary" type="button" data-open-supplier>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Add a supplier' %}
+    </button>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Suppliers' %}">
+    <span class="chip is-active">{% blocktranslate with count=supplier_list|length %}{{ count }} shown{% endblocktranslate %}</span>
+  </div>
+  <div class="toolbar__search">
+    <svg aria-hidden="true"><use href="#i-search"></use></svg>
+    <label class="sr-only" for="supplier-search">{% translate 'Search suppliers' %}</label>
+    <input id="supplier-search" type="search" name="search" value="{{ search }}" placeholder="{% translate 'Search a supplier' %}" />
+    {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+    <button class="btn btn--ghost btn--small" type="submit">{% translate 'Search' %}</button>
+  </div>
+</form>
+
+{% if supplier_list %}
+<section class="card" data-reveal>
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'Supplier' %}</th>
+          <th scope="col">{% translate 'Contact' %}</th>
+          <th scope="col">{% translate 'Items they bring' %}</th>
+          {% if can_suppliers %}<th scope="col">{% translate 'Actions' %}</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for supplier in supplier_list %}
+        <tr
+          data-supplier-row="{{ supplier.id }}"
+          data-name="{{ supplier.name }}"
+          data-contact-name="{{ supplier.contact_name }}"
+          data-phone="{{ supplier.phone }}"
+          data-email="{{ supplier.email }}"
+          data-address="{{ supplier.address }}"
+          data-notes="{{ supplier.notes }}"
+          data-products="{% for product in supplier.products.all %}{{ product.id }}{% if not forloop.last %},{% endif %}{% endfor %}"
+        >
+          <th scope="row">
+            <span class="table__name">{{ supplier.name }}</span>
+            <span class="table__meta">{{ supplier.address|default:"No address" }}</span>
+          </th>
+          <td>
+            <span class="table__name">{{ supplier.contact_name|default:"—" }}</span>
+            <span class="table__meta">{{ supplier.phone|default:"" }}{% if supplier.phone and supplier.email %} · {% endif %}{{ supplier.email|default:"" }}</span>
+          </td>
+          <td>
+            <div class="works-lines">
+              {% for product in supplier.products.all %}
+              <span class="works-line works-line--in">{{ product.name }}</span>
+              {% empty %}
+              <span class="table__meta">{% translate 'Nothing linked' %}</span>
+              {% endfor %}
+            </div>
+          </td>
+          {% if can_suppliers %}
+          <td>
+            <button class="btn btn--ghost btn--small" type="button" data-edit-supplier="{{ supplier.id }}">
+              {% translate 'Edit' %}
+            </button>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% else %}
+<section class="card" data-reveal>
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-truck"></use></svg>
+      <p class="empty__title">{% translate 'No suppliers saved' %}</p>
+      <p class="empty__text">
+        {% if search %}{% translate 'No supplier matches that search.' %}{% else %}{% translate 'Save the first one and link the items they bring.' %}{% endif %}
+      </p>
+      {% if can_suppliers %}
+      <button class="btn btn--primary" type="button" data-open-supplier>{% translate 'Add a supplier' %}</button>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

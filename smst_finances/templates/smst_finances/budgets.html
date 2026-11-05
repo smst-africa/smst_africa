@@ -1,0 +1,107 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Budgets' %}{% endblock %}
+{% block finances_crumb %}{% translate 'Budgets' %}{% endblock %}
+
+{% block finances_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Plans' %}</p>
+    <h1 class="page-head__title">{% translate 'What you mean to spend' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'A budget watches one account or one finance option. The bar fills from the posted entries in the current period, so it never needs a second tally.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_manage %}
+    <button class="btn btn--primary" type="button" data-open-budget>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Set a budget' %}
+    </button>
+    {% endif %}
+    {% if 'finances.view.entries' in permissions %}
+    <a class="btn btn--ghost" href="{% url 'smst_finances:entries' %}">
+      <svg aria-hidden="true"><use href="#i-journal"></use></svg>
+      {% translate 'The entries' %}
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+{% if items %}
+<div class="budget-grid">
+  {% for item in items %}
+  <article
+    class="card budget-card"
+    data-budget-card="{{ item.budget.id }}"
+    data-budget-id="{{ item.budget.id }}"
+    data-name="{{ item.budget.name }}"
+    data-amount="{{ item.budget.amount }}"
+    data-period="{{ item.budget.period }}"
+    data-account="{{ item.budget.account_id|default:'' }}"
+    data-option="{{ item.budget.option_id|default:'' }}"
+    data-starts="{{ item.budget.starts_on|date:'Y-m-d' }}"
+    data-ends="{{ item.budget.ends_on|date:'Y-m-d' }}"
+    data-notes="{{ item.budget.notes }}"
+    data-reveal
+  >
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{{ item.budget.get_period_display }}{% if item.budget.account %} · {{ item.budget.account.name }}{% elif item.budget.option %} · {{ item.budget.option.name }}{% endif %}</p>
+        <h2 class="card__title">{{ item.budget.name }}</h2>
+      </div>
+      {% if can_manage %}
+      <div class="row-actions">
+        <button class="link-button" type="button" data-edit-budget="{{ item.budget.id }}">{% translate 'Edit' %}</button>
+        <button class="link-button" type="button" data-delete-budget="{{ item.budget.id }}">{% translate 'Delete' %}</button>
+      </div>
+      {% endif %}
+    </header>
+
+    <div class="card__body">
+      <div class="budget-card__figures">
+        <div>
+          <p class="stat__label">{% translate 'Spent' %}</p>
+          <p class="budget-card__value">{{ shop.currency }} {{ item.status.spent|floatformat:"2g" }}</p>
+        </div>
+        <div>
+          <p class="stat__label">{% translate 'Of' %}</p>
+          <p class="budget-card__value">{{ shop.currency }} {{ item.budget.amount|floatformat:"2g" }}</p>
+        </div>
+        <div>
+          <p class="stat__label">{% if item.status.remaining < 0 %}{% translate 'Over' %}{% else %}{% translate 'Left' %}{% endif %}</p>
+          <p class="budget-card__value {% if item.status.remaining < 0 %}is-down{% else %}is-up{% endif %}">
+            {{ shop.currency }} {{ item.status.remaining|floatformat:"2g" }}
+          </p>
+        </div>
+      </div>
+
+      <div class="budget-card__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{% if item.status.percent > 100 %}100{% else %}{{ item.status.percent }}{% endif %}" aria-label="{% blocktranslate with name=item.budget.name %}{{ name }} spent{% endblocktranslate %}">
+        <span class="budget-card__fill {% if item.status.percent > 100 %}is-over{% endif %}" style="--bar: {% if item.status.percent > 100 %}100{% else %}{{ item.status.percent }}{% endif %}%"></span>
+      </div>
+      <p class="budget-card__meta">
+        {{ item.status.start|date:"d M" }} → {{ item.status.end|date:"d M Y" }} · {% blocktranslate with percent=item.status.percent %}{{ percent }}% used{% endblocktranslate %}
+      </p>
+      {% if item.budget.notes %}<p class="card__note">{{ item.budget.notes }}</p>{% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<section class="card" data-reveal>
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-budget"></use></svg>
+      <p class="empty__title">{% translate 'No budgets yet' %}</p>
+      <p class="empty__text">
+        {% translate 'Set a monthly transport budget, a yearly rent plan, or a cap on discounts. The app will measure it against the book.' %}
+      </p>
+      {% if can_manage %}<button class="btn btn--primary" type="button" data-open-budget>{% translate 'Set the first budget' %}</button>{% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% include 'smst_finances/partials/budget_form.html' %}
+{% endblock %}

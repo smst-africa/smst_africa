@@ -1,0 +1,192 @@
+{% extends "smst_app/base.html" %}
+
+{% block headerLogo %}
+<img src="https://res.cloudinary.com/di3bh4qsl/image/upload/v1780517418/latest_smst_logo_1_vrlvwa.png" alt="SmSt Africa">
+{% endblock %}
+
+{% block footerLogo %}
+<img src="https://res.cloudinary.com/di3bh4qsl/image/upload/v1780517418/latest_smst_logo_1_vrlvwa.png" alt="SmSt Africa">
+{% endblock %}
+
+{% block header_cta %}
+<a class="lp-btn lp-btn--solid lp-btn--small" href="{% url 'apps' %}">
+  See the apps
+  <svg class="lp-icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+</a>
+{% endblock %}
+
+{% block drawer_foot %}
+<div class="lp-drawer__foot">
+  <a class="lp-btn lp-btn--solid lp-btn--block" href="{% url 'apps' %}">See the SmSt Apps</a>
+  <a class="lp-btn lp-btn--ghost lp-btn--block" href="mailto:{{ contact_email }}">Email support</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="sp-hero sp-hero--hub">
+  <div class="lp-shell sp-hero__grid">
+    <div class="sp-hero__copy">
+      <p class="lp-kicker">SmSt Support</p>
+      <h1 class="lp-display sp-hero__title">{{ support.title }}</h1>
+      <p class="lp-lede">{{ support.lede }}</p>
+      <div class="lp-actions">
+        <a class="lp-btn lp-btn--solid lp-btn--large" href="#apps">
+          Choose your app
+          <svg class="lp-icon" aria-hidden="true"><use href="#i-arrow-down"></use></svg>
+        </a>
+        <a class="lp-btn lp-btn--ghost lp-btn--large" href="mailto:{{ contact_email }}">Email support</a>
+      </div>
+      <ul class="sp-meta">
+        <li><strong class="lp-num">{{ support.totals.apps }}</strong> apps</li>
+        <li><strong class="lp-num">{{ support.totals.manuals }}</strong> manuals</li>
+        <li><strong class="lp-num">{{ support.totals.tips }}</strong> tips</li>
+        <li><strong class="lp-num">{{ support.totals.updates }}</strong> release notes</li>
+      </ul>
+    </div>
+
+    <div class="sp-hero__visual lp-reveal" aria-label="The SmSt support desk">
+      <div class="sp-desk">
+        <div class="sp-desk__head">
+          <span class="sp-desk__title">Support desk</span>
+          <span class="lp-tag">Open now</span>
+        </div>
+        <div class="sp-desk__rows">
+          {% for item in support_apps %}
+          <a class="sp-desk__row" href="{{ item.url }}" style="--app: {{ item.theme }}">
+            <span class="sp-desk__swatch" aria-hidden="true"></span>
+            <span class="sp-desk__body">
+              <strong>{{ item.name }}</strong>
+              <small>{{ item.tagline }}</small>
+            </span>
+            <span class="sp-desk__count lp-num">{{ item.manual_count }} manuals</span>
+          </a>
+          {% endfor %}
+        </div>
+        <div class="sp-desk__foot">
+          <span>Version updates and tips for all three apps.</span>
+          <a class="lp-text-link" href="#changes">
+            Read the changes
+            <svg class="lp-icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lp-section sp-pick" id="apps">
+  <div class="lp-shell">
+    <div class="lp-section__head">
+      <p class="lp-kicker">Pick your app</p>
+      <h2 class="lp-title">Every app carries its own manual.</h2>
+      <p class="lp-lede">
+        SmSt Works reads in blue, SmSt Stocks in brown, and SmSt Finances in
+        green. The support page keeps the same colour as the app it explains.
+      </p>
+    </div>
+
+    <div class="sp-apps">
+      {% for item in support_apps %}
+      <article class="sp-app" style="--app: {{ item.theme }}">
+        <header class="sp-app__head">
+          <span class="sp-app__mark">{{ item.initial }}</span>
+          <span class="lp-tag lp-tag--plain">{{ item.version }}</span>
+        </header>
+        <h3>{{ item.name }}</h3>
+        <p class="sp-app__tagline">{{ item.tagline }}</p>
+        <dl class="sp-facts">
+          <div>
+            <dt>Manuals</dt>
+            <dd class="lp-num">{{ item.manual_count }}</dd>
+          </div>
+          <div>
+            <dt>Tips</dt>
+            <dd class="lp-num">{{ item.tip_count }}</dd>
+          </div>
+          <div>
+            <dt>Notes</dt>
+            <dd class="lp-num">{{ item.update_count }}</dd>
+          </div>
+        </dl>
+        <p class="sp-app__note">Updated {{ item.updated }}</p>
+        <a class="lp-text-link" href="{{ item.url }}">
+          Open {{ item.short }} support
+          <svg class="lp-icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="lp-section lp-section--tight sp-changes" id="changes">
+  <div class="lp-shell">
+    <div class="lp-section__head lp-section__head--wide">
+      <p class="lp-kicker">Version updates</p>
+      <h2 class="lp-title">What changed across the apps.</h2>
+      <p class="lp-lede">{{ support.updates_intro }}</p>
+    </div>
+
+    <ul class="sp-log">
+      {% for entry in support.latest %}
+      <li class="sp-log__item" style="--app: {{ entry.theme }}">
+        <span class="sp-log__dot" aria-hidden="true"></span>
+        <div class="sp-log__meta">
+          <span class="sp-log__app">{{ entry.short }}</span>
+          <span class="sp-log__version lp-num">Version {{ entry.version }}</span>
+          <span class="sp-log__date">{{ entry.date }}</span>
+        </div>
+        <div class="sp-log__body">
+          <h3>{{ entry.title }}</h3>
+          <p>{{ entry.body }}</p>
+          <a class="lp-text-link" href="{{ entry.url }}">
+            Read the release notes
+            <svg class="lp-icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="lp-section sp-tips">
+  <div class="lp-shell">
+    <div class="lp-section__head">
+      <p class="lp-kicker">Tips and tricks</p>
+      <h2 class="lp-title">Small habits that keep the day clean.</h2>
+      <p class="lp-lede">{{ support.tips_intro }}</p>
+    </div>
+
+    <div class="sp-tipgrid">
+      {% for tip in support.tips %}
+      <article class="sp-tip" style="--app: {{ tip.theme }}">
+        <span class="lp-tag lp-tag--plain">{{ tip.tag }}</span>
+        <h3>{{ tip.title }}</h3>
+        <p>{{ tip.body }}</p>
+        <a class="sp-tip__app" href="{{ tip.url }}">{{ tip.app }}</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="lp-section lp-section--tight sp-help">
+  <div class="lp-shell">
+    <div class="sp-help__inner">
+      <div>
+        <p class="lp-kicker">Still stuck</p>
+        <h2 class="lp-title lp-title--small">A person reads every message.</h2>
+        <p class="lp-lede">
+          If the manual does not answer it, write to the team. Tell us the app,
+          the page and what you expected to see.
+        </p>
+      </div>
+      <div class="lp-actions">
+        <a class="lp-btn lp-btn--solid lp-btn--large" href="mailto:{{ contact_email }}">Email support</a>
+        <a class="lp-btn lp-btn--ghost lp-btn--large" href="{{ account_url }}">Create an account</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

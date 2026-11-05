@@ -1,0 +1,42 @@
+{% load i18n %}
+<div class="sheet" data-points-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="points-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'Loyalty' %}</p>
+        <h2 class="sheet__title" id="points-title" data-points-title>{% translate 'Loyalty points' %}</h2>
+        <p class="sheet__note" data-points-note>
+          {% translate 'Add points after a visit, or take them away when they are redeemed.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-points-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="field">
+        <label class="field__label" for="points-value">{% translate 'Points' %}</label>
+        <input class="field__control" id="points-value" name="points" type="number" step="1" required placeholder="50" />
+        <p class="field__hint">{% translate 'Use a negative number to redeem, for example -100.' %}</p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="points-reason">{% translate 'Reason' %}</label>
+        <input class="field__control" id="points-reason" name="reason" type="text" maxlength="160" placeholder="{% translate 'Bought groceries' %}" />
+      </div>
+
+      <p class="form-error" data-points-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-points-submit>
+          <span data-points-label>{% translate 'Save the points' %}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+{% load i18n %}
+<div class="sheet" data-employee-sheet hidden>
+  <div class="sheet__backdrop" data-close-sheet></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="employee-title">
+    <div class="sheet__head">
+      <div>
+        <p class="card__eyebrow">{% translate 'The team' %}</p>
+        <h2 class="sheet__title" id="employee-title" data-employee-title>{% translate 'Hire someone' %}</h2>
+        <p class="sheet__note">
+          {% translate 'A rank sets what the person can do. If the email matches an existing SmSt account, the login is linked automatically.' %}
+        </p>
+      </div>
+      <button class="icon-button" type="button" data-close-sheet>
+        <span class="sr-only">{% translate 'Close' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <form class="form" data-employee-form>
+      <input type="hidden" name="id" value="" />
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="employee-name">{% translate 'Name' %}</label>
+          <input class="field__control" id="employee-name" name="name" type="text" maxlength="120" required placeholder="{% translate 'Amina Wanjiru' %}" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="employee-phone">{% translate 'Phone' %}</label>
+          <input class="field__control" id="employee-phone" name="phone" type="tel" maxlength="40" placeholder="+254 7…" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="employee-email">{% translate 'Email' %}</label>
+          <input class="field__control" id="employee-email" name="email" type="email" maxlength="254" placeholder="{% translate 'amina@example.com' %}" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="employee-role">{% translate 'Role on the floor' %}</label>
+          <input class="field__control" id="employee-role" name="role" type="text" maxlength="80" placeholder="{% translate 'Cook, till, cleaner…' %}" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="employee-rank">{% translate 'Rank' %}</label>
+          <select class="field__control" id="employee-rank" name="rank">
+            <option value="">{% translate 'No rank' %}</option>
+            {% for rank in ranks %}
+            <option
+              value="{{ rank.id }}"
+              data-image="https://res.cloudinary.com/wkuo7imf/image/upload/v1793096172/smst_works.png"
+              data-permissions="{{ rank.permission_labels|join:', ' }}"
+              data-eyebrow="{% translate 'Rank' %}"
+              data-meta="{{ rank.permission_labels|join:', ' }}"
+            >{{ rank.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="employee-status">{% translate 'State' %}</label>
+          <select class="field__control" id="employee-status" name="status">
+            <option value="hired">{% translate 'On the team' %}</option>
+            <option value="suspended">{% translate 'Suspended' %}</option>
+            <option value="left">{% translate 'Left' %}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label class="field__label" for="employee-hired">{% translate 'Hired on' %}</label>
+          <input class="field__control" id="employee-hired" name="hired_at" type="date" value="{{ today|date:'Y-m-d' }}" />
+        </div>
+        <div class="field">
+          <label class="field__label" for="employee-rank-note">{% translate 'Rank note' %}</label>
+          <p class="field__hint" data-employee-rank-note>{% translate 'Choose a rank to see what it allows.' %}</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="employee-notes">{% translate 'Notes' %} <span class="field__optional">{% translate 'optional' %}</span></label>
+        <textarea class="field__control" id="employee-notes" name="notes" rows="2" placeholder="{% translate 'Shift, training, anything useful' %}"></textarea>
+      </div>
+
+      <p class="form-error" data-employee-error role="alert" hidden></p>
+
+      <div class="sheet-form__actions">
+        <button class="btn btn--primary btn--block" type="submit" data-employee-submit>
+          <span data-employee-label>{% translate 'Hire them' %}</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-reset-employee hidden>{% translate 'Start a new hire' %}</button>
+      </div>
+    </form>
+  </div>
+</div>

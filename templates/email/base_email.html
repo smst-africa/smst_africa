@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome To SmSt</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!-- Preheader text (won't display in body but shows in inbox preview) -->
+    <style>
+      /* Minimal mobile responsiveness that many email clients respect */
+      @media only screen and (max-width: 600px) {
+        .container {
+          width: 100% !important;
+        }
+        .stack {
+          display: block !important;
+          width: 100% !important;
+        }
+        .hide-mobile {
+          display: none !important;
+        }
+        .center {
+          text-align: center !important;
+        }
+      }
+    </style>
+  </head>
+  {% block content %}
+  {% endblock %}
+</html>

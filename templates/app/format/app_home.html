@@ -1,0 +1,45 @@
+{% load static %}
+{% load i18n %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Smst Apps{% endblock %}</title>
+    {% include 'smst/smst_header.html' %}
+    <link rel="stylesheet" href="https://static.smartstock.africa/js/cropper.min.css">
+    <link rel="stylesheet" href="{% static 'app/app.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'card_picker.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'numeric_keypad.min.css' %}" />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="flex">
+    {% block skip_link %}{% endblock %}
+    
+    
+    <main>
+      <div id="mainContent">
+          {% block content %}
+          {% endblock %}
+      </div> 
+    </main>
+    
+    <script nonce="{{csp_nonce}}" src="{% url 'javascript-catalog' %}"></script>
+    <script type="module" nonce="{{csp_nonce}}" src="{% static 'js/app/channel.prod.js' %}"></script>
+    <script nonce="{{csp_nonce}}" src="{% static 'js/smst_verts/a.prod.js' %}"></script>
+    <script nonce="{{csp_nonce}}" src="{% static 'js/card_picker.prod.js' %}"></script>
+    <script nonce="{{csp_nonce}}" src="{% static 'js/numeric_keypad.prod.js' %}"></script>
+    <script type="module" nonce="{{csp_nonce}}" src="{% static 'js/app/app.prod.js' %}"></script>
+    <script nonce="{{csp_nonce}}" src="https://static.smartstock.africa/js/cropper.min.js"></script>
+    <script nonce="{{csp_nonce}}" src="https://static.smartstock.africa/js/jquery-cropper.min.js"></script>
+    <script nonce="{{csp_nonce}}" src="https://static.smartstock.africa/js/fuse.js"></script>
+    {% if request.user.is_authenticated %}
+    <script>
+        localStorage.setItem('access', '{{access}}')
+        localStorage.setItem('refresh','{{refresh}}')
+    </script>
+    {% endif %}
+    {% block extra_scripts %}{% endblock %}
+  </body>
+</html>

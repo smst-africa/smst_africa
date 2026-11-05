@@ -1,0 +1,257 @@
+/* Custom numeric keypad.
+   It opens on focus for every number field, so the phone's own keyboard stays
+   away (the fields get inputmode="none"). The panel is fixed to the bottom so
+   it never pushes the form around. Each app keeps its own accent. */
+
+.keypad {
+  --kp-accent: var(--brown-500, #a65a17);
+  --kp-soft: var(--brown-050, #f9f3ea);
+  --kp-line: var(--brown-200, #e6c9a8);
+  --kp-ink: var(--brown-800, #53300d);
+  --kp-paper: var(--paper-0, #fffdf9);
+  --kp-hover: var(--paper-2, #f0ebe1);
+  --kp-rule: var(--rule, #e5ddcf);
+  position: fixed;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  z-index: 360;
+  display: grid;
+  gap: 0.42rem;
+  width: min(352px, calc(100vw - 24px));
+  padding: 0.62rem;
+  border: 1px solid var(--kp-line);
+  border-radius: 18px;
+  background: var(--kp-paper);
+  box-shadow:
+    0 28px 60px -28px rgba(23, 19, 14, 0.55),
+    0 3px 8px -3px rgba(23, 19, 14, 0.16);
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition:
+    opacity 170ms ease,
+    transform 200ms cubic-bezier(0.22, 0.72, 0.28, 1),
+    visibility 170ms;
+}
+
+.keypad--finances {
+  --kp-accent: var(--green-500, #318a55);
+  --kp-soft: var(--green-050, #eff8f2);
+  --kp-line: var(--green-200, #b6dcc4);
+  --kp-ink: var(--green-800, #16452a);
+}
+
+.keypad--works {
+  --kp-accent: var(--blue-500, #2f6fed);
+  --kp-soft: var(--blue-050, #eff5ff);
+  --kp-line: var(--blue-200, #c7d9fb);
+  --kp-ink: var(--blue-800, #12305c);
+}
+
+.keypad[data-open='true'] {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------------------------------------------------------------- header */
+.keypad__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  min-width: 0;
+  padding: 0 0.22rem 0.08rem;
+}
+
+.keypad__label {
+  overflow: hidden;
+  color: var(--ink-500, #726657);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.keypad__value {
+  overflow: hidden;
+  color: var(--kp-ink);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 1.32rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ keys */
+.keypad__keys,
+.keypad__tools,
+.keypad__foot {
+  display: grid;
+  gap: 0.32rem;
+}
+
+.keypad__keys {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.keypad__tools {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.keypad__foot {
+  grid-template-columns: 0.9fr 0.9fr 1fr 1.15fr;
+}
+
+.keypad button {
+  min-width: 0;
+  min-height: 42px;
+  padding: 0 0.3rem;
+  border: 1px solid var(--kp-rule);
+  border-radius: 10px;
+  background: var(--kp-paper);
+  color: var(--kp-ink);
+  font: inherit;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 1.02rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: 0 1px 0 rgba(23, 19, 14, 0.06);
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease;
+}
+
+.keypad button:hover {
+  background: var(--kp-hover);
+}
+
+.keypad button:active {
+  background: var(--kp-soft);
+  transform: translateY(1px);
+}
+
+.keypad button:focus-visible {
+  outline: none;
+  border-color: var(--kp-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--kp-accent) 22%, transparent);
+}
+
+.keypad button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.keypad__tools button {
+  min-height: 31px;
+  border-color: var(--kp-line);
+  background: var(--kp-soft);
+  color: var(--kp-ink);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.keypad__foot button {
+  min-height: 38px;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.keypad__key--muted {
+  color: var(--ink-500, #726657);
+}
+
+.keypad__keys .keypad__key--muted {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.keypad__done {
+  border-color: var(--kp-accent) !important;
+  background: var(--kp-accent) !important;
+  color: #fff !important;
+}
+
+.keypad__next {
+  border-color: var(--kp-line);
+  background: var(--kp-soft);
+  color: var(--kp-ink);
+}
+
+/* ---------------------------------------------------------------- mobile */
+@media (max-width: 640px) {
+  .keypad {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.7rem 0.7rem calc(0.7rem + env(safe-area-inset-bottom, 0px));
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 18px 18px 0 0;
+    transform: translate(0, 14px);
+  }
+
+  .keypad[data-open='true'] {
+    transform: none;
+  }
+
+  .keypad button {
+    min-height: 46px;
+  }
+
+  .keypad__tools button {
+    min-height: 33px;
+  }
+
+  .keypad__foot button {
+    min-height: 42px;
+  }
+}
+
+/* Landscape phones: keep the panel from eating the whole screen. */
+@media (max-height: 560px) {
+  .keypad {
+    gap: 0.3rem;
+    padding: 0.45rem;
+  }
+
+  .keypad__head {
+    padding-bottom: 0;
+  }
+
+  .keypad__value {
+    font-size: 1.05rem;
+  }
+
+  .keypad button {
+    min-height: 33px;
+  }
+
+  .keypad__tools button {
+    min-height: 25px;
+  }
+
+  .keypad__foot button {
+    min-height: 31px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .keypad,
+  .keypad button {
+    transition: none;
+  }
+}

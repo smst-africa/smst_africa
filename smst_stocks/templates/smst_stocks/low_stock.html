@@ -1,0 +1,119 @@
+{% extends 'smst_stocks/base.html' %}
+{% load i18n %}
+
+{% block stocks_title %}{% translate 'To restock' %}{% endblock %}
+{% block stocks_crumb %}{% translate 'To restock' %}{% endblock %}
+
+{% block stocks_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'To restock' %}</p>
+    <h1 class="page-head__title">{% translate 'What is running out' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Items at or below their restock level, and how much to ask the supplier for to bring the shelf back up.' %}
+    </p>
+  </div>
+</header>
+
+<section class="card" data-chart="reorder" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'Supplier list' %}</p>
+      <h2 class="card__title">{% translate 'How much to ask for' %}</h2>
+    </div>
+    <div class="segmented" data-reorder-metric role="group" aria-label="{% translate 'Chart measure' %}">
+      <button class="segmented__btn is-active" type="button" data-metric="units">{% translate 'Units' %}</button>
+      <button class="segmented__btn" type="button" data-metric="cost">{% translate 'Cost' %}</button>
+    </div>
+  </header>
+  <div class="chart">
+    <div class="bars" data-chart-canvas></div>
+    <p class="chart__empty" data-chart-empty hidden>{% translate 'Nothing needs ordering right now.' %}</p>
+  </div>
+  <div class="card__foot">{% blocktranslate count counter=items|length %}{{ counter }} item at or below the reorder level.{% plural %}{{ counter }} items at or below the reorder level.{% endblocktranslate %}</div>
+</section>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'The list' %}</p>
+      <h2 class="card__title">{% translate 'Items to order' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate count counter=items|length %}{{ counter }} item{% plural %}{{ counter }} items{% endblocktranslate %}</p>
+  </header>
+
+  {% if items %}
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'Item' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'In hand' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Restock at' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Ask for' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'It will cost' %}</th>
+          <th scope="col"><span class="sr-only">{% translate 'Actions' %}</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <th scope="row">
+            <a class="table__item" href="{% url 'smst_stocks:product_detail' item.id %}">
+              {% if item.image %}
+              <img class="table__thumb" src="{{ item.image.url }}" alt="{% blocktranslate with name=item.name %}Photo of {{ name }}{% endblocktranslate %}" width="34" height="34" loading="lazy" />
+              {% endif %}
+              <span>
+                <span class="table__name">{{ item.name }}</span>
+                {% if item.quantity <= 0 %}<span class="table__meta">{% translate 'Out of stock' %}</span>
+                {% elif item.category %}<span class="table__meta">{{ item.category }}</span>{% endif %}
+              </span>
+            </a>
+          </th>
+          <td class="is-numeric">{{ item.quantity|floatformat:0 }}</td>
+          <td class="is-numeric">{{ item.reorder_level|floatformat:0 }}</td>
+          <td class="is-numeric">{{ item.suggested_order|floatformat:0 }}</td>
+          <td class="is-numeric">{{ shop.currency }} {{ item.order_cost|floatformat:0 }}</td>
+          <td class="is-actions">
+            <div class="row-actions">
+              <button class="link-button" type="button" data-quick-movement="delivery" data-product="{{ item.id }}" data-name="{{ item.name }}">
+                {% translate 'Add a delivery' %}
+              </button>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-reorder"></use></svg>
+      <p class="empty__title">{% translate 'Nothing is running low' %}</p>
+      <p class="empty__text">
+        {% translate 'Set a restock level on an item and it will be listed here before it runs out.' %}
+      </p>
+      <a class="btn btn--ghost" href="{% url 'smst_stocks:products' %}">{% translate 'Open the items' %}</a>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<div hidden data-reorder-source>
+  {% for item in items %}
+  <span
+    data-id="{{ item.id }}"
+    data-name="{{ item.name }}"
+    data-quantity="{{ item.quantity }}"
+    data-suggested="{{ item.suggested_order }}"
+    data-cost="{{ item.order_cost }}"
+    data-unit="{{ item.unit }}"
+    data-category="{{ item.category }}"
+    data-url="{% url 'smst_stocks:product_detail' item.id %}"
+  ></span>
+  {% endfor %}
+</div>
+
+{% if can_stocks_move or can_stocks_add %}{% include 'smst_stocks/partials/movement_form.html' %}{% endif %}
+{% endblock %}

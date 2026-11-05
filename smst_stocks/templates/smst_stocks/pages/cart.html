@@ -1,0 +1,193 @@
+{% load i18n %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Trade' %}</p>
+    <h1 class="page-head__title">{% translate 'The cart' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Hold what you are buying or selling, then process it into the ledger. Stock leaves the shelf the moment it goes into the cart, so nothing is traded twice.' %}
+    </p>
+  </div>
+</header>
+
+{% if messages %}
+<div class="flashes" role="status" aria-live="polite">
+  {% for message in messages %}
+  <p class="flash flash--{{ message.tags }}">{{ message }}</p>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="split split--even cart">
+  <section class="card" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'In the cart' %}</p>
+        <h2 class="card__title">{% translate 'What is being held' %}</h2>
+      </div>
+      <p class="card__note">{% blocktranslate count counter=cart_totals.count %}{{ counter }} line{% plural %}{{ counter }} lines{% endblocktranslate %}</p>
+    </header>
+
+    {% if cart_lines %}
+    <ul class="cart-lines">
+      {% for line in cart_lines %}
+      <li class="cart-line" data-cart-line="{{ line.id }}">
+        <div class="cart-line__main">
+          <div class="cart-line__media">
+            {% if line.product.image %}
+            <img src="{{ line.product.image.url }}" alt="{% blocktranslate with name=line.product.name %}Photo of {{ name }}{% endblocktranslate %}" width="56" height="56" loading="lazy" />
+            {% else %}
+            <span class="cart-line__glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-box-open"></use></svg></span>
+            {% endif %}
+          </div>
+          <div class="cart-line__info">
+            <p class="cart-line__name">
+              <a href="{% url 'smst_stocks:product_detail' line.product.id %}">{{ line.product.name }}</a>
+              <span class="tag {% if line.is_sell %}tag--ok{% else %}tag--low{% endif %}">{{ line.get_direction_display }}</span>
+            </p>
+            <p class="cart-line__meta">
+              {% if line.product.sku %}{% translate 'Code' %} {{ line.product.sku }} · {% endif %}
+              {% blocktranslate with quantity=line.quantity|floatformat:0 unit=line.product.unit %}{{ quantity }} {{ unit }} held{% endblocktranslate %}
+              · {{ line.user.get_full_name|default:line.user.username }}
+            </p>
+          </div>
+        </div>
+
+        <dl class="cart-line__figures">
+          <div><dt>{% translate 'Unit' %}</dt><dd class="num">{{ shop.currency }} {{ line.unit_price|floatformat:2 }}</dd></div>
+          <div><dt>{% translate 'Line total' %}</dt><dd class="num">{{ shop.currency }} {{ line.total|floatformat:2 }}</dd></div>
+        </dl>
+
+        <form class="cart-line__form" method="post" action="{% url 'smst_stocks:cart_process' line.id %}" hx-post="{% url 'smst_stocks:cart_process' line.id %}" hx-target="#mainContent" hx-select="#mainContent" hx-swap="outerHTML">
+          {% csrf_token %}
+          {% if finance_accounts %}
+          <label class="field field--inline">
+            <span class="field__label">{% translate 'Money settles in' %}</span>
+            <select class="field__control" name="account" required>
+              <option value="">{% translate 'Not posted to the books' %}</option>
+              {% for account in finance_accounts %}
+              <option value="{{ account.id }}"{% if line.account_id == account.id %} selected{% endif %}>{{ account.name }}</option>
+              {% endfor %}
+            </select>
+          </label>
+          {% endif %}
+          {% if finance_options %}
+          <fieldset class="option-chips">
+            <legend class="field__label">{% translate 'Options' %}</legend>
+            {% for option in finance_options %}
+            <label class="chip-toggle">
+              <input type="checkbox" name="options" value="{{ option.id }}"{% if option.id in line.option_ids %} checked{% endif %} />
+              <span>{{ option.name }}</span>
+            </label>
+            {% endfor %}
+          </fieldset>
+          {% endif %}
+          <div class="cart-line__actions">
+            <button class="btn btn--primary btn--small" type="submit">
+              <svg aria-hidden="true"><use href="#i-check"></use></svg>
+              {% translate 'Process' %}
+            </button>
+          </div>
+        </form>
+
+        <form class="cart-line__release" method="post" action="{% url 'smst_stocks:cart_release' line.id %}" hx-post="{% url 'smst_stocks:cart_release' line.id %}" hx-target="#mainContent" hx-select="#mainContent" hx-swap="outerHTML">
+          {% csrf_token %}
+          <button class="link-button is-danger" type="submit">{% translate 'Release' %}</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="card__body">
+      <div class="empty empty--tall">
+        <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-box-open"></use></svg>
+        <p class="empty__title">{% translate 'The cart is empty' %}</p>
+        <p class="empty__text">{% translate 'Add something from the shelf below, then process it when the trade is done.' %}</p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <aside class="stack">
+    <section class="card" data-reveal>
+      <header class="card__head">
+        <div class="card__head-main">
+          <p class="card__eyebrow">{% translate 'The sums' %}</p>
+          <h2 class="card__title">{% translate 'What it comes to' %}</h2>
+        </div>
+      </header>
+      <dl class="fact-list">
+        <div class="fact fact--hero">
+          <dt>{% translate 'Selling to customers' %}</dt>
+          <dd class="num">{{ shop.currency }} {{ cart_totals.sell_total|floatformat:2 }}</dd>
+        </div>
+        <div class="fact">
+          <dt>{% translate 'Buying in' %}</dt>
+          <dd class="num">{{ shop.currency }} {{ cart_totals.buy_total|floatformat:2 }}</dd>
+        </div>
+      </dl>
+      <div class="card__foot">{% translate 'Processed lines leave the cart and land in the ledger and the books.' %}</div>
+    </section>
+  </aside>
+</div>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'The shelf' %}</p>
+      <h2 class="card__title">{% translate 'Add to the cart' %}</h2>
+    </div>
+    <p class="card__note">{% blocktranslate count counter=items|length %}{{ counter }} item in hand{% plural %}{{ counter }} items in hand{% endblocktranslate %}</p>
+  </header>
+
+  {% if items %}
+  <div class="pick-grid">
+    {% for item in items %}
+    <article class="pick">
+      <div class="pick__media">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{% blocktranslate with name=item.name %}Photo of {{ name }}{% endblocktranslate %}" loading="lazy" />
+        {% else %}
+        <span class="pick__glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-items"></use></svg></span>
+        {% endif %}
+        {% if item.cart_total %}<span class="pick__held">{% blocktranslate with count=item.cart_total|floatformat:0 %}{{ count }} in a cart{% endblocktranslate %}</span>{% endif %}
+      </div>
+      <div class="pick__info">
+        <p class="pick__name">{{ item.name }}</p>
+        <p class="pick__meta">
+          {% blocktranslate with quantity=item.quantity|floatformat:0 unit=item.unit %}{{ quantity }} {{ unit }} in hand{% endblocktranslate %}
+        </p>
+        <div class="pick__prices">
+          {% if can_cart_sell %}<span>{% blocktranslate with currency=shop.currency price=item.selling_price|floatformat:2 %}Sells {{ currency }} {{ price }}{% endblocktranslate %}</span>{% endif %}
+          {% if can_cart_buy %}<span>{% blocktranslate with currency=shop.currency price=item.buying_price|floatformat:2 %}Buys {{ currency }} {{ price }}{% endblocktranslate %}</span>{% endif %}
+        </div>
+      </div>
+      <form class="pick__form" method="post" action="{% url 'smst_stocks:cart_add' %}" hx-post="{% url 'smst_stocks:cart_add' %}" hx-target="#mainContent" hx-select="#mainContent" hx-swap="outerHTML">
+        {% csrf_token %}
+        <input type="hidden" name="product" value="{{ item.id }}" />
+        <label class="field field--inline">
+          <span class="sr-only">{% blocktranslate with name=item.name %}Quantity of {{ name }}{% endblocktranslate %}</span>
+          <input class="field__control pick__qty" type="number" name="quantity" value="1" min="0.01" step="0.01" inputmode="decimal" required />
+        </label>
+        <div class="pick__buttons">
+          {% if can_cart_sell %}
+          <button class="btn btn--primary btn--small" type="submit" name="direction" value="sell">{% translate 'Sell' %}</button>
+          {% endif %}
+          {% if can_cart_buy %}
+          <button class="btn btn--ghost btn--small" type="submit" name="direction" value="buy">{% translate 'Buy' %}</button>
+          {% endif %}
+        </div>
+      </form>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-items"></use></svg>
+      <p class="empty__title">{% translate 'Nothing is in hand' %}</p>
+      <p class="empty__text">{% translate 'Record a delivery to bring items onto the shelf, then hold them here.' %}</p>
+      <a class="btn btn--ghost" href="{% url 'smst_stocks:products' %}?shop={{ shop.id }}">{% translate 'Open the items' %}</a>
+    </div>
+  </div>
+  {% endif %}
+</section>

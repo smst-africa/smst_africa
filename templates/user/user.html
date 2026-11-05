@@ -1,0 +1,50 @@
+{% load static %}
+{% load i18n %}
+{% load pwa %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmSt Account</title>
+    {% if pro_user == "active" %}
+    <style>
+      :root{
+        --primary-color: #BF6517!important;
+      }
+    </style>
+    {% endif %}
+    {% include 'smst/smst_header.html' %}
+    <link rel="stylesheet" href="{% static 'account/account.min.css' %}">
+    {% progressive_web_app_meta %}
+  </head>
+  <body>
+    {% include 'snippets/theme/shader.html' %}
+    <header>
+      <div class="headerLogo flex justify-center">
+        <a class="headerLogoContainer" href="https://smst.africa">
+        <div id="headerLogo" class="flex align-center">
+          <div class="headerLogoImageHolder">
+            <img
+              src="{{smst_logo}}"
+              alt="The logo image for SmSt Africa"
+            />
+          </div>
+          <div class="headerLogoText">
+            <span>SmSt Africa</span>
+          </div>
+        </div>
+      </a>
+      </div>
+    </header>
+    <main>
+      <div id="mainContent" class="absolute">
+        {% block content %}{% endblock %}
+        
+      </div>
+    </main>
+    {% block script %}
+    {% endblock %}
+    <script nonce="{{csp_nonce}}" src="{% url 'javascript-catalog' %}"></script>
+  </body>
+</html>

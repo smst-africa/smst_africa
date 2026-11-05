@@ -1,0 +1,173 @@
+{% extends 'smst_stocks/base.html' %}
+{% load i18n %}
+
+{% block stocks_title %}{% translate 'Items' %}{% endblock %}
+{% block stocks_crumb %}{% translate 'Items' %}{% endblock %}
+
+{% block stocks_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'The shelf' %}</p>
+    <h1 class="page-head__title">{% translate 'Everything on the shelf' %}</h1>
+    <p class="page-head__lede">
+      {% translate 'Each item carries what it cost, what it sells for and how many are in hand. Publish one to share it with customers.' %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_stocks_add %}
+    <a class="btn btn--primary" href="{% url 'smst_stocks:product_create' %}?shop={{ shop.id }}">
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Add an item' %}
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+<section class="card" data-chart="categories" data-source="products" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% translate 'Inventory mix' %}</p>
+      <h2 class="card__title">{% translate 'How the catalogue is made up' %}</h2>
+    </div>
+    <div class="segmented" data-value-metric role="group" aria-label="{% translate 'Chart measure' %}">
+      <button class="segmented__btn is-active" type="button" data-metric="value">{% translate 'Value' %}</button>
+      <button class="segmented__btn" type="button" data-metric="units">{% translate 'Units' %}</button>
+      <button class="segmented__btn" type="button" data-metric="margin">{% translate 'Margin' %}</button>
+    </div>
+  </header>
+  <div class="chart">
+    <div class="bars" data-chart-canvas></div>
+    <p class="chart__empty" data-chart-empty hidden>{% translate 'Add items to see how the catalogue is made up.' %}</p>
+  </div>
+  <div class="card__foot">{% translate 'Grouped by category. Click a bar to open the items in it.' %}</div>
+</section>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__search">
+    <svg aria-hidden="true"><use href="#i-search"></use></svg>
+    <label class="sr-only" for="product-search">{% translate 'Search items' %}</label>
+    <input id="product-search" type="search" name="search" value="{{ search }}" placeholder="{% translate 'Search by name' %}" />
+  </div>
+
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Filter items' %}">
+    <a class="chip {% if not state %}is-active{% endif %}" href="?search={{ search }}">{% translate 'All' %}</a>
+    <a class="chip {% if state == 'low' %}is-active{% endif %}" href="?search={{ search }}&amp;state=low">{% translate 'Running low' %}</a>
+    <a class="chip {% if state == 'out' %}is-active{% endif %}" href="?search={{ search }}&amp;state=out">{% translate 'Out of stock' %}</a>
+  </div>
+
+  {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+</form>
+
+<section class="card" data-reveal>
+  <header class="card__head">
+    <div class="card__head-main">
+      <p class="card__eyebrow">{% if search or state %}{% translate 'Filtered' %}{% else %}{% translate 'All items' %}{% endif %}</p>
+      <h2 class="card__title">
+        {% if search or state %}{% translate 'Items that match' %}{% else %}{% translate 'The catalogue' %}{% endif %}
+      </h2>
+    </div>
+    <p class="card__note">{% blocktranslate with count=items|length %}{{ count }} shown{% endblocktranslate %}</p>
+  </header>
+
+  {% if items %}
+  <div class="table-scroll" data-items>
+    <table class="table" data-products-table>
+      <thead>
+        <tr>
+          <th scope="col">{% translate 'Item' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'In hand' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Buying' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Selling' %}</th>
+          <th scope="col" class="is-numeric">{% translate 'Margin' %}</th>
+          <th scope="col">{% translate 'State' %}</th>
+          <th scope="col"><span class="sr-only">{% translate 'Actions' %}</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr data-product-row="{{ item.id }}">
+          <th scope="row">
+            <a class="table__item" href="{% url 'smst_stocks:product_detail' item.id %}">
+              {% if item.image %}
+              <img class="table__thumb" src="{{ item.image.url }}" alt="{% blocktranslate with name=item.name %}Photo of {{ name }}{% endblocktranslate %}" width="34" height="34" loading="lazy" />
+              {% endif %}
+              <span>
+                <span class="table__name">{{ item.name }}</span>
+                {% if item.category %}<span class="table__meta">{{ item.category }}</span>{% endif %}
+              </span>
+            </a>
+          </th>
+          <td class="is-numeric" data-cell="quantity">{{ item.quantity|floatformat:0 }}</td>
+          <td class="is-numeric">{{ item.buying_price|floatformat:0 }}</td>
+          <td class="is-numeric">{{ item.selling_price|floatformat:0 }}</td>
+          <td class="is-numeric {% if item.margin < 10 %}is-thin{% endif %}">{{ item.margin|floatformat:1 }}%</td>
+          <td>
+            {% if item.quantity <= 0 %}
+            <span class="tag tag--out">{% translate 'Out' %}</span>
+            {% elif item.stock_state == 'low' %}
+            <span class="tag tag--low">{% translate 'Low' %}</span>
+            {% else %}
+            <span class="tag tag--ok">{% translate 'In stock' %}</span>
+            {% endif %}
+            {% if item.cart_total %}
+            <span class="tag tag--low">{% blocktranslate with count=item.cart_total|floatformat:0 %}{{ count }} in a cart{% endblocktranslate %}</span>
+            {% endif %}
+          </td>
+          <td class="is-actions">
+            <div class="row-actions">
+              {% if can_stocks_move %}
+              <button class="link-button" type="button" data-inline-movement="sale" data-product="{{ item.id }}">
+                {% translate 'Move' %}
+              </button>
+              {% endif %}
+              {% if can_stocks_add %}
+              <a class="link-button" href="{% url 'smst_stocks:product_edit' item.id %}">{% translate 'Edit' %}</a>
+              {% endif %}
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="card__body">
+    <div class="empty empty--tall">
+      <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-items"></use></svg>
+      <p class="empty__title">{% translate 'No items here yet' %}</p>
+      <p class="empty__text">
+        {% if search or state %}
+          {% translate 'Nothing matches that search. Try a different name, or clear the filter.' %}
+        {% else %}
+          {% translate 'Add the products you sell. Each one needs a name, a price and how many you have in hand.' %}
+        {% endif %}
+      </p>
+      {% if can_stocks_add %}
+      <a class="btn btn--primary" href="{% url 'smst_stocks:product_create' %}?shop={{ shop.id }}">
+        {% translate 'Add the first item' %}
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<div hidden data-products-source>
+  {% for item in all_products %}
+  <span
+    data-id="{{ item.id }}"
+    data-name="{{ item.name }}"
+    data-quantity="{{ item.quantity }}"
+    data-buying="{{ item.buying_price }}"
+    data-selling="{{ item.selling_price }}"
+    data-reorder="{{ item.reorder_level }}"
+    data-category="{{ item.category }}"
+    data-state="{{ item.stock_state }}"
+    data-margin="{{ item.margin }}"
+    data-url="{% url 'smst_stocks:product_detail' item.id %}"
+  ></span>
+  {% endfor %}
+</div>
+
+{% if can_stocks_move or can_stocks_add %}{% include 'smst_stocks/partials/movement_form.html' %}{% endif %}
+{% endblock %}

@@ -1,0 +1,221 @@
+{% extends 'smst_stocks/base.html' %}
+{% load i18n %}
+{% block stocks_title %}{% if product %}{% blocktranslate with name=product.name %}Edit {{ name }}{% endblocktranslate %}{% else %}{% translate 'Add an item' %}{% endif %}{% endblock %}
+{% block stocks_crumb %}{% if product %}{% translate 'Edit item' %}{% else %}{% translate 'New item' %}{% endif %}{% endblock %}
+
+{% block stocks_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><a href="{% url 'smst_stocks:products' %}">{% translate 'Items' %}</a><span aria-hidden="true">/</span>{% if product %}{% translate 'Edit' %}{% else %}{% translate 'New' %}{% endif %}</p>
+    <h1 class="page-head__title">{% if product %}{% blocktranslate with name=product.name %}Edit {{ name }}{% endblocktranslate %}{% else %}{% translate 'Add an item' %}{% endif %}</h1>
+    <p class="page-head__lede">
+      {% translate 'A stock item is a product and its price. Give it the details the shop floor needs and the count will follow itself.' %}
+    </p>
+  </div>
+</header>
+
+<form class="sheet-form" data-product-form data-product-id="{{ product.id|default:'' }}" data-reveal>
+  <section class="sheet-form__section">
+    <h2 class="sheet-form__title">{% translate 'Picture' %}</h2>
+    <div class="form_holder flex">
+      <div class="imageHolder flex">
+        <div class="productImage">
+          <input
+            id="imageInput"
+            hidden
+            name="image"
+            type="file"
+            accept=".jpg,.jpeg"
+          />
+          <div class="imageEntity flex">
+            <div class="imagePreviewHolder animate__animated" {% if product.image %}style="opacity:1;"{% endif %}>
+              <div class="imagePreview">
+                {% if product.image %}
+                <img class="sheet-form__preview " id="imgPreview" src="{{ product.image.url }}" alt="{% blocktranslate with name=product.name %}Photo of {{ name }}{% endblocktranslate %}" width="96" height="96" />
+                {% else %}
+                <img id="imgPreview" />
+                {% endif %}
+              </div>
+            </div>
+            <div class="addImageHolder">
+              <div class="addImage flex align-center">
+                <div class="addImageLogo">
+                  <svg
+                    width="30px"
+                    height="30px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.02693 18.329C4.18385 19.277 5.0075 20 6 20H18C19.1046 20 20 19.1046 20 18V14.1901M4.02693 18.329C4.00922 18.222 4 18.1121 4 18V6C4 4.89543 4.89543 4 6 4H18C19.1046 4 20 4.89543 20 6V14.1901M4.02693 18.329L7.84762 14.5083C8.52765 13.9133 9.52219 13.8482 10.274 14.3494L10.7832 14.6888C11.5078 15.1719 12.4619 15.1305 13.142 14.5865L15.7901 12.4679C16.4651 11.9279 17.4053 11.8856 18.1228 12.3484C18.2023 12.3997 18.2731 12.4632 18.34 12.5302L20 14.1901M11 9C11 10.1046 10.1046 11 9 11C7.89543 11 7 10.1046 7 9C7 7.89543 7.89543 7 9 7C10.1046 7 11 7.89543 11 9Z"
+                      stroke="#000000"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="addImageDetails">
+                  <span>{% translate 'Add Your Product Image' %}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+      <label class="field__label" for="product-name">{% translate 'Name' %}</label>
+      <input class="field__control" id="product-name" name="name" type="text" required maxlength="160"
+             value="{{ product.name|default:'' }}" placeholder="{% translate 'Mumias Sugar 1kg' %}" />
+    </div>
+    </div>
+    <div class="field">
+      <label class="field__label" for="product-description">{% translate 'Description' %}</label>
+      <textarea class="field__control" id="product-description" name="description" rows="3"
+                placeholder="{% translate 'A short line about the item' %}">{{ product.description|default:'' }}</textarea>
+    </div> 
+    <div class="field">
+      <label class="field__label" for="product-attributes">{% translate 'Details' %}</label>
+      <p class="field__hint">{% translate 'Pairs such as Weight and 500g. Customers see these on the shared page.' %}</p>
+      <div class="attribute-rows" data-attribute-rows>
+        {% for key, value in product.attribute_lines %}
+        <div class="attribute-row">
+          <input class="field__control" type="text" name="attribute_key" value="{{ key }}" placeholder="{% translate 'Weight' %}" aria-label="{% translate 'Detail name' %}" />
+          <input class="field__control" type="text" name="attribute_value" value="{{ value }}" placeholder="{% translate '500g' %}" aria-label="{% translate 'Detail value' %}" />
+          <button class="icon-button" type="button" data-remove-attribute aria-label="{% translate 'Remove this detail' %}">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+      <button class="link-button" type="button" data-add-attribute>{% translate 'Add a detail' %}</button>
+    </div>
+  </section>
+  <section class="sheet-form__section">
+    <h2 class="sheet-form__title">{% translate 'The item' %}</h2>
+
+    
+
+    <div class="grid-2">
+      <div class="field">
+        <label class="field__label" for="product-sku">{% translate 'Barcode or code' %}</label>
+        <input class="field__control" id="product-sku" name="sku" type="text" maxlength="60"
+               value="{{ product.sku|default:'' }}" placeholder="{% translate 'Scan the barcode here' %}" />
+        <p class="field__hint">{% translate 'Scanning this code in the cart adds the item to a sale.' %}</p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="product-category">{% translate 'Category' %}</label>
+        <input class="field__control" id="product-category" name="category" type="text" maxlength="80"
+               value="{{ product.category|default:'' }}" placeholder="{% translate 'Groceries' %}" />
+      </div>
+    </div>
+
+    
+
+    
+  </section>
+
+  
+
+  <section class="sheet-form__section">
+    <h2 class="sheet-form__title">{% translate 'Price and count' %}</h2>
+
+    <div class="grid-2">
+      <div class="field">
+        <input name="buying_price"  type="hidden" required>
+        <label class="field__label" for="product-buying">{% translate 'Buying price' %}</label>
+        <input id="product-buying" class="field__control price-input"  type="text" min="0"
+               value="{{ product.buying_price|default:'0' }}" required />
+      </div>
+
+      <div class="field">
+        <input name="selling_price"  type="hidden" required>
+
+        <label class="field__label" for="product-selling">{% translate 'Selling price' %}</label>
+        <input id="product-selling" class="field__control price-input"  type="text" step="0.01" min="0"
+               value="{{ product.selling_price|default:'0' }}" required />
+        <p class="field__hint" data-margin-note>{% translate 'Margin shows here once both prices are in.' %}</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label class="field__label" for="product-quantity">{% translate 'In hand' %}</label>
+        <input class="field__control" id="product-quantity" name="quantity" type="number" step="any"
+               value="{{ product.quantity|default:'0' }}" required />
+        <p class="field__hint">{% translate 'Changes here are recorded in the ledger.' %}</p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="product-reorder">{% translate 'Restock at' %}</label>
+        <input class="field__control" id="product-reorder" name="reorderLevel" type="number" step="any" min="0"
+               value="{{ product.reorder_level|default:'0' }}" />
+        <p class="field__hint">{% translate 'We will tell you when the count falls to this number.' %}</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label class="field__label" for="product-unit">{% translate 'Sold by' %}</label>
+        <select class="field__control" id="product-unit" name="unit">
+          <option value="piece" {% if product.unit == 'piece' or not product %}selected{% endif %}>{% translate 'Each' %}</option>
+          <option value="kg" {% if product.unit == 'kg' %}selected{% endif %}>{% translate 'Kilogram' %}</option>
+          <option value="litre" {% if product.unit == 'litre' %}selected{% endif %}>{% translate 'Litre' %}</option>
+          <option value="pack" {% if product.unit == 'pack' %}selected{% endif %}>{% translate 'Pack' %}</option>
+          <option value="carton" {% if product.unit == 'carton' %}selected{% endif %}>{% translate 'Carton' %}</option>
+          <option value="bag" {% if product.unit == 'bag' %}selected{% endif %}>{% translate 'Bag' %}</option>
+          <option value="crate" {% if product.unit == 'crate' %}selected{% endif %}>{% translate 'Crate' %}</option>
+        </select>
+      </div>
+
+      <div class="field field--switch">
+        <label class="switch">
+          <input type="checkbox" name="is_published" {% if product.is_published %}checked{% endif %} />
+          <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+          <span class="switch__text">
+            <span class="switch__title">{% translate 'Show on the shared page' %}</span>
+            <span class="switch__hint">{% translate 'Customers can see this item and ask for it.' %}</span>
+          </span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <p class="form-error" data-product-error role="alert" hidden></p>
+
+  <div class="sheet-form__actions">
+    <a class="btn btn--quiet" href="{% url 'smst_stocks:products' %}">{% translate 'Cancel' %}</a>
+    <button class="btn btn--primary" type="submit" data-product-submit>
+      <span data-product-label>{% if product %}{% translate 'Save the changes' %}{% else %}{% translate 'Add the item' %}{% endif %}</span>
+    </button>
+  </div>
+</form>
+{% endblock %}
+
+{% block extra_stocks_content %}
+<div class="imageEditHolder animate__animated">
+    <div class="imageEdit animate__animated">
+      <div class="imageEditContainer flex">
+        <div class="editImage">
+          <div class="editImageHolder">
+            <img id="imageEditPreview" />
+          </div>
+        </div>
+        <div class="imageEditButtonHolder flex">
+          <div class="imageEditButton flex" style="flex-grow: 0.5">
+            <button id="cancelEditing" class="secondary-button">
+              {% translate 'Cancel' %}
+            </button>
+          </div>
+          <div class="imageEditButton flex" style="flex-grow: 1">
+            <button id="saveEditing" class="positive-button">
+              {% translate 'Save' %}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

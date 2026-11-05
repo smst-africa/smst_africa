@@ -1,0 +1,226 @@
+{% extends 'smst_finances/base.html' %}
+{% load i18n %}
+
+{% block finances_title %}{% translate 'Dashboard' %}{% endblock %}
+{% block finances_crumb %}{{ shop.name }}{% endblock %}
+
+{% block finances_content %}
+<header class="page-head" data-reveal>
+  <div class="page-head__main">
+    <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>{% translate 'Overview' %}</p>
+    <h1 class="page-head__title">{% translate 'What the money did' %}</h1>
+    <p class="page-head__lede">
+      {% if summary.count %}
+        {% blocktranslate count counter=summary.count %}{{ counter }} entry in this period.{% plural %}{{ counter }} entries in this period.{% endblocktranslate %}
+        {% translate 'Every figure below comes from the same posted lines the statements read.' %}
+      {% else %}
+        {% translate 'The book is open and waiting. Record the first sale, bill or tax and the numbers will fill in.' %}
+      {% endif %}
+    </p>
+  </div>
+  <div class="page-head__actions">
+    {% if can_manage %}
+    <button class="btn btn--primary" type="button" data-open-entry>
+      <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+      {% translate 'Record an entry' %}
+    </button>
+    {% endif %}
+    {% if 'finances.view.statements' in permissions %}
+    <a class="btn btn--ghost" href="{% url 'smst_finances:statements' %}?kind=profit_loss">
+      <svg aria-hidden="true"><use href="#i-scale"></use></svg>
+      {% translate 'Read the statements' %}
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+<form class="toolbar" method="get" data-filter-form data-reveal>
+  <div class="toolbar__filters" role="group" aria-label="{% translate 'Period' %}">
+    <span class="chip is-active">{{ date_from|date:"d M" }} → {{ date_to|date:"d M Y" }}</span>
+  </div>
+  <div class="toolbar__search">
+    <label class="sr-only" for="dash-from">{% translate 'From' %}</label>
+    <input id="dash-from" type="date" name="date_from" value="{{ date_from|date:'Y-m-d' }}" />
+    <label class="sr-only" for="dash-to">{% translate 'To' %}</label>
+    <input id="dash-to" type="date" name="date_to" value="{{ date_to|date:'Y-m-d' }}" />
+    <button class="btn btn--ghost btn--small" type="submit">{% translate 'Apply' %}</button>
+  </div>
+  {% if shop %}<input type="hidden" name="shop" value="{{ shop.id }}" />{% endif %}
+</form>
+
+<section class="stats" aria-label="{% translate 'Money totals' %}" data-reveal>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-arrow-down"></use></svg>{% translate 'Money in' %}</p>
+    <p class="stat__value" data-stat="income">{{ shop.currency }} {{ summary.income|floatformat:"2g" }}</p>
+    <p class="stat__note">{% translate 'income and profit from sales' %}</p>
+  </article>
+  <article class="stat {% if summary.expense %}stat--warn{% endif %}">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-arrow-up"></use></svg>{% translate 'Money out' %}</p>
+    <p class="stat__value" data-stat="expense">{{ shop.currency }} {{ summary.expense|floatformat:"2g" }}</p>
+    <p class="stat__note">{% translate 'expenses, losses, discounts and refunds' %}</p>
+  </article>
+  <article class="stat {% if summary.net < 0 %}stat--warn{% endif %}">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-trend"></use></svg>{% translate 'Left over' %}</p>
+    <p class="stat__value" data-stat="net">{{ shop.currency }} {{ summary.net|floatformat:"2g" }}</p>
+    <p class="stat__note">{% translate 'after tax, before owner drawings' %}</p>
+  </article>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-wallet"></use></svg>{% translate 'Cash and bank' %}</p>
+    <p class="stat__value" data-stat="cash">{{ shop.currency }} {{ summary.cash|floatformat:"2g" }}</p>
+    <p class="stat__note">{% translate 'what the till and the bank hold now' %}</p>
+  </article>
+</section>
+
+<div class="dash-grid">
+  {% if can_generate_graphs %}
+  <section class="card dash-flow" data-finance-chart="flow" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'The last 90 days' %}</p>
+        <h2 class="card__title">{% translate 'What came in and what went out' %}</h2>
+      </div>
+      <div class="segmented" data-flow-range role="group" aria-label="{% translate 'Chart range' %}">
+        <button class="segmented__btn" type="button" data-range="14">{% translate '14d' %}</button>
+        <button class="segmented__btn is-active" type="button" data-range="30">{% translate '30d' %}</button>
+        <button class="segmented__btn" type="button" data-range="90">{% translate '90d' %}</button>
+      </div>
+    </header>
+    <div class="chart">
+      <div class="chart__top">
+        <div class="chart__legend" data-chart-legend></div>
+      </div>
+      <div class="chart__canvas" data-chart-canvas></div>
+      <p class="chart__empty" data-chart-empty hidden>{% translate 'No entries in this period yet.' %}</p>
+    </div>
+    <div class="card__foot">{% translate 'Two lines from one book: income above the rule, spending below it.' %}</div>
+  </section>
+
+  <section class="card dash-health" data-finance-chart="expenses" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Where it went' %}</p>
+        <h2 class="card__title">{% translate 'Spending by finance option' %}</h2>
+      </div>
+      {% if 'finances.view.options' in permissions %}
+      <a class="card__link" href="{% url 'smst_finances:options' %}">{% translate 'The options' %}</a>
+      {% endif %}
+    </header>
+    <div class="chart">
+      <div class="donut" data-chart-canvas></div>
+      <p class="chart__empty" data-chart-empty hidden>{% translate 'Nothing has been spent in this period.' %}</p>
+    </div>
+    <div class="card__foot">
+      {% if expense_groups %}
+        {% blocktranslate with name=expense_groups.0.0 %}{{ name }} is the largest line.{% endblocktranslate %}
+      {% else %}
+        {% translate 'Expenses, discounts and losses group here once they are recorded.' %}
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+</div>
+
+<section class="stats" aria-label="{% translate 'Balance totals' %}" data-reveal>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-tax"></use></svg>{% translate 'Tax owed' %}</p>
+    <p class="stat__value">{{ shop.currency }} {{ summary.tax_due|floatformat:"2g" }}</p>
+    <p class="stat__note">{% blocktranslate with amount=summary.tax|floatformat:"2g" %}{{ amount }} collected in this period{% endblocktranslate %}</p>
+  </article>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-transfer"></use></svg>{% translate 'Still to receive' %}</p>
+    <p class="stat__value">{{ shop.currency }} {{ summary.receivable|floatformat:"2g" }}</p>
+    <p class="stat__note">{% translate 'customers who owe the shop' %}</p>
+  </article>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-journal"></use></svg>{% translate 'Still to pay' %}</p>
+    <p class="stat__value">{{ shop.currency }} {{ summary.payable|floatformat:"2g" }}</p>
+    <p class="stat__note">{% translate 'suppliers and bills outstanding' %}</p>
+  </article>
+  <article class="stat">
+    <p class="stat__label"><svg aria-hidden="true"><use href="#i-items"></use></svg>{% translate 'Stock at selling price' %}</p>
+    <p class="stat__value">{{ shop.currency }} {{ summary.stock_amount|floatformat:"2g" }}</p>
+    <p class="stat__note">{% blocktranslate with currency=shop.currency cost=summary.stock_cost|floatformat:"2g" units=summary.stock_quantity|floatformat:0 %}cost {{ currency }} {{ cost }} · {{ units }} units{% endblocktranslate %}</p>
+  </article>
+</section>
+
+<div class="dash-grid dash-grid--lower">
+  <section class="card dash-ledger" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'The book' %}</p>
+        <h2 class="card__title">{% translate 'The latest entries' %}</h2>
+      </div>
+      {% if 'finances.view.entries' in permissions %}
+      <a class="card__link" href="{% url 'smst_finances:entries' %}">{% translate 'Open the entries' %}</a>
+      {% endif %}
+    </header>
+
+    {% if recent %}
+    <div class="table-scroll">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">{% translate 'When' %}</th>
+            <th scope="col">{% translate 'Entry' %}</th>
+            <th scope="col">{% translate 'Kind' %}</th>
+            <th scope="col" class="is-numeric">{% translate 'Amount' %}</th>
+            <th scope="col">{% translate 'State' %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entry in recent %}
+          <tr>
+            <th scope="row" class="is-when">
+              <span data-time="{{entry.occurred_at|date:'c'}}">{{ entry.occurred_at|date:"d M Y" }}</span>
+              <span class="table__meta">{{ entry.reference }}</span>
+            </th>
+            <td>
+              <span class="table__name">{{ entry.description }}</span>
+              {% if entry.option %}<span class="table__meta">{{ entry.option.name }}</span>{% endif %}
+            </td>
+            <td><span class="tag tag--{{ entry.kind }}">{{ entry.get_kind_display }}</span></td>
+            <td class="is-numeric {% if entry.signed_amount < 0 %}is-down{% else %}is-up{% endif %}">
+              {{ shop.currency }} {{ entry.amount|floatformat:"2g" }}
+            </td>
+            <td>
+              {% if entry.status == 'posted' %}
+              <span class="tag tag--ok">{% translate 'Posted' %}</span>
+              {% elif entry.status == 'draft' %}
+              <span class="tag tag--muted">{% translate 'Draft' %}</span>
+              {% else %}
+              <span class="tag tag--out">{% translate 'Void' %}</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="card__body">
+      <div class="empty">
+        <svg class="empty__mark" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-journal"></use></svg>
+        <p class="empty__title">{% translate 'The first page is empty' %}</p>
+        <p class="empty__text">{% translate 'Record a sale, a bill or a tax payment and it will appear here.' %}</p>
+        {% if can_manage %}<button class="btn btn--primary" type="button" data-open-entry>{% translate 'Record an entry' %}</button>{% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <section class="card dash-low" data-reveal>
+    <header class="card__head">
+      <div class="card__head-main">
+        <p class="card__eyebrow">{% translate 'Plans' %}</p>
+        <h2 class="card__title">{% translate 'What the budgets say' %}</h2>
+      </div>
+      {% if 'finances.view.budgets' in permissions %}
+      <a class="card__link" href="{% url 'smst_finances:budgets' %}">{% translate 'Set a budget' %}</a>
+      {% endif %}
+    </header>
+    <div class="card__body" data-budget-widget>
+      <p class="card__note">{% translate 'Reading the plans…' %}</p>
+    </div>
+  </section>
+</div>
+{% endblock %}

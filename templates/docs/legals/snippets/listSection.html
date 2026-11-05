@@ -1,0 +1,5 @@
+{% if section.items %}
+{% for item in section.items %}
+<li><strong>{{ item.0 }}</strong> {{ item.1|safe }}</li>
+{% endfor %}
+{% endif %}

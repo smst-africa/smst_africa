@@ -1,0 +1,276 @@
+{% extends 'app/format/app_home.html' %}
+{% load static i18n adverts %}
+
+{% block skip_link %}
+<a class="skip-link" href="#mainContent">{% translate 'Skip to the shop floor' %}</a>
+{% endblock %}
+
+{% block title %}{% block works_title %}{% translate 'SmSt Works' %}{% endblock %}{% if shop %} · {{ shop.name }}{% endif %}{% endblock %}
+
+{% block headerTitle %}{% translate 'SmSt Works' %}{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="{% block works_description %}Run the team, the ranks, the loyalty customers, the suppliers and the live job timeline of the shop.{% endblock %}" />
+<meta name="theme-color" content="#f3f7fd" />
+<meta name="color-scheme" content="light" />
+<link rel="stylesheet" href="{% static 'smst_works/works.min.css' %}" />
+<link rel="icon" href="https://res.cloudinary.com/di3bh4qsl/image/upload/v1793683135/favicon_t1ufql.ico" type="image/x-icon">
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module" nonce="{{ csp_nonce }}" src="{% static 'js/smst_works/works.prod.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+{% include 'smst_works/partials/icons.html' %}
+
+<div
+  class="works"
+  data-shop="{{ shop.id|default:'' }}"
+  data-currency="{{ shop.currency|default:'Ksh' }}"
+  data-permissions="{{ permissions|join:',' }}"
+  data-rail-collapsed="false"
+>
+  <aside class="works__rail" hx-boost="true" hx-target="#mainContent" hx-select="#mainContent" hx-swap="outerHTML">
+    <div class="works__rail-head">
+      {% if 'works.view.dashboard' in permissions %}
+      <a class="works__brand" href="{% url 'smst_works:dashboard' %}">
+      {% else %}
+      <span class="works__brand">
+      {% endif %}
+        <span class="works__brand-mark" aria-hidden="true">
+          <div class="headerLogo">
+            <svg
+            viewBox="0 0 512 512"
+            version="1.1"
+            id="svg1"
+            xml:space="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:svg="http://www.w3.org/2000/svg"
+          >
+            <defs id="defs1" />
+            <g id="layer1">
+              <g
+                id="g248"
+                transform="matrix(1.8169051,0,0,1.8169051,-209.12772,-270.97164)"
+              >
+                <path
+                  d="M 409.76562,283.73156 257.0957,436.40148 c -0.60662,0.60663 -1.58478,0.60663 -2.1914,0 l -152.66992,-152.66992 -7.255865,7.25586 c -0.606624,0.60663 -0.606624,1.58283 0,2.18945 L 254.9043,453.10461 c 0.60662,0.60662 1.58478,0.60662 2.1914,0 L 417.02148,293.17687 c 0.60663,-0.60662 0.60663,-1.58282 0,-2.18945 z"
+                  style="
+                    fill: #1e4ea3;
+                    fill-opacity: 1;
+                    stroke: #69400c;
+                    stroke-width: 0.668326;
+                    stroke-linecap: square;
+                    stroke-miterlimit: 2.5;
+                  "
+                  id="path3"
+                  transform="matrix(0.6973204,0,0,0.58381552,77.485988,135.60877)"
+                />
+                <path
+                  d="M 333.42969,340.68555 256,259.71094 l -77.42969,80.97461 76.33399,76.33593 c 0.60662,0.60663 1.58478,0.60663 2.1914,0 z"
+                  style="
+                    fill: #1e4ea3;
+                    fill-opacity: 1;
+                    stroke-width: 0.668326;
+                    stroke-linecap: square;
+                    stroke-miterlimit: 2.5;
+                  "
+                  id="path9"
+                  transform="matrix(1.4274458,0,0,1.1950963,-109.42612,-125.24374)"
+                />
+                <path
+                  d="m 217.28482,280.87518 -82.32488,-85.27565 -39.980818,39.98176 c -0.606622,0.60662 -0.606622,1.58452 0,2.19114 l 7.254668,7.25652 76.33584,76.33435 z"
+                  style="
+                    display: inline;
+                    fill: #133368;
+                    fill-opacity: 1;
+                    stroke-width: 0.668326;
+                    stroke-linecap: square;
+                    stroke-miterlimit: 2.5;
+                  "
+                  id="path265"
+                  transform="matrix(0.6973204,0,0,0.58381552,77.485988,129.9516)"
+                />
+                <path
+                  id="path2"
+                  style="fill: #ffffff; fill-opacity: 1; stroke: none; stroke-opacity: 1"
+                  d="m 7.15997,14.56 c -2.42,1.62 -2.42,4.26 0,5.87 2.75,1.84 7.26003,1.84 10.01003,0 2.42,-1.62 2.42,-4.26 0,-5.87 -2.74,-1.83 -7.25003,-1.83 -10.01003,0 z m 5.00013,-3.69 c -0.1,-0.01 -0.22,-0.01 -0.33,0 C 9.45006,10.79 7.56006,8.84 7.56006,6.44 c 0,-2.45 1.98,-4.44 4.44004,-4.44 2.45,0 4.44,1.99 4.44,4.44 -0.01,2.4 -1.9,4.35 -4.28,4.43 z"
+                  transform="matrix(3.0083468,-2.5212226,2.6423874,2.8704012,217.17362,273.38489)"
+                />
+              </g>
+            </g>
+          </svg>
+          </div>
+        </span>
+        <span class="works__brand-text">
+          <span class="works__brand-name">{% translate 'SmSt Works' %}</span>
+          <span class="works__brand-sub">{% translate 'The shop floor' %}</span>
+        </span>
+      {% if 'works.view.dashboard' in permissions %}</a>{% else %}</span>{% endif %}
+
+      <button
+        class="works__rail-toggle"
+        type="button"
+        aria-expanded="true"
+        aria-controls="works-nav"
+        data-rail-toggle
+      >
+        <span class="sr-only">{% translate 'Collapse the menu' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-panel"></use></svg>
+      </button>
+    </div>
+
+    <nav class="works__nav" id="works-nav" aria-label="{% translate 'SmSt Works' %}">
+      {% if 'works.view.dashboard' in permissions %}
+      <div class="works__nav-group">
+        <p class="works__nav-label">{% translate 'Overview' %}</p>
+        <a class="works__nav-link {% if active == 'dashboard' %}is-active{% endif %}" data-label="Shop floor" href="{% url 'smst_works:dashboard' %}"{% if active == 'dashboard' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-timeline"></use></svg>
+          <span class="works__nav-label-text">{% translate 'Shop floor' %}</span>
+        </a>
+      </div>
+      {% endif %}
+
+      <div class="works__nav-group">
+        <p class="works__nav-label">{% translate 'The work' %}</p>
+        {% if 'works.view.jobs' in permissions %}
+        <a class="works__nav-link {% if active == 'jobs' %}is-active{% endif %}" data-label="Jobs" href="{% url 'smst_works:jobs' %}"{% if active == 'jobs' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-jobs"></use></svg>
+          <span class="works__nav-label-text">{% translate 'Jobs' %}</span>
+        </a>
+        {% endif %}
+        {% if 'works.view.employees' in permissions %}
+        <a class="works__nav-link {% if active == 'employees' %}is-active{% endif %}" data-label="Employees" href="{% url 'smst_works:employees' %}"{% if active == 'employees' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-team"></use></svg>
+          <span class="works__nav-label-text">{% translate 'Employees' %}</span>
+        </a>
+        {% endif %}
+        {% if 'works.view.ranks' in permissions %}
+        <a class="works__nav-link {% if active == 'ranks' %}is-active{% endif %}" data-label="Ranks" href="{% url 'smst_works:ranks' %}"{% if active == 'ranks' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-rank"></use></svg>
+          <span class="works__nav-label-text">{% translate 'Ranks' %}</span>
+        </a>
+        {% endif %}
+      </div>
+
+      <div class="works__nav-group">
+        <p class="works__nav-label">{% translate 'The shop' %}</p>
+        {% if 'works.view.customers' in permissions %}
+        <a class="works__nav-link {% if active == 'customers' %}is-active{% endif %}" data-label="Loyalty" href="{% url 'smst_works:customers' %}"{% if active == 'customers' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-star"></use></svg>
+          <span class="works__nav-label-text">{% translate 'Loyalty customers' %}</span>
+        </a>
+        {% endif %}
+        {% if 'works.view.suppliers' in permissions %}
+        <a class="works__nav-link {% if active == 'suppliers' %}is-active{% endif %}" data-label="Suppliers" href="{% url 'smst_works:suppliers' %}"{% if active == 'suppliers' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-truck"></use></svg>
+          <span class="works__nav-label-text">{% translate 'Suppliers' %}</span>
+        </a>
+        {% endif %}
+        {% if 'works.view.guides' in permissions %}
+        <a class="works__nav-link {% if active == 'guides' %}is-active{% endif %}" data-label="Guides" href="{% url 'smst_works:guides' %}"{% if active == 'guides' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-book"></use></svg>
+          <span class="works__nav-label-text">{% translate 'Guides' %}</span>
+        </a>
+        {% endif %}
+      </div>
+    </nav>
+
+    {% if shop %}
+    <div class="works__rail-foot">
+      <div class="plan-card">
+        <p class="plan-card__label">{% translate 'The shop' %}</p>
+        <p class="plan-card__plan">
+          {{ shop.name }}
+          <span>· {{ shop.currency|default:"Ksh" }}</span>
+        </p>
+        {% if 'works.view.employees' in permissions %}
+        <a class="plan-card__link" href="{% url 'smst_works:employees' %}">
+          <span>{% blocktranslate with count=summary.employees rank=my_rank %}{{ count }} on the team · you are {{ rank }}{% endblocktranslate %}</span>
+          <svg aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+        {% else %}
+        <span class="plan-card__link">
+          <span>{% blocktranslate with count=summary.employees rank=my_rank %}{{ count }} on the team · you are {{ rank }}{% endblocktranslate %}</span>
+        </span>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </aside>
+
+  <div class="works__app__container">
+    <div class="works__app__holder">
+      <div class="works__app">
+        <header class="works__appbar">
+          <div class="works__appbar-lead">
+            {% if shops %}
+            <form class="shop-switch" method="get" data-shop-switch-form>
+              <label class="sr-only" for="shop-switch">{% translate 'Choose a shop' %}</label>
+              <select id="shop-switch" name="shop" data-shop-switch>
+                {% for option in shops %}
+                <option value="{{ option.id }}"{% if shop and option.id == shop.id %} selected{% endif %}>{{ option.name }}</option>
+                {% endfor %}
+              </select>
+              <svg aria-hidden="true"><use href="#i-chevron"></use></svg>
+            </form>
+            {% else %}
+            <span class="works__appbar-crumb"><strong>{% translate 'SmSt Works' %}</strong></span>
+            {% endif %}
+
+            <span class="works__appbar-crumb" aria-hidden="true">
+              <span>/</span>
+              {% block works_crumb %}{{ shop.name|default:"Start a shop" }}{% endblock %}
+            </span>
+          </div>
+
+          <div class="works__appbar-actions">
+            <span class="works-live" title="{% translate 'The timeline moves forward every second' %}">
+              <span class="works-live__dot" aria-hidden="true"></span>
+              <span data-live-clock>{% now "H:i:s" %}</span>
+            </span>
+            {% if shop and can_stock_action %}
+            <button class="btn btn--ghost btn--small" type="button" data-open-stock>
+              <svg aria-hidden="true"><use href="#i-items"></use></svg>
+              {% translate 'Stock action' %}
+            </button>
+            {% endif %}
+            {% if shop and can_jobs_create %}
+            <button class="btn btn--primary btn--small" type="button" data-open-job>
+              <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+              {% translate 'New job' %}
+            </button>
+            {% endif %}
+          </div>
+        </header>
+
+        <main class="works__main">
+          {% adverts %}
+          {% block works_content %}{% endblock %}
+
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="works__toast" data-toast hidden role="status" aria-live="polite">
+  <p class="works__toast-text" data-toast-text></p>
+</div>
+
+{% if shop %}
+{% if can_jobs_create %}{% include 'smst_works/partials/job_form.html' %}{% endif %}
+{% if can_stock_action %}{% include 'smst_works/partials/stock_form.html' %}{% endif %}
+{% if can_employees %}{% include 'smst_works/partials/employee_form.html' %}{% endif %}
+{% if can_ranks %}{% include 'smst_works/partials/rank_form.html' %}{% endif %}
+{% if can_customers %}{% include 'smst_works/partials/customer_form.html' %}{% endif %}
+{% if can_suppliers %}{% include 'smst_works/partials/supplier_form.html' %}{% endif %}
+{% if can_guides %}{% include 'smst_works/partials/guide_form.html' %}{% endif %}
+{% if can_customers %}{% include 'smst_works/partials/points_form.html' %}{% endif %}
+{% endif %}
+
+{% block extra_works_content %}{% endblock %}
+
+
+{% endblock %}

@@ -1,0 +1,295 @@
+{% extends 'app/format/app_home.html' %}
+{% load static i18n adverts %}
+
+{% block skip_link %}
+<a class="skip-link" href="#mainContent">{% translate 'Skip to the money book' %}</a>
+{% endblock %}
+
+{% block title %}{% block finances_title %}{% translate 'SmSt Finances' %}{% endblock %}{% if shop %} · {{ shop.name }}{% endif %}{% endblock %}
+
+{% block headerTitle %}{% translate 'SmSt Finances' %}{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="{% block finances_description %}Keep the money side of the shop: what came in, what went out and what is left.{% endblock %}" />
+<meta name="theme-color" content="#f7f4ee" />
+<meta name="color-scheme" content="light" />
+<link rel="stylesheet" href="{% static 'smst_finances/finances.min.css' %}" />
+<link rel="icon" href="https://res.cloudinary.com/di3bh4qsl/image/upload/v1793682996/favicon_spt4jt.ico" type="image/x-icon">
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module" nonce="{{ csp_nonce }}" src="{% static 'js/smst_finances/finances.prod.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+{% include 'smst_finances/partials/icons.html' %}
+
+<div
+  class="finances"
+  data-shop="{{ shop.id|default:'' }}"
+  data-currency="{{ shop.currency|default:'Ksh' }}"
+  data-rail-collapsed="false"
+>
+  <aside class="finances__rail" hx-boost="true" hx-target="#mainContent" hx-select="#mainContent" hx-swap="outerHTML">
+    <div class="finances__rail-head">
+      {% if 'finances.view.dashboard' in permissions %}
+      <a class="finances__brand" href="{% url 'smst_finances:dashboard' %}">
+      {% else %}
+      <span class="finances__brand">
+      {% endif %}
+        <span class="finances__brand-mark" aria-hidden="true">
+          <svg
+            viewBox="0 0 512 512"
+            version="1.1"
+            id="svg1"
+            xml:space="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:svg="http://www.w3.org/2000/svg"
+          >
+            <defs id="defs1" />
+            <g id="layer1">
+              <g
+                id="g248"
+                transform="matrix(1.8169051,0,0,1.8169051,-209.12772,-270.97164)"
+              >
+                <path
+                  d="M 409.76562,283.73156 257.0957,436.40148 c -0.60662,0.60663 -1.58478,0.60663 -2.1914,0 l -152.66992,-152.66992 -7.255865,7.25586 c -0.606624,0.60663 -0.606624,1.58283 0,2.18945 L 254.9043,453.10461 c 0.60662,0.60662 1.58478,0.60662 2.1914,0 L 417.02148,293.17687 c 0.60663,-0.60662 0.60663,-1.58282 0,-2.18945 z"
+                  style="
+                    fill: #37a663;
+                    fill-opacity: 1;
+                    stroke: #69400c;
+                    stroke-width: 0.668326;
+                    stroke-linecap: square;
+                    stroke-miterlimit: 2.5;
+                  "
+                  id="path3"
+                  transform="matrix(0.6973204,0,0,0.58381552,77.485988,135.60877)"
+                />
+                <path
+                  d="M 333.42969,340.68555 256,259.71094 l -77.42969,80.97461 76.33399,76.33593 c 0.60662,0.60663 1.58478,0.60663 2.1914,0 z"
+                  style="
+                    fill: #37a663;
+                    fill-opacity: 1;
+                    stroke-width: 0.668326;
+                    stroke-linecap: square;
+                    stroke-miterlimit: 2.5;
+                  "
+                  id="path9"
+                  transform="matrix(1.4274458,0,0,1.1950963,-109.42612,-125.24374)"
+                />
+                <path
+                  d="m 217.28482,280.87518 -82.32488,-85.27565 -39.980818,39.98176 c -0.606622,0.60662 -0.606622,1.58452 0,2.19114 l 7.254668,7.25652 76.33584,76.33435 z"
+                  style="
+                    display: inline;
+                    fill: #1e5a36;
+                    fill-opacity: 1;
+                    stroke-width: 0.668326;
+                    stroke-linecap: square;
+                    stroke-miterlimit: 2.5;
+                  "
+                  id="path265"
+                  transform="matrix(0.6973204,0,0,0.58381552,77.485988,129.9516)"
+                />
+              </g>
+            </g>
+            <g
+              id="layer1-6"
+              transform="matrix(0.798026,-0.66337087,0.60715255,0.7483875,-134.08677,199.14019)"
+            >
+              <g
+                id="g1"
+                transform="matrix(0.49525792,-0.00708311,0.05560157,0.4859813,176.41606,213.56871)"
+              >
+                <rect
+                  style="
+                    fill: #1e5a36;
+                    fill-opacity: 1;
+                    stroke: none;
+                    stroke-width: 1.12717;
+                    stroke-linecap: square;
+                    stroke-miterlimit: 2.5;
+                  "
+                  id="rect9"
+                  width="400"
+                  height="200"
+                  x="-18.238045"
+                  y="174.36639"
+                  ry="13.920727"
+                />
+                <path
+                  d="M 46.032462,208.41424 A 32.426353,32.426353 45 0 1 13.86254,239.21893 v 70.29492 a 32.426353,32.426353 45 0 1 32.341797,30.80469 H 317.16723 a 32.426353,32.426353 45 0 1 32.16992,-30.80469 32.426353,32.426353 45 0 1 0.32422,0.0176 v -68.69141 a 32.426353,32.426353 45 0 1 -32.42578,-32.42578 z"
+                  style="
+                    fill: #ffffff;
+                    fill-opacity: 1;
+                    stroke-width: 0.838715;
+                    stroke-linecap: square;
+                    stroke-miterlimit: 2.5;
+                  "
+                  id="path16"
+                />
+              </g>
+            </g>
+          </svg>
+
+        </span>
+        <span class="finances__brand-text">
+          <span class="finances__brand-name">{% translate 'SmSt Finances' %}</span>
+          <span class="finances__brand-sub">{% translate 'The money book' %}</span>
+        </span>
+      {% if 'finances.view.dashboard' in permissions %}</a>{% else %}</span>{% endif %}
+
+      <button
+        class="finances__rail-toggle"
+        type="button"
+        aria-expanded="true"
+        aria-controls="finances-nav"
+        data-rail-toggle
+      >
+        <span class="sr-only">{% translate 'Collapse the menu' %}</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-panel"></use></svg>
+      </button>
+    </div>
+
+    <nav class="finances__nav" id="finances-nav" aria-label="{% translate 'SmSt Finances' %}">
+      <div class="finances__nav-group">
+        <p class="finances__nav-label">{% translate 'Overview' %}</p>
+        {% if 'finances.view.dashboard' in permissions %}
+        <a class="finances__nav-link {% if active == 'dashboard' %}is-active{% endif %}" data-label="Dashboard" href="{% url 'smst_finances:dashboard' %}"{% if active == 'dashboard' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-dashboard"></use></svg>
+          <span class="finances__nav-label-text">{% translate 'Dashboard' %}</span>
+        </a>
+        {% endif %}
+        {% if 'finances.view.statements' in permissions %}
+        <a class="finances__nav-link {% if active == 'statements' %}is-active{% endif %}" data-label="Statements" href="{% url 'smst_finances:statements' %}"{% if active == 'statements' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-scale"></use></svg>
+          <span class="finances__nav-label-text">{% translate 'Statements' %}</span>
+        </a>
+        {% endif %}
+        {% if 'finances.view.reports' in permissions %}
+        <a class="finances__nav-link {% if active == 'reports' %}is-active{% endif %}" data-label="Reports" href="{% url 'smst_finances:reports' %}"{% if active == 'reports' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-reports"></use></svg>
+          <span class="finances__nav-label-text">{% translate 'Reports' %}</span>
+        </a>
+        {% endif %}
+      </div>
+
+      <div class="finances__nav-group">
+        <p class="finances__nav-label">{% translate 'The books' %}</p>
+        {% if 'finances.view.entries' in permissions %}
+        <a class="finances__nav-link {% if active == 'entries' %}is-active{% endif %}" data-label="Entries" href="{% url 'smst_finances:entries' %}"{% if active == 'entries' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-journal"></use></svg>
+          <span class="finances__nav-label-text">{% translate 'Entries' %}</span>
+        </a>
+        {% endif %}
+        {% if 'finances.view.entries' in permissions %}
+        <a class="finances__nav-link {% if active == 'receipts' %}is-active{% endif %}" data-label="Receipts" href="{% url 'smst_finances:receipts' %}"{% if active == 'receipts' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-print"></use></svg>
+          <span class="finances__nav-label-text">{% translate 'Receipts' %}</span>
+        </a>
+        {% endif %}
+        {% if 'finances.view.options' in permissions %}
+        <a class="finances__nav-link {% if active == 'options' %}is-active{% endif %}" data-label="Finance options" href="{% url 'smst_finances:options' %}"{% if active == 'options' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-sliders"></use></svg>
+          <span class="finances__nav-label-text">{% translate 'Finance options' %}</span>
+        </a>
+        {% endif %}
+        {% if 'finances.view.accounts' in permissions %}
+        <a class="finances__nav-link {% if active == 'accounts' %}is-active{% endif %}" data-label="Accounts" href="{% url 'smst_finances:accounts' %}"{% if active == 'accounts' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-ledger"></use></svg>
+          <span class="finances__nav-label-text">{% translate 'Accounts' %}</span>
+        </a>
+        {% endif %}
+      </div>
+
+      <div class="finances__nav-group">
+        <p class="finances__nav-label">{% translate 'Planning' %}</p>
+        {% if 'finances.view.charts' in permissions %}
+        <a class="finances__nav-link {% if active == 'charts' %}is-active{% endif %}" data-label="Graphs" href="{% url 'smst_finances:charts' %}"{% if active == 'charts' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-chart"></use></svg>
+          <span class="finances__nav-label-text">{% translate 'Graph builder' %}</span>
+        </a>
+        {% endif %}
+        {% if 'finances.view.budgets' in permissions %}
+        <a class="finances__nav-link {% if active == 'budgets' %}is-active{% endif %}" data-label="Budgets" href="{% url 'smst_finances:budgets' %}"{% if active == 'budgets' %} aria-current="page"{% endif %}>
+          <svg aria-hidden="true"><use href="#i-budget"></use></svg>
+          <span class="finances__nav-label-text">{% translate 'Budgets' %}</span>
+        </a>
+        {% endif %}
+      </div>
+    </nav>
+
+    {% if shop %}
+    <div class="finances__rail-foot">
+      <div class="plan-card">
+        <p class="plan-card__label">{% translate 'The shop' %}</p>
+        <p class="plan-card__plan">
+          {{ shop.name }}
+          <span>· {{ shop.currency|default:"Ksh" }}</span>
+        </p>
+        <a class="plan-card__link" href="{% url 'smst_finances:entries' %}">
+          <span>{% blocktranslate count counter=product_count %}{{ counter }} item linked from stock{% plural %}{{ counter }} items linked from stock{% endblocktranslate %}</span>
+          <svg aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+      </div>
+    </div>
+    {% endif %}
+  </aside>
+
+  <div class="finances__app__container">
+    <div class="finances__app__holder">
+      <div class="finances__app">
+        <header class="finances__appbar">
+          <div class="finances__appbar-lead">
+            {% if shops %}
+            <form class="shop-switch" method="get" data-shop-switch-form>
+              <label class="sr-only" for="shop-switch">{% translate 'Choose a shop' %}</label>
+              <select id="shop-switch" name="shop" data-shop-switch>
+                {% for option in shops %}
+                <option value="{{ option.id }}"{% if shop and option.id == shop.id %} selected{% endif %}>{{ option.name }}</option>
+                {% endfor %}
+              </select>
+              <svg aria-hidden="true"><use href="#i-chevron"></use></svg>
+            </form>
+            {% else %}
+            <span class="finances__appbar-crumb"><strong>{% translate 'SmSt Finances' %}</strong></span>
+            {% endif %}
+
+            <span class="finances__appbar-crumb" aria-hidden="true">
+              <span>/</span>
+              {% block finances_crumb %}{{ shop.name|default:"Start a shop" }}{% endblock %}
+            </span>
+          </div>
+
+          <div class="finances__appbar-actions">
+            <span class="finances__appbar-date">{% now "D, d M Y" %}</span>
+            {% if shop %}
+            {% if can_manage %}
+            <button class="btn btn--primary btn--small" type="button" data-open-entry>
+              <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+              {% translate 'Record an entry' %}
+            </button>
+            {% endif %}
+            {% endif %}
+          </div>
+        </header>
+
+        <main class="finances__main">
+          {% adverts %}
+          {% block finances_content %}{% endblock %}
+
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="finances__toast" data-toast hidden role="status" aria-live="polite">
+  <p class="finances__toast-text" data-toast-text></p>
+</div>
+
+{% if shop and can_manage %}{% include 'smst_finances/partials/entry_form.html' %}{% endif %}
+
+{% block extra_finances_content %}{% endblock %}
+
+
+{% endblock %}

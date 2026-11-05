@@ -1,0 +1,629 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-26 16:52+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: dist/js/account/account.js:55 dist/min/account/account.min.js:47
+msgid "Empty Fields"
+msgstr "Uwanja Mtupu"
+
+#: dist/js/account/account.js:56 dist/min/account/account.min.js:48
+msgid "Kindly fill the input with information"
+msgstr "Tafadhali jaza taarifa kwenye sehemu hiyo."
+
+#: dist/js/account/account.js:90 dist/min/account/account.min.js:76
+msgid "Username Changed"
+msgstr "Jina la mtumiaji ni refu mno"
+
+#: dist/js/account/account.js:91 dist/min/account/account.min.js:77
+msgid "You have successfully updated your username."
+msgstr "Umesasisha jina lako la mtumiaji kwa mafanikio."
+
+#: dist/js/account/account.js:97 dist/min/account/account.min.js:82
+msgid "Error"
+msgstr "Hitilafu"
+
+#: dist/js/account/account.js:98 dist/min/account/account.min.js:83
+msgid "Your username could not be changed."
+msgstr "Jina lako la mtumiaji halikuweza kubadilishwa."
+
+#: dist/js/account/account.js:120 dist/min/account/account.min.js:100
+msgid "Invalid OTP"
+msgstr "OTP batili"
+
+#: dist/js/account/account.js:121 dist/min/account/account.min.js:101
+msgid "The OTP is 6 digits long."
+msgstr "OTP ina tarakimu 6."
+
+#: dist/js/account/account.js:141 dist/min/account/account.min.js:113
+msgid "OTP Correct!"
+msgstr "OTP Sahihi"
+
+#: dist/js/account/account.js:142 dist/min/account/account.min.js:114
+msgid "Validating your details"
+msgstr "Kuthibitisha taarifa zako"
+
+#: dist/js/account/account.js:148 dist/min/account/account.min.js:119
+msgid "Invalid OTP!"
+msgstr "OTP si sahihi!"
+
+#: dist/js/account/account.js:150 dist/min/account/account.min.js:121
+msgid "Confirm you are entering the latest password and it has not expired."
+msgstr ""
+"Thibitisha kuwa unaingiza nenosiri la hivi karibuni na kwamba halijaisha "
+"muda wake wa matumizi."
+
+#: dist/js/account/account.js:172 dist/min/account/account.min.js:138
+msgid "Details Saved"
+msgstr "Maelezo Yamehifadhiwa"
+
+#: dist/js/account/account.js:173 dist/min/account/account.min.js:139
+msgid "Log into your account."
+msgstr "Ingia kwenye akaunti yako."
+
+#: dist/js/account/account.js:178 dist/min/account/account.min.js:143
+#, fuzzy
+#| msgid "An Error Occurred"
+msgid "Error Occurred"
+msgstr "Hitilafu imetokea"
+
+#: dist/js/account/account.js:179 dist/min/account/account.min.js:144
+msgid "Try creating again."
+msgstr "Jaribu kuunda tena."
+
+#: dist/js/account/account.js:206 dist/min/account/account.min.js:164
+msgid "Invalid"
+msgstr "Batili"
+
+#: dist/js/account/account.js:207 dist/min/account/account.min.js:165
+msgid "You have entered the wrong password or email."
+msgstr "Umeingiza nenosiri au barua pepe isiyo sahihi."
+
+#: dist/js/account/account.js:250 dist/js/account/profile.js:165
+#: dist/min/account/account.min.js:200 dist/min/account/profile.min.js:121
+msgid "Password Changed"
+msgstr "Nenosiri limebadilishwa"
+
+#: dist/js/account/account.js:251 dist/min/account/account.min.js:201
+msgid "Login with your new values"
+msgstr "Ingia ukitumia thamani zako mpya"
+
+#: dist/js/account/account.js:258 dist/min/account/account.min.js:206
+msgid "Password Not Changed"
+msgstr "Manenosiri hayalingani."
+
+#: dist/js/account/account.js:259 dist/min/account/account.min.js:207
+#, fuzzy
+#| msgid "Kindly Try again"
+msgid "Kindly Try again."
+msgstr "Tafadhali Jaribu Tena"
+
+#: dist/js/account/account.js:273 dist/min/account/account.min.js:221
+msgid "Kindly Enter a valid Email"
+msgstr "Tafadhali weka barua pepe sahihi."
+
+#: dist/js/account/profile.js:58 dist/min/account/profile.min.js:37
+msgid "Notifications Silenced"
+msgstr "Arifa Zimenyamazishwa"
+
+#: dist/js/account/profile.js:59 dist/min/account/profile.min.js:38
+msgid "You will not receive notifications"
+msgstr "Hutapokea arifa"
+
+#: dist/js/account/profile.js:75 dist/min/account/profile.min.js:51
+msgid "Empty Field"
+msgstr "Uwanja Mtupu"
+
+#: dist/js/account/profile.js:76 dist/min/account/profile.min.js:52
+msgid "Kindly Fill in the Blank Space"
+msgstr "Tafadhali jaza nafasi iliyo wazi."
+
+#: dist/js/account/profile.js:95 dist/min/account/profile.min.js:64
+#, fuzzy
+#| msgid "You have updated your %(edit_name)s"
+msgid "You have updated your %(editName)s"
+msgstr "Umesasisha %(edit_name) yako."
+
+#: dist/js/account/profile.js:99 dist/min/account/profile.min.js:68
+msgid "Details Changed"
+msgstr "Maelezo Yamehifadhiwa"
+
+#: dist/js/account/profile.js:103 dist/min/account/profile.min.js:71
+msgid "Details Not Changed"
+msgstr "Maelezo Hayajahifadhiwa."
+
+#: dist/js/account/profile.js:104 dist/min/account/profile.min.js:72
+#, fuzzy
+#| msgid "An Error Occurred"
+msgid "An error occurred try again."
+msgstr "Hitilafu imetokea"
+
+#: dist/js/account/profile.js:123 dist/min/account/profile.min.js:86
+msgid "Password Confirmed"
+msgstr "Nenosiri limesahihishwa"
+
+#: dist/js/account/profile.js:124 dist/min/account/profile.min.js:87
+msgid "Enter your new password to change it."
+msgstr "Weka nenosiri lako jipya ili kulibadilisha."
+
+#: dist/js/account/profile.js:131 dist/min/account/profile.min.js:93
+msgid "Logging you out"
+msgstr "Inakutoa kwenye mfumo."
+
+#: dist/js/account/profile.js:132 dist/min/account/profile.min.js:94
+msgid "Too many password attempts."
+msgstr "Jaribio la nenosiri limefanywa mara nyingi mno."
+
+#: dist/js/account/profile.js:141 dist/min/account/profile.min.js:102
+msgid "Password Failed"
+msgstr "Nenosiri limekataa"
+
+#: dist/js/account/profile.js:142 dist/min/account/profile.min.js:104
+msgid "You will be logged out after 3 incorrect attempts."
+msgstr "Utatoka kwenye mfumo baada ya majaribio 3 yasiyo sahihi."
+
+#: dist/js/account/profile.js:166 dist/min/account/profile.min.js:122
+msgid "Kindly log in with your new password"
+msgstr "Ingia ukitumia thamani zako mpya"
+
+#: dist/js/account/profile.js:182 dist/min/account/profile.min.js:148
+msgid "Are you sure?"
+msgstr "Je, una uhakika?"
+
+#: dist/js/account/profile.js:183 dist/min/account/profile.min.js:149
+msgid "Kindly click Logout again to confirm"
+msgstr "Tafadhali bofya 'Ondoka' tena ili kuthibitisha."
+
+#: dist/js/app/app.js:66 dist/min/app/app.min.js:53
+msgid "Maximum Descriptions"
+msgstr "Maelezo ya Kina Zaidi"
+
+#: dist/js/app/app.js:67 dist/min/app/app.min.js:54
+msgid "You have reached your free limit for descriptions."
+msgstr "Umefikia kikomo chako cha bure kwa ajili ya maelezo."
+
+#: dist/js/app/app.js:80 dist/min/app/app.min.js:63
+msgid "Fill Empty Fields"
+msgstr "Jaza Sehemu Tupu"
+
+#: dist/js/app/app.js:81 dist/min/app/app.min.js:64
+msgid "Kindly fill in the empty fields."
+msgstr "Tafadhali jaza nafasi iliyo wazi."
+
+#: dist/js/app/app.js:141 dist/min/app/app.min.js:93
+msgid "Maximum Descriptions Reached"
+msgstr "Kiwango cha juu cha maelezo kimefikiwa"
+
+#: dist/js/app/app.js:142 dist/min/app/app.min.js:94
+msgid "You have reached your maximum of 5 descriptions."
+msgstr "Umefikia kikomo chako cha maelezo 5."
+
+#: dist/js/app/app.js:173 dist/min/app/app.min.js:118
+msgid "Deleted Description"
+msgstr "Maelezo yamefutwa"
+
+#: dist/js/app/app.js:174 dist/min/app/app.min.js:119
+msgid "You have removed the description"
+msgstr "Umeondoa maelezo"
+
+#: dist/js/app/app.js:200 dist/min/app/app.min.js:141
+#, fuzzy
+#| msgid "Image Processing Failed"
+msgid "Processing"
+msgstr "Uchakataji wa picha umeshindwa"
+
+#: dist/js/app/app.js:201 dist/min/app/app.min.js:142
+msgid "Your request is being processed"
+msgstr ""
+
+#: dist/js/app/app.js:284 dist/min/app/app.min.js:205
+msgid "Close"
+msgstr ""
+
+#: dist/js/app/app.js:292 dist/min/app/app.min.js:205
+msgid "Stock Item"
+msgstr ""
+
+#: dist/js/app/app.js:296 dist/min/app/app.min.js:205
+msgid "Information"
+msgstr ""
+
+#: dist/js/app/app.js:297 dist/min/app/app.min.js:205
+msgid "Transactions"
+msgstr ""
+
+#: dist/js/app/app.js:303 dist/js/app/app.js:369 dist/min/app/app.min.js:205
+#: dist/min/app/app.min.js:263
+msgid "Edit Product"
+msgstr ""
+
+#: dist/js/app/app.js:304 dist/min/app/app.min.js:205
+msgid "Delete Product"
+msgstr ""
+
+#: dist/js/app/app.js:305 dist/js/app/app.js:358 dist/min/app/app.min.js:205
+#: dist/min/app/app.min.js:252
+msgid "Buy Product"
+msgstr ""
+
+#: dist/js/app/app.js:306 dist/js/app/app.js:363 dist/min/app/app.min.js:205
+#: dist/min/app/app.min.js:257
+msgid "Sell Product"
+msgstr ""
+
+#: dist/js/app/app.js:310 dist/min/app/app.min.js:205
+msgid "Product Transactions"
+msgstr ""
+
+#: dist/js/app/app.js:314 dist/min/app/app.min.js:205
+msgid "Date"
+msgstr ""
+
+#: dist/js/app/app.js:315 dist/min/app/app.min.js:205
+#: static/js/app/app.prod.js:1
+msgid "Type"
+msgstr ""
+
+#: dist/js/app/app.js:316 dist/min/app/app.min.js:205
+msgid "Quantity"
+msgstr ""
+
+#: dist/js/app/app.js:317 dist/min/app/app.min.js:205
+msgid "Reference"
+msgstr ""
+
+#: dist/js/app/app.js:318 dist/min/app/app.min.js:205
+msgid "Status"
+msgstr ""
+
+#: dist/js/app/app.js:323 dist/min/app/app.min.js:205
+msgid "No transactions yet."
+msgstr ""
+
+#: dist/js/app/app.js:359 dist/min/app/app.min.js:253
+msgid "Purchase recorded successfully"
+msgstr ""
+
+#: dist/js/app/app.js:364 dist/min/app/app.min.js:258
+msgid "Sale recorded successfully"
+msgstr ""
+
+#: dist/js/app/app.js:370 dist/min/app/app.min.js:264
+msgid "Open the product editor to modify this item."
+msgstr ""
+
+#: dist/js/app/app.js:445 dist/min/app/app.min.js:238
+msgid "Deleted"
+msgstr ""
+
+#: dist/js/app/app.js:446 dist/min/app/app.min.js:239
+msgid "Product deleted successfully"
+msgstr ""
+
+#: dist/js/app/app.js:451 dist/min/app/app.min.js:244
+msgid "Delete Failed"
+msgstr ""
+
+#: dist/js/app/app.js:452 dist/min/app/app.min.js:245
+msgid "Could not delete the product."
+msgstr ""
+
+#: dist/js/app/app.js:483 dist/js/app/app.js:617 dist/min/app/app.min.js:326
+#: dist/min/app/app.min.js:361 static/js/app/app.prod.js:1
+msgid "Image"
+msgstr ""
+
+#: dist/js/app/app.js:486 dist/js/app/app.js:622 dist/min/app/app.min.js:326
+#: dist/min/app/app.min.js:364
+#, fuzzy
+#| msgid "Product %s Created"
+msgid "Product Name"
+msgstr "Bidhaa %s Imeundwa"
+
+#: dist/js/app/app.js:489 dist/js/app/app.js:627 dist/min/app/app.min.js:326
+#: dist/min/app/app.min.js:367
+#, fuzzy
+#| msgid "Deleted Description"
+msgid "Description"
+msgstr "Maelezo yamefutwa"
+
+#: dist/js/common/dom_loaded.js:42 dist/min/common/dom_loaded.min.js:36
+msgid "Username too short."
+msgstr "Jina la mtumiaji ni fupi mno"
+
+#: dist/js/common/dom_loaded.js:45 dist/min/common/dom_loaded.min.js:38
+msgid "Username too long."
+msgstr "Jina la mtumiaji ni refu mno"
+
+#: dist/js/common/dom_loaded.js:53 dist/min/common/dom_loaded.min.js:44
+msgid "Username is unique."
+msgstr "Jina la mtumiaji ni la kipekee."
+
+#: dist/js/common/dom_loaded.js:55 dist/min/common/dom_loaded.min.js:45
+msgid "Username already taken."
+msgstr "Jina la mtumiaji tayari linatumiwa."
+
+#: dist/js/common/dom_loaded.js:84 dist/min/common/dom_loaded.min.js:68
+msgid "Passwords do not match."
+msgstr "Manenosiri hayalingani."
+
+#: dist/js/common/functions.js:120 dist/min/common/functions.min.js:84
+msgid "Notifications Denied"
+msgstr "Arifa Zimekataliwa"
+
+#: dist/js/common/functions.js:121 dist/min/common/functions.min.js:85
+msgid "Kindly allow Notifications."
+msgstr "Tafadhali ruhusu arifa."
+
+#: dist/js/common/functions.js:127 dist/min/common/functions.min.js:88
+msgid "Notifications Accepted!"
+msgstr "Arifa Zimekubaliwa"
+
+#: dist/js/common/functions.js:128 dist/min/common/functions.min.js:89
+msgid "Notifications have been allowed."
+msgstr "Arifa Zimeruhusiwa"
+
+#: dist/js/common/functions.js:150 dist/min/common/functions.min.js:104
+msgid "Notifications Registered"
+msgstr "Arifa Zimesajiliwa"
+
+#: dist/js/common/functions.js:151 dist/min/common/functions.min.js:105
+msgid "You can now receive notifications."
+msgstr "Sasa unaweza kupokea arifa."
+
+#: dist/js/common/functions.js:155 dist/min/common/functions.min.js:108
+msgid "Notifications Error"
+msgstr "Arifa Zimekataliwa"
+
+#: dist/js/common/functions.js:156 dist/min/common/functions.min.js:109
+msgid "Kindly Try again"
+msgstr "Tafadhali Jaribu Tena"
+
+#: dist/js/common/functions.js:191 dist/min/common/functions.min.js:134
+msgid "Not Authenticated"
+msgstr "Haikuthibitishwa"
+
+#: dist/js/common/functions.js:192 dist/min/common/functions.min.js:135
+#, fuzzy
+#| msgid "You don't have permission to do that."
+msgid "You do not have permission to do that."
+msgstr "Huna ruhusa ya kufanya hivyo."
+
+#: dist/js/common/functions.js:198 dist/min/common/functions.min.js:140
+msgid "Not Found"
+msgstr "Haikupatikana"
+
+#: dist/js/common/functions.js:199 dist/min/common/functions.min.js:141
+msgid "The requested resource was not found."
+msgstr "Rasilimali iliyoombwa haikupatikana."
+
+#: dist/js/common/functions.js:205 dist/js/common/notification.js:64
+#: dist/min/common/functions.min.js:146 dist/min/common/notification.min.js:36
+msgid "An Error Occurred"
+msgstr "Hitilafu imetokea"
+
+#: dist/js/common/functions.js:206 dist/min/common/functions.min.js:147
+msgid "Server error. Please try again later."
+msgstr "Hitilafu ya seva. Tafadhali jaribu tena baadaye."
+
+#: dist/js/common/functions.js:397 dist/min/common/functions.min.js:294
+msgid "Image too big"
+msgstr "Picha ni kubwa mno"
+
+#: dist/js/common/functions.js:398 dist/min/common/functions.min.js:295
+msgid "Kindly choose an image lower than 5MB"
+msgstr "Tafadhali chagua picha yenye ukubwa wa chini ya 5MB"
+
+#: dist/js/common/functions.js:409 dist/min/common/functions.min.js:302
+msgid "Not an Image"
+msgstr "Si picha"
+
+#: dist/js/common/functions.js:410 dist/min/common/functions.min.js:303
+msgid "Only JPG and JPEG images are allowed!"
+msgstr "Picha za JPG na JPEG pekee ndizo zinazoruhusiwa!"
+
+#: dist/js/common/functions.js:416 dist/min/common/functions.min.js:308
+msgid "Loading your Image"
+msgstr "Inapakia picha yako."
+
+#: dist/js/common/functions.js:436 dist/min/common/functions.min.js:324
+msgid "Image Processing Failed"
+msgstr "Uchakataji wa picha umeshindwa"
+
+#: dist/js/common/functions.js:437 dist/min/common/functions.min.js:325
+msgid "Could not process image, kindly try again"
+msgstr "Imeshindwa kuchakata picha, tafadhali jaribu tena"
+
+#: dist/js/common/notification.js:65 dist/min/common/notification.min.js:37
+#, fuzzy
+#| msgid "Kindly Try again"
+msgid "Kindly Try Again Later"
+msgstr "Tafadhali Jaribu Tena"
+
+#: dist/js/frontend/frontend.js:95 dist/min/frontend/frontend.min.js:74
+msgid "Subscribed"
+msgstr "Umejiunga"
+
+#: dist/js/frontend/frontend.js:96 dist/min/frontend/frontend.min.js:75
+msgid "You have successfully subscribed to SmSt Newsletter"
+msgstr "Umefanikiwa kujiunga na jarida la SmSt."
+
+#: dist/js/smst_finances/finances.js:601
+#: dist/min/smst_finances/finances.min.js:1404
+msgid "The entry was changed and the books reposted."
+msgstr "Ingizo lilirekebishwa na vitabu viliingizwa tena kwenye mfumo."
+
+#: dist/js/smst_finances/finances.js:602
+#: dist/min/smst_finances/finances.min.js:1406
+msgid "The entry was written into the book."
+msgstr "Ingizo imeandikwa kwenye kitabu."
+
+#: dist/js/smst_finances/finances.js:640
+#: dist/min/smst_finances/finances.min.js:307
+msgid "The entry was voided. Its history is kept."
+msgstr "Ingizo lilibatilishwa. Historia yake imehifadhiwa."
+
+#: dist/js/smst_finances/finances.js:662
+#: dist/min/smst_finances/finances.min.js:321
+msgid "The draft was deleted."
+msgstr "Rasimu ilifutwa."
+
+#: dist/js/smst_finances/finances.js:797
+#: dist/min/smst_finances/finances.min.js:1475
+msgid "The finance option was saved."
+msgstr "Chaguo la kifedha limehifadhiwa."
+
+#: dist/js/smst_finances/finances.js:900
+#: dist/min/smst_finances/finances.min.js:1546
+msgid "The chart of accounts was saved."
+msgstr "Chati ya akaunti ilihifadhiwa."
+
+#: dist/js/smst_finances/finances.js:936
+#: dist/min/smst_finances/finances.min.js:415
+msgid "The account was deleted."
+msgstr "Akaunti ilifutwa."
+
+#: dist/js/smst_finances/finances.js:1028
+#: dist/min/smst_finances/finances.min.js:1581
+msgid "The budget was saved."
+msgstr "Bajeti ilihifadhiwa."
+
+#: dist/js/smst_finances/finances.js:1064
+#: dist/min/smst_finances/finances.min.js:469
+msgid "The budget was deleted."
+msgstr "Bajeti ilifutwa."
+
+#: dist/js/smst_finances/finances.js:1767
+#: dist/min/smst_finances/finances.min.js:1042
+msgid "The budgets could not be read."
+msgstr "Bajeti hizo hazikuweza kusomwa."
+
+#: dist/js/smst_finances/finances.js:2019
+#: dist/min/smst_finances/finances.min.js:1170
+msgid "The report could not be built."
+msgstr "Ripoti hiyo haikuweza kuandaliwa.."
+
+#: dist/js/smst_finances/finances.js:2068
+#: dist/min/smst_finances/finances.min.js:1658
+msgid "The report is ready."
+msgstr "Ripoti iko tayari."
+
+#: dist/js/smst_finances/finances.js:2084
+#: dist/min/smst_finances/finances.min.js:1672
+msgid "Building the PDF…"
+msgstr "Kutengeneza PDF…"
+
+#: dist/js/smst_finances/finances.js:2165
+#: dist/min/smst_finances/finances.min.js:1260
+msgid "The book changed in another tab."
+msgstr "Kitabu kinabadilisha kwenye tiketi nyingine."
+
+#: dist/js/smst_stocks/js/stocks.js:222
+msgid "A sale is money in. It is posted to SmSt Finances through this account."
+msgstr "Mauzo yanamaanisha kuingia kwa fedha. Rekodi yake huwekwa kwenye SmSt Finances kupitia akaunti hii."
+
+#: dist/js/smst_stocks/js/stocks.js:2294
+#: dist/min/smst_stocks/js/stocks.min.js:1891
+msgid "In stock"
+msgstr "Ipo dukani"
+
+#: dist/js/smst_stocks/js/stocks.js:2300
+#: dist/min/smst_stocks/js/stocks.min.js:1897
+msgid "Running low"
+msgstr "Inakaribia kuisha"
+
+#: dist/js/smst_stocks/js/stocks.js:2306
+#: dist/min/smst_stocks/js/stocks.min.js:1903
+msgid "Out of stock"
+msgstr "Hakuna bidhaa"
+
+#: dist/js/smst_stocks/js/stocks.js:2498
+#: dist/min/smst_stocks/js/stocks.min.js:1773
+msgid "Pending"
+msgstr "Inasubiri"
+
+#: dist/js/smst_stocks/js/stocks.js:2499
+#: dist/min/smst_stocks/js/stocks.min.js:1774
+msgid "Confirmed"
+msgstr "Imethibitishwa"
+
+#: dist/js/smst_stocks/js/stocks.js:2500
+#: dist/min/smst_stocks/js/stocks.min.js:1775
+msgid "Fulfilled"
+msgstr "Imetimizwa"
+
+#: dist/js/smst_stocks/js/stocks.js:2501
+#: dist/min/smst_stocks/js/stocks.min.js:1776
+msgid "Cancelled"
+msgstr "Imeghairishwa"
+
+#: dist/js/smst_works/works.js:456 dist/min/smst_works/works.min.js:837
+msgid "The job is on the floor."
+msgstr "Kazi iko sakafuni."
+
+#: dist/js/smst_works/works.js:631 dist/min/smst_works/works.min.js:902
+msgid "The team member was changed."
+msgstr "Mwanachama wa timu alibadilishwa."
+
+#: dist/js/smst_works/works.js:632 dist/min/smst_works/works.min.js:903
+msgid "They are on the team."
+msgstr "Wako kwenye timu."
+
+#: dist/js/smst_works/works.js:737 dist/min/smst_works/works.min.js:945
+#: static/js/smst_works/works.prod.js:1
+msgid "The rank was changed."
+msgstr "Cheo kilibadilishwa."
+
+#: dist/js/smst_works/works.js:738 dist/min/smst_works/works.min.js:946
+msgid "The rank is ready."
+msgstr "Cheo liko tayari."
+
+#: dist/js/smst_works/works.js:830 dist/min/smst_works/works.min.js:984
+msgid "The customer was changed."
+msgstr "Mteja alibadilishwa."
+
+#: dist/js/smst_works/works.js:831 dist/min/smst_works/works.min.js:985
+msgid "They are on the list."
+msgstr "Wako kwenye orodha."
+
+#: dist/js/smst_works/works.js:1014 dist/min/smst_works/works.min.js:1063
+msgid "The supplier was changed."
+msgstr "Msambazaji alibadilishwa.."
+
+#: dist/js/smst_works/works.js:1015 dist/min/smst_works/works.min.js:1064
+msgid "The supplier is saved."
+msgstr "Msambazaji amehifadhiwa."
+
+#: dist/js/smst_works/works.js:1128 dist/min/smst_works/works.min.js:1111
+msgid "The guide was changed."
+msgstr "Mwongozo ulibadilishwa."
+
+#: dist/js/smst_works/works.js:1129 dist/min/smst_works/works.min.js:1112
+msgid "The guide is on the board."
+msgstr "Mwongozo uko ubaoni."
+
+#: dist/js/smst_works/works.js:1175 dist/min/smst_works/works.min.js:342
+msgid "The team member was fired."
+msgstr "Mwanachama wa timu alifukuzwa kazi."
+
+#: dist/min/smst_stocks/js/stocks.min.js:272
+msgid "sale"
+msgstr ""
+
+#~ msgid "The product has been saved and added to stock"
+#~ msgstr "Bidhaa imehifadhiwa na kuongezwa kwenye orodha ya bidhaa zilizopo."
