@@ -1,5 +1,10 @@
 venv/
 *env
+*.mo
+*.jsonc
+*.pem
+package-lock.json
+package.json
 hosts.py
 ip_keys.py
 asgi.py
@@ -11,6 +16,10 @@ node_modules/
 staticfiles/
 backend/
 smst/
+smst_ai/
+smst_adverts/
+test/
+tests/
 dist/min/
 static/
 # Playwright
@@ -23,3 +32,4 @@ static/
 /graphify-out
 /.agents
 /.claude
+/.opencode
